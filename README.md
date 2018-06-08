@@ -50,8 +50,30 @@ Projects and assemblies with the word _Interfaces_ in their names do the impleme
 
 
 ## Projects/Assemblies
+For details on the Blazor GUI application, look at the project Ace.AceGUI. For details onthe AceAgent applicationthat serves the aceGUI static files and provides API endpoints, see thesection Ace.AceAgent.
 ### Ace.AceGUI
-a Blazor application, the example here is loaded from a hardcoded specified physical path. The GUIServices provides the feature needed to serve the AceGUI to a browser. Once running in the browser, the AceGui interacts with the th other REST APIs provided by the AcceAgents base service or services provided by other PlugIns.
+Most folks who come here for the Blazor examples will be interested primarly in this project/assembly. This Blazor GUI App is derived from the stock examples found on GitHub.
+###Pages
+####BaseServices
+Display a simple page that interfaces with the APIs provided in the core services of the AceAgent.
+####GUIServices
+Display a simple page that interfaces with the APIs provided in the GUIServices PlugIn.
+####ComputerInventory.Hardware
+Display a simple page that contains the first Blazor components being developed in this repository.
+### Components
+####DropDownSingleSelectOfEnum
+This component will accept an enumeration type, an initial enumeration value, and display a list of enumeration's values focused on the initial value. The string displayed in the list should be:
+* the value of a custom attribute on that enum value (currently hardcoded as [SpecialDescription])
+* the value of the [Description] attribute on that enum value
+* the Name of the enum value
+The component maintains it currentValue in a private field, and provides access to this value through the Currentvalue property.
+When another piece of code changes the value of CurrentValue, the setter mthod calls StateHasChanged() to tell Blazor that the component needs to be re-rendered.
+
+This component is interesting becasue it should be able to be declared to use any enumeration type, and the initialValue, currentValue, and Currentvalues should all accept/return enumerations of whatever type is used to instantiate the component.
+
+In the next iteration of the component, I hope to be able to allow a user to specify an ordered list of custom attributes to display, instead of the current hardcoded three.
+In the next iteration of the component, I hope to be able to provide an OnChanged event, and trigger this event if CurrentValaue iis changed (in the setter), or, if the user changes the currrentValue by changing the selected element of teh dropdownlist.
+
 ### Ace.AceAgent (one of Ace.AceService or Ace.AceDaemon)
 This example only has the Windows version, called AceService. 
 This assembly contains the main entry point into the agent. It is written using the ServiceStack framework (https://servicestack.net/). The ServiceStack framework is wrapped in a TopShelf wrapper (https://github.com/Topshelf) to simplify the process of installing the AceService as a Windows service. When run under Debug mode, as is usually the case when interactively debugging or exploring the code, the AceAgent runs as a Console App. When run in Release mode, it expects to installed as and be running as a Windows service.

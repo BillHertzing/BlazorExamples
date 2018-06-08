@@ -7,7 +7,7 @@
 <select name=@name bind="@eList" onchange="@ChangeCurrentlySelectedValue">
   @foreach (var e in eList)
   {
-    <option value=@e.IntValue aria-selected="@SelectedARIATest(e.StrValue)">@e</option>
+    @OptionLine(e)
   }
 </select>
 <hr />
@@ -43,24 +43,24 @@ Region For Debugging Only
     public Type eType;
 
     // Simple class to hold the integer value of each enum vale and its string representation. The string representation is the materialized string based on an ordered list of enum value IAttribute(s)
-    private class enumValue
+    private class mEnumValue
     {
       public int IntValue { get; set; }
       public string StrValue { get; set; }
-      public enumValue() { }
+      public mEnumValue() { }
     }
     // this is the list to which the <select> dropdown binds. The Option tag uses the IntValue and StrValue of each element in the list
-    private List<enumValue> eList { get; set; }
+    private List<mEnumValue> eList { get; set; }
 
     // This method creates the list of enumValues at runtime from the enum type
-    private static List<enumValue> buildlist<T>() where T : System.Enum
+    private static List<mEnumValue> BuildList<T>() where T : System.Enum
     {
       //ToDo: eventually convert to LINQ syntax
-      var result = new List<enumValue>();
+      var result = new List<mEnumValue>();
       var values = Enum.GetValues(typeof(T));
 
       foreach (int item in values)
-        result.Add(new enumValue { IntValue = item, StrValue = Enum.GetName(typeof(T), item) });
+        result.Add(new mEnumValue { IntValue = item, StrValue = Enum.GetName(typeof(T), item) });
       return result;
     }
 
@@ -76,10 +76,9 @@ Region For Debugging Only
       currentlySelectedValue = initialSelectedValue;
       Console.WriteLine($"DropDownSingleSelectOfEnum.OnInit, after setting currentlySelectedValue, = {currentlySelectedValue.ToString()}");
 
-      //build the list of int::string pairs
-      eList = buildlist<eType>();
+      //build the list of int::string pairs using the materialized string, and do so after setting the currentlySelectedValue
+      eList = BuildList<eType>();
 
-      // eList = Enum.GetNames(T).ToList();
       Console.WriteLine($"leaving DropDownSingleSelectOfEnum.OnInit.OnInit,  private parameter initialSelectedValue = {initialSelectedValue?.ToString()}, private field currentlySelectedValue = {currentlySelectedValue.ToString()}, public property CurrentlySelectedValue = {CurrentlySelectedValue.ToString()}");
     }
 
@@ -90,7 +89,7 @@ Region For Debugging Only
       try
       {
         //ToDo: investigate e.Value when displaing attributes of the enum, make sure this parse works.
-        //CurrentlySelectedValue = (eType)Enum.ToObject(typeof(eType), (enumValue)e.Value).IntValue); //(((enumValue)e.Value).IntValue).Cast<eType>();//Enum.Parse(eType, (string)e.Value);
+        //CurrentlySelectedValue = (eType)Enum.ToObject(typeof(eType), (mEnumValue)e.Value).IntValue); //(((mEnumValue)e.Value).IntValue).Cast<eType>();//Enum.Parse(eType, (string)e.Value);
         //CurrentlySelectedValue = (string)e.Value;
       }
       catch (Exception ex)
@@ -124,6 +123,15 @@ Region For Debugging Only
     protected override void OnAfterRender()
     {
       base.OnAfterRender();
+    }
+
+    // Wouold prefer to create the OptionLine up in the razor portion ofthe page, with attributes being populated from functions
+    // but there does not appear to be a way to add a boolean tag in Blazor, so instead we construct teh entire string
+    // this is my preference
+    //    <option value=@e.IntValue @SelectedTest(e) aria-selected="@SelectedARIATest(e)">@e</option>
+
+    private string OptionLine(mEnumValue e) {
+      return $"<option value = {e.IntValue} {SelectedTest(e.StrValue)} aria-selected=\"{SelectedARIATest(e.StrValue)}\">{e.StrValue}</option>";
     }
 
     private Type eT;
