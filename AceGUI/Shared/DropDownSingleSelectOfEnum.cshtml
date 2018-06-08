@@ -1,0 +1,141 @@
+@*
+  // Display a single-select list of an enumeration, using an overloaded .ToString() static extension that looks for certain atrributes like [Description] and [LocalizedDescription] on the enum's values
+*@
+@using ATAP.Utilities.ComputerInventory.Enumerations;
+@using Microsoft.AspNetCore.Blazor.Components
+
+<select name=@name bind="@eList" onchange="@ChangeCurrentlySelectedValue">
+  @foreach (var e in eList)
+  {
+    <option value=@e.IntValue aria-selected="@SelectedARIATest(e.StrValue)">@e</option>
+  }
+</select>
+<hr />
+Region For Debugging Only
+<br />
+<div><label>@enumType currentlySelectedValue = </label> @currentlySelectedValue</div>
+<div><label>@enumType</label> CurrentlySelectedValue = @CurrentlySelectedValue</div>
+<hr />
+
+@functions {
+    // Stores a per-instance name for the component instance
+    [Parameter]
+    private string name { get; set; }
+
+    [Parameter]
+    private object initialSelectedValue { get; set; }
+
+    private object currentlySelectedValue;
+    // Public property provides access to private component parameter
+    public object CurrentlySelectedValue {
+      get => currentlySelectedValue; set {
+        currentlySelectedValue = value;
+        StateHasChanged();
+      }
+    }
+
+    // specifies what the enumeration Type is
+    // ToDo: ensure that this is readonly, and cannot be changed after the component has been initialized
+    [Parameter]
+    private string enumType { get; set; }
+
+    // This is the variable that holds the enumeration type handled by this component as specified at runtime
+    public Type eType;
+
+    // Simple class to hold the integer value of each enum vale and its string representation. The string representation is the materialized string based on an ordered list of enum value IAttribute(s)
+    private class enumValue
+    {
+      public int IntValue { get; set; }
+      public string StrValue { get; set; }
+      public enumValue() { }
+    }
+    // this is the list to which the <select> dropdown binds. The Option tag uses the IntValue and StrValue of each element in the list
+    private List<enumValue> eList { get; set; }
+
+    // This method creates the list of enumValues at runtime from the enum type
+    private static List<enumValue> buildlist<T>() where T : System.Enum
+    {
+      //ToDo: eventually convert to LINQ syntax
+      var result = new List<enumValue>();
+      var values = Enum.GetValues(typeof(T));
+
+      foreach (int item in values)
+        result.Add(new enumValue { IntValue = item, StrValue = Enum.GetName(typeof(T), item) });
+      return result;
+    }
+
+    protected override void OnInit()
+    {
+      Console.WriteLine($"starting DropDownSingleSelectOfEnum.OnInit ");
+      Console.WriteLine($"DropDownSingleSelectOfEnum.OnInit,  private parameter initialSelectedValue = {initialSelectedValue.ToString()}, private field currentlySelectedValue = {currentlySelectedValue?.ToString()}, public property CurrentlySelectedValue = {CurrentlySelectedValue?.ToString()}");
+      // convert the component parameter enumType to an enumeration type at runtime
+      // ToDo: better errorhandling if the string representing the enumeration type cannot be resolved to an actual enumeration type
+      eType = Type.GetType(enumType);
+
+      // ToDo: a mechanism to ensure the initialSelectedValue is indeed of type eType
+      currentlySelectedValue = initialSelectedValue;
+      Console.WriteLine($"DropDownSingleSelectOfEnum.OnInit, after setting currentlySelectedValue, = {currentlySelectedValue.ToString()}");
+
+      //build the list of int::string pairs
+      eList = buildlist<eType>();
+
+      // eList = Enum.GetNames(T).ToList();
+      Console.WriteLine($"leaving DropDownSingleSelectOfEnum.OnInit.OnInit,  private parameter initialSelectedValue = {initialSelectedValue?.ToString()}, private field currentlySelectedValue = {currentlySelectedValue.ToString()}, public property CurrentlySelectedValue = {CurrentlySelectedValue.ToString()}");
+    }
+
+
+    public void ChangeCurrentlySelectedValue(UIChangeEventArgs e)
+    {
+      Console.WriteLine($"starting DropDownSingleSelectOfEnum.ChangeCurrentlySelectedValue, CurrentlySelectedValue = {currentlySelectedValue?.ToString()}, eventvalue = {e.Value}");
+      try
+      {
+        //ToDo: investigate e.Value when displaing attributes of the enum, make sure this parse works.
+        //CurrentlySelectedValue = (eType)Enum.ToObject(typeof(eType), (enumValue)e.Value).IntValue); //(((enumValue)e.Value).IntValue).Cast<eType>();//Enum.Parse(eType, (string)e.Value);
+        //CurrentlySelectedValue = (string)e.Value;
+      }
+      catch (Exception ex)
+      {
+        // ToDo: propogate the exception upwards to see if any encloseing scope can handle it
+        throw ex;
+      }
+      Console.WriteLine($"leaving DropDownSingleSelectOfEnum.ChangeCurrentlySelectedValue, CurrentlySelectedValue = {CurrentlySelectedValue?.ToString()}");
+    }
+
+    string SelectedTest(string eListValueStr)
+    {
+      // Console.WriteLine($"starting DropDownSingleSelectOfEnum.SelectedTest, eList value as string = {eListValueStr}");
+      // ToDo: support run-time user-selectable or config selectable attribute to display. If Description or LocalizedDescription attribute(s) exist on the enumeration class, populate the eList with those. Fall back to GetNames
+      if (eListValueStr == CurrentlySelectedValue.ToString()) { return "selected"; } else { return ""; }
+    }
+    string SelectedARIATest(string eListValueStr)
+    {
+      // Console.WriteLine($"starting DropDownSingleSelectOfEnum.SelectedTest, eList value as string = {eListValueStr}");
+      // ToDo: support run-time user-selectable or config selectable attribute to display. If Description or LocalizedDescription attribute(s) exist on the enumeration class, populate the eList with those. Fall back to GetNames
+      if (eListValueStr == CurrentlySelectedValue.ToString()) { return "true"; } else { return "false"; }
+    }
+
+    protected override void OnParametersSet()
+    {
+      Console.WriteLine($"starting DropDownSingleSelectOfEnum.OnParametersSet, initialSelectedValue = {initialSelectedValue}");
+      currentlySelectedValue = initialSelectedValue.ToString();
+      base.OnParametersSet();
+    }
+
+    protected override void OnAfterRender()
+    {
+      base.OnAfterRender();
+    }
+
+    private Type eT;
+    private class ET<T> where T : Enum
+    {
+      public List<String> eList;
+      public ET(T enumToUse)
+      {
+        this.eList = Enum.GetNames(typeof(T)).ToList();
+      }
+
+    }
+    //eT = new ET<typeof(T)>(typeof(T));
+
+}

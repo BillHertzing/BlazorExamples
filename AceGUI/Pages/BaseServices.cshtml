@@ -1,0 +1,30 @@
+@page "/BaseServices"
+@inject HttpClient Http
+
+<h1>AceCommander Base Services</h1>
+
+    Current isAliveResponse :
+@if (isAliveResponse == null){
+<p><em>Loading...</em></p>
+} else{
+<p>
+  @isAliveResponse
+</p>
+}
+
+  Current appHost Configuration :
+@functions {
+    string isAliveResponse;
+
+    protected override async Task OnInitAsync()
+    {
+
+      Console.WriteLine($"starting OnInitAsync");
+      var isAliveGetResponseStr =  await Http.GetJsonAsync<string>("/isAlive/Bill?format=json");
+      Console.WriteLine($"GetJsonAsync returned");
+
+      //ToDo: fix this
+      isAliveResponse = isAliveGetResponseStr;
+    }
+
+}

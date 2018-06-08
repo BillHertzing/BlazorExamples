@@ -1,0 +1,41 @@
+@using ATAP.Utilities.ComputerInventory.Enumerations;
+@page "/ComputerInventory.Hardware"
+<h1>ComputerInventory CPUMaker and MainBoardMaker</h1>
+<DropDownSingleSelectOfEnum name="cPUMakerDropDownSingleSelect" ref="cPUMakerDropDownSingleSelect" enumType="ATAP.Utilities.ComputerInventory.Enumerations.CPUMaker, ATAP.Utilities.ComputerInventory.Enumerations" initialSelectedValue=@CPUMaker.Intel />
+<DropDownSingleSelectOfEnum name="mainBoardMakerDropDownSingleSelect" ref="mainBoardMakerDropDownSingleSelect" enumType="ATAP.Utilities.ComputerInventory.Enumerations.MainBoardMaker, ATAP.Utilities.ComputerInventory.Enumerations" initialSelectedValue=@MainBoardMaker.ASUS />
+<hr />
+<hr />
+<div><label>ComputerInventory.Hardware.cPUMakerDropDownSingleSelectCurrentlySelectedValue = </label>@cPUMakerDropDownSingleSelectCurrentlySelectedValue</div>
+<div><label>ComputerInventory.Hardware.mainBoardMakerDropDownSingleSelectCurrentlySelectedValue = </label>@mainBoardMakerDropDownSingleSelectCurrentlySelectedValue</div>
+<hr />
+<div><label>component cPUMakerDropDownSingleSelect.CurrentlySelectedValue = </label> @cPUMakerDropDownSingleSelect?.CurrentlySelectedValue</div>
+<div><label>component mainBoardMakerDropDownSingleSelect.CurrentlySelectedValue = </label> @mainBoardMakerDropDownSingleSelect?.CurrentlySelectedValue</div>
+<hr />
+<p>
+  <button class="btn btn-primary" onclick="@ForceCurrentlySelectedValueOfcPUMakerDropDownSingleSelectToDefault">Force the cPUMakerDropDownSingleSelect to its Default value</button>
+  <button class="btn btn-primary" onclick="@ForceCurrentlySelectedValueOfmainBoardMakerDropDownSingleSelectToDefault">(pset) Force the mainBoardMakerDropDownSingleSelect to its Default value</button>
+</p>
+
+@functions {
+public string cPUMakerDropDownSingleSelectCurrentlySelectedValue { get; set; }
+public string mainBoardMakerDropDownSingleSelectCurrentlySelectedValue { get; set; }
+DropDownSingleSelectOfEnum cPUMakerDropDownSingleSelect;
+DropDownSingleSelectOfEnum mainBoardMakerDropDownSingleSelect;
+public void ForceCurrentlySelectedValueOfcPUMakerDropDownSingleSelectToDefault()
+{
+  cPUMakerDropDownSingleSelect.CurrentlySelectedValue = default(CPUMaker);
+  cPUMakerDropDownSingleSelectCurrentlySelectedValue = cPUMakerDropDownSingleSelect.CurrentlySelectedValue.ToString();
+}
+public void ForceCurrentlySelectedValueOfmainBoardMakerDropDownSingleSelectToDefault()
+{
+  mainBoardMakerDropDownSingleSelect.CurrentlySelectedValue = default(MainBoardMaker);
+  mainBoardMakerDropDownSingleSelectCurrentlySelectedValue = mainBoardMakerDropDownSingleSelect.CurrentlySelectedValue.ToString();
+}
+
+protected override void OnInit()
+{
+  Console.WriteLine($"starting ComputerInventory.Hardware.OnInit");
+  Console.WriteLine($"leaving ComputerInventory.Hardware.OnInit");
+}
+
+}

@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="ServiceStack" Version="5.1.1" />
+    <PackageReference Include="ServiceStack.Logging.NLog" Version="5.1.1" />
+  </ItemGroup>
+  
+</Project>

@@ -1,0 +1,26 @@
+@page "/GUIServices"
+@inject HttpClient Http
+
+<h1>AceCommander GUI Services</h1>
+
+    Current VerifyGUIResponse :
+@if (verifyGUIResponse == null){
+<p><em>Loading...</em></p>
+} else{
+<p>
+  @verifyGUIResponse
+</p>
+}
+@functions {
+    string verifyGUIResponse;
+
+    protected override async Task OnInitAsync()
+    {
+
+      Console.WriteLine($"starting OnInitAsync");
+      var verifyGUIGetResponseStr =  await Http.GetJsonAsync<string>("/VerifyGUI?format=json");
+      Console.WriteLine($"GetJsonAsync returned");
+      verifyGUIResponse = verifyGUIGetResponseStr;
+    }
+
+}
