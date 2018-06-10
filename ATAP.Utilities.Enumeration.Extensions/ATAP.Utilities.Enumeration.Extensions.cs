@@ -1,14 +1,21 @@
-﻿using System;
+using System;
 using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
 
 namespace ATAP.Utilities.Enumeration.Extensions {
- 
-    public static class Extensions {
 
-		//	
-        public interface IAttribute<out T> {
+  public class SpecializedDescription : Attribute
+  {
+    public string specializedDescription;
+    public SpecializedDescription(string specializedDescription) { this.specializedDescription = specializedDescription; }
+  }
+
+  public static class Extensions {
+
+
+    //	
+    public interface IAttribute<out T> {
             T Value { get; }
         }
 

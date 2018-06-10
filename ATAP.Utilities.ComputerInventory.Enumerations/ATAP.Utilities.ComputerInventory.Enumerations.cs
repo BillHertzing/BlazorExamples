@@ -8,6 +8,8 @@
 using ServiceStack.Text;
 using ServiceStack.Text.EnumMemberSerializer;
 using System;
+using System.ComponentModel;
+using ATAP.Utilities.Enumeration.Extensions;
 
 
 namespace ATAP.Utilities.ComputerInventory.Enumerations

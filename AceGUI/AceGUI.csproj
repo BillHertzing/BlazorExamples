@@ -11,11 +11,17 @@
     <PackageReference Include="MedallionShell" Version="1.5.1" />
     <PackageReference Include="Microsoft.AspNetCore.Blazor.Browser" Version="0.4.0" />
     <PackageReference Include="Microsoft.AspNetCore.Blazor.Build" Version="0.4.0" />
+    <PackageReference Include="ServiceStack.Interfaces" Version="5.1.1" />
     <PackageReference Include="ServiceStack.Text" Version="5.1.1" />
     <PackageReference Include="Swordfish.NET.CollectionsV3" Version="3.0.0.1" />
     <PackageReference Include="TimePeriodLibrary.NET" Version="2.1.1" />
     <DotNetCliToolReference Include="Microsoft.AspNetCore.Blazor.Cli" Version="0.4.0" />
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AceService\AceService.BaseServiceModel\AceService.BaseServiceModel.csproj" />
+    <ProjectReference Include="..\AceService\AceService.GUIServices.Models\AceService.GUIServices.Models.csproj" />
   </ItemGroup>
 
   <ItemGroup>

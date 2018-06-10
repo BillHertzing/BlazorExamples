@@ -77,7 +77,7 @@ Region For Debugging Only
       Console.WriteLine($"DropDownSingleSelectOfEnum.OnInit, after setting currentlySelectedValue, = {currentlySelectedValue.ToString()}");
 
       //build the list of int::string pairs using the materialized string, and do so after setting the currentlySelectedValue
-      eList = BuildList<eType>();
+      eList = BuildList<CPUMaker>();
 
       Console.WriteLine($"leaving DropDownSingleSelectOfEnum.OnInit.OnInit,  private parameter initialSelectedValue = {initialSelectedValue?.ToString()}, private field currentlySelectedValue = {currentlySelectedValue.ToString()}, public property CurrentlySelectedValue = {CurrentlySelectedValue.ToString()}");
     }

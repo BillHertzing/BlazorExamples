@@ -1,26 +1,29 @@
 @page "/GUIServices"
 @inject HttpClient Http
+@using Ace.AceService.GUIServices.Models
 
 <h1>AceCommander GUI Services</h1>
 
-    Current VerifyGUIResponse :
-@if (verifyGUIResponse == null){
-<p><em>Loading...</em></p>
-} else{
-<p>
-  @verifyGUIResponse
-</p>
+    Current verifyGUIResult :
+@if (verifyGUIResult == null)
+{
+  <p><em>t3 Loading...</em></p>
+}
+else
+{
+  <p>
+    @verifyGUIResult
+  </p>
 }
 @functions {
-    string verifyGUIResponse;
 
+    string verifyGUIResult;
     protected override async Task OnInitAsync()
     {
 
-      Console.WriteLine($"starting OnInitAsync");
-      var verifyGUIGetResponseStr =  await Http.GetJsonAsync<string>("/VerifyGUI?format=json");
-      Console.WriteLine($"GetJsonAsync returned");
-      verifyGUIResponse = verifyGUIGetResponseStr;
+      Console.WriteLine($"starting GUIServices.OnInitAsync");
+      VerifyGUIResponse verifyGUIResponse = await Http.GetJsonAsync<VerifyGUIResponse>("/VerifyGUI?format=json");
+      Console.WriteLine($"GUIServices.OnInitAsyncGetJsonAsync returned {verifyGUIResponse.Result}");
+      verifyGUIResult = verifyGUIResponse.Result;
     }
-
 }

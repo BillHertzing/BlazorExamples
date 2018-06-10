@@ -1,5 +1,7 @@
 # BlazorExamples
-Blazor-specific examples extracted and simplified from my other repositories
+Blazor-specific examples extracted and simplified from my other repositories. If you are interested specificly in the Blazor portion, focus on Ace.AceGUI. if you are interested in how ServiceStack is being used to serve the Blazor aplication, focus on Ace.AceService
+
+As of the time of this writing, you will need teh ServiceStack patch release 5.1.1, which is in pre-release at ServiceStack's MyGet Feed https://www.myget.org/F/servicestack
 
 The goal is to have program, called AceAgent, that runs on Windows, Linux, and mobile OSs. AceAgent should:
 * Be written in C# and targets the .Net Core framework, and provide a very minimal set of basic services.
@@ -62,6 +64,7 @@ Display a simple page that interfaces with the APIs provided in the GUIServices 
 Display a simple page that contains the first Blazor components being developed in this repository.
 ### Components
 ####DropDownSingleSelectOfEnum
+This is the current Work In Progress. At this time, 
 This component will accept an enumeration type, an initial enumeration value, and display a list of enumeration's values focused on the initial value. The string displayed in the list should be:
 * the value of a custom attribute on that enum value (currently hardcoded as [SpecialDescription])
 * the value of the [Description] attribute on that enum value
@@ -125,10 +128,12 @@ It configures ServiceStack behavior:
 
 ## ATAP.Utilities.ComputerInventory.Enumerations
 This assembly supplies enumerations that support objects that describe the components that make up computer systems.
-For this example, there are three enumerations. One has no attributes on its elements, one has just the [Description] attribute, and the third has both the [Description] and a custom attribute [SpecialDescription]. For all of these enumerations, the string `generic` is used for the default enumeration value (integer value = 0).
+For this example, there are three enumerations. One has no attributes on its elements, one has just the [Description] attribute, and the third has both the [Description] and a custom attribute [SpecializedDescription]. For all of these enumerations, the string `generic` is used for the default enumeration value (integer value = 0).
 
 ## ATAP.Utilities.Enumeration.Extensions
 This assembly supplies static extension methods for enumeration types.
+### public class SpecializedDescription : Attribute
+This defines the custom attribute used by some of the enums 
 ### public interface IAttribute<out T>
 This interface guarentees that any object implementing this interface has a Property `Value` having a getter that returns an object of type T
 ### public static CustomAttributeType GetAttributeValue<CustomAttributeName, CustomAttributeType>(this Enum value)
@@ -136,4 +141,4 @@ This static generic extension method returns a CustomAttribute's Value
 ### public static string GetDescription(Enum value)
 This static extension method returns the [Description] attributes Value.
 ### public static T ToEnum<T>(this string value, bool ignoreCase = true)
-This static extension method converts a string representing the name of an enumeration element to teh actual enumeration element. This only takes in the actual enum element name, it does NOT convert strings representing any attribute. By default it is case insensitive, but an optional method parameter can tell the method to enforce case-sensitive matching.
+This static extension method converts a string representing the name of an enumeration element to the actual enumeration element. This only takes in the actual enum element name, it does NOT convert strings representing any attribute. By default it is case insensitive, but an optional method parameter can tell the method to enforce case-sensitive matching.
