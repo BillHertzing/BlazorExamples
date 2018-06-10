@@ -52,7 +52,7 @@ Projects and assemblies with the word _Interfaces_ in their names do the impleme
 ## Projects/Assemblies
 For details on the Blazor GUI application, look at the project Ace.AceGUI. For details onthe AceAgent applicationthat serves the aceGUI static files and provides API endpoints, see thesection Ace.AceAgent.
 ### Ace.AceGUI
-Most folks who come here for the Blazor examples will be interested primarly in this project/assembly. This Blazor GUI App is derived from the stock examples found on GitHub.
+Most people who come here for the Blazor examples will be interested primarly in this project/assembly. This Blazor GUI App is derived from the stock examples found on GitHub.
 ###Pages
 ####BaseServices
 Display a simple page that interfaces with the APIs provided in the core services of the AceAgent.
@@ -122,3 +122,18 @@ It supports a configuration setting file. It includes configuration settings for
 It configures ServiceStack behavior:
 -It instructs ServiceStack to respond to requests on the virtual path with a file name if the Request's URL matches a file name found in the virtualpath. It maps subdirectories of the physical path to subdirectories of the virtual path, and delivers files from these locations as well.
 -It instructs ServiceStack to respond to requests on the virtual path with a redirect to virtualpath/index.html, if the request on the virtual path does not match any file name.
+
+## ATAP.Utilities.ComputerInventory.Enumerations
+This assembly supplies enumerations that support objects that describe the components that make up computer systems.
+For this example, there are three enumerations. One has no attributes on its elements, one has just the [Description] attribute, and the third has both the [Description] and a custom attribute [SpecialDescription]. For all of these enumerations, the string `generic` is used for the default enumeration value (integer value = 0).
+
+## ATAP.Utilities.Enumeration.Extensions
+This assembly supplies static extension methods for enumeration types.
+### public interface IAttribute<out T>
+This interface guarentees that any object implementing this interface has a Property `Value` having a getter that returns an object of type T
+### public static CustomAttributeType GetAttributeValue<CustomAttributeName, CustomAttributeType>(this Enum value)
+This static generic extension method returns a CustomAttribute's Value
+### public static string GetDescription(Enum value)
+This static extension method returns the [Description] attributes Value.
+### public static T ToEnum<T>(this string value, bool ignoreCase = true)
+This static extension method converts a string representing the name of an enumeration element to teh actual enumeration element. This only takes in the actual enum element name, it does NOT convert strings representing any attribute. By default it is case insensitive, but an optional method parameter can tell the method to enforce case-sensitive matching.
