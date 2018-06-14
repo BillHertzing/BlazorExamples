@@ -1,6 +1,6 @@
 <Project>
   <PropertyGroup>
-    <TargetFramework>net47</TargetFramework>
+
     <Company>ATAP Technology, Inc.</Company>
     <Copyright>ATAP Technology, Inc.</Copyright>
     <Authors>William Hertzing</Authors> 

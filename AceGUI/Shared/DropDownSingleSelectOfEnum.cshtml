@@ -78,6 +78,7 @@ Region For Debugging Only
 
       //build the list of int::string pairs using the materialized string, and do so after setting the currentlySelectedValue
       eList = BuildList<CPUMaker>();
+      //eList = BuildList<eType>();
 
       Console.WriteLine($"leaving DropDownSingleSelectOfEnum.OnInit.OnInit,  private parameter initialSelectedValue = {initialSelectedValue?.ToString()}, private field currentlySelectedValue = {currentlySelectedValue.ToString()}, public property CurrentlySelectedValue = {CurrentlySelectedValue.ToString()}");
     }
@@ -125,8 +126,8 @@ Region For Debugging Only
       base.OnAfterRender();
     }
 
-    // Wouold prefer to create the OptionLine up in the razor portion ofthe page, with attributes being populated from functions
-    // but there does not appear to be a way to add a boolean tag in Blazor, so instead we construct teh entire string
+    // Would prefer to create the OptionLine up in the razor portion of the page, with attributes being populated from functions
+    // but there does not appear to be a way to add a boolean tag in Blazor, so instead we construct the entire string
     // this is my preference
     //    <option value=@e.IntValue @SelectedTest(e) aria-selected="@SelectedARIATest(e)">@e</option>
 

@@ -3,7 +3,7 @@
    <PropertyGroup>
     <OutputType>Exe</OutputType>
     <RootNamespace>Ace.AceService</RootNamespace>
-    <TargetFramework>net47</TargetFramework>
+    <TargetFrameworks>net47</TargetFrameworks>
   </PropertyGroup>
 
   <!-- Common for all TargetFrameworks references, compilation flags and build options -->

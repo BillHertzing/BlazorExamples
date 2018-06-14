@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -11,7 +11,7 @@ namespace Ace.AceService
         public static Dictionary<string, string> GetIt()
         {
             return new Dictionary<string, string>() {
-                { "Ace.AceService:ListeningOn", "http://localhost:21100/"} ,
+                { "Ace.AceService:ListeningOn", "http://localhost:21500/"} ,
                 { "Ace.AceService:UserName", System.Environment.UserName} ,
                 { "Ace.AceService:ConfigFilePath", $"{Environment.GetEnvironmentVariable("ProgramData")}+/ACE/config.txt"},
                 {"Ace.AceService.HWPlugin.PathToHWConfigFile" , $"{Environment.GetEnvironmentVariable("ProgramData")}+/ACE/AceService.HWPlugin.Config.txt"},

@@ -142,3 +142,11 @@ This static generic extension method returns a CustomAttribute's Value
 This static extension method returns the [Description] attributes Value.
 ### public static T ToEnum<T>(this string value, bool ignoreCase = true)
 This static extension method converts a string representing the name of an enumeration element to the actual enumeration element. This only takes in the actual enum element name, it does NOT convert strings representing any attribute. By default it is case insensitive, but an optional method parameter can tell the method to enforce case-sensitive matching.
+
+
+## Notes on Building
+- AceGUI must target netstandard2.0
+- AceService must target net47
+- Any assembly with .PlugIn: must target net47
+- Any assembly with .Models that are used by both the server and client side, must target both net47 and netstandard2.0
+- Any Assembly with .UnitTests must target net47
