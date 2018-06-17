@@ -1,8 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-   <PropertyGroup>
-     <TargetFramework>net47</TargetFramework>
-     <OutputType>Library</OutputType>
+  <PropertyGroup>
+    <TargetFrameworks>net47</TargetFrameworks>
+    <OutputType>Library</OutputType>
     <RootNamespace>Ace.AceService.BaseServiceInterface</RootNamespace>
   </PropertyGroup>
   

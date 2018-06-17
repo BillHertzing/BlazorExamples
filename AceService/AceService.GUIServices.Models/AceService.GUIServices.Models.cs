@@ -3,6 +3,7 @@ using ServiceStack;
 
 namespace Ace.AceService.GUIServices.Models
 {
+
   // This route will ensure that serviceStack has the GUI PlugIn loaded
   [Route("/VerifyGUI")]
   [Route("/VerifyGUI/{Kind};{Version}")]

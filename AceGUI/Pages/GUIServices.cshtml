@@ -1,6 +1,5 @@
 @page "/GUIServices"
-@inject HttpClient Http
-@using Ace.AceService.GUIServices.Models
+@inherits Ace.AceGUI.Pages.GUIServicesCodeBehind
 
 <h1>AceCommander GUI Services</h1>
 
@@ -15,15 +14,4 @@ else
     @verifyGUIResult
   </p>
 }
-@functions {
 
-    string verifyGUIResult;
-    protected override async Task OnInitAsync()
-    {
-
-      Console.WriteLine($"starting GUIServices.OnInitAsync");
-      VerifyGUIResponse verifyGUIResponse = await Http.GetJsonAsync<VerifyGUIResponse>("/VerifyGUI?format=json");
-      Console.WriteLine($"GUIServices.OnInitAsyncGetJsonAsync returned {verifyGUIResponse.Result}");
-      verifyGUIResult = verifyGUIResponse.Result;
-    }
-}

@@ -18,6 +18,7 @@ namespace AceGUI
                   .AddBrowserConsole() // Register the logger with the ILoggerBuilder
                   .SetMinimumLevel(LogLevel.Debug) // Set the minimum log level to Information
               );
+                // Add any additional custom services here
             });
 
             new BrowserRenderer(serviceProvider).AddComponent<App>("app");

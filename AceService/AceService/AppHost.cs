@@ -13,26 +13,28 @@ namespace Ace.AceService {
     //VS.NET Template Info: https://servicestack.net/vs-templates/EmptyWindowService
     public class AppHost : AppSelfHostBase {
         static readonly ILog Log = LogManager.GetLogger(typeof(AppHost));
-    List<Task> longRunningTaskList;
-    Dictionary<string, Timer> timers;
+        List<Task> longRunningTaskList;
+        Dictionary<string, Timer> timers;
 
-    /// Base constructor requires a Name and Assembly where the basic service implementation is located
-    public AppHost() : base("AceService", typeof(BaseServices).Assembly) {
-        Log.Debug("Entering AppHost Ctor");
-      Log.Debug("Leaving AppHost Ctor");
-    }
+        /// <summary>
+        /// Base constructor requires a Name and Assembly where web service implementation is located
+        /// </summary>
+        public AppHost() : base("AceService", typeof(BaseServices).Assembly) {
+            Log.Debug("Entering AppHost Ctor");
+            Log.Debug("Leaving AppHost Ctor");
+        }
 
-    void LongRunningTasksCheckTimer_Elapsed(object sender, ElapsedEventArgs e) {
-        //Log.Debug("Entering the appHost.LongRunningTasksCheckTimer_Elapsed Method");
-        var container = base.Container;
-      Dictionary<string, Timer> timers = container.TryResolve(typeof(Dictionary<string, Timer>)) as Dictionary<string, Timer>;
-      timers["longRunningTasksCheckTimer"].Stop();
-      //Log.Debug("checking for existence of any longRunningTasks");
-      List<Task> longRunningTaskList = container.TryResolve(typeof(List<Task>)) as List<Task>;
-      //Log.Debug($"There are {longRunningTaskList.Count} tasks in the longRunningTaskList");
-      timers["longRunningTasksCheckTimer"].Start();
-        //Log.Debug("Leaving the appHost.LongRunningTasksCheckTimer_Elapsed Method");
-    }
+        void LongRunningTasksCheckTimer_Elapsed(object sender, ElapsedEventArgs e) {
+            //Log.Debug("Entering the appHost.LongRunningTasksCheckTimer_Elapsed Method");
+            var container = base.Container;
+            Dictionary<string, Timer> timers = container.TryResolve(typeof(Dictionary<string, Timer>)) as Dictionary<string, Timer>;
+            timers["longRunningTasksCheckTimer"].Stop();
+            //Log.Debug("checking for existence of any longRunningTasks");
+            List<Task> longRunningTaskList = container.TryResolve(typeof(List<Task>)) as List<Task>;
+            //Log.Debug($"There are {longRunningTaskList.Count} tasks in the longRunningTaskList");
+            timers["longRunningTasksCheckTimer"].Start();
+            //Log.Debug("Leaving the appHost.LongRunningTasksCheckTimer_Elapsed Method");
+        }
 
     /// <summary>
     /// Shut down the Web Service
@@ -149,7 +151,7 @@ namespace Ace.AceService {
 
       // start all the timers
       Log.Debug("In AppHost.Configure method, starting all timers");
-      longRunningTasksCheckTimer.Start();
+	        longRunningTasksCheckTimer.Start();
       Log.Debug("Leaving AppHost.Configure");
     }
     }

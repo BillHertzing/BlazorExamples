@@ -13,7 +13,7 @@ namespace Ace.AceService.GUIServices.Interfaces {
 			Log.Debug("starting Any VerifyGUI request");
 			var kind = request.Kind;
 			var version = request.Version;
-      //ToDo: add the code that returns True/False for the route that includes the kind/version
+			// ToDo: add the code that returns True/False for the route that includes the kind/version
 			return new VerifyGUIResponse { Result = "Blazor" };
 		}
     }

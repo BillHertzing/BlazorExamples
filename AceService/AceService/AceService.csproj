@@ -1,9 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-   <PropertyGroup>
+  <PropertyGroup>
+    <TargetFramework>net47</TargetFramework>
     <OutputType>Exe</OutputType>
     <RootNamespace>Ace.AceService</RootNamespace>
-    <TargetFrameworks>net47</TargetFrameworks>
   </PropertyGroup>
 
   <!-- Common for all TargetFrameworks references, compilation flags and build options -->
@@ -78,7 +78,7 @@
     <!-- Tasks to build the Squirrel package -->
     <Message Importance="High" Text="The value of SemVerNumber is: $(SemVerNumber)" />
     <!-- Build nupkg into the project local bin\Release\ directory temporarily -->
-    <Exec Command="NuGet pack $(TargetName).nuspec -Version $(SemVerNumber) -OutputDirectory $(OutDir) -BasePath $(OutDir)&#xD;&#xA;powershell.exe -ExecutionPolicy Bypass -NoProfile -NonInteractive -File PostBuild.ps1 $(TargetName)" />
+    <Exec Command="powershell.exe -ExecutionPolicy Bypass -NoProfile -NonInteractive -File PostBuild.ps1 $(TargetName)" />
     <!-- Squirrelify into the release dir, usually located at solution level. Change the property above for a different location -->
   </Target>
 </Project>

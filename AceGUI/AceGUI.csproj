@@ -1,8 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFrameworks>netstandard2.0</TargetFrameworks>
+    <RunCommand>dotnet</RunCommand>
+    <RunArguments>blazor serve</RunArguments>
     <UserSecretsId>115496fd-8f63-4cd8-9576-d2e799be9824</UserSecretsId>
   </PropertyGroup>
 
@@ -11,6 +12,7 @@
     <PackageReference Include="MedallionShell" Version="1.5.1" />
     <PackageReference Include="Microsoft.AspNetCore.Blazor.Browser" Version="0.4.0" />
     <PackageReference Include="Microsoft.AspNetCore.Blazor.Build" Version="0.4.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="2.1.0" />
     <PackageReference Include="ServiceStack.Interfaces" Version="5.1.1" />
     <PackageReference Include="ServiceStack.Text" Version="5.1.1" />
     <PackageReference Include="Swordfish.NET.CollectionsV3" Version="3.0.0.1" />
@@ -39,14 +41,7 @@
     </Reference>
   </ItemGroup>
 
-  <PropertyGroup>
-    <DeployOnBuild>true</DeployOnBuild>
-    <SiteUrlToLaunchAfterPublish>http://localhost:21100/</SiteUrlToLaunchAfterPublish>
-    <LaunchSiteAfterPublish>True</LaunchSiteAfterPublish>
-    <ExcludeApp_Data>False</ExcludeApp_Data>
-    <ProjectGuid>722e51fc-a9fb-4b6d-aa10-dfd8d2c137b1</ProjectGuid>
-    <DeleteExistingFiles>False</DeleteExistingFiles>
-  </PropertyGroup>
+
   
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
     <Message Importance="High" Text="This is a $(Configuration) Build" Condition="'$(Configuration)'=='Release'" />
@@ -62,6 +57,5 @@
     <Message Importance="High" Text="publishUrl: $(publishUrl) " />
 
   </Target>
-  
 
 </Project>
