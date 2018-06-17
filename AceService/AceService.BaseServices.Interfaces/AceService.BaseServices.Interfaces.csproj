@@ -3,14 +3,14 @@
   <PropertyGroup>
     <TargetFrameworks>net47</TargetFrameworks>
     <OutputType>Library</OutputType>
-    <RootNamespace>Ace.AceService.BaseServiceInterface</RootNamespace>
+    <RootNamespace>Ace.AceService.BaseServices.Interfaces</RootNamespace>
   </PropertyGroup>
   
   <!-- Common for all TargetFrameworks references, compilation flags and build options -->
   <ItemGroup>
     <PackageReference Include="ServiceStack" Version="5.1.1" />
     <PackageReference Include="ServiceStack.Logging.NLog" Version="5.1.1" />
-    <ProjectReference Include="..\AceService.BaseServiceModel\AceService.BaseServiceModel.csproj" />
+    <ProjectReference Include="..\AceService.BaseServices.Models\AceService.BaseServices.Models.csproj" />
   </ItemGroup>
   
   <!-- .NET 4.7 references, compilation flags and build options -->
@@ -32,11 +32,4 @@
     <Reference Include="System.Security" />
   </ItemGroup>
 
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>
