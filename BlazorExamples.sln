@@ -11,15 +11,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AceService", "AceService\Ac
 		{155593DB-FBA9-4A27-8427-E956E97A5782} = {155593DB-FBA9-4A27-8427-E956E97A5782}
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AceService.BaseServiceModel", "AceService\AceService.BaseServiceModel\AceService.BaseServiceModel.csproj", "{96FF5B6F-DE91-4990-95B8-586921A424F8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AceService.BaseServices.Models", "AceService\AceService.BaseServices.Models\AceService.BaseServices.Models.csproj", "{96FF5B6F-DE91-4990-95B8-586921A424F8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AceService.BaseServiceInterface", "AceService\AceService.BaseServiceInterface\AceService.BaseServiceInterface.csproj", "{C28071DF-D89A-4CF3-8F0D-BC24D4DDA025}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AceService.BaseServices.Interfaces", "AceService\AceService.BaseServices.Interfaces\AceService.BaseServices.Interfaces.csproj", "{C28071DF-D89A-4CF3-8F0D-BC24D4DDA025}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AceService.BaseServiceTests", "AceService\AceService.BaseServiceTests\AceService.BaseServiceTests.csproj", "{FCB08F4F-A6C4-471A-B2A3-33B77AEE6F77}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AceService.BaseServices.Tests", "AceService\AceService.BaseServices.Tests\AceService.BaseServices.Tests.csproj", "{FCB08F4F-A6C4-471A-B2A3-33B77AEE6F77}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{87D83409-A5BD-4BAE-94A8-D30A2206E64A}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
+		ATTRIBUTION.md = ATTRIBUTION.md
 		Directory.Build.props = Directory.Build.props
 		README.md = README.md
 	EndProjectSection

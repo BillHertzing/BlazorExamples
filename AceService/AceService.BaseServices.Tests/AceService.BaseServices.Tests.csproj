@@ -4,6 +4,7 @@
  <PropertyGroup>
     <TargetFrameworks>net47</TargetFrameworks>
     <IsPackable>false</IsPackable>
+	<RootNamespace>Ace.AceService.BaseServices.Tests</RootNamespace>
   </PropertyGroup>
   
   <ItemGroup>
@@ -25,8 +26,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AceService.BaseServiceInterface\AceService.BaseServiceInterface.csproj" />
-    <ProjectReference Include="..\AceService.BaseServiceModel\AceService.BaseServiceModel.csproj" />
+    <ProjectReference Include="..\AceService.BaseServices.Interfaces\AceService.BaseServices.Interfaces.csproj" />
+    <ProjectReference Include="..\AceService.BaseServices.Models\AceService.BaseServices.Models.csproj" />
   </ItemGroup>
 
 

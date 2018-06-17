@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AceService\AceService.BaseServiceModel\AceService.BaseServiceModel.csproj" />
+    <ProjectReference Include="..\AceService\AceService.BaseServices.Models\AceService.BaseServices.Models.csproj" />
     <ProjectReference Include="..\AceService\AceService.GUIServices.Models\AceService.GUIServices.Models.csproj" />
   </ItemGroup>
 

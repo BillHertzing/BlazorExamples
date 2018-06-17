@@ -1,6 +1,6 @@
 using System;
-using Ace.AceService.BaseServicesInterface;
-using Ace.AceService.BaseServicesModel;
+using Ace.AceService.BaseServices.Interfaces;
+using Ace.AceService.BaseServices.Models;
 using FluentAssertions;
 using Funq;
 using ServiceStack;
@@ -9,7 +9,7 @@ using Xunit.Abstractions;
 
 namespace Ace.AceService.BaseService.UnitTests {
     class UnitTestingAppHost : AppSelfHostBase {
-        public UnitTestingAppHost() : base(nameof(BaseServicesUnitTest), typeof(BaseServices).Assembly) {
+        public UnitTestingAppHost() : base(nameof(BaseServicesUnitTest), typeof(Ace.AceService.BaseServices.Interfaces.BaseServices).Assembly) {
         }
 
         public override void Configure(Container container) {
@@ -50,7 +50,7 @@ namespace Ace.AceService.BaseService.UnitTests {
 
         [Fact]
         public void Can_call_BaseServiceIsAlive() {
-            var service = _fixture.unitTestingAppHost.Container.Resolve<BaseServices>();
+            var service = _fixture.unitTestingAppHost.Container.Resolve<Ace.AceService.BaseServices.Interfaces.BaseServices>();
 
             var response = (IsAliveResponse)service.Any(new BaseServiceIsAlive());
             response.Result.Should()

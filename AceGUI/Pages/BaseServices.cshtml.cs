@@ -1,7 +1,7 @@
 // Required for the HttpClient
 using System.Net.Http;
 using System.Threading.Tasks;
-using Ace.AceService.BaseServicesModel;
+using Ace.AceService.BaseServices.Models;
 // Required for the logger/logging
 using Blazor.Extensions.Logging;
 using Microsoft.AspNetCore.Blazor;

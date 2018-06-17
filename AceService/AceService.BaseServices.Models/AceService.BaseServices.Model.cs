@@ -3,7 +3,7 @@ using System.Web;
 using ServiceStack;
 
 
-namespace Ace.AceService.BaseServicesModel
+namespace Ace.AceService.BaseServices.Models
 {
     [Route("/isAlive")]
     [Route("/isAlive/{Name}")]

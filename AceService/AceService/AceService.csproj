@@ -50,7 +50,7 @@
   
 
   <ItemGroup>
-    <ProjectReference Include="..\AceService.BaseServiceInterface\AceService.BaseServiceInterface.csproj" />
+    <ProjectReference Include="..\AceService.BaseServices.Interfaces\AceService.BaseServices.Interfaces.csproj" />
     <ProjectReference Include="..\AceService.GUIServices.Plugin\AceService.GUIServices.Plugin.csproj" />
   </ItemGroup>
 

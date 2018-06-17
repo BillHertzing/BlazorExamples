@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;net47</TargetFrameworks>
     <OutputType>Library</OutputType>
-    <RootNamespace>Ace.AceService.BaseServiceModel</RootNamespace>
+    <RootNamespace>Ace.AceService.BaseServices.Models</RootNamespace>
   </PropertyGroup>
   
   <!-- Common for all TargetFrameworks references, compilation flags and build options -->

@@ -1,8 +1,8 @@
 using Funq;
 using ServiceStack;
 using ServiceStack.Testing;
-using Ace.AceService.BaseServicesInterface;
-using Ace.AceService.BaseServicesModel;
+using Ace.AceService.BaseServices.Interfaces;
+using Ace.AceService.BaseServices.Models;
 using FluentAssertions;
 using Moq;
 using Newtonsoft.Json;
@@ -14,7 +14,7 @@ namespace Ace.AceService.BaseService.IntegrationTests
 {
     class IntegrationTestingAppHost : AppSelfHostBase
     {
-        public IntegrationTestingAppHost() : base(nameof(IntegrationTest), typeof(BaseServices).Assembly) { }
+        public IntegrationTestingAppHost() : base(nameof(IntegrationTest), typeof(Ace.AceService.BaseServices.Interfaces.BaseServices).Assembly) { }
 
         public override void Configure(Container container)
         {
