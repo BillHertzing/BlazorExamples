@@ -50,8 +50,8 @@
   
 
   <ItemGroup>
-    <ProjectReference Include="..\AceService.BaseServices.Interfaces\AceService.BaseServices.Interfaces.csproj" />
-    <ProjectReference Include="..\AceService.GUIServices.Plugin\AceService.GUIServices.Plugin.csproj" />
+    <ProjectReference Include="..\..\AceAgentCommon\AceService.BaseServices.Interfaces\AceService.BaseServices.Interfaces.csproj" />
+    <ProjectReference Include="..\..\AceAgentCommon\PlugIns\GUIServices\AceService.GUIServices.Plugin\AceService.GUIServices.Plugin.csproj" />
   </ItemGroup>
 
 

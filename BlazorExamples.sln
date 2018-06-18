@@ -5,17 +5,17 @@ VisualStudioVersion = 15.0.27130.2024
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AceGUI", "AceGUI\AceGUI.csproj", "{722E51FC-A9FB-4B6D-AA10-DFD8D2C137B1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AceService", "AceService\AceService\AceService.csproj", "{155593DB-FBA9-4A27-8427-E956E97A5782}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AceService", "AceAgent\AceService\AceService\AceService.csproj", "{155593DB-FBA9-4A27-8427-E956E97A5782}"
 	ProjectSection(ProjectDependencies) = postProject
 		{FCB08F4F-A6C4-471A-B2A3-33B77AEE6F77} = {FCB08F4F-A6C4-471A-B2A3-33B77AEE6F77}
 		{155593DB-FBA9-4A27-8427-E956E97A5782} = {155593DB-FBA9-4A27-8427-E956E97A5782}
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AceService.BaseServices.Models", "AceService\AceService.BaseServices.Models\AceService.BaseServices.Models.csproj", "{96FF5B6F-DE91-4990-95B8-586921A424F8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AceService.BaseServices.Models", "AceAgent\AceAgentCommon\AceService.BaseServices.Models\AceService.BaseServices.Models.csproj", "{96FF5B6F-DE91-4990-95B8-586921A424F8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AceService.BaseServices.Interfaces", "AceService\AceService.BaseServices.Interfaces\AceService.BaseServices.Interfaces.csproj", "{C28071DF-D89A-4CF3-8F0D-BC24D4DDA025}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AceService.BaseServices.Interfaces", "AceAgent\AceAgentCommon\AceService.BaseServices.Interfaces\AceService.BaseServices.Interfaces.csproj", "{C28071DF-D89A-4CF3-8F0D-BC24D4DDA025}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AceService.BaseServices.Tests", "AceService\AceService.BaseServices.Tests\AceService.BaseServices.Tests.csproj", "{FCB08F4F-A6C4-471A-B2A3-33B77AEE6F77}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AceService.BaseServices.Tests", "AceAgent\AceAgentCommon\AceService.BaseServices.Tests\AceService.BaseServices.Tests.csproj", "{FCB08F4F-A6C4-471A-B2A3-33B77AEE6F77}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{87D83409-A5BD-4BAE-94A8-D30A2206E64A}"
 	ProjectSection(SolutionItems) = preProject
@@ -25,15 +25,32 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AceService.GUIServices.Models", "AceService\AceService.GUIServices.Models\AceService.GUIServices.Models.csproj", "{1E115592-42B8-473C-B1C3-2EA44EEDBB07}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AceService.GUIServices.Models", "AceAgent\AceAgentCommon\PlugIns\GUIServices\AceService.GUIServices.Models\AceService.GUIServices.Models.csproj", "{1E115592-42B8-473C-B1C3-2EA44EEDBB07}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AceService.GUIServices.Interfaces", "AceService\AceService.GUIServices.Interfaces\AceService.GUIServices.Interfaces.csproj", "{38082CD8-9833-421C-83E6-3B0DA96D53A6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AceService.GUIServices.Interfaces", "AceAgent\AceAgentCommon\PlugIns\GUIServices\AceService.GUIServices.Interfaces\AceService.GUIServices.Interfaces.csproj", "{38082CD8-9833-421C-83E6-3B0DA96D53A6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AceService.GUIServices.Plugin", "AceService\AceService.GUIServices.Plugin\AceService.GUIServices.Plugin.csproj", "{75DB6866-4AC8-45D0-AFC9-EC9F9747D535}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AceService.GUIServices.Plugin", "AceAgent\AceAgentCommon\PlugIns\GUIServices\AceService.GUIServices.Plugin\AceService.GUIServices.Plugin.csproj", "{75DB6866-4AC8-45D0-AFC9-EC9F9747D535}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ATAP.Utilities.ComputerInventory.Enumerations", "ATAP.Utilities.ComputerInventory.Enumerations\ATAP.Utilities.ComputerInventory.Enumerations.csproj", "{043BD80C-DA49-4C25-A517-97C21AA5F049}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ATAP.Utilities.Enumeration.Extensions", "ATAP.Utilities.Enumeration.Extensions\ATAP.Utilities.Enumeration.Extensions.csproj", "{50D0EA57-FBA2-4C50-BD8A-DF00AAC1CA67}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AceAgent", "AceAgent", "{0E1DC973-37C6-4373-9B8F-DCF540F7EBF2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AceService", "AceService", "{358C6FBD-56E7-4385-A70C-9191A4085A2C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AceDaemon", "AceDaemon", "{EBB234E4-867B-467A-BE11-D4651843D1DF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AceAgentCommon", "AceAgentCommon", "{D38D93F8-9063-4E68-B982-72B81C57943B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PlugIns", "PlugIns", "{E38BAEFE-15F9-429E-94F3-BE71D2115B86}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AceGUI", "AceGUI", "{E2EC32C9-58E3-447F-93ED-E48B18D0F70C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Doc", "Doc", "{51611495-BEAF-4338-9370-99E98B3645EE}"
+	ProjectSection(SolutionItems) = preProject
+		Doc\BuildingNotes.MD = Doc\BuildingNotes.MD
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -84,6 +101,20 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{722E51FC-A9FB-4B6D-AA10-DFD8D2C137B1} = {E2EC32C9-58E3-447F-93ED-E48B18D0F70C}
+		{155593DB-FBA9-4A27-8427-E956E97A5782} = {358C6FBD-56E7-4385-A70C-9191A4085A2C}
+		{96FF5B6F-DE91-4990-95B8-586921A424F8} = {D38D93F8-9063-4E68-B982-72B81C57943B}
+		{C28071DF-D89A-4CF3-8F0D-BC24D4DDA025} = {D38D93F8-9063-4E68-B982-72B81C57943B}
+		{FCB08F4F-A6C4-471A-B2A3-33B77AEE6F77} = {D38D93F8-9063-4E68-B982-72B81C57943B}
+		{1E115592-42B8-473C-B1C3-2EA44EEDBB07} = {E38BAEFE-15F9-429E-94F3-BE71D2115B86}
+		{38082CD8-9833-421C-83E6-3B0DA96D53A6} = {E38BAEFE-15F9-429E-94F3-BE71D2115B86}
+		{75DB6866-4AC8-45D0-AFC9-EC9F9747D535} = {E38BAEFE-15F9-429E-94F3-BE71D2115B86}
+		{358C6FBD-56E7-4385-A70C-9191A4085A2C} = {0E1DC973-37C6-4373-9B8F-DCF540F7EBF2}
+		{EBB234E4-867B-467A-BE11-D4651843D1DF} = {0E1DC973-37C6-4373-9B8F-DCF540F7EBF2}
+		{D38D93F8-9063-4E68-B982-72B81C57943B} = {0E1DC973-37C6-4373-9B8F-DCF540F7EBF2}
+		{E38BAEFE-15F9-429E-94F3-BE71D2115B86} = {D38D93F8-9063-4E68-B982-72B81C57943B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {44B34B59-441A-460C-85B9-364D0E4153F9}

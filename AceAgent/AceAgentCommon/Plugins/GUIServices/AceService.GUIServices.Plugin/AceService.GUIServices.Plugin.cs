@@ -21,7 +21,7 @@ namespace Ace.AceService.GUIServices.Plugin {
     }
 
   public class GUIServicesPlugin : IPlugin, IPreInitPlugin {
-      const string builtinDebugRootPath = @"~/../../../AceGUI/bin/Debug/netstandard2.0/Publish/AceGUI/dist";
+      const string builtinDebugRootPath = @"~/../../../../AceGUI/bin/Debug/netstandard2.0/Publish/AceGUI/dist";
     const string builtinReleaseRelativeRootPath = "/blazor";
     const string builtinGUIVirtualRootPath = "";
     const string gUIServicesPlugInDebugRootPathKey = "Ace.GUIServices.Plugin.Debug.RootPath";
