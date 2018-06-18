@@ -22,8 +22,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AceService\AceService.BaseServices.Models\AceService.BaseServices.Models.csproj" />
-    <ProjectReference Include="..\AceService\AceService.GUIServices.Models\AceService.GUIServices.Models.csproj" />
+    <ProjectReference Include="..\AceAgent\AceAgentCommon\AceService.BaseServices.Models\AceService.BaseServices.Models.csproj" />
+    <ProjectReference Include="..\AceAgent\AceAgentCommon\PlugIns\GUIServices\AceService.GUIServices.Models\AceService.GUIServices.Models.csproj" />
+
   </ItemGroup>
 
   <ItemGroup>

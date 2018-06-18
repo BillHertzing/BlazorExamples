@@ -1,8 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-  	<TargetFrameworks>net47</TargetFrameworks>
-  <OutputType>Library</OutputType>
+    <TargetFrameworks>net47</TargetFrameworks>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Ace.AceService.GUIServices.Plugin</RootNamespace>
   </PropertyGroup>
   <!-- Common for all TargetFrameworks references, compilation flags and build options -->
   <ItemGroup>
