@@ -1,36 +1,27 @@
-<Project>
+<Project >
+
+  <!-- Solution wide msBuild settings -->
+  <!-- Can be overridden if desired by a property of the same name in a project file for an assembly -->
   <PropertyGroup>
-    <Company>ATAP Technology, Inc.</Company>
-    <Copyright>ATAP Technology, Inc.</Copyright>
-    <Authors>William Hertzing</Authors> 
-    <Product>AceCommander</Product> 
-    <ProductName>AceCommander</ProductName> 
-    <RepositoryType>repositoryType</RepositoryType>
-    <RepositoryUrl>www.repository.url</RepositoryUrl>
-    <PackageLicenseUrl>www.license.url</PackageLicenseUrl> 
-    <PackageProjectUrl>www.project.url</PackageProjectUrl> 
-    <PackageIconUrl>www.icon.url</PackageIconUrl>
+    <!-- All projects use Properties/AssemblyInfo.cs as their AssemblyInfo location -->
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <PackageTags>Testing, experimental, alpha, ATAP, ATAP.AceCommander</PackageTags> 
-    <PackageReleaseNotes>Initial implementation/test of ATAP.AceCommander Nuget packaging</PackageReleaseNotes> 
+	<!-- Use the latest version of the C# language -->
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
+  <!-- In this simple example, the CommonDTOs project uses the TargetFrameworks defined here,
+      but both the ConsoleApp project and the GUI project override this and individually set their own TragetFrameworks -->
   <PropertyGroup>
-    <LangVersion>latest</LangVersion>
-    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
-    <!--
-    <TargetFramework>net47</TargetFramework>
-    <TargetFramework>netcoreapp2.0</TargetFramework>
-    <TargetFramework>netstandard2.0</TargetFramework>
-  	<TargetFrameworks>netcoreapp2.0;net47</TargetFrameworks>
-    <TargetFrameworks>netstandard2.0;net47</TargetFrameworks>
-	-->
+    <TargetFrameworks>netstandard2.0;net471</TargetFrameworks>
   </PropertyGroup>
+
+  <!-- Release Configuration compilation symbols, flags and build options -->
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DefineConstants>RELEASE;</DefineConstants>
   </PropertyGroup>
 
+  <!-- Debug Configuration compilation symbols, flags and build options -->
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
@@ -42,32 +33,22 @@
     <DefineConstants>NETCORE;NETSTANDARD;NETSTANDARD2_0</DefineConstants>
   </PropertyGroup>
 
-  <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
-  </ItemGroup>
-
   <!-- .NET Core 2.0 references, compilation flags and build options -->
   <PropertyGroup Condition=" '$(TargetFramework)' == 'netcoreapp2.0'">
     <DefineConstants>NETCORE;</DefineConstants>
   </PropertyGroup>
 
-  <ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp2.0' ">
-  </ItemGroup>
-
-  <!-- .NET Full  references, compilation flags and build options -->
-  <PropertyGroup Condition=" '$(TargetFramework)' == 'net47'">
+  <!-- .NET 47 or greater references, compilation flags and build options -->
+  <PropertyGroup Condition="$(TargetFramework.Contains('net47'))">
     <DefineConstants>NET47;NETFULL</DefineConstants>
   </PropertyGroup>
 
-  <!-- Common for all TargetFrameworks references, compilation flags and build options -->
-  <ItemGroup>
-  </ItemGroup>
-
-  <!--
-  <ItemGroup>
-    <Analyzer Include="..\..\packages\xunit.analyzers.0.7.0\analyzers\dotnet\cs\xunit.analyzers.dll" />
-  </ItemGroup>
-  
-  <Import Project="..\..\packages\xunit.core.2.3.1\build\xunit.core.targets" Condition="Exists('..\..\packages\xunit.core.2.3.1\build\xunit.core.targets')" />
-  -->
+  <!-- Bonus Easter egg: Demonstrate the difference between msbuild run from inside Visual Studio, and msbuild called from dotnet CLI
+       Replace Never with Clean -->
+  <Target Name="HighlightDifferencesBetweenMSBuild" BeforeTargets="Never">
+    <Message  Text="MSBuildRuntimeType = $(MSBuildRuntimeType)" />
+    <Message Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'" Text="SolutionDir undefined or null"/>
+    <Message Condition="$(SolutionDir) != '' And $(SolutionDir) != '*Undefined*'" Text="SolutionDir =$(SolutionDir)"/>
+  </Target>
 
 </Project>
