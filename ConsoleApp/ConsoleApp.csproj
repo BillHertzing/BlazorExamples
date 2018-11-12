@@ -4,6 +4,7 @@
     <!-- Override the TargetFameworks specified in the Directory.Build.props  -->
     <TargetFrameworks>net471</TargetFrameworks>
     <OutputType>Exe</OutputType>
+    <StartupObject>ConsoleApp.Program</StartupObject>
   </PropertyGroup>
 
   <!-- Common for all TargetFrameworks references, compilation flags and build options -->
