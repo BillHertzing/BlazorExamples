@@ -101,9 +101,9 @@ var virtualRootPath = "";
 Later examples (hopefully) will show that non-empty values will let SS support multiple Blazor GUIs side-by-side, by aligning different virtualRootPath values with different physicalRootPath values, and modifying each Blazor GUI project's base URL routing slightly.
 
 ## Map it
-In the ConsoleApp's AppHost.cs Configure method, the following line tells SS to add a new location from whihc to serve static files that do not match a known SS route.
+In the ConsoleApp's AppHost.cs Configure method, the following line tells SS to add a new location from which to serve static files that do not match a known SS route.
 ```C#
-this.AddVirtualFileSources.Add(new FileSystemMapping("", physicalRootPath));
+this.AddVirtualFileSources.Add(new FileSystemMapping(virtualRootPath, physicalRootPath));
 ```
 It appears wrapped in a try-catch block, to catch an exception if the physicalRootPath does not exists.
 
@@ -118,7 +118,7 @@ Plugins.Add(new CorsFeature(
 ```
 This is all that's required for SS to serve a Blazor application!
 
-\<hr>
+<hr>
 
 # The ServiceStack ConsoleApp program
 ## The REST endpoints
@@ -128,7 +128,7 @@ SS places the code that responds to a Request, and creates the Response, in meth
 ## TargetFramework
 For Example 1, the TargetFramework for the ConsoleApp is the full .Net, Version 4.7.1 in this case.
 
-\<hr> 
+<hr> 
 
 # The DTOs project
 Example 1 (and SS-served Blazor apps in general) will use a separate project to create a separate assembly that holds just the definitions of the DTOs. This project is referenced by both the Blazor GUI project and the ConsoleHost project. It ensure that both projects have the same definition of the data being transferred between them.
@@ -140,28 +140,28 @@ Both the request and response DTOs for */Initialization* are empty classes. Ther
 ## DTOs for PostData Route
 Both the request and response DTOs for */PostData* have a single Property, of type `string`, which I've chosen to call `StringDataObject`. Both the request and the response will carry a payload consisting of just this one value.
 ## TargetFrameworks
-For Example 1, the CommonDTOs assembly has to link into both the ConsoleApp .exe and with the Blazor GUI assemblies. So the CommonDTOs specifies a \<TargetFrameworks> of both net471 and netstandard2.0. This produces two copies of the assembly. The other two projects reference the CommonDTOs project, and each picks up their corresponding framework-specific assembly from this project's framework-specific \<OutputDir>.
+For Example 1, the CommonDTOs assembly has to link to both the ConsoleApp .exe and with the Blazor GUI assemblies. So the CommonDTOs project specifies a \<TargetFrameworks> of both net471 and netstandard2.0. Note the plural form of \<TargetFrameworks> used here. This produces two copies of the assembly. The other two projects reference the CommonDTOs project, and each picks up their corresponding framework-specific assembly from this project's framework-specific \<OutputDir>.
 
-\<hr>
+<hr>
 
 # GUI Blazor app
-The GUI app has two pages and a Nav component to move between them. It is very closely based on the example Blazor app example produced by the Blazor development team, which is much better explained by its authors on the web.
+The GUI app has two pages and a Nav component to move between them. It is very closely based on the "first Blazor app" example produced by the Blazor team. This example is explained here:(https://blazor.net/docs/tutorials/build-your-first-blazor-app.html)
 ## Index.cshtml
 This is the home page of the app, and simply has some welcome text.
 ## BasicRESTServices.cshtml
-This is the presentation page of the app that demonstrates calling into the ConsoleHost's two routes. When the page is loaded, it calls the */Initialization* route. For the */PostData* route, enter some string into the top input field, and press the submit button.
+This is the presentation page of the app that demonstrates calling into the ConsoleHost's two routes. When the page is loaded, it calls the */Initialization* route. For the */PostData* route, enter some string into the top input field, and press the submit button. It will be POSTed to the ConsoleApp, which will copy the payload from the request and put it into the response, and return it to the GUI app, where it will be displayed in the bottom field.
 ## BasicRESTServices.cshtml.cs
 This is the codebehind page of the app that supplies the C# code referenced by the BasicRESTServices.cshtml presentation page.
 ## TargetFramework
 Like all Blazor client-side apps, the TargetFramework for the GUI app is .Net Standard 2.0 (currently).
 # Conclusion
-If you are interested in using Blazor in situations without a web server, I hope these examples help explain one way of accomplishing your goal.
+If you are interested in using Blazor in architecture solutions that don't allow for a web server, I hope these examples help you understand one such approach that uses ServiceStack instead of a web server.
 
 if you find errors in the code or this documentation please create a issue in the GitHub repository.
 
 Enjoy!
 
-\<hr>
+<hr>
 
 # Extras
 ## Starting the Monitoring tools
