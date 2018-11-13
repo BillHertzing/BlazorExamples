@@ -82,15 +82,15 @@ var physicalRootPath = "../../../../GUI/bin/Debug/netstandard2.0/Publish/GUI/dis
 ### Details on the physicalRootPath value.
 The value of `physicalRootPath` shown here is specific to the way VS uses MSBuild, and to the way the GUI's Publish action uses the `DebugFolderProfile`. 
 #### GUI project Publish action
-Under the GUI project's Properties subfolder is the file `DebugFolderProfile.pubxml`. This file has the property <publishUrl>bin\Debug\netstandard2.0\Publish</publishUrl> which controls the location to which the GUI project is published. The Publish action creates a subfolder path `$<ProjectName>\dist` under the location specified in the <publishUrl>, which itself is rooted at the location of the $<ProjectDir>. After you have done a Publish of the GUI project, use a file explorer to verify the contents of the `<publishUrl>`. You will find the static files that make up the Blazor app, including the wwwroot static content and the multitude of DLLs
+Under the GUI project's Properties subfolder is the file `DebugFolderProfile.pubxml`. This file has the property <publishUrl> which controls the location to which the GUI project is published. The Publish action creates a subfolder path `$<ProjectName>\dist` under the location specified in the <publishUrl>. I wanted it to be easy to delete the published GUI files during developemnt, so I decided to put the Publish location underneath the GUI project's <OutputDir>. Since the <publiishUrl> is made relative to the <ProjectDir>, I hardcoded the equivalent for $OutputDir for Debug and netstandard2.0, making it *bin\Debug\netstandard2.0\Publish*. The complete path of the published GUI will be *bin\Debug\netstandard2.0\Publish\GUI\dist*. After you have done a Publish of the GUI project, use a file explorer to verify the contents of the `<publishUrl>/GUI/dist`. You will find the static files that make up the Blazor app, including the wwwroot static content and the multitude of DLLs.
 #### ConsoleApp's .EXE's location after build
-By default VS puts the compile/link artifacts of the ConsoleApp under it's project's MSBuild $<OutputDir>, which defaults to the ./bin/<Config>/<framework> subfolder relative to the $<ProjectDir>.
-Under VS debugging of the ConsoleApp, VS starts the .exe in that same $<OutputDir>.
+By default VS puts the compile/link artifacts of the ConsoleApp under it's project's MSBuild <OutputDir>, which defaults to the ./bin/<Config>/<framework> subfolder relative to the <ProjectDir>.
+Under VS debugging of the ConsoleApp, VS starts the .exe in that same <OutputDir>.
 #### Relative location of GUI's content after Publish to ConsoleApp's .exe location
 So to map from the ConsoleApp's .exe startup directory to the GUI's static content files, the physicalRootPath value consist of:
-* The four ../../.././ patterns maps to the MSBuild $<SolutionDir> top-level folder, just above each $<ProjectDir>, which is the root folder common to both the ConsoleApp project's subfolder tree and the GUI project's subfolder tree.
-* From that common folder, the GUI app's static files are down the path $<ProjectDir> (GUI), then bin/<Config>/<Framework> (the $<OutputDir>, and then the location specified in the DebugFolderProfile.pubxml.
-* Putting it all together, the ConsoleApp knows where the GUI app's static files are by going up the ConsoleApp project's directory tree to the $<SolutionDir>, then down the path to the GUI project's $<OutputDir> and then down into the Publish/GUI/dist subfolder created by Publish.
+* The four ../../.././ patterns maps to the MSBuild <SolutionDir> top-level folder, just above each <ProjectDir>, which is the root folder common to both the ConsoleApp project's subfolder tree and the GUI project's subfolder tree.
+* From that common folder, the GUI app's static files are down the path <ProjectDir> (GUI), then bin/<Config>/<Framework> (the <OutputDir>), and then the location specified in the DebugFolderProfile.pubxml.
+* Putting it all together, the ConsoleApp knows where the GUI app's static files are by going up the ConsoleApp project's directory tree to the <SolutionDir>, then down the path to the GUI project's $<OutputDir> and then down into the Publish/GUI/dist subfolder created by Publish.
 * Again to reiterate, the solution above is very specific to the way VS and MSBuild works, and that specific convoluted physicalRootPath is specific to the way the example project structure was organized. In production or other scenarios, the var physicalRootPath would have a different value..
   
 ### Details on the virtualRootPath
@@ -119,6 +119,7 @@ Plugins.Add(new CorsFeature(
 This is all that's required for SS to serve a Blazor application!
 
 <hr>
+
 # The SS ConsoleApp program
 ## The REST endpoints
 SS provides the infrastructure to handle REST endpoints as well as serve the static files. Both are supported in the same SS application. Example 1 has two endpoints, whose Routes are; */Initialization* and */PostData*. Each Route has two Data Transfer Objects (DTOs), one DTO for the route's Request and one for the route's Response. Each endpoint is handled by a SS service.
@@ -128,10 +129,10 @@ SS places the code that responds to a Request, and creates the Response, in meth
 # The DTOs project
 Example 1 (and SS-served Blazor apps in general) will use a separate project to create a separate assembly that holds just the definitions of the DTOs. This project is referenced by both the Blazor GUI project and the ConsoleHost project. It ensure that both projects have the same definition of the data being transferred between them.
 
-The DTO project has just one .cs file in it with all of the DTO class definition in that file.
+The DTO project has just one .cs file in it, CommonDTOs.cs, with all of the DTO class definition in that file.
 
 ## DTOs for Initialization Route
-Both the request and response DTOs for */Initialization* are empty classes. There is no data transferred on the */Initialization* request or on its response, making this the simplest kind of Request/Response pair.
+Both the request and response DTOs for */Initialization* are empty classes. There is no data transferred in the */Initialization* request or in its response, making this the simplest kind of Request/Response pair.
 
 ## DTOs for PostData Route
 Both the request and response DTOs for */PostData* have a single Property, of type `string`, which I've chosen to call `StringDataObject`. Both the request and the response will carry a payload consisting of just this one value.
@@ -141,7 +142,9 @@ The GUI app has two pages and a Nav component to move between them. It is very c
 ## Index.cshtml
 This is the home page of the app, and simply has some welcome text.
 ## BasicRESTServices.cshtml
-This is the page of the app that demonstrates calling into the ConsoleHost's two routes. When the page is loaded, it calls the */Initialization* route. For the */PostData* route, enter some string into the top input field, and press the submit button.
+This is the presentation page of the app that demonstrates calling into the ConsoleHost's two routes. When the page is loaded, it calls the */Initialization* route. For the */PostData* route, enter some string into the top input field, and press the submit button.
+## BasicRESTServices.cshtml.cs
+This is the codebehind page of the app that supplies the C# code referenced by the BasicRESTServices.cshtml presentation page.
 
 # Conclusion
 If you are interested in using Blazor in situations without a web server, I hope these examples help explain one way of accomplishing our goal.
@@ -151,13 +154,13 @@ if you find errors in the code or this documentation please create a issue in th
 Enjoy!
 
 <hr>
-# Extras
 
+# Extras
 ## Starting the Monitoring tools
 1. Start Fiddler, ensure it is listening to all processes. There will be a lot of cruft in the window, hundreds of request/response pairs from all the browser windows you probably have open on your development computer. It takes a while working with Fiddler to setup filters that eliminate all the other HTTP traffic coming and going in your computer, until you can see just the Blazor and ServiceStack traffic.
 2. Start Sentinel, and go through its startup screens to setup the UDP listener, which will be listening for logging messages broadcast to its default listening port. This would also be a good time to inspect the NLog.config file in the example. You will see that it sends all messages from any class to two loggers, the Console logger (for the ConsoleApp's console window), and to the UDP logger as well. So for this example, the Sentinel logging program is not 100% necessary, but it will be necessary later, when ServiceStack is running in a mode that has no console (called headless mode). Getting it setup and running also makes development much easier, as the log message don't all disappear as soon as the program stops.
 
 ## launchSettings.json 
-If you would like to save some keystrokes, VS can be configured to start your browser and navigate to a URL when your press F5. This is controlled by the launchSettings.json file. In this example, the launchSettings.json file is found under the Properties subfolder of the ConsoleApp's subfolder. Another launchSettings.json file is found under the Properties subfolder of the GU's subfolder. Settings `launchBrowser` to `true` and `launchUrl` to http://localhost:21200 should make this happen. (TBD, this is documented in Microsoft as working for .Net Core Web applications, and it works for one of my non-Core SS Blazor apps (ACE), but I've not yet isolated the settings needed to make it work for these Blazor examples. AS of now, Publishing the GUI application causes a new browser tab to appear, but starting the ConsoleApp does not.)
+If you would like to save some keystrokes, VS can be configured to start your browser and navigate to a URL when your press F5. This is controlled by the launchSettings.json file. In this example, the launchSettings.json file is found under the Properties subfolder of the ConsoleApp's subfolder. Another launchSettings.json file is found under the Properties subfolder of the GU's subfolder. Settings `launchBrowser` to `true` and `launchUrl` to http://localhost:21200 should make this happen. (TBD, this is documented in Microsoft as working for .Net Core Web applications, and it works for one of my non-Core SS Blazor apps (ACE), but I've not yet isolated the settings needed to make it work for these Blazor examples. As of now, Publishing the GUI application causes a new browser tab to appear, but starting the ConsoleApp does not.)
  
 
