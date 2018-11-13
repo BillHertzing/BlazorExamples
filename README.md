@@ -1,152 +1,163 @@
-# BlazorExamples
-Blazor-specific examples extracted and simplified from my other repositories. If you are interested specificly in the Blazor portion, focus on Ace.AceGUI. if you are interested in how ServiceStack is being used to serve the Blazor aplication, focus on Ace.AceService
+# Examples of Blazor Apps served By ServiceStack
 
-As of the time of this writing, you will need teh ServiceStack patch release 5.1.1, which is in pre-release at ServiceStack's MyGet Feed https://www.myget.org/F/servicestack
+Blazor is an experimental technology from Microsoft that allows applications written in C# to run on any browser that supports WASM. Many other folks have written better introductions and explanations of Blazor and WASM than I can, so please search the Web for those terms if you would like detailed background information on this emerging technology.
 
-The goal is to have program, called AceAgent, that runs on Windows, Linux, and mobile OSs. AceAgent should:
-* Be written in C# and targets the .Net Core framework, and provide a very minimal set of basic services.
-* Support a PlugIn architecture to allow for user-selectable expansion of the services provided.
-* The assembly that represents the main entry point should be built against an OS-specific framework. For this example project, only the Windows architecture is shown, and the main entry point assembly targets .Net 4.7
-* All other assemblies should target the .Net Standard framework, and be compatible across all OSs.
+Blazor applications can run server-side (Server-Side Blazor, or SSB), or client-side (Client-Side Blazor, or CSB). The examples in this repository are all about client-side Blazor. The files needed to run a Blazor application can be served to a browser by any process that understands HTTP and can serve static files. Of course, all the popular web server packages can do this, as can many Cloud services. There are many resources on the web that can go into much greater detail for using those technologies.
 
-The AceAgent basically supplies RESTful APIs on a listening port.
+However, I've been looking for a way to leverage the browser as a GUI for an application that runs on multiple operating systems. Most application that need a GUI have to create the GUI specifically for an OS. Blazor brings the ability for developers to write their GUI in Razor and C#, publish it to a set of static files, and have any browser render and run the GUI. An application that leverages .Net, .Net Standard, and .Net Core to run on multiple OSs, combined with a Blazor-based GUI, promises to greatly reduce the platform-specific portions of any multi-OS application.
 
-The human interface/display of the data supplied by the AceAgent is done with a Blazor application, called AceGUI. The AceGUI, like any Blazor application is written in C#, targets the .Net Standard framework, and builds to a set of static files. 
+ServiceStack is a very popular product that provides REST endpoints for an application. ServiceStack can also serve static files. Combining the two, ServiceStack can serve the files needed for a Blazor GUI, and can also serve the REST endpoints that allow the GUI to communicate with the application. 
 
-Any process that can serve static files,and can perform a redirect if an unknown URL comes in on the listening port, can deliver the files necessary to run the GUI to any browser, and provide the necessary support for the Blazor router. Any browser that supports WebAssembly can run the AceAgent Blazor GUI. One of the AceAgent PlugIns is designed to provide the necessary support needed to run the AceAgent Blazor GUI.
+This repository will focus specifically on using the ServiceStack application to serve and interact with a Blazor application. The contents of this repository will be demonstration programs showing how to integrate Blazor with various ServiceStack features. These examples are simplified versions of the ACE application and it's Blazor GUI, which is in the Ace repository adjacent to this one.
 
-Taken all together, the AceAgent, AceGUI, and other PlugIns should get closer to the "write once, run everywhere" nirvana that software developers have striven for since the early 1980s 
+## Example 1
 
-This example is derived from and the full Ace repository. AceAgent in its full-blown form is eventually intended to be a node of a peer-to-peer distributed network that provides a large number of features.
+The first example program is the most basic. The Blazor GUI portion consists of two Razor pages, and code that makes two REST calls to ServiceStack, one REST call with no data payload sent or received, and one that sends a string and receives a string. The ServiceStack application portion consist of a Console program for .Net (full framework) which serves the static files for the Blazor application, and handles the two simple REST service endpoints. 
 
-AceAgent should be capable of deploying to extremely tiny memory/process space footprint, and scale up its footprint as features/PlugIns are added. An AceAgent can be deployed to a device without the GUI feature PlugIn if the footprint must be kept minimal, or if the device does not have a need to provide a GUI. When AceAgent is deployed with the the Blazor GUI PlugIn loaded, the browser on the device can provide a (hopefully rich) interactive GUI to control the AceAgent node, and interact with the full network of nodes.
+## Prerequisites
+1. Visual Studio 2017 Version 15.8 or newer. All of the following instructions assume you are using a Visual Studio (VS) 2017 IDE for development, and are pretty familiar with using Git and GitHub in VS.
+1. ServiceStack (SS) Version 5.4.1. Instructions for adding ServiceStack via NuGet into a solution can be found here: https://servicestack.net/download. Unless you purchase a license, SS will be the "Starter" version, limited to about 10 REST service endpoints Each of the demonstration programs here will be written to stay below the limit. 
+    * You should also be aware that the ServiceStack development team does a great job of patching and enhancing ServiceStack, and there may be times you will want to get new patches from ServiceStack's MyGet feed. You will want to go to VS's Tools-> Options -> NuGet Package Manager -> Package Sources and add to the "Available package sources". Add https://www.myget.org/F/servicestack to the list of package sources.		
+1. Blazor 0.6.0 components installed into VS. Instructions for getting Blazor setup for VS can be found here: https://blazor.net/docs/get-started.html. Blazor is changing rapidly, and I will do my best to ensure that the examples in this repository track the changes in Blazor.
+1. A logging framework such as the Open Source Software (OSS) NLog installed into VS. A good post explaining how to integrate NLog with VS can be found here: https://www.codeguru.com/csharp/csharp/cs_network/integrating-nlog-with-visual-studio.html. The examples here use NLog. The NLog configuration file included in these examples also specifies a UDP-based logger. Sentinel, described below is a good choice for a UDP-based logging application.
+1. Blazor logging framework. Source and ReadMe.md for the extensions can be found here: https://github.com/BlazorExtensions/Logging. A good post explaining how to use the extension in your Blazor project can be found here: https://www.c-sharpcorner.com/article/introduction-to-logging-framework-in-blazor-with-net-core/. The examples in this repository are currently using Version 0.9.0. I will do my best to ensure that the examples in this repository track the changes in the Blazor logging extensions.
 
-## Architecture
-An AceAgent is a general term for either an AceService or an AceDaemon. Both should be identical in APIs, although at this time there are differences in how these are handled by their respective operating systems, Windows or Linux.
+## Suggested but not required
+1. The free UDP logging application Sentinel Version 0.13.0.0 or equivalent, which can be installed to Windows from here: https://github.com/yarseyah/sentinel.
+1. Telerik's  free Fiddler 4 product or equivalent for monitoring the HTTP traffic between the browser and the ServiceStack instance, which can be installed from here:  https://www.telerik.com/download/fiddler.
 
-The AceService is a Windows Service that uses the ServiceStack framework. It supplies a few basic services, and the ability to load PlugIns.
+## Getting Started
+1. Install the prerequisites listed above onto your development computer.
+1. Install and configure the two monitoring tools, Sentinel and Fiddler, if desired.
+### Getting Example 1
+1. Get a copy of the example's source code. 
+  * You may do this by forking this repository into your own repository, and connecting VS's Team Explorer on you development computer to the new remote repository, and making a local branch of the remote repository on your development computer. This is great if you want to play with the example under version control.
+  * You may just want to download a zip of the source code from GitHub and expand it on your local development computer, and work with it disconnected from Git version control.
+### Compiling and Publishing Example 1  
+1. Open the Solution file (.sln) with VS.
+  * The solution file describes the three individual projects and the solution folders, and the local branch of the fork (or extracted zip) will create the physical subdirectories that correspond to the layout of the project in the solution file.
+1. Ensure the build configuration at the solution level is `Debug`, that the build configuration trickles down to all three projects.
+1. right-click the solution  in Solution Explorer, and click "Build Solution".
+1. right-click the ConsoleApp project in Solution explorer, and select "Set as Startup Project".
+1. right-click the GUI project, and select "Publish...". On the GUI Publish page that appears, ensure the Profile dropdown is displaying `DebugFolderProfile`, then press the `Publish` button.
 
-The PlugIns do all the important work in the AceAgent. Developers should be free to use any .Net Standard based package or library when writing PlugIns. At the time of this writing, this was further restricted to just those .Net Standard libraries that will run in WebAssembly under Mono.
+Before running the example, I suggest you get the monitoring tools up and running. These are not required, but they certainly make it much easier to see what the programs are doing. Instructions for doing so are further down in this document, under "Starting the Monitoring tools".
 
-The AceAgent Blazor GUI provides a means for humans to interact with the AceAgent. The AceAgent Blazor GUI is built like any Blazor app, and is published to a location in the File system. The GUIServices PlugIn configures the AceAgent to properly serve the static files needed to load and route the Blazor app on any browser.
+## Run the Example
+1. Press F5 key in VS, and the ConsoleApp will start under the debugger. Running the Console App under the VS debugger provides all the usual VS debugger goodness, so you will probably want to start the ConsoleApp with F5 most of the time. If all goes well, shortly after pressing F5, a console window will appear above (obscuring part of) VS, with the ConsoleApp's welcome message. Just leave the window up. As the ConsoleApp runs, it will print log messages to this window (as well as to Sentinel). Pressing any key in this console window will end the application. Pressing F5 again will start it again.
+2. Browse to the port that ServiceStack is ListeningOn
+   1. Bring up a browser. Whatever browser you please, as long as it is modern enough to run WASM. If you are interested in this article, you probably keep the browser on your development computer pretty recent. 
+   2. Navigate the browser to the ConsoleApp's listening URL (http://locahost:21200) as configured in this example. You should see the home page of the example appear in your browser, and Fiddler should show you a lot of traffic as ServiceStack delivers to the browser all the files requested by the Blazor app, both normal CSS content, and all the DLL files too.
 
-## General Terminology
-Throughout the documentation AceAgent will be used to refer to the application whenever the context is that of the general application. AceService and AceDaemon will be used when the context is that of the specific version of AceAgent running on a specific OS. Note that the project/assembly names currently are named AceService - this will change in a future release to AceAgent.
+### Standard Edit/Compile/Debug cycle for these examples goes like this.
+* After making changes to the GUI, publish it, which will build as a first step.
+* After making changes to the ConsoleApp, press F5 to start it under the debugger, which will build as a first step. 
+* If you make changes to both, be sure to `Publish` the GUI before building/debugging the ConsoleApp.
+* Open a browser and type in the network address where the Console App is listening ServiceStack, "http://localhost:22100"
+* Look at the Fiddler and Sentinel windows, and the browser console, and correlate the log messages there.
+* Use VS's debugger to set breakpoints and examine code and data in the ConsoleApp.
+* The client-side WASM app in the bowser doesn't have debugger support yet, but that will change eventually, and I hope to keep these examples updated. For now, debugging is via the old-fashioned way, log message tracing. Blazor log messages go to the browser's Console window, which can be viewed in the browser's Developer tools. The normal way to display the Developer tools in a browser is to press F12.
 
-The samples use pretty standard HTTP terminology to talk about Request and Response pairs, URLs, ports, Verbs, and routes.
+# How to make ServiceStack deliver the Blazor app
+You will need to start with version  5.4.1 or higher, because ServiceStack developers added some allowed file types to this version to make it work better.
 
-Routes are a bit special in that they have the specific meaning and syntax that ServiceStack defined.
+## Allow the delivery of .json files
+Blazor requires the static file server to deliver a file named blazor.boot.json from the _frameworks subfolder. By default, delivery of .json files are not allowed. In the `AppHost.cs` file, this line instructs SS to allow the .json suffix.
+```C#
+this.Config.AllowFileExtensions.Add("json");
+```
+## Change the default redirect path
+Blazor routing requires that when the static file server sees a request made to a URL that does not match a known route, that the server return the contents of index.html. In the `AppHost.cs` file, this line instructs SS to do that.
+```C#
+this.Config.DefaultRedirectPath = "/index.html";
+```
 
-Serialization is the process of turning data structures (objects) on ether side of the network connection into a ordered serial sequence of bytes (the payload) for transmission across the network.
+## Map a virtual path to the location of the files to serve
+Being able to tell the ConsoleApp where the static files are located is a key requirement.You could use an absolute location, but that would not be very portable. Using a path relative to the location of the executing assembly is more portable. But how to specify that? The answer typically depends on the lifecycle stage of the application. In production, staging, and QA stages, there will be an 'AsInstalled' architecture, and the relationship of the static files to the production .exe will be known. In development under VS, the relationship of the location of static files to the location of teh exe being developed, is a bit complicated.
 
-De-serialization is the reverse of Serialization, it is the process of turning the payload back into an object that code in the libraries can process.
+A more sophisticated example will use SS AppSettings to create a Configuration setting value that can be controlled by a settings file. But this example will simply use a string constant. In the `AppHost.cs` file, this line, the var `physicalRootPath`, specifies the relative location of the ConsoleApp's .exe file to the Blazor app's static files.
+```C#
+var physicalRootPath = "../../../../GUI/bin/Debug/netstandard2.0/Publish/GUI/dist";
+```
+### Details on the physicalRootPath value.
+The value of `physicalRootPath` shown here is specific to the way VS uses MSBuild, and to the way the GUI's Publish action uses the `DebugFolderProfile`. 
+#### GUI project Publish action
+Under the GUI project's Properties subfolder is the file `DebugFolderProfile.pubxml`. This file has the property <publishUrl>bin\Debug\netstandard2.0\Publish</publishUrl> which controls the location to which the GUI project is published. The Publish action creates a subfolder path `$<ProjectName>\dist` under the location specified in the <publishUrl>, which itself is rooted at the location of the $<ProjectDir>. After you have done a Publish of the GUI project, use a file explorer to verify the contents of the `<publishUrl>`. You will find the static files that make up the Blazor app, including the wwwroot static content and the multitude of DLLs
+#### ConsoleApp's .EXE's location after build
+By default VS puts the compile/link artifacts of the ConsoleApp under it's project's MSBuild $<OutputDir>, which defaults to the ./bin/<Config>/<framework> subfolder relative to the $<ProjectDir>.
+Under VS debugging of the ConsoleApp, VS starts the .exe in that same $<OutputDir>.
+#### Relative location of GUI's content after Publish to ConsoleApp's .exe location
+So to map from the ConsoleApp's .exe startup directory to the GUI's static content files, the physicalRootPath value consist of:
+* The four ../../.././ patterns maps to the MSBuild $<SolutionDir> top-level folder, just above each $<ProjectDir>, which is the root folder common to both the ConsoleApp project's subfolder tree and the GUI project's subfolder tree.
+* From that common folder, the GUI app's static files are down the path $<ProjectDir> (GUI), then bin/<Config>/<Framework> (the $<OutputDir>, and then the location specified in the DebugFolderProfile.pubxml.
+* Putting it all together, the ConsoleApp knows where the GUI app's static files are by going up the ConsoleApp project's directory tree to the $<SolutionDir>, then down the path to the GUI project's $<OutputDir> and then down into the Publish/GUI/dist subfolder created by Publish.
+* Again to reiterate, the solution above is very specific to the way VS and MSBuild works, and that specific convoluted physicalRootPath is specific to the way the example project structure was organized. In production or other scenarios, the var physicalRootPath would have a different value..
+  
+### Details on the virtualRootPath
+In the first example, the GUI uses an empty virtual path root. In the `AppHost.cs` file, this line, the var `virtualRootPath`, specifies the virtual path to the GUI Blazor app's static files. Using an empty path for the virtual path means, for this example, that Index.html is found at (http://localhost:21200/Index.html).
+```C#
+var virtualRootPath = "";
+``` 
+Later examples (hopefully) will show that non-empty values will let SS support multiple Blazor GUIs side-by-side, by aligning different virtualRootPath values with different physicalRootPath values, and modifying each Blazor GUI project's base URL routing slightly.
 
-Persistence is sometimes another use for serialization. A future enhancement to this project will add persistence to the AceAgent.
+## Map it
+In the ConsoleApp's AppHost.cs Configure method, the following line tells SS to add a new location from whihc to serve static files that do not match a known SS route.
+```C#
+this.AddVirtualFileSources.Add(new FileSystemMapping("", physicalRootPath));
+```
+It appears wrapped in a try-catch block, to catch an exception if the physicalRootPath does not exists.
 
-### Conventions
-Projects and assemblies with the word _PlugIn_ in their names are part of the aceService PlugIn system.
+## Add CORS support to SS
+Blazor apps require that Cross Browser Scripting Requests be allowed. SS makes it very easy to support CORS, by including the following lines in the ConsoleApp's AppHost.cs Configure method:
+```C#
+Plugins.Add(new CorsFeature(
+         allowedMethods: "GET, POST, PUT, DELETE, OPTIONS",
+         allowedOrigins: "*",
+         allowCredentials: true,
+         allowedHeaders: "content-type, Authorization, Accept"));
+```
+This is all that's required for SS to serve a Blazor application!
 
-Projects and assemblies with the word _Model_ in their names define the APIs provided by the AceService. These assemblies provide the structure of the objects that the AceService uses for Request and Response data. These assemblies also associate route attributes with Request objects, and define which Verbs are accepted by each route. These assemblies use attributes to associate HTTP URLs (routes) with data structures. They are also the place where route attributes and guards built in to ServiceStack can be applied.
+<hr>
+# The SS ConsoleApp program
+## The REST endpoints
+SS provides the infrastructure to handle REST endpoints as well as serve the static files. Both are supported in the same SS application. Example 1 has two endpoints, whose Routes are; */Initialization* and */PostData*. Each Route has two Data Transfer Objects (DTOs), one DTO for the route's Request and one for the route's Response. Each endpoint is handled by a SS service.
+## The SS Services that handle the endpoints
+SS places the code that responds to a Request, and creates the Response, in methods that are part of a class that inherits from SS's Service class. There is a ton of documentation on the web about SS, and its (very feature rich) Service class. Example 1 uses just the most basic of these features. The actions that the Service takes for each endpoint are defined in the AppHost.cs file, in a class there called `BaseServices` and the two methods  therein. One method signature indicates the method should be called for a POST to the */Initialization* route, the other method's signature indicates it should be called for a POST on the */PostData* route. These methods require the DTO classes for their respective request and response. 
 
-Projects and assemblies with the word _Interfaces_ in their names do the implementation of the logic provided by each API. They implement the functions that are called by the ServiceStack framework when data is received on a route, that create the Response object that should be returned, and that hand the Response object back to the ServiceStack framework. Error handling logic is implemented here.  
+# The DTOs project
+Example 1 (and SS-served Blazor apps in general) will use a separate project to create a separate assembly that holds just the definitions of the DTOs. This project is referenced by both the Blazor GUI project and the ConsoleHost project. It ensure that both projects have the same definition of the data being transferred between them.
 
+The DTO project has just one .cs file in it with all of the DTO class definition in that file.
 
-## Projects/Assemblies
-For details on the Blazor GUI application, look at the project Ace.AceGUI. For details onthe AceAgent applicationthat serves the aceGUI static files and provides API endpoints, see thesection Ace.AceAgent.
-### Ace.AceGUI
-Most people who come here for the Blazor examples will be interested primarly in this project/assembly. This Blazor GUI App is derived from the stock examples found on GitHub.
-###Pages
-####BaseServices
-Display a simple page that interfaces with the APIs provided in the core services of the AceAgent.
-####GUIServices
-Display a simple page that interfaces with the APIs provided in the GUIServices PlugIn.
-####ComputerInventory.Hardware
-Display a simple page that contains the first Blazor components being developed in this repository.
-### Components
-####DropDownSingleSelectOfEnum
-This is the current Work In Progress. At this time, 
-This component will accept an enumeration type, an initial enumeration value, and display a list of enumeration's values focused on the initial value. The string displayed in the list should be:
-* the value of a custom attribute on that enum value (currently hardcoded as [SpecialDescription])
-* the value of the [Description] attribute on that enum value
-* the Name of the enum value
-The component maintains it currentValue in a private field, and provides access to this value through the Currentvalue property.
-When another piece of code changes the value of CurrentValue, the setter mthod calls StateHasChanged() to tell Blazor that the component needs to be re-rendered.
+## DTOs for Initialization Route
+Both the request and response DTOs for */Initialization* are empty classes. There is no data transferred on the */Initialization* request or on its response, making this the simplest kind of Request/Response pair.
 
-This component is interesting becasue it should be able to be declared to use any enumeration type, and the initialValue, currentValue, and Currentvalues should all accept/return enumerations of whatever type is used to instantiate the component.
+## DTOs for PostData Route
+Both the request and response DTOs for */PostData* have a single Property, of type `string`, which I've chosen to call `StringDataObject`. Both the request and the response will carry a payload consisting of just this one value.
 
-In the next iteration of the component, I hope to be able to allow a user to specify an ordered list of custom attributes to display, instead of the current hardcoded three.
-In the next iteration of the component, I hope to be able to provide an OnChanged event, and trigger this event if CurrentValaue iis changed (in the setter), or, if the user changes the currrentValue by changing the selected element of teh dropdownlist.
+# GUI Blazor app
+The GUI app has two pages and a Nav component to move between them. It is very closely based on the example Blazor app produces by thee development team, which is much better explained by its authors on the web.
+## Index.cshtml
+This is the home page of the app, and simply has some welcome text.
+## BasicRESTServices.cshtml
+This is the page of the app that demonstrates calling into the ConsoleHost's two routes. When the page is loaded, it calls the */Initialization* route. For the */PostData* route, enter some string into the top input field, and press the submit button.
 
-### Ace.AceAgent (one of Ace.AceService or Ace.AceDaemon)
-This example only has the Windows version, called AceService. 
-This assembly contains the main entry point into the agent. It is written using the ServiceStack framework (https://servicestack.net/). The ServiceStack framework is wrapped in a TopShelf wrapper (https://github.com/Topshelf) to simplify the process of installing the AceService as a Windows service. When run under Debug mode, as is usually the case when interactively debugging or exploring the code, the AceAgent runs as a Console App. When run in Release mode, it expects to installed as and be running as a Windows service.
-#### Logic
-It configures ServiceStack behavior as follows:
+# Conclusion
+If you are interested in using Blazor in situations without a web server, I hope these examples help explain one way of accomplishing our goal.
 
-* It instructs ServiceStack to generate CORS headers.
-* It instructs ServiceStack to provide support for Postman.
-* It instructs ServiceStack to disable support for its default metadata route.
-* It supports a configuration settings file, which currently includes configuration settings for:
-  * setting the port AceAgent listens on.
+if you find errors in the code or this documentation please create a issue in the GitHub repository .
 
-It provides data structures used by the core services, and injects them into the ServiceStack Hosts' IoC container (Funq) to achieve Dependency Injection (DI) for the data objects used by the core services.
-#### Ace.AceService.BaseServices.Models
-This assembly defines the most basic APIs in the AceAgent, those that are the core services, when no PlugIns are loaded. It includes the routes and classes that the AceService uses for it most basic Request and Response data structures.
-##### Routes
-    `[Route("/isAlive")]`
-    `[Route("/isAlive/{Name}")]`
+Enjoy!
 
-#### Ace.AceService.BaseServices.Interfaces
-This assembly defines the logic for handling the core API routes.
-##### Logic
-    `[Route("/isAlive")]`
-    `[Route("/isAlive/{Name}")]`
-    Return the string "Hello" for the route [Route("/isAlive")], and returns the string "Hello " concatenated with the Name field of this route's Request object.
+<hr>
+# Extras
 
-#### Ace.AceService.GUIServices.Models
-This assembly defines an API that supports the GUIs configured/supported by this PlugIn It includes the routes and classes that the GUIServices PlugIn uses for it's Request and Response data structures.
-##### Routes
-  `[Route("/VerifyGUI")]`
-  `[Route("/VerifyGUI/{Kind};{Version}")]`
+## Starting the Monitoring tools
+1. Start Fiddler, ensure it is listening to all processes. There will be a lot of cruft in the window, hundreds of request/response pairs from all the browser windows you probably have open on your development computer. It takes a while working with Fiddler to setup filters that eliminate all the other HTTP traffic coming and going in your computer, until you can see just the Blazor and ServiceStack traffic.
+2. Start Sentinel, and go through its startup screens to setup the UDP listener, which will be listening for logging messages broadcast to its default listening port. This would also be a good time to inspect the NLog.config file in the example. You will see that it sends all messages from any class to two loggers, the Console logger (for the ConsoleApp's console window), and to the UDP logger as well. So for this example, the Sentinel logging program is not 100% necessary, but it will be necessary later, when ServiceStack is running in a mode that has no console (called headless mode). Getting it setup and running also makes development much easier, as the log message don't all disappear as soon as the program stops.
 
-#### Ace.AceService.GUIServices.Interfaces
-This assembly defines the logic for handling the GUIServices API routes.
-##### Logic
-  `[Route("/VerifyGUI")]`
-  `[Route("/VerifyGUI/{Kind};{Version}")]`
-    Return the string "Blazor" for the route [Route("/VerifyGUI")], and returns the string "true" or "false" for the route [Route("/VerifyGUI"/{Kind};{Version})], depending on if Kind matches the string "Blazor" and Version matches the string "0.3.0". These are currently just hardcoded in this example.
+## launchSettings.json 
+If you would like to save some keystrokes, VS can be configured to start your browser and navigate to a URL when your press F5. This is controlled by the launchSettings.json file. In this example, the launchSettings.json file is found under the Properties subfolder of the ConsoleApp's subfolder. Another launchSettings.json file is found under the Properties subfolder of the GU's subfolder. Settings `launchBrowser` to `true` and `launchUrl` to http://localhost:21200 should make this happen. (TBD, this is documented in Microsoft as working for .Net Core Web applications, and it works for one of my non-Core SS Blazor apps (ACE), but I've not yet isolated the settings needed to make it work for these Blazor examples. AS of now, Publishing the GUI application causes a new browser tab to appear, but starting the ConsoleApp does not.)
+ 
 
-#### Ace.AceService.GUIServices.PlugIn
-This assembly provides the entry point into the GUIServices PlugIn. It provides data structures used by the PlugIn, and injects them into the ServiceStack Hosts' IoC container (Funq) to achieve Dependency Injection (DI) for the data objects used by the PlugIn.
-##### Logic 
-It supports a configuration setting file. It includes configuration settings for:
--setting the root of the virtualpath to either "" or some other string (should be an string that is acceptable as a URL virtual path root).
--specifying a path on the computer's file system from which to serve static files.
-It configures ServiceStack behavior:
--It instructs ServiceStack to respond to requests on the virtual path with a file name if the Request's URL matches a file name found in the virtualpath. It maps subdirectories of the physical path to subdirectories of the virtual path, and delivers files from these locations as well.
--It instructs ServiceStack to respond to requests on the virtual path with a redirect to virtualpath/index.html, if the request on the virtual path does not match any file name.
-
-## ATAP.Utilities.ComputerInventory.Enumerations
-This assembly supplies enumerations that support objects that describe the components that make up computer systems.
-For this example, there are three enumerations. One has no attributes on its elements, one has just the [Description] attribute, and the third has both the [Description] and a custom attribute [SpecializedDescription]. For all of these enumerations, the string `generic` is used for the default enumeration value (integer value = 0).
-
-## ATAP.Utilities.Enumeration.Extensions
-This assembly supplies static extension methods for enumeration types.
-### public class SpecializedDescription : Attribute
-This defines the custom attribute used by some of the enums 
-### public interface IAttribute<out T>
-This interface guarentees that any object implementing this interface has a Property `Value` having a getter that returns an object of type T
-### public static CustomAttributeType GetAttributeValue<CustomAttributeName, CustomAttributeType>(this Enum value)
-This static generic extension method returns a CustomAttribute's Value
-### public static string GetDescription(Enum value)
-This static extension method returns the [Description] attributes Value.
-### public static T ToEnum<T>(this string value, bool ignoreCase = true)
-This static extension method converts a string representing the name of an enumeration element to the actual enumeration element. This only takes in the actual enum element name, it does NOT convert strings representing any attribute. By default it is case insensitive, but an optional method parameter can tell the method to enforce case-sensitive matching.
-
-
-## Notes on Building
-- AceGUI must target netstandard2.0
-- AceService must target net47
-- Any assembly with .PlugIn: must target net47
-- Any assembly with .Models that are used by both the server and client side, must target both net47 and netstandard2.0
-- Any Assembly with .UnitTests must target net47
