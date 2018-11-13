@@ -15,7 +15,7 @@ using CommonDTOs;
 //using ServiceStack;
 
 namespace GUI.Pages {
-    public class BaseServicesCodeBehind : BlazorComponent {
+    public class BasicRESTServicesCodeBehind : BlazorComponent {
     #region Page Initialization Handler
         protected override async Task OnInitAsync() {
             Logger.LogDebug($"Starting OnInitAsync");
@@ -69,7 +69,7 @@ namespace GUI.Pages {
 
     // Access the Logging extensions registered in the DI container
     [Inject]
-    public ILogger<BaseServicesCodeBehind> Logger
+    public ILogger<BasicRESTServicesCodeBehind> Logger
     {
         get;
         set;
