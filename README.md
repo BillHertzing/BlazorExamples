@@ -73,7 +73,7 @@ this.Config.DefaultRedirectPath = "/index.html";
 ```
 
 ## Map a virtual path to the location of the files to serve
-Being able to tell the ConsoleApp where the static files are located is a key requirement.You could use an absolute location, but that would not be very portable. Using a path relative to the location of the executing assembly is more portable. But how to specify that? The answer typically depends on the lifecycle stage of the application. In production, staging, and QA stages, there will be an 'AsInstalled' architecture, and the relationship of the static files to the production .exe will be known. In development under VS, the relationship of the location of static files to the location of teh exe being developed, is a bit complicated.
+Being able to tell the ConsoleApp where the static files are located is a key requirement.You could use an absolute location, but that would not be very portable. Using a path relative to the location of the executing assembly is more portable. But how to specify that? The answer typically depends on the lifecycle stage of the application. In production, staging, and QA stages, there will be an 'AsInstalled' architecture, and the relationship of the static files to the production .exe will be known. In development under VS, the relationship of the location of static files to the location of the exe being developed, is a bit complicated.
 
 A more sophisticated example will use SS AppSettings to create a Configuration setting value that can be controlled by a settings file. But this example will simply use a string constant. In the `AppHost.cs` file, this line, the var `physicalRootPath`, specifies the relative location of the ConsoleApp's .exe file to the Blazor app's static files.
 ```C#
@@ -125,6 +125,8 @@ This is all that's required for SS to serve a Blazor application!
 SS provides the infrastructure to handle REST endpoints as well as serve the static files. Both are supported in the same SS application. Example 1 has two endpoints, whose Routes are; */Initialization* and */PostData*. Each Route has two Data Transfer Objects (DTOs), one DTO for the route's Request and one for the route's Response. Each endpoint is handled by a SS service.
 ## The SS Services that handle the endpoints
 SS places the code that responds to a Request, and creates the Response, in methods that are part of a class that inherits from SS's Service class. There is a ton of documentation on the web about SS, and its (very feature rich) Service class. Example 1 uses just the most basic of these features. The actions that the Service takes for each endpoint are defined in the AppHost.cs file, in a class there called `BaseServices` and the two methods  therein. One method signature indicates the method should be called for a POST to the */Initialization* route, the other method's signature indicates it should be called for a POST on the */PostData* route. These methods require the DTO classes for their respective request and response. 
+## TargetFramework
+For Example 1, the TargetFramework for the ConsoleApp is the full .Net, Version 4.7.1 in this case.
 
 # The DTOs project
 Example 1 (and SS-served Blazor apps in general) will use a separate project to create a separate assembly that holds just the definitions of the DTOs. This project is referenced by both the Blazor GUI project and the ConsoleHost project. It ensure that both projects have the same definition of the data being transferred between them.
@@ -137,6 +139,9 @@ Both the request and response DTOs for */Initialization* are empty classes. Ther
 ## DTOs for PostData Route
 Both the request and response DTOs for */PostData* have a single Property, of type `string`, which I've chosen to call `StringDataObject`. Both the request and the response will carry a payload consisting of just this one value.
 
+## TargetFrameworks
+For Example 1, the CommonDTOs assembly has to link into both the ConsoleApp .exe and with the Blazor GUI assemblies. So the CommonDTOs specifies a <TargetFrameworks> of both net471 and netstandard2.0. This produces two copies of the assembly. The other two projects reference the CommonDTOs project, and each picks up their corresponding framework-specific assembly from this project's framework-specific <OutputDir>.
+
 # GUI Blazor app
 The GUI app has two pages and a Nav component to move between them. It is very closely based on the example Blazor app produces by thee development team, which is much better explained by its authors on the web.
 ## Index.cshtml
@@ -145,11 +150,12 @@ This is the home page of the app, and simply has some welcome text.
 This is the presentation page of the app that demonstrates calling into the ConsoleHost's two routes. When the page is loaded, it calls the */Initialization* route. For the */PostData* route, enter some string into the top input field, and press the submit button.
 ## BasicRESTServices.cshtml.cs
 This is the codebehind page of the app that supplies the C# code referenced by the BasicRESTServices.cshtml presentation page.
-
+## TargetFramework
+Like all Blazor client-side apps, the TargetFramework for the GUI app is .net Standard 2.0 (currently).
 # Conclusion
-If you are interested in using Blazor in situations without a web server, I hope these examples help explain one way of accomplishing our goal.
+If you are interested in using Blazor in situations without a web server, I hope these examples help explain one way of accomplishing your goal.
 
-if you find errors in the code or this documentation please create a issue in the GitHub repository .
+if you find errors in the code or this documentation please create a issue in the GitHub repository.
 
 Enjoy!
 
