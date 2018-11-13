@@ -7,7 +7,7 @@
 - Tells all projects to use the latest C# language features, and that VersionInformation is explicitly defined in each project. Defines common compilation symbols and flags.
 
 # ConsoleApp
-- The .csproj should specify <TargetFramework>net471\</TargetFramework>.
+- The .csproj should specify \<TargetFramework>net471\</TargetFramework>.
 
 # GUI
 - The .csproj should specify \<TargetFramework>netnetstandard2.0\</TargetFramework>.
