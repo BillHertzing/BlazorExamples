@@ -10,7 +10,7 @@
   <!-- Common for all TargetFrameworks references, compilation flags and build options -->
   <ItemGroup>
     <PackageReference Include="ServiceStack" Version="5.4.1" />
-    <PackageReference Include="ServiceStack.Logging.NLog" Version="5.4.0" />
+    <PackageReference Include="ServiceStack.Logging.NLog" Version="5.4.1" />
   </ItemGroup>
   
   <!-- .NET 4.7 references, compilation flags and build options -->
