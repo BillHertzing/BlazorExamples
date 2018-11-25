@@ -3,6 +3,13 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+## ATAP BuildTooling
+# Where external msbuild .target files and msBuild Task DLLs are stored
+.build/
+# Lock files used when incrementing AssemblyVersions
+*.lock
+# User Secrets file for things like DB conenction strings and APIs
+
 # User-specific files
 *.suo
 *.user
@@ -52,7 +59,7 @@ BenchmarkDotNet.Artifacts/
 project.lock.json
 project.fragment.lock.json
 artifacts/
-**/Properties/launchSettings.json
+#**/Properties/launchSettings.json
 
 # StyleCop
 StyleCopReport.xml
@@ -169,8 +176,8 @@ publish/
 *.azurePubxml
 # Note: Comment the next line if you want to checkin your web deploy settings,
 # but database connection strings (with potential passwords) will be unencrypted
-*.pubxml
-*.publishproj
+#*.pubxml
+#*.publishproj
 
 # Microsoft Azure Web App publish settings. Comment the next line if you want to
 # checkin your Azure Web App publish settings, but sensitive information contained
