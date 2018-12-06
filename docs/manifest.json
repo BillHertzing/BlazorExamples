@@ -304,12 +304,15 @@
       "version": ""
     },
     {
+      "log_codes": [
+        "DuplicateUids"
+      ],
       "type": "ManagedReference",
       "source_relative_path": "obj/docfx/api/net471/CommonDTOs.InitializationReqDTO.yml",
       "output": {
         ".html": {
           "relative_path": "ApiDocumentation/net471/CommonDTOs.InitializationReqDTO.html",
-          "hash": "toGWFcGJiSO3fjcczjliAQ=="
+          "hash": "AURf14EQORF5GXXF3l4Jpw=="
         }
       },
       "is_incremental": false,
@@ -324,7 +327,7 @@
       "output": {
         ".html": {
           "relative_path": "ApiDocumentation/net471/CommonDTOs.InitializationRspDTO.html",
-          "hash": "cgZUqiR7lbMKbeFL/lkebw=="
+          "hash": "HdLB8BHNkRW/dLwtTavhvw=="
         }
       },
       "is_incremental": false,
@@ -339,31 +342,7 @@
       "output": {
         ".html": {
           "relative_path": "ApiDocumentation/net471/CommonDTOs.PostDataReqDTO.html",
-          "hash": "cJkketMyhyLTaSLasE9x7w=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/docfx/api/net471/CommonDTOs.PostDataRspDTO.yml",
-      "output": {
-        ".html": {
-          "relative_path": "ApiDocumentation/net471/CommonDTOs.PostDataRspDTO.html",
-          "hash": "5ZHVMPDnXTEJdpPOVJeCuQ=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/docfx/api/net471/CommonDTOs.yml",
-      "output": {
-        ".html": {
-          "relative_path": "Api/net471/CommonDTOs.html",
-          "hash": "aPEOcbJwOtwvQ8sApHBBTQ=="
+          "hash": "PU47kP/0U0LqOoOQMEQvwA=="
         }
       },
       "is_incremental": false,
@@ -373,6 +352,33 @@
       "log_codes": [
         "DuplicateUids"
       ],
+      "type": "ManagedReference",
+      "source_relative_path": "obj/docfx/api/net471/CommonDTOs.PostDataRspDTO.yml",
+      "output": {
+        ".html": {
+          "relative_path": "ApiDocumentation/net471/CommonDTOs.PostDataRspDTO.html",
+          "hash": "Nm7Tarh6zDNLJXewU1MHcQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "DuplicateUids"
+      ],
+      "type": "ManagedReference",
+      "source_relative_path": "obj/docfx/api/net471/CommonDTOs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "Api/net471/CommonDTOs.html",
+          "hash": "pI1q0siHLxn7riRLOSUnMQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
       "type": "ManagedReference",
       "source_relative_path": "obj/docfx/api/net471/ConsoleApp.AppHost.yml",
       "output": {
@@ -385,15 +391,12 @@
       "version": ""
     },
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "obj/docfx/api/net471/ConsoleApp.BaseServices.yml",
       "output": {
         ".html": {
           "relative_path": "ApiDocumentation/net471/ConsoleApp.BaseServices.html",
-          "hash": "B3ERhcPHdKPWgZWeawm1Rg=="
+          "hash": "yqQ37goFhzuWf0e0zdmtMQ=="
         }
       },
       "is_incremental": false,
@@ -408,22 +411,19 @@
       "output": {
         ".html": {
           "relative_path": "Api/net471/ConsoleApp.html",
-          "hash": "9V9Y611YL78WkutykO3vKA=="
+          "hash": "GcDWdQv5n+LKnEnoceMAtg=="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "obj/docfx/api/net471/GUI.Pages.BasicRESTServicesCodeBehind.yml",
       "output": {
         ".html": {
           "relative_path": "ApiDocumentation/net471/GUI.Pages.BasicRESTServicesCodeBehind.html",
-          "hash": "RzwLTfbV6KQS+aKkMgkYpw=="
+          "hash": "N5zfN7GoTMQ+sLH5rhy62w=="
         }
       },
       "is_incremental": false,
@@ -438,19 +438,22 @@
       "output": {
         ".html": {
           "relative_path": "Api/net471/GUI.Pages.html",
-          "hash": "rbdA/ZWdA1Stjwu+yzEvRg=="
+          "hash": "J4S3RCMzhZ+Np3J6BiUSnw=="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
+      "log_codes": [
+        "DuplicateUids"
+      ],
       "type": "ManagedReference",
       "source_relative_path": "obj/docfx/api/net471/GUI.Program.yml",
       "output": {
         ".html": {
           "relative_path": "ApiDocumentation/net471/GUI.Program.html",
-          "hash": "K6KKQvOe6iej33XTOLzeNA=="
+          "hash": "TPfDWxfosY5lSAOKQ7ZDbw=="
         }
       },
       "is_incremental": false,
@@ -465,7 +468,7 @@
       "output": {
         ".html": {
           "relative_path": "ApiDocumentation/net471/GUI.Startup.html",
-          "hash": "Cz9FoxT11ydle68hk6UELA=="
+          "hash": "x6pQ51ubtMUpcjw8JC5/IQ=="
         }
       },
       "is_incremental": false,
@@ -480,7 +483,7 @@
       "output": {
         ".html": {
           "relative_path": "Api/net471/GUI.html",
-          "hash": "Qompl42I7PCqtTcO//mQGg=="
+          "hash": "QqT5z8TZuVB7qj5Q6Htoaw=="
         }
       },
       "is_incremental": false,
@@ -492,22 +495,19 @@
       "output": {
         ".html": {
           "relative_path": "ApiDocumentation/net471/toc.html",
-          "hash": "rfIt1XR70E0sdidrHsw9bA=="
+          "hash": "sR2IPpdrb1iBgAhm2No+zw=="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "obj/docfx/api/netcoreapp2.0/CommonDTOs.InitializationReqDTO.yml",
       "output": {
         ".html": {
           "relative_path": "ApiDocumentation/netcoreapp2.0/CommonDTOs.InitializationReqDTO.html",
-          "hash": "iu3nH+6SktQ9fYKWADTzUQ=="
+          "hash": "Z/zYpBCmbRqfW7Q+3eghxQ=="
         }
       },
       "is_incremental": false,
@@ -519,7 +519,7 @@
       "output": {
         ".html": {
           "relative_path": "ApiDocumentation/netcoreapp2.0/CommonDTOs.InitializationRspDTO.html",
-          "hash": "3hNmEnYrJdX5H/1LiNQESA=="
+          "hash": "oTY5Xjwrq+j6QM170Efw8g=="
         }
       },
       "is_incremental": false,
@@ -531,22 +531,19 @@
       "output": {
         ".html": {
           "relative_path": "ApiDocumentation/netcoreapp2.0/CommonDTOs.PostDataReqDTO.html",
-          "hash": "LTY/98HA9bPeKOLfmw4Vhw=="
+          "hash": "Egy64Akz+oYeNXkiI//k4w=="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "obj/docfx/api/netcoreapp2.0/CommonDTOs.PostDataRspDTO.yml",
       "output": {
         ".html": {
           "relative_path": "ApiDocumentation/netcoreapp2.0/CommonDTOs.PostDataRspDTO.html",
-          "hash": "YIgwMe5B0qb9PQr/ZwDYcg=="
+          "hash": "nBI8zdcPsXKSOeSj2o4ISA=="
         }
       },
       "is_incremental": false,
@@ -561,13 +558,16 @@
       "output": {
         ".html": {
           "relative_path": "Api/netcoreapp2.0/CommonDTOs.html",
-          "hash": "fysHppUiNJU9nRP5WjtNFA=="
+          "hash": "pI1q0siHLxn7riRLOSUnMQ=="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
+      "log_codes": [
+        "DuplicateUids"
+      ],
       "type": "ManagedReference",
       "source_relative_path": "obj/docfx/api/netcoreapp2.0/ConsoleApp.AppHost.yml",
       "output": {
@@ -580,12 +580,15 @@
       "version": ""
     },
     {
+      "log_codes": [
+        "DuplicateUids"
+      ],
       "type": "ManagedReference",
       "source_relative_path": "obj/docfx/api/netcoreapp2.0/ConsoleApp.BaseServices.yml",
       "output": {
         ".html": {
           "relative_path": "ApiDocumentation/netcoreapp2.0/ConsoleApp.BaseServices.html",
-          "hash": "yrb2GI9cKLQVb0wnIy8TLQ=="
+          "hash": "6HFj5lhd/27yO4r6xpqc/A=="
         }
       },
       "is_incremental": false,
@@ -597,49 +600,46 @@
       "output": {
         ".html": {
           "relative_path": "Api/netcoreapp2.0/ConsoleApp.html",
-          "hash": "lUbvQw5dRipPLgwU+Ng6pg=="
+          "hash": "X/0aELsc5385mqVsvNg2Mg=="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
+      "log_codes": [
+        "DuplicateUids"
+      ],
       "type": "ManagedReference",
       "source_relative_path": "obj/docfx/api/netcoreapp2.0/GUI.Pages.BasicRESTServicesCodeBehind.yml",
       "output": {
         ".html": {
           "relative_path": "ApiDocumentation/netcoreapp2.0/GUI.Pages.BasicRESTServicesCodeBehind.html",
-          "hash": "F1JrVsjBlpFqToUEJrtr/w=="
+          "hash": "iew4GMO2IIi+nxl3ZywzQQ=="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "obj/docfx/api/netcoreapp2.0/GUI.Pages.yml",
       "output": {
         ".html": {
           "relative_path": "Api/netcoreapp2.0/GUI.Pages.html",
-          "hash": "rbdA/ZWdA1Stjwu+yzEvRg=="
+          "hash": "wmoIWq+ydFV8OnLURN+8LA=="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "obj/docfx/api/netcoreapp2.0/GUI.Program.yml",
       "output": {
         ".html": {
           "relative_path": "ApiDocumentation/netcoreapp2.0/GUI.Program.html",
-          "hash": "K6KKQvOe6iej33XTOLzeNA=="
+          "hash": "TPfDWxfosY5lSAOKQ7ZDbw=="
         }
       },
       "is_incremental": false,
@@ -651,19 +651,22 @@
       "output": {
         ".html": {
           "relative_path": "ApiDocumentation/netcoreapp2.0/GUI.Startup.html",
-          "hash": "Cz9FoxT11ydle68hk6UELA=="
+          "hash": "x6pQ51ubtMUpcjw8JC5/IQ=="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
+      "log_codes": [
+        "DuplicateUids"
+      ],
       "type": "ManagedReference",
       "source_relative_path": "obj/docfx/api/netcoreapp2.0/GUI.yml",
       "output": {
         ".html": {
           "relative_path": "Api/netcoreapp2.0/GUI.html",
-          "hash": "EZguyUNSOzWhEfzlLKZBFA=="
+          "hash": "QqT5z8TZuVB7qj5Q6Htoaw=="
         }
       },
       "is_incremental": false,
@@ -675,7 +678,7 @@
       "output": {
         ".html": {
           "relative_path": "ApiDocumentation/netcoreapp2.0/toc.html",
-          "hash": "HYlKomFF4P1GeiaL1MY4Uw=="
+          "hash": "nWNcuVs6W0ngeFyC8F+TGg=="
         }
       },
       "is_incremental": false,
@@ -690,7 +693,7 @@
       "output": {
         ".html": {
           "relative_path": "ApiDocumentation/netstandard2.0/CommonDTOs.InitializationReqDTO.html",
-          "hash": "FtlRKMiYur0FOqPK2h4ijg=="
+          "hash": "lDDu9/h0MdlolTcHkaiPFw=="
         }
       },
       "is_incremental": false,
@@ -705,7 +708,7 @@
       "output": {
         ".html": {
           "relative_path": "ApiDocumentation/netstandard2.0/CommonDTOs.InitializationRspDTO.html",
-          "hash": "pbupbG9aH2h8bgtsa0NK1A=="
+          "hash": "NQW1JZvGmAYypojFKX8P1g=="
         }
       },
       "is_incremental": false,
@@ -720,7 +723,7 @@
       "output": {
         ".html": {
           "relative_path": "ApiDocumentation/netstandard2.0/CommonDTOs.PostDataReqDTO.html",
-          "hash": "KrkpriV5wjNIlLCR48kkMA=="
+          "hash": "B0gKzpEJ/nGV5vCs3cJeYw=="
         }
       },
       "is_incremental": false,
@@ -735,22 +738,19 @@
       "output": {
         ".html": {
           "relative_path": "ApiDocumentation/netstandard2.0/CommonDTOs.PostDataRspDTO.html",
-          "hash": "8gHGrnRX7bYIOhcgt+uBwQ=="
+          "hash": "gu40/i/pLkoon6//5j34bQ=="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "obj/docfx/api/netstandard2.0/CommonDTOs.yml",
       "output": {
         ".html": {
           "relative_path": "Api/netstandard2.0/CommonDTOs.html",
-          "hash": "fysHppUiNJU9nRP5WjtNFA=="
+          "hash": "lXAoqi45ddbr41x4E52RmQ=="
         }
       },
       "is_incremental": false,
@@ -780,7 +780,7 @@
       "output": {
         ".html": {
           "relative_path": "ApiDocumentation/netstandard2.0/ConsoleApp.BaseServices.html",
-          "hash": "3dmOiHLtI7vHnQipspb42A=="
+          "hash": "yqQ37goFhzuWf0e0zdmtMQ=="
         }
       },
       "is_incremental": false,
@@ -795,7 +795,7 @@
       "output": {
         ".html": {
           "relative_path": "Api/netstandard2.0/ConsoleApp.html",
-          "hash": "9V9Y611YL78WkutykO3vKA=="
+          "hash": "GcDWdQv5n+LKnEnoceMAtg=="
         }
       },
       "is_incremental": false,
@@ -807,7 +807,7 @@
       "output": {
         ".html": {
           "relative_path": "ApiDocumentation/netstandard2.0/GUI.App.html",
-          "hash": "O9/QkmUDx2pluY/bEIVzlw=="
+          "hash": "2MjEnOxkmx6kIv36giWepA=="
         }
       },
       "is_incremental": false,
@@ -819,7 +819,7 @@
       "output": {
         ".html": {
           "relative_path": "ApiDocumentation/netstandard2.0/GUI.Pages.BasicRESTServices.html",
-          "hash": "h49RlZzK2NTdpqv+fBba6g=="
+          "hash": "DYzIBWRHct3dVrZoXUKknw=="
         }
       },
       "is_incremental": false,
@@ -834,7 +834,7 @@
       "output": {
         ".html": {
           "relative_path": "ApiDocumentation/netstandard2.0/GUI.Pages.BasicRESTServicesCodeBehind.html",
-          "hash": "NT4hu078qAx/EkriRhyXKA=="
+          "hash": "0J9cd1d20BnoUqJcV4WEpg=="
         }
       },
       "is_incremental": false,
@@ -846,7 +846,7 @@
       "output": {
         ".html": {
           "relative_path": "ApiDocumentation/netstandard2.0/GUI.Pages.Index.html",
-          "hash": "Nbi3YCZnLUXHrKF3fcwP2g=="
+          "hash": "e2FzQuMIddbbakCNmd0GUw=="
         }
       },
       "is_incremental": false,
@@ -858,19 +858,22 @@
       "output": {
         ".html": {
           "relative_path": "ApiDocumentation/netstandard2.0/GUI.Pages._ViewImports.html",
-          "hash": "s39omfF1XkZrh+1vI22KoA=="
+          "hash": "poWp61nhtQwnnVDOwSf9Vw=="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
+      "log_codes": [
+        "DuplicateUids"
+      ],
       "type": "ManagedReference",
       "source_relative_path": "obj/docfx/api/netstandard2.0/GUI.Pages.yml",
       "output": {
         ".html": {
           "relative_path": "Api/netstandard2.0/GUI.Pages.html",
-          "hash": "jmv6Q1VYpXBo8V8JnqqIcQ=="
+          "hash": "MYqR2BCNKmTvJt/x57bD6A=="
         }
       },
       "is_incremental": false,
@@ -885,7 +888,7 @@
       "output": {
         ".html": {
           "relative_path": "ApiDocumentation/netstandard2.0/GUI.Program.html",
-          "hash": "B1U5OMCX1iWqOHV5uT696w=="
+          "hash": "Qu9s98HKXGSZZjWR8O2HxQ=="
         }
       },
       "is_incremental": false,
@@ -936,7 +939,7 @@
       "output": {
         ".html": {
           "relative_path": "ApiDocumentation/netstandard2.0/GUI.Startup.html",
-          "hash": "jWZqRYPQfA9DTMGLpJJADw=="
+          "hash": "D/FL/VI/7hE7pfzUUtCFdw=="
         }
       },
       "is_incremental": false,
@@ -948,22 +951,19 @@
       "output": {
         ".html": {
           "relative_path": "ApiDocumentation/netstandard2.0/GUI._ViewImports.html",
-          "hash": "j8EGJBhDpFA+L0Pdcv1W+Q=="
+          "hash": "cVYXrUkKazlkCEyXJ4h73A=="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "obj/docfx/api/netstandard2.0/GUI.yml",
       "output": {
         ".html": {
           "relative_path": "Api/netstandard2.0/GUI.html",
-          "hash": "34oyJOcSd+GZ85zOvqRtgg=="
+          "hash": "o8FnwBy0wM87Pn+lWNkV5w=="
         }
       },
       "is_incremental": false,
@@ -975,7 +975,7 @@
       "output": {
         ".html": {
           "relative_path": "ApiDocumentation/netstandard2.0/toc.html",
-          "hash": "IF8dTcd9/299ngl1VllF6Q=="
+          "hash": "KJnp1FqB/rAI4OPuE14RKA=="
         }
       },
       "is_incremental": false,
@@ -999,11 +999,11 @@
           "details": "Processor ResourceDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
           "incrementalPhase": "build"
         },
-        "ConceptualDocumentProcessor": {
+        "ManagedReferenceDocumentProcessor": {
           "can_incremental": true,
           "incrementalPhase": "build"
         },
-        "ManagedReferenceDocumentProcessor": {
+        "ConceptualDocumentProcessor": {
           "can_incremental": true,
           "incrementalPhase": "build"
         }
