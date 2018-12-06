@@ -3,13 +3,13 @@ sorted: true
 references:
 - uid: CommonDTOs
   name: CommonDTOs
-  href: Api/net471/CommonDTOs.html
+  href: Api/netstandard2.0/CommonDTOs.html
   commentId: N:CommonDTOs
   fullName: CommonDTOs
   nameWithType: CommonDTOs
 - uid: CommonDTOs.InitializationReqDTO
   name: InitializationReqDTO
-  href: ApiDocumentation/net471/CommonDTOs.InitializationReqDTO.html
+  href: ApiDocumentation/netcoreapp2.0/CommonDTOs.InitializationReqDTO.html
   commentId: T:CommonDTOs.InitializationReqDTO
   fullName: CommonDTOs.InitializationReqDTO
   nameWithType: InitializationReqDTO
@@ -40,19 +40,19 @@ references:
   nameWithType: PostDataReqDTO.StringDataObject
 - uid: CommonDTOs.PostDataRspDTO
   name: PostDataRspDTO
-  href: ApiDocumentation/net471/CommonDTOs.PostDataRspDTO.html
+  href: ApiDocumentation/netcoreapp2.0/CommonDTOs.PostDataRspDTO.html
   commentId: T:CommonDTOs.PostDataRspDTO
   fullName: CommonDTOs.PostDataRspDTO
   nameWithType: PostDataRspDTO
 - uid: CommonDTOs.PostDataRspDTO.StringDataObject
   name: StringDataObject
-  href: ApiDocumentation/net471/CommonDTOs.PostDataRspDTO.html#CommonDTOs_PostDataRspDTO_StringDataObject
+  href: ApiDocumentation/netcoreapp2.0/CommonDTOs.PostDataRspDTO.html#CommonDTOs_PostDataRspDTO_StringDataObject
   commentId: P:CommonDTOs.PostDataRspDTO.StringDataObject
   fullName: CommonDTOs.PostDataRspDTO.StringDataObject
   nameWithType: PostDataRspDTO.StringDataObject
 - uid: CommonDTOs.PostDataRspDTO.StringDataObject*
   name: StringDataObject
-  href: ApiDocumentation/net471/CommonDTOs.PostDataRspDTO.html#CommonDTOs_PostDataRspDTO_StringDataObject_
+  href: ApiDocumentation/netcoreapp2.0/CommonDTOs.PostDataRspDTO.html#CommonDTOs_PostDataRspDTO_StringDataObject_
   commentId: Overload:CommonDTOs.PostDataRspDTO.StringDataObject
   isSpec: "True"
   fullName: CommonDTOs.PostDataRspDTO.StringDataObject
@@ -65,77 +65,77 @@ references:
   nameWithType: ConsoleApp
 - uid: ConsoleApp.AppHost
   name: AppHost
-  href: ApiDocumentation/netcoreapp2.0/ConsoleApp.AppHost.html
+  href: ApiDocumentation/net471/ConsoleApp.AppHost.html
   commentId: T:ConsoleApp.AppHost
   fullName: ConsoleApp.AppHost
   nameWithType: AppHost
 - uid: ConsoleApp.AppHost.#ctor
   name: AppHost()
-  href: ApiDocumentation/netcoreapp2.0/ConsoleApp.AppHost.html#ConsoleApp_AppHost__ctor
+  href: ApiDocumentation/net471/ConsoleApp.AppHost.html#ConsoleApp_AppHost__ctor
   commentId: M:ConsoleApp.AppHost.#ctor
   fullName: ConsoleApp.AppHost.AppHost()
   nameWithType: AppHost.AppHost()
 - uid: ConsoleApp.AppHost.#ctor*
   name: AppHost
-  href: ApiDocumentation/netcoreapp2.0/ConsoleApp.AppHost.html#ConsoleApp_AppHost__ctor_
+  href: ApiDocumentation/net471/ConsoleApp.AppHost.html#ConsoleApp_AppHost__ctor_
   commentId: Overload:ConsoleApp.AppHost.#ctor
   isSpec: "True"
   fullName: ConsoleApp.AppHost.AppHost
   nameWithType: AppHost.AppHost
 - uid: ConsoleApp.AppHost.Configure(Container)
   name: Configure(Container)
-  href: ApiDocumentation/netcoreapp2.0/ConsoleApp.AppHost.html#ConsoleApp_AppHost_Configure_Container_
+  href: ApiDocumentation/net471/ConsoleApp.AppHost.html#ConsoleApp_AppHost_Configure_Container_
   commentId: M:ConsoleApp.AppHost.Configure(Container)
   fullName: ConsoleApp.AppHost.Configure(Container)
   nameWithType: AppHost.Configure(Container)
 - uid: ConsoleApp.AppHost.Configure*
   name: Configure
-  href: ApiDocumentation/netcoreapp2.0/ConsoleApp.AppHost.html#ConsoleApp_AppHost_Configure_
+  href: ApiDocumentation/net471/ConsoleApp.AppHost.html#ConsoleApp_AppHost_Configure_
   commentId: Overload:ConsoleApp.AppHost.Configure
   isSpec: "True"
   fullName: ConsoleApp.AppHost.Configure
   nameWithType: AppHost.Configure
 - uid: ConsoleApp.AppHost.Stop
   name: Stop()
-  href: ApiDocumentation/netcoreapp2.0/ConsoleApp.AppHost.html#ConsoleApp_AppHost_Stop
+  href: ApiDocumentation/net471/ConsoleApp.AppHost.html#ConsoleApp_AppHost_Stop
   commentId: M:ConsoleApp.AppHost.Stop
   fullName: ConsoleApp.AppHost.Stop()
   nameWithType: AppHost.Stop()
 - uid: ConsoleApp.AppHost.Stop*
   name: Stop
-  href: ApiDocumentation/netcoreapp2.0/ConsoleApp.AppHost.html#ConsoleApp_AppHost_Stop_
+  href: ApiDocumentation/net471/ConsoleApp.AppHost.html#ConsoleApp_AppHost_Stop_
   commentId: Overload:ConsoleApp.AppHost.Stop
   isSpec: "True"
   fullName: ConsoleApp.AppHost.Stop
   nameWithType: AppHost.Stop
 - uid: ConsoleApp.BaseServices
   name: BaseServices
-  href: ApiDocumentation/netcoreapp2.0/ConsoleApp.BaseServices.html
+  href: ApiDocumentation/net471/ConsoleApp.BaseServices.html
   commentId: T:ConsoleApp.BaseServices
   fullName: ConsoleApp.BaseServices
   nameWithType: BaseServices
 - uid: ConsoleApp.BaseServices.Post(CommonDTOs.InitializationReqDTO)
   name: Post(InitializationReqDTO)
-  href: ApiDocumentation/netcoreapp2.0/ConsoleApp.BaseServices.html#ConsoleApp_BaseServices_Post_CommonDTOs_InitializationReqDTO_
+  href: ApiDocumentation/net471/ConsoleApp.BaseServices.html#ConsoleApp_BaseServices_Post_CommonDTOs_InitializationReqDTO_
   commentId: M:ConsoleApp.BaseServices.Post(CommonDTOs.InitializationReqDTO)
   fullName: ConsoleApp.BaseServices.Post(CommonDTOs.InitializationReqDTO)
   nameWithType: BaseServices.Post(InitializationReqDTO)
 - uid: ConsoleApp.BaseServices.Post(CommonDTOs.PostDataReqDTO)
   name: Post(PostDataReqDTO)
-  href: ApiDocumentation/netcoreapp2.0/ConsoleApp.BaseServices.html#ConsoleApp_BaseServices_Post_CommonDTOs_PostDataReqDTO_
+  href: ApiDocumentation/net471/ConsoleApp.BaseServices.html#ConsoleApp_BaseServices_Post_CommonDTOs_PostDataReqDTO_
   commentId: M:ConsoleApp.BaseServices.Post(CommonDTOs.PostDataReqDTO)
   fullName: ConsoleApp.BaseServices.Post(CommonDTOs.PostDataReqDTO)
   nameWithType: BaseServices.Post(PostDataReqDTO)
 - uid: ConsoleApp.BaseServices.Post*
   name: Post
-  href: ApiDocumentation/netcoreapp2.0/ConsoleApp.BaseServices.html#ConsoleApp_BaseServices_Post_
+  href: ApiDocumentation/net471/ConsoleApp.BaseServices.html#ConsoleApp_BaseServices_Post_
   commentId: Overload:ConsoleApp.BaseServices.Post
   isSpec: "True"
   fullName: ConsoleApp.BaseServices.Post
   nameWithType: BaseServices.Post
 - uid: GUI
   name: GUI
-  href: Api/netcoreapp2.0/GUI.html
+  href: Api/netstandard2.0/GUI.html
   commentId: N:GUI
   fullName: GUI
   nameWithType: GUI
@@ -179,7 +179,7 @@ references:
   nameWithType: App.BuildRenderTree
 - uid: GUI.Pages
   name: GUI.Pages
-  href: Api/netstandard2.0/GUI.Pages.html
+  href: Api/netcoreapp2.0/GUI.Pages.html
   commentId: N:GUI.Pages
   fullName: GUI.Pages
   nameWithType: GUI.Pages
@@ -223,88 +223,88 @@ references:
   nameWithType: BasicRESTServices.BuildRenderTree
 - uid: GUI.Pages.BasicRESTServicesCodeBehind
   name: BasicRESTServicesCodeBehind
-  href: ApiDocumentation/netcoreapp2.0/GUI.Pages.BasicRESTServicesCodeBehind.html
+  href: ApiDocumentation/net471/GUI.Pages.BasicRESTServicesCodeBehind.html
   commentId: T:GUI.Pages.BasicRESTServicesCodeBehind
   fullName: GUI.Pages.BasicRESTServicesCodeBehind
   nameWithType: BasicRESTServicesCodeBehind
 - uid: GUI.Pages.BasicRESTServicesCodeBehind.dataReceivedFromPost
   name: dataReceivedFromPost
-  href: ApiDocumentation/netcoreapp2.0/GUI.Pages.BasicRESTServicesCodeBehind.html#GUI_Pages_BasicRESTServicesCodeBehind_dataReceivedFromPost
+  href: ApiDocumentation/net471/GUI.Pages.BasicRESTServicesCodeBehind.html#GUI_Pages_BasicRESTServicesCodeBehind_dataReceivedFromPost
   commentId: F:GUI.Pages.BasicRESTServicesCodeBehind.dataReceivedFromPost
   fullName: GUI.Pages.BasicRESTServicesCodeBehind.dataReceivedFromPost
   nameWithType: BasicRESTServicesCodeBehind.dataReceivedFromPost
 - uid: GUI.Pages.BasicRESTServicesCodeBehind.dataToPost
   name: dataToPost
-  href: ApiDocumentation/netcoreapp2.0/GUI.Pages.BasicRESTServicesCodeBehind.html#GUI_Pages_BasicRESTServicesCodeBehind_dataToPost
+  href: ApiDocumentation/net471/GUI.Pages.BasicRESTServicesCodeBehind.html#GUI_Pages_BasicRESTServicesCodeBehind_dataToPost
   commentId: F:GUI.Pages.BasicRESTServicesCodeBehind.dataToPost
   fullName: GUI.Pages.BasicRESTServicesCodeBehind.dataToPost
   nameWithType: BasicRESTServicesCodeBehind.dataToPost
 - uid: GUI.Pages.BasicRESTServicesCodeBehind.InitializationRspDTO
   name: InitializationRspDTO
-  href: ApiDocumentation/netcoreapp2.0/GUI.Pages.BasicRESTServicesCodeBehind.html#GUI_Pages_BasicRESTServicesCodeBehind_InitializationRspDTO
+  href: ApiDocumentation/net471/GUI.Pages.BasicRESTServicesCodeBehind.html#GUI_Pages_BasicRESTServicesCodeBehind_InitializationRspDTO
   commentId: P:GUI.Pages.BasicRESTServicesCodeBehind.InitializationRspDTO
   fullName: GUI.Pages.BasicRESTServicesCodeBehind.InitializationRspDTO
   nameWithType: BasicRESTServicesCodeBehind.InitializationRspDTO
 - uid: GUI.Pages.BasicRESTServicesCodeBehind.InitializationRspDTO*
   name: InitializationRspDTO
-  href: ApiDocumentation/netcoreapp2.0/GUI.Pages.BasicRESTServicesCodeBehind.html#GUI_Pages_BasicRESTServicesCodeBehind_InitializationRspDTO_
+  href: ApiDocumentation/net471/GUI.Pages.BasicRESTServicesCodeBehind.html#GUI_Pages_BasicRESTServicesCodeBehind_InitializationRspDTO_
   commentId: Overload:GUI.Pages.BasicRESTServicesCodeBehind.InitializationRspDTO
   isSpec: "True"
   fullName: GUI.Pages.BasicRESTServicesCodeBehind.InitializationRspDTO
   nameWithType: BasicRESTServicesCodeBehind.InitializationRspDTO
 - uid: GUI.Pages.BasicRESTServicesCodeBehind.labelForDataReceivedFromPost
   name: labelForDataReceivedFromPost
-  href: ApiDocumentation/netcoreapp2.0/GUI.Pages.BasicRESTServicesCodeBehind.html#GUI_Pages_BasicRESTServicesCodeBehind_labelForDataReceivedFromPost
+  href: ApiDocumentation/net471/GUI.Pages.BasicRESTServicesCodeBehind.html#GUI_Pages_BasicRESTServicesCodeBehind_labelForDataReceivedFromPost
   commentId: F:GUI.Pages.BasicRESTServicesCodeBehind.labelForDataReceivedFromPost
   fullName: GUI.Pages.BasicRESTServicesCodeBehind.labelForDataReceivedFromPost
   nameWithType: BasicRESTServicesCodeBehind.labelForDataReceivedFromPost
 - uid: GUI.Pages.BasicRESTServicesCodeBehind.labelForDataToPost
   name: labelForDataToPost
-  href: ApiDocumentation/netcoreapp2.0/GUI.Pages.BasicRESTServicesCodeBehind.html#GUI_Pages_BasicRESTServicesCodeBehind_labelForDataToPost
+  href: ApiDocumentation/net471/GUI.Pages.BasicRESTServicesCodeBehind.html#GUI_Pages_BasicRESTServicesCodeBehind_labelForDataToPost
   commentId: F:GUI.Pages.BasicRESTServicesCodeBehind.labelForDataToPost
   fullName: GUI.Pages.BasicRESTServicesCodeBehind.labelForDataToPost
   nameWithType: BasicRESTServicesCodeBehind.labelForDataToPost
 - uid: GUI.Pages.BasicRESTServicesCodeBehind.labelForPostDataDataButton
   name: labelForPostDataDataButton
-  href: ApiDocumentation/netcoreapp2.0/GUI.Pages.BasicRESTServicesCodeBehind.html#GUI_Pages_BasicRESTServicesCodeBehind_labelForPostDataDataButton
+  href: ApiDocumentation/net471/GUI.Pages.BasicRESTServicesCodeBehind.html#GUI_Pages_BasicRESTServicesCodeBehind_labelForPostDataDataButton
   commentId: F:GUI.Pages.BasicRESTServicesCodeBehind.labelForPostDataDataButton
   fullName: GUI.Pages.BasicRESTServicesCodeBehind.labelForPostDataDataButton
   nameWithType: BasicRESTServicesCodeBehind.labelForPostDataDataButton
 - uid: GUI.Pages.BasicRESTServicesCodeBehind.Logger
   name: Logger
-  href: ApiDocumentation/netcoreapp2.0/GUI.Pages.BasicRESTServicesCodeBehind.html#GUI_Pages_BasicRESTServicesCodeBehind_Logger
+  href: ApiDocumentation/net471/GUI.Pages.BasicRESTServicesCodeBehind.html#GUI_Pages_BasicRESTServicesCodeBehind_Logger
   commentId: P:GUI.Pages.BasicRESTServicesCodeBehind.Logger
   fullName: GUI.Pages.BasicRESTServicesCodeBehind.Logger
   nameWithType: BasicRESTServicesCodeBehind.Logger
 - uid: GUI.Pages.BasicRESTServicesCodeBehind.Logger*
   name: Logger
-  href: ApiDocumentation/netcoreapp2.0/GUI.Pages.BasicRESTServicesCodeBehind.html#GUI_Pages_BasicRESTServicesCodeBehind_Logger_
+  href: ApiDocumentation/net471/GUI.Pages.BasicRESTServicesCodeBehind.html#GUI_Pages_BasicRESTServicesCodeBehind_Logger_
   commentId: Overload:GUI.Pages.BasicRESTServicesCodeBehind.Logger
   isSpec: "True"
   fullName: GUI.Pages.BasicRESTServicesCodeBehind.Logger
   nameWithType: BasicRESTServicesCodeBehind.Logger
 - uid: GUI.Pages.BasicRESTServicesCodeBehind.OnInitAsync
   name: OnInitAsync()
-  href: ApiDocumentation/netcoreapp2.0/GUI.Pages.BasicRESTServicesCodeBehind.html#GUI_Pages_BasicRESTServicesCodeBehind_OnInitAsync
+  href: ApiDocumentation/net471/GUI.Pages.BasicRESTServicesCodeBehind.html#GUI_Pages_BasicRESTServicesCodeBehind_OnInitAsync
   commentId: M:GUI.Pages.BasicRESTServicesCodeBehind.OnInitAsync
   fullName: GUI.Pages.BasicRESTServicesCodeBehind.OnInitAsync()
   nameWithType: BasicRESTServicesCodeBehind.OnInitAsync()
 - uid: GUI.Pages.BasicRESTServicesCodeBehind.OnInitAsync*
   name: OnInitAsync
-  href: ApiDocumentation/netcoreapp2.0/GUI.Pages.BasicRESTServicesCodeBehind.html#GUI_Pages_BasicRESTServicesCodeBehind_OnInitAsync_
+  href: ApiDocumentation/net471/GUI.Pages.BasicRESTServicesCodeBehind.html#GUI_Pages_BasicRESTServicesCodeBehind_OnInitAsync_
   commentId: Overload:GUI.Pages.BasicRESTServicesCodeBehind.OnInitAsync
   isSpec: "True"
   fullName: GUI.Pages.BasicRESTServicesCodeBehind.OnInitAsync
   nameWithType: BasicRESTServicesCodeBehind.OnInitAsync
 - uid: GUI.Pages.BasicRESTServicesCodeBehind.PostData
   name: PostData()
-  href: ApiDocumentation/netcoreapp2.0/GUI.Pages.BasicRESTServicesCodeBehind.html#GUI_Pages_BasicRESTServicesCodeBehind_PostData
+  href: ApiDocumentation/net471/GUI.Pages.BasicRESTServicesCodeBehind.html#GUI_Pages_BasicRESTServicesCodeBehind_PostData
   commentId: M:GUI.Pages.BasicRESTServicesCodeBehind.PostData
   fullName: GUI.Pages.BasicRESTServicesCodeBehind.PostData()
   nameWithType: BasicRESTServicesCodeBehind.PostData()
 - uid: GUI.Pages.BasicRESTServicesCodeBehind.PostData*
   name: PostData
-  href: ApiDocumentation/netcoreapp2.0/GUI.Pages.BasicRESTServicesCodeBehind.html#GUI_Pages_BasicRESTServicesCodeBehind_PostData_
+  href: ApiDocumentation/net471/GUI.Pages.BasicRESTServicesCodeBehind.html#GUI_Pages_BasicRESTServicesCodeBehind_PostData_
   commentId: Overload:GUI.Pages.BasicRESTServicesCodeBehind.PostData
   isSpec: "True"
   fullName: GUI.Pages.BasicRESTServicesCodeBehind.PostData
@@ -330,13 +330,13 @@ references:
   nameWithType: Index.BuildRenderTree
 - uid: GUI.Program
   name: Program
-  href: ApiDocumentation/net471/GUI.Program.html
+  href: ApiDocumentation/netcoreapp2.0/GUI.Program.html
   commentId: T:GUI.Program
   fullName: GUI.Program
   nameWithType: Program
 - uid: GUI.Program.CreateHostBuilder(System.String[])
   name: CreateHostBuilder(String[])
-  href: ApiDocumentation/net471/GUI.Program.html#GUI_Program_CreateHostBuilder_System_String___
+  href: ApiDocumentation/netcoreapp2.0/GUI.Program.html#GUI_Program_CreateHostBuilder_System_String___
   commentId: M:GUI.Program.CreateHostBuilder(System.String[])
   name.vb: CreateHostBuilder(String())
   fullName: GUI.Program.CreateHostBuilder(System.String[])
@@ -345,14 +345,14 @@ references:
   nameWithType.vb: Program.CreateHostBuilder(String())
 - uid: GUI.Program.CreateHostBuilder*
   name: CreateHostBuilder
-  href: ApiDocumentation/net471/GUI.Program.html#GUI_Program_CreateHostBuilder_
+  href: ApiDocumentation/netcoreapp2.0/GUI.Program.html#GUI_Program_CreateHostBuilder_
   commentId: Overload:GUI.Program.CreateHostBuilder
   isSpec: "True"
   fullName: GUI.Program.CreateHostBuilder
   nameWithType: Program.CreateHostBuilder
 - uid: GUI.Program.Main(System.String[])
   name: Main(String[])
-  href: ApiDocumentation/net471/GUI.Program.html#GUI_Program_Main_System_String___
+  href: ApiDocumentation/netcoreapp2.0/GUI.Program.html#GUI_Program_Main_System_String___
   commentId: M:GUI.Program.Main(System.String[])
   name.vb: Main(String())
   fullName: GUI.Program.Main(System.String[])
@@ -361,7 +361,7 @@ references:
   nameWithType.vb: Program.Main(String())
 - uid: GUI.Program.Main*
   name: Main
-  href: ApiDocumentation/net471/GUI.Program.html#GUI_Program_Main_
+  href: ApiDocumentation/netcoreapp2.0/GUI.Program.html#GUI_Program_Main_
   commentId: Overload:GUI.Program.Main
   isSpec: "True"
   fullName: GUI.Program.Main
