@@ -1,0 +1,146 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Common Documentation for all Demos | Blazor Examples with ServiceStack </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Common Documentation for all Demos | Blazor Examples with ServiceStack ">
+    <meta name="generator" content="docfx 2.40.2.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    <meta property="docfx:newtab" content="true">
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../images/ataplogo1inch.bmp" alt="Logo For ATAP Technology, Inc.">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="common-documentation-for-all-demos">Common Documentation for all Demos</h1>
+
+<p>Information here relates to all of the demos. At the bottom of this page is a <a href="./ReadMe.html#DemoList">list of the demos and what each does</a></p>
+<h1 id="prerequisites">Prerequisites</h1>
+<ol>
+<li>Visual Studio (VS) 2017 Version 15.8 or newer. All of the following instructions assume you are using a Visual Studio (VS) 2017 IDE for development. The section below on <a href="./ReadMe.html#Building">Building</a> does reference additional documentation on options for building the demos outside of Visual Studio</li>
+<li>Familiarity with using Git and GitHub in VS.</li>
+<li>ServiceStack (SS) Version 5.*. You will need to refer to <a href="https://servicestack.net/download">Instructions for adding ServiceStack via NuGet into a solution</a>. Unless you purchase a license, SS will be the &quot;Starter&quot; version, limited to about 10 REST service endpoints Each of the demonstration programs here will be written to stay below the limit. <ul>
+<li>You should also be aware that the ServiceStack development team does a great job of patching and enhancing ServiceStack, and there may be times you will want to get new patches from ServiceStack&#39;s MyGet feed. You will want to go to VS&#39;s Tools -&gt; Options -&gt; NuGet Package Manager -&gt; Package Sources and add to the &quot;Available package sources&quot;. Add <a href="https://www.myget.org/F/servicestack">https://www.myget.org/F/servicestack</a> to the list of package sources.        </li>
+</ul>
+</li>
+<li>Blazor components installed into VS. Instructions for getting Blazor setup for VS can be found here: <a href="https://blazor.net/docs/get-started.html">https://blazor.net/docs/get-started.html</a>. Blazor is changing rapidly, and I will do my best to ensure that the demos in this repository track the changes in Blazor.</li>
+<li>A logging framework such as the Open Source Software (OSS) NLog installed into VS. A good post explaining how to integrate NLog with VS can be found here: <a href="https://www.codeguru.com/csharp/csharp/cs_network/integrating-nlog-with-visual-studio.html">https://www.codeguru.com/csharp/csharp/cs_network/integrating-nlog-with-visual-studio.html</a>. The demos here use NLog. The NLog configuration file included in these demos also specifies a UDP-based logger. <strong>Sentinel</strong>, described below, is a good choice for a UDP-based logging application.</li>
+<li>Blazor logging framework. Source and ReadMe.md for the extensions can be found here: <a href="https://github.com/BlazorExtensions/Logging">https://github.com/BlazorExtensions/Logging</a>. A good post explaining how to use the extension in your Blazor project can be found here: <a href="https://www.c-sharpcorner.com/article/introduction-to-logging-framework-in-blazor-with-net-core/">https://www.c-sharpcorner.com/article/introduction-to-logging-framework-in-blazor-with-net-core/</a>. The demos in this repository are currently using Version 0.9.0. I will try to ensure that the demos in this repository track the changes in the Blazor logging extensions.</li>
+</ol>
+<h1 id="a-idbuildingbuilding-the-demos"><a id="Building"></a>Building the demos</h1>
+<p>All of these instructions refer back to the <code>Atap.Utilities</code> repository&#39;s documentation that provides my most up-to-date instructions on building solutions in these repositories.</p>
+<ul>
+<li><a href="">Building a solution from Visual Studio</a></li>
+<li><a href="">Building a solution Using MSBuild via a Command Line Interface (CLI)</a></li>
+<li><a href="">Building a solution using the DotNet build command</a></li>
+</ul>
+<h2 id="building-and-publishing-the-blazor-gui">Building and Publishing the Blazor GUI</h2>
+<p>The Blazor GUI requires an additional publishing step beyond just building the application. In all of these demos, we will use the following architecture for the base location where the Publish step will put the files that make up the Blazor GUI. Blazor GUI. In each Demo, under the GUI project&#39;s Properties subfolder, are the two files <code>DebugFolderProfile.pubxml</code> and <code>ReleaseFolderProfile.pubxml</code>. These files have the property <strong>&lt;publishUrl&gt;</strong> which controls the location to which the GUI project is published. The Publish action creates a subfolder path <em>&lt;ProjectName&gt;\dist</em> under the location specified in the <strong>&lt;publishUrl&gt;</strong>. I wanted it to be easy to delete the published GUI files during development, so I decided to put the Publish location underneath the GUI project&#39;s <strong>&lt;OutputDir&gt;</strong>. Since the <strong>&lt;publishUrl&gt;</strong> is relative to the <strong>&lt;ProjectDir&gt;</strong>, I hardcoded the path I wanted for Debug builds (<strong>&lt;OutputDir&gt;</strong> for Debug and <strong>&lt;TargetFramework netstandard2.0</strong>), making it <em>bin\Debug\netstandard2.0\Publish</em>. The complete path of the published GUI will be <em>bin\Debug\netstandard2.0\Publish\GUI\dist</em>. After you have done a Publish of the GUI project, use a file explorer to verify the contents of the <em>&lt;GUIProjectDir&gt;\bin\Debug\netstandard2.0\Publish\GUI\dist</em>. You will find the static files that make up the Blazor app, including the wwwroot static content and the multitude of DLLs.</p>
+<h1 id="running-and-debugging-the-demos">Running and debugging the demos</h1>
+<ul>
+<li><a href="">Running a ServiceStack ConsoleApp from within Visual Studio</a></li>
+<li><a href="">Running a ServiceStack ConsoleApp from via a Command Line Interface (CLI)</a></li>
+<li><a href="">Running a ServiceStack ConsoleApp via the DotNet run command</a></li>
+</ul>
+<h1 id="a-iddemolista-list-of-the-demos"><a id="DemoList"></a>A List of the Demos</h1>
+<ol>
+<li>Demo01 : <a href="Demo01/ReadMe.html">Blazor GUI served by ServiceStack having two REST endpoints</a></li>
+</ol>
+<pre><code>The first example program is the most basic. The Blazor GUI portion consists of two Razor pages, and code that makes two REST calls to ServiceStack, one REST call with no data payload sent or received, and one that sends a string and receives a string. The ServiceStack application portion consist of a Console program for .Net (full framework) which serves the static files for the Blazor application, and handles the two simple REST service endpoints. The CommonDTOs project defines the data payload sent and received between the ConsoleApp and the Blazor GUI.
+</code></pre></article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Code Documentation autogenerated by <strong>GhostDoc Enterprise</strong>, static website generated by <strong>DocFX</strong>, Documentation website hosted by <strong>GitHub Pages</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

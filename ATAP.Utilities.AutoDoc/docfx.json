@@ -1,0 +1,159 @@
+{
+      "metadata": [
+        {
+          "src": [
+            {
+              "files": [
+                "**.csproj"
+              ],
+              "exclude": [ "**/bin/**", "**/obj/**", "*AutoDoc/**", "docs/**" ],
+              "src": "../"
+            }
+          ],
+          "dest": "obj/docfx/api/netstandard2.0/",
+          "disableGitFeatures": false,
+          "properties": {
+            "TargetFramework": "netstandard2.0"
+          }
+        },
+        {
+          "src": [
+            {
+              "files": [
+                "**.csproj"
+              ],
+              "exclude": [ "**/bin/**", "**/obj/**", "*AutoDoc/**", "docs/**" ],
+              "src": "../"
+            }
+          ],
+          "dest": "obj/docfx/api/netcoreapp2.0/",
+          "disableGitFeatures": false,
+          "properties": {
+            "TargetFramework": "netcoreapp2.0"
+          }
+        },
+		{
+          "src": [
+            {
+              "files": [
+                "**.csproj"
+              ],
+              "exclude": [ "**/bin/**", "**/obj/**", "*AutoDoc/**", "docs/**" ],
+              "src": "../"
+            }
+          ],
+          "dest": "obj/docfx/api/net471/",
+          "disableGitFeatures": false,
+          "properties": {
+            "TargetFramework": "net471"
+          }
+        }
+      ],
+
+  "build": {
+    "content": [
+      {
+        "files": [
+          "**.yml",
+          "index.md",
+          "toc.md",
+          "**/*.yml",
+          "**/toc.yml",
+          "**/index.md"
+        ],
+        "src": "obj/docfx/api",
+        "dest": "./ApiDocumentation/"
+      },
+      {
+        "files": [ "*.md", "toc.yml" ],
+        "exclude": [ "**/obj", "**/bin", "**/docs" ],
+        "src": "../",
+        "dest": "./"
+      },
+      {
+        "files": [ "**/*.md", "**/index.md", "**/toc.yml" ],
+        "exclude": ["**/obj", "**/bin", "**/docs"],
+        "src": "../SolutionDocumentation",
+        "dest": "./SolutionDocumentation/"
+      },
+      {
+        "files": [ "**/*.md", "**/index.md", "**/toc.yml" ],
+        "exclude": ["**/obj", "**/bin", "**/docs"],
+        "src": "../Demos",
+        "dest": "./Demos/"
+      }
+
+    ],
+    "resource": [
+      {
+        "files": [
+          "images/**",
+          "svg/**"
+        ]
+      }
+    ],
+    "overwrite": [
+      {
+        "files": [
+          "obj/docfx/api/**.md"
+        ],
+        "exclude": ["**/obj", "**/bin", "**/docs"],
+      }
+    ],
+    "globalMetadata": {
+      "_appTitle": "Blazor Examples with ServiceStack",
+      "_appLogoPath": "images/ataplogo1inch.bmp",
+      "_enableSearch": true,
+      "_enableNewTab": true,
+      "_disableNavbar": false,
+      "_disableBreadcrumb": false,
+      "_disableToc": false,
+      "_disableAffix": false,
+      "_disableContribution": true
+
+    },
+    "globalMetadataFiles": [],
+    "fileMetadataFiles": [],
+    "dest": "../docs",
+    "template": [
+      "default",
+      "templates/AutoDocTemplate01"
+    ],
+    "merge": {
+      "content": [
+        {
+          "files": "*.yml",
+          "src": "obj/docfx/api/net471"
+        },
+        {
+          "files": "*.yml",
+          "src": "obj/docfx/api/netcoreapp2.0"
+        },
+        {
+          "files": "*.yml",
+          "src": "obj/docfx/api/netstandard2.0"
+        }
+      ],
+      "fileMetadata": {
+        "platform": {
+          "obj/docfx/api/netstandard2.0/*.yml": [
+            "netstandard2.0"
+          ],
+          "obj/docfx/api/netcoreapp2.0/*.yml": [
+            "netcoreapp2.0"
+          ],
+		  "obj/docfx/api/net471/*.yml": [
+            "net471"
+          ]
+        }
+      },
+      "dest": "obj/docfx/api/merged"
+    },
+    "postProcessors": [ "ExtractSearchIndex" ],
+    "markdownEngineName": "dfm-latest",
+    "noLangKeyword": false,
+    "keepFileLink": false,
+    "cleanupCacheHistory": false,
+    "disableGitFeatures": false
+  }
+}

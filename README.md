@@ -1,14 +1,23 @@
 # Examples of Blazor Apps served By ServiceStack
 
-Blazor is an experimental technology from Microsoft that allows applications written in C# to run on any browser that supports WASM. Many other folks have written better introductions and explanations of Blazor and WASM than I can, so please search the Web for those terms if you would like detailed background information on this emerging technology.
+Here's a link to [more detailed documentation on these examples](ReadMe.html),
 
-Blazor applications can run server-side (Server-Side Blazor, or SSB), or client-side (Client-Side Blazor, or CSB). The examples in this repository are all about client-side Blazor. The files needed to run a Blazor application can be served to a browser by any process that understands HTTP and can serve static files. Of course, all the popular web server packages can do this, as can many Cloud services. There are many resources on the web that can go into much greater detail for using those technologies.
+Blazor is an experimental technology from Microsoft that allows applications written in C# to run on any browser that supports WASM. Here is where you can find [Blazor's Getting Started page](https://blazor.net/docs/get-started.html). Many other folks have written better introductions and explanations of Blazor and WASM than I can, so please search the Web for those terms if you would like detailed background information on this emerging technology. 
+
+Blazor applications can run server-side (Server-Side Blazor, or SSB), or client-side (Client-Side Blazor, or CSB). The demos in this repository are all about client-side Blazor. The files needed to run a Blazor application can be served to a browser by any process that understands HTTP and can serve static files. Of course, all the popular web server packages can do this, as can many Cloud services. There are many resources on the web that can go into much greater detail for using those technologies.
 
 However, I've been looking for a way to leverage the browser as a GUI for an application that runs on multiple operating systems. Most application that need a GUI have to create the GUI specifically for an OS. Blazor brings the ability for developers to write their GUI in Razor and C#, publish it to a set of static files, and have any browser render and run the GUI. An application that leverages .Net, .Net Standard, and .Net Core to run on multiple OSs, combined with a Blazor-based GUI, promises to greatly reduce the platform-specific portions of any multi-OS application.
 
 ServiceStack is a very popular product that provides REST endpoints for an application. ServiceStack can also serve static files. Combining the two, ServiceStack can serve the files needed for a Blazor GUI, and can also serve the REST endpoints that allow the GUI to communicate with the application. 
 
-This repository will focus specifically on using the ServiceStack application to serve and interact with a Blazor application. The contents of this repository will be demonstration programs showing how to integrate Blazor with various ServiceStack features. These examples are simplified versions of the ACE application and it's Blazor GUI, which is in the Ace repository adjacent to this one.
+This repository will focus specifically on using the ServiceStack application to serve and interact with a Blazor application. The contents of this repository will be demonstration programs showing how to integrate Blazor with various ServiceStack features. These demos are simplified versions of the *ACE* application and it's Blazor GUI, which is in the *Ace* repository adjacent to this one. You will also find that the documentation here may refer to documentation found in the *ATAP.Utilities* repository, for further information regarding utilities  written to aid in the building and debugging of applications using Visual studio.
+
+# Getting Started
+Currently the only way to use these demos is to fork the repository and build the demos. Here are some instructions on [how to fork a GitHub repository](https://help.github.com/articles/fork-a-repo/)
+
+# Building, Running, and Debugging these demos
+The [Common Documentation for all Demos]() has a section for [Building, Running, and Debugging]() 
+
 
 ## Example 1
 
@@ -49,14 +58,14 @@ Before running the example, I suggest you get the monitoring tools up and runnin
    1. Bring up a browser. Whatever browser you please, as long as it is modern enough to run WASM. If you are interested in this article, you probably keep the browser on your development computer pretty recent. 
    2. Navigate the browser to the ConsoleApp's listening URL (http://locahost:21200) as configured in this example. You should see the home page of the example appear in your browser, and Fiddler should show you a lot of traffic as ServiceStack delivers to the browser all the files requested by the Blazor app, both normal CSS content, and all the DLL files too.
 
-### Standard Edit/Compile/Debug cycle for these examples goes like this.
+### Standard Edit/Compile/Debug cycle for these demos goes like this.
 * After making changes to the GUI, publish it, which will build as a first step.
 * After making changes to the ConsoleApp, press F5 to start it under the debugger, which will build as a first step. 
 * If you make changes to both, be sure to `Publish` the GUI before building/debugging the ConsoleApp.
 * Open a browser and type in the network address where the Console App is listening ServiceStack, "http://localhost:22100"
 * Look at the Fiddler and Sentinel windows, and the browser console, and correlate the log messages there.
 * Use VS's debugger to set breakpoints and examine code and data in the ConsoleApp.
-* The client-side WASM app in the bowser doesn't have debugger support yet, but that will change eventually, and I hope to keep these examples updated. For now, debugging is via the old-fashioned way, log message tracing. Blazor log messages go to the browser's Console window, which can be viewed in the browser's Developer tools. The normal way to display the Developer tools in a browser is to press F12.
+* The client-side WASM app in the bowser doesn't have debugger support yet, but that will change eventually, and I hope to keep these demos updated. For now, debugging is via the old-fashioned way, log message tracing. Blazor log messages go to the browser's Console window, which can be viewed in the browser's Developer tools. The normal way to display the Developer tools in a browser is to press F12.
 
 # How to make ServiceStack deliver the Blazor app
 You will need to start with version  5.4.1 or higher, because ServiceStack developers added some allowed file types to this version to make it work better.
@@ -98,7 +107,7 @@ In the first example, the GUI uses an empty virtual path root. In the `AppHost.c
 ```C#
 var virtualRootPath = "";
 ``` 
-Later examples (hopefully) will show that non-empty values will let SS support multiple Blazor GUIs side-by-side, by aligning different virtualRootPath values with different physicalRootPath values, and modifying each Blazor GUI project's base URL routing slightly.
+Later demos (hopefully) will show that non-empty values will let SS support multiple Blazor GUIs side-by-side, by aligning different virtualRootPath values with different physicalRootPath values, and modifying each Blazor GUI project's base URL routing slightly.
 
 ## Map it
 In the ConsoleApp's AppHost.cs Configure method, the following line tells SS to add a new location from which to serve static files that do not match a known SS route.
@@ -155,7 +164,7 @@ This is the codebehind page of the app that supplies the C# code referenced by t
 ## TargetFramework
 Like all Blazor client-side apps, the TargetFramework for the GUI app is .Net Standard 2.0 (currently).
 # Conclusion
-If you are interested in using Blazor in architecture solutions that don't allow for a web server, I hope these examples help you understand one such approach that uses ServiceStack instead of a web server.
+If you are interested in using Blazor in architecture solutions that don't allow for a web server, I hope these demos help you understand one such approach that uses ServiceStack instead of a web server.
 
 if you find errors in the code or this documentation please create a issue in the GitHub repository.
 
@@ -169,6 +178,6 @@ Enjoy!
 2. Start Sentinel, and go through its startup screens to setup the UDP listener, which will be listening for logging messages broadcast to its default listening port. This would also be a good time to inspect the NLog.config file in the example. You will see that it sends all messages from any class to two loggers, the Console logger (for the ConsoleApp's console window), and to the UDP logger as well. So for this example, the Sentinel logging program is not 100% necessary, but it will be necessary later, when ServiceStack is running in a mode that has no console (called headless mode). Getting it setup and running also makes development much easier, as the log message don't all disappear as soon as the program stops.
 
 ## launchSettings.json 
-If you would like to save some keystrokes, VS can be configured to start your browser and navigate to a URL when your press F5. This is controlled by the launchSettings.json file. In this example, the launchSettings.json file is found under the Properties subfolder of the ConsoleApp's subfolder. Another launchSettings.json file is found under the Properties subfolder of the GU's subfolder. Settings `launchBrowser` to `true` and `launchUrl` to http://localhost:21200 should make this happen. (TBD, this is documented in Microsoft as working for .Net Core Web applications, and it works for one of my non-Core SS Blazor apps (ACE), but I've not yet isolated the settings needed to make it work for these Blazor examples. As of now, Publishing the GUI application causes a new browser tab to appear, but starting the ConsoleApp does not.)
+If you would like to save some keystrokes, VS can be configured to start your browser and navigate to a URL when your press F5. This is controlled by the launchSettings.json file. In this example, the launchSettings.json file is found under the Properties subfolder of the ConsoleApp's subfolder. Another launchSettings.json file is found under the Properties subfolder of the GU's subfolder. Settings `launchBrowser` to `true` and `launchUrl` to http://localhost:21200 should make this happen. (TBD, this is documented in Microsoft as working for .Net Core Web applications, and it works for one of my non-Core SS Blazor apps (ACE), but I've not yet isolated the settings needed to make it work for these Blazor demos. As of now, Publishing the GUI application causes a new browser tab to appear, but starting the ConsoleApp does not.)
  
 

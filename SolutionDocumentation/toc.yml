@@ -1,0 +1,9 @@
+- name: Solution Documentation Home
+  href: ReadMe.html
+  items:
+  - name: Organization
+    href: Organization.html
+  - name: Getting Started
+    href: GettingStarted.html
+  - name: Building the Demos
+    href: BuildingNotes.html
