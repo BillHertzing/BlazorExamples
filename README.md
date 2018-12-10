@@ -1,6 +1,5 @@
-# Examples of Blazor Apps served By ServiceStack
-
-Here's a link to [more detailed documentation on these examples](ReadMe.html),
+# Balzor With ServiceStack Demostrations ReadMe (at the repository root / solution root Solution Item level)
+If you are viewing this ReadMe.md in GitHub, [here is this same ReadMe on the documentation site](ReadMe.html)
 
 Blazor is an experimental technology from Microsoft that allows applications written in C# to run on any browser that supports WASM. Here is where you can find [Blazor's Getting Started page](https://blazor.net/docs/get-started.html). Many other folks have written better introductions and explanations of Blazor and WASM than I can, so please search the Web for those terms if you would like detailed background information on this emerging technology. 
 
