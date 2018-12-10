@@ -10,6 +10,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		toc.yml = toc.yml
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionDocumentation", "SolutionDocumentation", "{A02FCB41-9840-46F9-81F6-28ED81B47C42}"
+	ProjectSection(SolutionItems) = preProject
+		SolutionDocumentation\BuildingNotes.MD = SolutionDocumentation\BuildingNotes.MD
+		SolutionDocumentation\GettingStarted.md = SolutionDocumentation\GettingStarted.md
+		SolutionDocumentation\Organization.md = SolutionDocumentation\Organization.md
+		SolutionDocumentation\ReadMe.md = SolutionDocumentation\ReadMe.md
+		SolutionDocumentation\toc.yml = SolutionDocumentation\toc.yml
+	EndProjectSection
+EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Demos", "Demos", "{A65F8676-11E9-403B-A599-B013D44EDE90}"
 	ProjectSection(SolutionItems) = preProject
 		Demos\ReadMe.md = Demos\ReadMe.md
@@ -22,29 +31,49 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Demo01", "Demo01", "{C4FCF5
 		Demos\Demo01\toc.yml = Demos\Demo01\toc.yml
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ConsoleApp", "ConsoleApp", "{0E1DC973-37C6-4373-9B8F-DCF540F7EBF2}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleApp", "Demos\Demo01\ConsoleApp\ConsoleApp.csproj", "{155593DB-FBA9-4A27-8427-E956E97A5782}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CommonDTOs", "CommonDTOs", "{45DEA8E6-F502-4C4F-AEEE-32CB6F370FB0}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommonDTOs", "Demos\Demo01\CommonDTOs\CommonDTOs.csproj", "{96FF5B6F-DE91-4990-95B8-586921A424F8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ConsoleApp", "ConsoleApp", "{18AB2FEE-2C71-46A8-B445-A8AFE6D5402D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleApp", "Demos\Demo01\ConsoleApp\ConsoleApp.csproj", "{155593DB-FBA9-4A27-8427-E956E97A5782}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GUI", "GUI", "{E2EC32C9-58E3-447F-93ED-E48B18D0F70C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GUI", "Demos\Demo01\GUI\GUI.csproj", "{722E51FC-A9FB-4B6D-AA10-DFD8D2C137B1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ATAP.Utilities.AutoDoc", "ATAP.Utilities.AutoDoc\ATAP.Utilities.AutoDoc.csproj", "{56E9420A-4A46-48FA-A3FD-961E7E9F83AD}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionDocumentation", "SolutionDocumentation", "{A02FCB41-9840-46F9-81F6-28ED81B47C42}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{E6B44CBB-9898-4796-A90E-AA858E879A82}"
 	ProjectSection(SolutionItems) = preProject
-		SolutionDocumentation\BuildingNotes.MD = SolutionDocumentation\BuildingNotes.MD
-		SolutionDocumentation\GettingStarted.md = SolutionDocumentation\GettingStarted.md
-		SolutionDocumentation\Organization.md = SolutionDocumentation\Organization.md
-		SolutionDocumentation\ReadMe.md = SolutionDocumentation\ReadMe.md
-		SolutionDocumentation\toc.yml = SolutionDocumentation\toc.yml
+		Demos\Demo01\Documentation\Overview.md = Demos\Demo01\Documentation\Overview.md
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Demo02", "Demo02", "{DD9056F9-EECA-4A75-8AB6-28CF1012F51E}"
+	ProjectSection(SolutionItems) = preProject
+		Demos\Demo02\ReadMe.md = Demos\Demo02\ReadMe.md
+		Demos\Demo02\toc.yml = Demos\Demo02\toc.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CommonDTOs", "CommonDTOs", "{7FE22BFA-3C00-40DB-8DEA-BC13375BA693}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommonDTOs", "Demos\Demo02\CommonDTOs\CommonDTOs.csproj", "{6A491BB5-84F6-45EA-A70C-7F935681B0E9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ConsoleApp", "ConsoleApp", "{0D4192E5-56DB-48E9-ABE6-B522681D6739}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleApp", "Demos\Demo02\ConsoleApp\ConsoleApp.csproj", "{D545723D-8550-4249-8F9B-550A911F57E0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GUI", "GUI", "{F2F49C7D-9EE9-44EE-B892-05DDC159CEAF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GUI", "Demos\Demo02\GUI\GUI.csproj", "{ECF66172-F68A-467D-BB00-0A574DB2FA65}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{7369665E-9879-44D0-8E32-019B7C591CE9}"
+	ProjectSection(SolutionItems) = preProject
+		Demos\Demo02\Documentation\Overview.md = Demos\Demo02\Documentation\Overview.md
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ATAP.Utilities.AutoDoc", "ATAP.Utilities.AutoDoc\ATAP.Utilities.AutoDoc.csproj", "{56E9420A-4A46-48FA-A3FD-961E7E9F83AD}"
+EndProject
+
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -66,17 +95,38 @@ Global
 		{56E9420A-4A46-48FA-A3FD-961E7E9F83AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{56E9420A-4A46-48FA-A3FD-961E7E9F83AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{56E9420A-4A46-48FA-A3FD-961E7E9F83AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ECF66172-F68A-467D-BB00-0A574DB2FA65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECF66172-F68A-467D-BB00-0A574DB2FA65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECF66172-F68A-467D-BB00-0A574DB2FA65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECF66172-F68A-467D-BB00-0A574DB2FA65}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A491BB5-84F6-45EA-A70C-7F935681B0E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A491BB5-84F6-45EA-A70C-7F935681B0E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A491BB5-84F6-45EA-A70C-7F935681B0E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A491BB5-84F6-45EA-A70C-7F935681B0E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D545723D-8550-4249-8F9B-550A911F57E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D545723D-8550-4249-8F9B-550A911F57E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D545723D-8550-4249-8F9B-550A911F57E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D545723D-8550-4249-8F9B-550A911F57E0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{C4FCF5FC-F3A1-4112-A0F2-35236E5F4C45} = {A65F8676-11E9-403B-A599-B013D44EDE90}
-		{0E1DC973-37C6-4373-9B8F-DCF540F7EBF2} = {C4FCF5FC-F3A1-4112-A0F2-35236E5F4C45}
-		{155593DB-FBA9-4A27-8427-E956E97A5782} = {0E1DC973-37C6-4373-9B8F-DCF540F7EBF2}
+		{DD9056F9-EECA-4A75-8AB6-28CF1012F51E} = {A65F8676-11E9-403B-A599-B013D44EDE90}
+		{7369665E-9879-44D0-8E32-019B7C591CE9} = {DD9056F9-EECA-4A75-8AB6-28CF1012F51E}
+		{7FE22BFA-3C00-40DB-8DEA-BC13375BA693} = {DD9056F9-EECA-4A75-8AB6-28CF1012F51E}
+		{0D4192E5-56DB-48E9-ABE6-B522681D6739} = {DD9056F9-EECA-4A75-8AB6-28CF1012F51E}
+		{F2F49C7D-9EE9-44EE-B892-05DDC159CEAF} = {DD9056F9-EECA-4A75-8AB6-28CF1012F51E}
+		{6A491BB5-84F6-45EA-A70C-7F935681B0E9} = {7FE22BFA-3C00-40DB-8DEA-BC13375BA693}
+		{D545723D-8550-4249-8F9B-550A911F57E0} = {0D4192E5-56DB-48E9-ABE6-B522681D6739}
+		{ECF66172-F68A-467D-BB00-0A574DB2FA65} = {F2F49C7D-9EE9-44EE-B892-05DDC159CEAF}
+		{18AB2FEE-2C71-46A8-B445-A8AFE6D5402D} = {C4FCF5FC-F3A1-4112-A0F2-35236E5F4C45}
 		{45DEA8E6-F502-4C4F-AEEE-32CB6F370FB0} = {C4FCF5FC-F3A1-4112-A0F2-35236E5F4C45}
-		{96FF5B6F-DE91-4990-95B8-586921A424F8} = {45DEA8E6-F502-4C4F-AEEE-32CB6F370FB0}
 		{E2EC32C9-58E3-447F-93ED-E48B18D0F70C} = {C4FCF5FC-F3A1-4112-A0F2-35236E5F4C45}
+		{E6B44CBB-9898-4796-A90E-AA858E879A82} = {C4FCF5FC-F3A1-4112-A0F2-35236E5F4C45}
+		{155593DB-FBA9-4A27-8427-E956E97A5782} = {18AB2FEE-2C71-46A8-B445-A8AFE6D5402D}
+		{96FF5B6F-DE91-4990-95B8-586921A424F8} = {45DEA8E6-F502-4C4F-AEEE-32CB6F370FB0}
 		{722E51FC-A9FB-4B6D-AA10-DFD8D2C137B1} = {E2EC32C9-58E3-447F-93ED-E48B18D0F70C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
