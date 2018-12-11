@@ -1,4 +1,4 @@
-# Balzor With ServiceStack Demostrations ReadMe (at the repository root / solution root Solution Item level)
+# Blazor With ServiceStack Demonstrations ReadMe (at the repository root / solution root Solution Item level)
 If you are viewing this ReadMe.md in GitHub, [here is this same ReadMe on the documentation site](ReadMe.html)
 
 Blazor is an experimental technology from Microsoft that allows applications written in C# to run on any browser that supports WASM. Here is where you can find [Blazor's Getting Started page](https://blazor.net/docs/get-started.html). Many other folks have written better introductions and explanations of Blazor and WASM than I can, so please search the Web for those terms if you would like detailed background information on this emerging technology. 
@@ -12,7 +12,7 @@ ServiceStack is a very popular product that provides REST endpoints for an appli
 This repository will focus specifically on using the ServiceStack application to serve and interact with a Blazor application. The contents of this repository will be demonstration programs showing how to integrate Blazor with various ServiceStack features. These demos are simplified versions of the *ACE* application and it's Blazor GUI, which is in the *Ace* repository adjacent to this one. You will also find that the documentation here may refer to documentation found in the *ATAP.Utilities* repository, for further information regarding utilities  written to aid in the building and debugging of applications using Visual studio.
 
 # Getting Started
-Currently the only way to use these demos is to fork the repository and build the demos. Here are some instructions on [how to fork a GitHub repository](https://help.github.com/articles/fork-a-repo/)
+Currently the only way to use these demos is to fork or clone the repository and build the demos. Here are some instructions on [how to fork a GitHub repository](https://help.github.com/articles/fork-a-repo/)
 
 # Building, Running, and Debugging these demos
 The [Common Documentation for all Demos]() has a section for [Building, Running, and Debugging]() 
