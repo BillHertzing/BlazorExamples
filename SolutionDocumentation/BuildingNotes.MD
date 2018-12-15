@@ -6,19 +6,20 @@ Details for the [Prerequisites](GettingStarted.html#Prerequisites)
 Details for thhe [optional 3rd-party tools]()
 
 ## General Background Build Information
-In the interest of "Don't Repeat Yourself (DRY)" principles, you will find general documentatation on the build tools, versioning methodolgy, Documentation creation, etc, in the ATAP.Utilities repository.
+In the interest of "Don't Repeat Yourself (DRY)" principles, you will find general documentation on the build tools, versioning methodology, Documentation creation, etc, in the ATAP.Utilities repository.
     1.[Configuring and using the Visual Studio IDE and Visual Studio Team Explorer](https://billhertzing.github.io/ATAP.Utilities/SolutionDocumentation/Building.html). 
 	2.[GitFlow branch and release strategy]() used by this repository.
-	3.[Versioning and Pacakging]() used by this repository.
+	3.[Versioning and Packaging]() used by this repository.
+	1.[Building Documentation]() general instructions for using DocFx to build documentation for a repository
 
 ## Versioning
-This repository follows the general guidleines above. 
+This repository follows the general guidelines above. 
 
 ## Organization
 Refer to the [Organization documentation](Organization.html) to pictures of how the solution and filesystem layouts are organized.
 
 ## Build Configuration information at the Solution level
-The Solution level contains build configuration information that applies to all projects in the solution.
+The Solution Item solution folder level contains build configuration information that applies to all projects in the solution, as follows:
 
 ### Directory.Build.Props
 - Tells all projects to use the latest C# language features, and that VersionInformation is explicitly defined in each project. Defines common compilation symbols and flags.
@@ -27,7 +28,7 @@ The Solution level contains build configuration information that applies to all 
 ## Build Configuration information at the Demoxx level
 Individual under each Demoxx folder are three projects. To build a working Demo, all three projects must be built, and the GUI project must also be published. Building notes for each project are below
 
-### Buld the ConsoleApp.exe
+### Build the ConsoleApp.exe
 - The .csproj should specify \<TargetFramework>net471\</TargetFramework>.
 
 ### Build the CommonDTO library
