@@ -16,6 +16,8 @@ using ServiceStack;
 //using ServiceStack;
 
 namespace GUI.Pages {
+
+    public static class BlazorSSClient { }
     public class BasicRESTServicesCodeBehind : BlazorComponent {
     #region Page Initialization Handler
         protected override async Task OnInitAsync() {
