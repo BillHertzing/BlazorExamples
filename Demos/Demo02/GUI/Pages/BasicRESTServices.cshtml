@@ -22,7 +22,7 @@ else
     <hr />
     <p>@rspPostDataDumpText @rspPostDataDump </p>
     <!-- endregion Demo01 code-->
-    <!-- region Demo02 and Demo03 code -->
+    <!-- region Demo02 code -->
     <div>
         <label for="ComplexDataStringData">@labelForComplexDataStringData</label>
         <input type="text" class="form-control" id="ComplexDataStringData" bind="@reqComplexData.StringData" />
@@ -35,22 +35,13 @@ else
         <label for="ComplexDataDecimalData">@labelForComplexDataDecimalData</label>
         <input type="text" class="form-control" id="ComplexDataDecimalData" bind="@reqComplexData.DecimalData" />
         <p>@reqComplexDataDumpText @reqComplexDataDump </p>
+        <p>@reqComplexDataAsStringDTODumpText @reqComplexDataAsStringDTODump </p>
     </div>
     <button type="button" class="btn btn-default" onclick="@PostComplexDataAsString">@labelForPostComplexDataAsStringButton</button>
     <button type="button" class="btn btn-default" onclick="@PostComplexDataDictionaryAsString">@labelForPostComplexDataDictionaryAsStringButton</button>
-    <p>@rspComplexDataAsStringDumpText @rspComplexDataAsStringDump </p>
-    <p>@rspComplexDataAsStringDTODumpText @rspComplexDataAsStringDTODump </p>
-    <p>@rspComplexDataDumpText @rspComplexDataDump </p>
-    <p>@rspComplexDataDictionaryAsStringDumpText @rspComplexDataDictionaryAsStringDump </p>
-    <p>@rspComplexDataDictionaryAsStringDTODumpText @rspComplexDataDictionaryAsStringDTODump </p>
-    <!-- endregion Demo02 code -->
     <hr />
-    <!-- region Demo03 code -->
-    <button type="button" class="btn btn-default" onclick="@PostComplexDataAsObject">@labelForPostComplexDataDataAsObjectButton</button>
-    <p>@rspComplexDataAsObjectDumpText @rspComplexDataAsObjectDump </p>
-    <p>@rspComplexDataAsObjectDTODumpText @rspComplexDataAsObjectDTODump </p>
-    <p>@rspComplexDataDictionaryAsObjectDumpText @rspComplexDataDictionaryAsObjectDump </p>
-    <p>@rspComplexDataDictionaryAsObjectDTODumpText @rspComplexDataDictionaryAsObjectDTODump </p>
-    <!-- endregion Demo03 code -->
+    <p>@rspComplexDataAsStringDumpText @rspComplexDataAsStringDump </p>
+    <p>@rspComplexDataDictionaryAsStringDumpText @rspComplexDataDictionaryAsStringDump </p>
+    <!-- endregion Demo02 code -->
 }
 
