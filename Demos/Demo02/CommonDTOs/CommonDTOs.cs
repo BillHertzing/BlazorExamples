@@ -26,7 +26,7 @@ namespace CommonDTOs
   }
     #endregion
 
-    #region Demo02 and Demo03 ComplexData and ComplexDataDictionary types
+    #region Demo02 ComplexData and ComplexDataDictionary types
     public class ComplexData
     {
         public string StringData { get; set; }
@@ -64,30 +64,6 @@ namespace CommonDTOs
     public class RspComplexDataDictionaryAsStringDTO
     {
         public string ComplexDataDictionaryAsString { get; set; }
-    }
-    #endregion
-
-	#region Demo03 PostComplexDataClases and route attribute
-    [Route("/PostComplexData")]
-    public class ReqComplexDataDemo03DTO : IReturn<RspComplexDataDemo03DTO>
-    {
-        public ComplexData ComplexDataDemo03 { get; set; }
-    }
-    public class RspComplexDataDemo03DTO
-    {
-        public ComplexData ComplexDataDemo03 { get; set; }
-    }
-    #endregion
-
-    #region Demo03" PostComplexDataClases and route attribute
-    [Route("/PostComplexDataDictionary")]
-    public class ReqComplexDataDictionaryDTO : IReturn<RspComplexDataDictionaryDTO>
-    {
-        public ComplexDataDictionary ComplexDataDictionary { get; set; }
-    }
-    public class RspComplexDataDictionaryDTO
-    {
-        public ComplexDataDictionary ComplexDataDictionary { get; set; }
     }
     #endregion
 }
