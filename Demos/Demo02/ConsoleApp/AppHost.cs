@@ -108,61 +108,61 @@ namespace ConsoleApp
         #endregion
 
         #region BaseServices PostComplexDataAsString
-        public object Post(ReqComplexDataAsStringDemo2DTO request)
+        public object Post(ReqComplexDataAsStringDTO request)
         {
             Log.Debug("entering PostComplexDataAsString Post");
             Log.Debug($"in PostComplexDataAsString Post; request: {request.Dump()}");
             // do some simple processing on the request data, then send both the original and the modified complex data objects back in the response.
-            // For demo02, expect to get a string that has the ComplexDataDemo2 serialized into it.
-            string reqComplexDataAsStringDemo2 = request.ComplexDataAsStringDemo2;
-            Log.Debug($"in PostComplexDataAsString Post; reqComplexDataAsStringDemo2: {reqComplexDataAsStringDemo2}");
-            // Deserialize the data from the request to a ComplexDataDemo2 using the ServiceStack Json-deserializer
-            ComplexDataDemo2 reqComplexDataDemo2 = ServiceStack.Text.JsonSerializer.DeserializeFromString<ComplexDataDemo2>(reqComplexDataAsStringDemo2);
-            Log.Debug($"in PostComplexDataAsString Post; reqComplexDataDemo2: {reqComplexDataDemo2}");
-            // Create a response ComplexDataDemo2
+            // For demo02, expect to get a string that has the ComplexData serialized into it.
+            string reqComplexDataAsString = request.ComplexDataAsString;
+            Log.Debug($"in PostComplexDataAsString Post; reqComplexDataAsString: {reqComplexDataAsString}");
+            // Deserialize the data from the request to a ComplexData using the ServiceStack Json-deserializer
+            ComplexData reqComplexData = ServiceStack.Text.JsonSerializer.DeserializeFromString<ComplexData>(reqComplexDataAsString);
+            Log.Debug($"in PostComplexDataAsString Post; reqComplexData: {reqComplexData}");
+            // Create a response ComplexData
             var now = DateTime.UtcNow;
-            ComplexDataDemo2 rspComplexDataDemo2 = new ComplexDataDemo2() { StringData = reqComplexDataDemo2.StringData + "... Right Back At Ya", DateTimeData = now, TimeSpanData = now - reqComplexDataDemo2.DateTimeData, DoubleData = reqComplexDataDemo2.DoubleData * 2, IntData = reqComplexDataDemo2.IntData + 1, DecimalData = reqComplexDataDemo2.DecimalData / 10 };
+            ComplexData rspComplexData = new ComplexData() { StringData = reqComplexData.StringData + "... Right Back At Ya", DateTimeData = now, TimeSpanData = now - reqComplexData.DateTimeData, DoubleData = reqComplexData.DoubleData * 2, IntData = reqComplexData.IntData + 1, DecimalData = reqComplexData.DecimalData / 10 };
                 
-            Log.Debug($"in PostComplexDataAsString Post; rspComplexDataDemo2: {rspComplexDataDemo2}");
+            Log.Debug($"in PostComplexDataAsString Post; rspComplexData: {rspComplexData}");
             // Serialize it to a string using ServiceStack Serializer
-            string rspComplexDataDemo2AsString = ServiceStack.Text.JsonSerializer.SerializeToString<ComplexDataDemo2>(rspComplexDataDemo2);
-            Log.Debug($"in PostComplexDataAsString Post; rspComplexDataDemo2AsString: {rspComplexDataDemo2AsString}");
+            string rspComplexDataAsString = ServiceStack.Text.JsonSerializer.SerializeToString<ComplexData>(rspComplexData);
+            Log.Debug($"in PostComplexDataAsString Post; rspComplexDataAsString: {rspComplexDataAsString}");
             // Create a responseDTO object
-            RspComplexDataAsStringDemo2DTO rspComplexDataAsStringDemo2DTO = new RspComplexDataAsStringDemo2DTO() { ComplexDataAsStringDemo2 = rspComplexDataDemo2AsString };
-            Log.Debug($"in PostComplexDataAsString Post; rspComplexDataAsStringDemo2DTO = {rspComplexDataAsStringDemo2DTO}");
+            RspComplexDataAsStringDTO rspComplexDataAsStringDTO = new RspComplexDataAsStringDTO() { ComplexDataAsString = rspComplexDataAsString };
+            Log.Debug($"in PostComplexDataAsString Post; rspComplexDataAsStringDTO = {rspComplexDataAsStringDTO}");
             Log.Debug("leaving PostComplexDataAsString Post");
-            return rspComplexDataAsStringDemo2DTO;
+            return rspComplexDataAsStringDTO;
         }
         #endregion
 
         #region BaseServices PostComplexDataAsDictionary
-        public object Post(ReqComplexDataDictionaryAsStringDemo2DTO request)
+        public object Post(ReqComplexDataDictionaryAsStringDTO request)
         {
             Log.Debug("entering PostComplexDataDictionaryAsString Post");
             Log.Debug($"in PostComplexDataDictionaryAsString Post; request = {request.Dump()}");
             // do some simple processing on the request data, then send both the original and the modified complex data objects back in the response.
             // For demo02, expect to get a dictionary with just one key:value pair, key is "firstKey"
-            string reqComplexDataDictionaryAsStringDemo2 = request.ComplexDataDictionaryAsStringDemo2;
-            ComplexDataDictionaryDemo2 reqComplexDataDictionaryDemo2 = ServiceStack.Text.JsonSerializer.DeserializeFromString<ComplexDataDictionaryDemo2>(reqComplexDataDictionaryAsStringDemo2);
-            Dictionary<string, ComplexDataDemo2> demo2ComplexDataDict = reqComplexDataDictionaryDemo2.ComplexDataDictDemo2;
+            string reqComplexDataDictionaryAsString = request.ComplexDataDictionaryAsString;
+            ComplexDataDictionary reqComplexDataDictionary = ServiceStack.Text.JsonSerializer.DeserializeFromString<ComplexDataDictionary>(reqComplexDataDictionaryAsString);
+            Dictionary<string, ComplexData> demo2ComplexDataDict = reqComplexDataDictionary.ComplexDataDict;
             // The complex data sent in the "firstKey"
-            ComplexDataDemo2 reqComplexDataDemo2 = demo2ComplexDataDict["firstkey"];
-            // Create a response ComplexDataDemo2
+            ComplexData reqComplexData = demo2ComplexDataDict["firstkey"];
+            // Create a response ComplexData
             var now = DateTime.UtcNow;
-            ComplexDataDemo2 rspComplexDataDemo2 = new ComplexDataDemo2() { StringData = reqComplexDataDemo2.StringData + "... Right Back At Ya", DateTimeData = now, TimeSpanData = now - reqComplexDataDemo2.DateTimeData, IntData = reqComplexDataDemo2.IntData + 1, DoubleData = reqComplexDataDemo2.DoubleData * 2, DecimalData = reqComplexDataDemo2.DecimalData / 10 };
-            Log.Debug($"in PostComplexDataDictionaryAsString Post; rspComplexDataDemo2: {rspComplexDataDemo2.Dump()}");
-            ComplexDataDictionaryDemo2 rspComplexDataDictDemo2 = new ComplexDataDictionaryDemo2() { ComplexDataDictDemo2 = new Dictionary<string, ComplexDataDemo2>()};
-            rspComplexDataDictDemo2.ComplexDataDictDemo2.Add("ComplexObjectReceived", reqComplexDataDemo2);
-            rspComplexDataDictDemo2.ComplexDataDictDemo2.Add("ComplexObjectReturned", rspComplexDataDemo2);
-            Log.Debug($"in PostComplexDataDictionaryAsString Post; rspComplexDataDictDemo2: {rspComplexDataDictDemo2.Dump()}");
+            ComplexData rspComplexData = new ComplexData() { StringData = reqComplexData.StringData + "... Right Back At Ya", DateTimeData = now, TimeSpanData = now - reqComplexData.DateTimeData, IntData = reqComplexData.IntData + 1, DoubleData = reqComplexData.DoubleData * 2, DecimalData = reqComplexData.DecimalData / 10 };
+            Log.Debug($"in PostComplexDataDictionaryAsString Post; rspComplexData: {rspComplexData.Dump()}");
+            ComplexDataDictionary rspComplexDataDict = new ComplexDataDictionary() { ComplexDataDict = new Dictionary<string, ComplexData>()};
+            rspComplexDataDict.ComplexDataDict.Add("ComplexObjectReceived", reqComplexData);
+            rspComplexDataDict.ComplexDataDict.Add("ComplexObjectReturned", rspComplexData);
+            Log.Debug($"in PostComplexDataDictionaryAsString Post; rspComplexDataDict: {rspComplexDataDict.Dump()}");
             // Serialize it into a string
-            string rspComplexDataDictionaryAsStringDemo2 = ServiceStack.Text.JsonSerializer.SerializeToString<ComplexDataDictionaryDemo2>(rspComplexDataDictDemo2);
-            Log.Debug($"in PostComplexDataDictionaryAsString Post; rspComplexDataDemo2AsString: {rspComplexDataDictionaryAsStringDemo2}");
+            string rspComplexDataDictionaryAsString = ServiceStack.Text.JsonSerializer.SerializeToString<ComplexDataDictionary>(rspComplexDataDict);
+            Log.Debug($"in PostComplexDataDictionaryAsString Post; rspComplexDataAsString: {rspComplexDataDictionaryAsString}");
             // Create a responseDTO object
-            RspComplexDataDictionaryAsStringDemo2DTO rspComplexDataDictionaryAsStringDemo2DTO = new RspComplexDataDictionaryAsStringDemo2DTO() { ComplexDataDictionaryAsStringDemo2 = rspComplexDataDictionaryAsStringDemo2 };
-            Log.Debug($"in PostComplexDataDictionaryAsString Post; rspComplexDataDictionaryAsStringDemo2DTO: {rspComplexDataDictionaryAsStringDemo2DTO.Dump()}");
+            RspComplexDataDictionaryAsStringDTO rspComplexDataDictionaryAsStringDTO = new RspComplexDataDictionaryAsStringDTO() { ComplexDataDictionaryAsString = rspComplexDataDictionaryAsString };
+            Log.Debug($"in PostComplexDataDictionaryAsString Post; rspComplexDataDictionaryAsStringDTO: {rspComplexDataDictionaryAsStringDTO.Dump()}");
             Log.Debug("leaving PostComplexDataDictionaryAsString Post");
-            return rspComplexDataDictionaryAsStringDemo2DTO;
+            return rspComplexDataDictionaryAsStringDTO;
         }
         #endregion
     }

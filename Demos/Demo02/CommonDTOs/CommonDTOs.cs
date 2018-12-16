@@ -25,7 +25,9 @@ namespace CommonDTOs
     public string StringDataObject { get; set; }
   }
     #endregion
-    public class ComplexDataDemo2
+
+    #region Demo02 ComplexData and ComplexDataDictionary types
+    public class ComplexData
     {
         public string StringData { get; set; }
         public DateTime DateTimeData { get; set; }
@@ -35,31 +37,33 @@ namespace CommonDTOs
         public decimal DecimalData { get; set; }
     }
 
-    #region PostComplexDataAsString DTO classes and route attribute
-    [Route("/PostComplexDataAsString")]
-    public class ReqComplexDataAsStringDemo2DTO : IReturn<RspComplexDataAsStringDemo2DTO>
+    public class ComplexDataDictionary
     {
-        public string ComplexDataAsStringDemo2 { get; set; }
+        public Dictionary<string, ComplexData> ComplexDataDict { get; set; }
     }
-    public class RspComplexDataAsStringDemo2DTO
+	#endregion
+
+	#region Demo02 PostComplexDataAsString Clases and route attribute
+    [Route("/PostComplexDataAsString")]
+    public class ReqComplexDataAsStringDTO : IReturn<RspComplexDataAsStringDTO>
     {
-        public string ComplexDataAsStringDemo2 { get; set; }
+        public string ComplexDataAsString { get; set; }
+    }
+    public class RspComplexDataAsStringDTO
+    {
+        public string ComplexDataAsString { get; set; }
     }
     #endregion
 
-    public class ComplexDataDictionaryDemo2
-    {
-        public Dictionary<string, ComplexDataDemo2> ComplexDataDictDemo2 { get; set; }
-    }
-    #region PostComplexDataDictionary DTO classes and route attribute
+    #region Demo02 PostComplexDataDictionary DTO classes and route attribute
     [Route("/PostComplexDataDictionaryAsString")]
-    public class ReqComplexDataDictionaryAsStringDemo2DTO : IReturn<RspComplexDataDictionaryAsStringDemo2DTO>
+    public class ReqComplexDataDictionaryAsStringDTO : IReturn<RspComplexDataDictionaryAsStringDTO>
     {
-        public string ComplexDataDictionaryAsStringDemo2 { get; set; }
+        public string ComplexDataDictionaryAsString { get; set; }
     }
-    public class RspComplexDataDictionaryAsStringDemo2DTO
+    public class RspComplexDataDictionaryAsStringDTO
     {
-        public string ComplexDataDictionaryAsStringDemo2 { get; set; }
+        public string ComplexDataDictionaryAsString { get; set; }
     }
     #endregion
 }
