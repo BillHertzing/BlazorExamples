@@ -23,21 +23,23 @@ namespace GUI.Pages {
         public const string labelForDataToPost = "Data To Post";
         public const string labelForDataReceivedFromPost = "Data Received from last Post";
         public const string labelForPostDataDataButton = "Press to Post Data";
-        public const string dumpPostDataRspDTOText = "Pretry Print the postDataRspDTO object via the ServiceStack.Text extension method Dump: ";
-        public const string labelForComplexDataDemo2StringData = "ComplexData.StringData To Post";
-        public const string labelForComplexDataDemo2DateTimeData = "ComplexData.DateTimeData To Post";
-        public const string labelForComplexDataDemo2IntData = "ComplexData.IntData To Post";
-        public const string labelForComplexDataDemo2DoubleData = "ComplexData.DoubleData To Post";
-        public const string labelForComplexDataDemo2DecimalData = "ComplexData.DecimalData To Post";
-        public const string dumpPostComplexDataReqDTOText = "Pretty Print the ComplexDataReqDTO object via the ServiceStack.Text extension method Dump:";
+        public const string rspPostDataDumpText = "Pretry Print the postDataRspDTO object via the ServiceStack.Text extension method Dump: ";
+        #region Demo2 and demo3
+        public const string labelForComplexDataStringData = "ComplexData.StringData To Post";
+        public const string labelForComplexDataDateTimeData = "ComplexData.DateTimeData To Post";
+        public const string labelForComplexDataIntData = "ComplexData.IntData To Post";
+        public const string labelForComplexDataDoubleData = "ComplexData.DoubleData To Post";
+        public const string labelForComplexDataDecimalData = "ComplexData.DecimalData To Post";
+        public const string reqComplexDataDumpText = "Pretty Print the ComplexDataReqDTO object via the ServiceStack.Text extension method Dump:";
         public const string labelForComplexDataReceivedFromPost = "ComplexData received from last Post";
         public const string labelForComplexDataReceivedFromPostStringData = "String Data:";
         public const string labelForComplexDataReceivedFromPostDateTimeData = "DateTime (UTC) Data:";
-        public const string rspComplexDataDemo2DumpText = "Pretty Print the ComplexDataDemo02 object via the ServiceStack.Text extension method Dump:";
-        public const string rspComplexDataDictionaryDemo2DumpText = "Pretty Print the ComplexDataDictionaryDemo02 object via the ServiceStack.Text extension method Dump:";
+        public const string rspComplexDataDumpText = "Pretty Print the ComplexDataDemo02 object via the ServiceStack.Text extension method Dump:";
+        public const string rspComplexDataDictionaryDumpText = "Pretty Print the ComplexDataDictionaryDemo02 object via the ServiceStack.Text extension method Dump:";
         public const string labelForPostComplexDataAsStringButton = "Press to Post ComplexData As a String";
         public const string labelForPostComplexDataDictionaryAsStringButton = "Press to Post ComplexDataDictionary As a String";
         public const string labelForPostComplexDataDataAsObjectButton = "Press to Post ComplexData As an object";
+        #endregion
         #endregion
 
         #region DI container Auto-wired properties
@@ -103,15 +105,93 @@ namespace GUI.Pages {
               await client.PostAsync<PostDataRspDTO>("/PostData?format=json", postDataReqDTO);
             Logger.LogDebug($"Returned from PostAsync<PostDataRspDTO> with PostDataRspDTO: {postDataRspDTO}");
             dataReceivedFromPost = postDataRspDTO.StringDataObject;
-            // dumpDataViaSS = postDataRspDTO.Dump();
+            // rspPostDataDump = postDataRspDTO.Dump();
             Logger.LogDebug($"Leaving PostData");
         }
         #endregion
+        #region PostComplexDataAsString OnClick Handler
+        public async Task PostComplexDataAsString()
+        {
+            Logger.LogDebug($"Starting PostComplexDataAsString");
+            // Create the payload for the Post. Validation tests on the data entered by the user are not being done, using default types if an input is null
+            // Log what is in the page's demo2ComplexDataToPost object
+//            Logger.LogDebug($"in PostComplexDataAsString: reqComplexData: {reqComplexData.Dump()}");
+            // The HttpClient instance used below came from the DI  (IoC) container. Serialization is at the mercy of whatever Json-serializer the PostJsonAsync is using.
+            // To ensure the ServiceStack JSON serializer and deserializer is used, we use SS serializers to serialize to a string, then pass that string to the HttpClient's PostJsonAsync method 
+            // Serialize the ComplexData instance object using ServiceStack 
+            string reqComplexDataAsString = ServiceStack.Text.JsonSerializer.SerializeToString<ComplexData>(reqComplexData);
+            Logger.LogDebug($"in PostComplexDataAsString: reqComplexDataAsString: {reqComplexDataAsString}");
+            // Create an instance of the request DTO class and populate its data property
+            ReqComplexDataAsStringDemo2DTO reqComplexDataAsStringDemo2DTO = new ReqComplexDataAsStringDemo2DTO() { ComplexDataAsStringDemo2 = reqComplexDataAsString };
+            // Log the DTO object
+//            Logger.LogDebug($"in PostComplexDataAsString: reqComplexDataAsStringDemo2DTO: {reqComplexDataAsStringDemo2DTO.Dump()}");
+            // pass that object to the PostJsonAsync<string> and await its return 
+            // There are no try/catch blocks for error handling in Demo02
+            var rspComplexDataAsStringDemo2DTO = await HttpClient.PostJsonAsync<RspComplexDataAsStringDemo2DTO>("/PostComplexDataAsString?format=json", reqComplexDataAsStringDemo2DTO);
+            // Don't make any assumptions about what the response was, start by dumping it out for inspection
+//            Logger.LogDebug($"in PostComplexDataAsString: rspComplexDataDemo2AsStringDTO: {rspComplexDataAsStringDemo2DTO.Dump()}");
+            // Print what we expect to be the payload
+            string rspComplexDataDemo2AsString = rspComplexDataAsStringDemo2DTO.ComplexDataAsStringDemo2;
+            Logger.LogDebug($"in PostComplexDataAsString: rspComplexDataDemo2AsString: {rspComplexDataDemo2AsString}");
+            // Deserialize the response from a string to a PostComplexData using the ServiceStack Json-deserializer
+            ComplexData rspComplexDataDemo2 = ServiceStack.Text.JsonSerializer.DeserializeFromString<ComplexData>(rspComplexDataDemo2AsString);
+            // Dump the complex object to a human-readable string
+//            Logger.LogDebug($"in PostComplexDataAsString: rspComplexDataDemo2: {rspComplexDataDemo2.Dump()}");
+            // Set the page's field to display this information on the page
+//            rspComplexDataDemo2Dump = rspComplexDataDemo2.Dump();
+            Logger.LogDebug($"in PostComplexDataAsString dumpComplexDataViaSS: {rspComplexDataDump}");
+            Logger.LogDebug($"Leaving PostComplexDataAsString");
+        }
+        #endregion
 
-         #region PostComplexData OnClick Handler
+        #region PostComplexDataDictionaryAsString OnClick Handler
+        public async Task PostComplexDataDictionaryAsString()
+        {
+            Logger.LogDebug($"Starting PostComplexDataDictionaryAsString");
+            // Create the payload for the Post. Validation tests on the data entered by the user are not being done, using default types if an input is null
+            // Log what is in the page's demo2ComplexDataToPost object
+//            Logger.LogDebug($"in PostComplexDataDictionaryAsString: reqComplexData: {reqComplexData.Dump()}");
+            // Create a ComplexDataDictionary, initialize it with a new dictionary
+            ComplexDataDictionary reqComplexDataDictionary = new ComplexDataDictionary() { ComplexDataDict = new System.Collections.Generic.Dictionary<string, ComplexData>() };
+            // Log the instance
+//            Logger.LogDebug($"in PostComplexDataDictionaryAsString: reqComplexDataDictionary: {reqComplexDataDictionary.Dump()}");
+            // Add a Key:Value pair to the empty dictionary, the value is the page's reqComplexData object
+            reqComplexDataDictionary.ComplexDataDict["firstkey"] = reqComplexData;
+            // Log the instance now that it is fully populated
+//            Logger.LogDebug($"in PostComplexDPostComplexDataDictionaryAsStringataDictionary: reqComplexDataAsDictionaryDemo2: {reqComplexDataDictionary.Dump()}");
+            // The HttpClient instance used below came from the DI  (IoC) container. Serialization is at the mercy of whatever Json-serializer the PostJsonAsync is using.
+            // To ensure the ServiceStack JSON serializer and deserializer is used, we use SS serializers to serialize to a string, then pass that string to the HttpClient's PostJsonAsync method 
+            // Serialize the ComplexData instance object using ServiceStack 
+            // Convert the ComplexDataDictionary to a string
+            var reqComplexDataDictionaryAsString = ServiceStack.Text.JsonSerializer.SerializeToString<ComplexDataDictionary>(reqComplexDataDictionary);
+            Logger.LogDebug($"in PostComplexDataDictionaryAsString: reqComplexDataDictionaryAsString: {reqComplexDataDictionaryAsString}");
+            // Create an an instance of the request DTO class and initialize it with the ComplexDataDictionary object we just created
+            ReqComplexDataDictionaryAsStringDemo2DTO reqComplexDataDictionaryAsStringDemo2DTO = new ReqComplexDataDictionaryAsStringDemo2DTO() { ComplexDataDictionaryAsStringDemo2 = reqComplexDataDictionaryAsString };
+            // Log the ReqComplexDataDictionaryAsStringDemo2DTO
+//            Logger.LogDebug($"in PostComplexDataDictionaryAsString: reqComplexDataDictionaryAsStringDemo2DTO: {reqComplexDataDictionaryAsStringDemo2DTO.Dump()}");
+            // pass that string to the PostAsync and await its return 
+            // There are no try/catch blocks for error handling in Demo02
+            var rspComplexDataDictionaryAsStringDemo2DTO = await HttpClient.PostJsonAsync<RspComplexDataDictionaryAsStringDemo2DTO> ("/PostComplexDataDictionaryAsString?format=json", reqComplexDataDictionaryAsStringDemo2DTO);
+            // Don't make any assumptions about what the response was, start by dumping it out for inspection
+//            Logger.LogDebug($"in PostComplexDataDictionaryAsString: rspComplexDataAsStringDemo2DTO: {rspComplexDataDictionaryAsStringDemo2DTO.Dump()}");
+            string rspComplexDataAsDictionaryDemo2AsString = rspComplexDataDictionaryAsStringDemo2DTO.ComplexDataDictionaryAsStringDemo2;
+            Logger.LogDebug($"in PostComplexDataDictionaryAsString: rspComplexDataAsStringDemo2DTO.ComplexDataAsStringDemo2: {rspComplexDataAsDictionaryDemo2AsString}");
+            // Deserialize the response from a string to a PostComplexDataRspDTO using the ServiceStack Json-deserializer
+            ComplexDataDictionary rspComplexDataDictionary = ServiceStack.Text.JsonSerializer.DeserializeFromString<ComplexDataDictionary>(rspComplexDataAsDictionaryDemo2AsString);
+            // Dump the complex object to a human-readable string
+//            Logger.LogDebug($"in PostComplexDataDictionaryAsString: RspPostComplexData: {rspComplexDataDictionary.Dump()}");
+            // pretty print it to a string field, and also to the logger
+//            rspComplexDataDictionaryDump = rspComplexDataDictionary.Dump();
+ //           Logger.LogDebug($"in PostComplexDataDictionaryAsString dumpComplexDataViaSS: {rspComplexDataDictionaryDump}");
+            Logger.LogDebug($"Leaving PostComplexDataDictionaryAsString");
+        }
+        #endregion
+
+
+         #region PostComplexDataAsObject OnClick Handler
             public async Task PostComplexDataAsObject()
             {
-                Logger.LogDebug($"Starting PostComplexData");
+                Logger.LogDebug($"Starting PostComplexDataAsObject");
                 // Create the payload for the Post. Validation tests on the data entered by the user are not being done, using default types if an input is null
                 // Log what is in the page's demo3ComplexDataToPost object
 //                Logger.LogDebug($"in PostComplexData: reqComplexData: {reqComplexData.Dump()}");
@@ -130,8 +210,8 @@ namespace GUI.Pages {
             rspComplexData = rspComplexDataDemo3DTO.ComplexDataDemo3;
             // Dump the complex object to a human-readable string (JSON) and set the page's field to display this information on the page
  //           rspComplexDataDump = rspComplexData.Dump();
-                Logger.LogDebug($"in PostComplexData: rspComplexDataDump: {rspComplexDataDump}");
-                Logger.LogDebug($"Leaving PostComplexData");
+                Logger.LogDebug($"in PostComplexDataAsObject: rspComplexDataDump: {rspComplexDataDump}");
+                Logger.LogDebug($"Leaving PostComplexDataAsObject");
             }
             #endregion
 
@@ -143,21 +223,21 @@ namespace GUI.Pages {
             //    // Log what is in the page's demo2ComplexDataToPost object
             //    Logger.LogDebug($"in PostComplexDataDictionary: reqComplexData: {reqComplexData.Dump()}");
             //    // Create a ComplexDataDictionary, initialize it with a new dictionary
-            //    ComplexDataDictionary reqComplexDataDictionaryDemo2 = new ComplexDataDictionary() { ComplexDataDict = new System.Collections.Generic.Dictionary<string, ComplexData>() };
+            //    ComplexDataDictionary reqComplexDataDictionary = new ComplexDataDictionary() { ComplexDataDict = new System.Collections.Generic.Dictionary<string, ComplexData>() };
             //    // Log the instance
-            //    Logger.LogDebug($"in PostComplexDataDictionary: reqComplexDataDictionaryDemo2: {reqComplexDataDictionaryDemo2.Dump()}");
+            //    Logger.LogDebug($"in PostComplexDataDictionary: reqComplexDataDictionary: {reqComplexDataDictionary.Dump()}");
             //    // Add a Key:Value pair to the empty dictionary, the value is the page's reqComplexData object
-            //    reqComplexDataDictionaryDemo2.ComplexDataDict["firstkey"] = reqComplexData;
+            //    reqComplexDataDictionary.ComplexDataDict["firstkey"] = reqComplexData;
             //    // Log the instance now that it is fully populated
-            //    Logger.LogDebug($"in PostComplexDPostComplexDataDictionaryataDictionary: reqComplexDataAsDictionaryDemo2: {reqComplexDataDictionaryDemo2.Dump()}");
+            //    Logger.LogDebug($"in PostComplexDPostComplexDataDictionaryataDictionary: reqComplexDataAsDictionaryDemo2: {reqComplexDataDictionary.Dump()}");
             //    // The HttpClient instance used below came from the DI  (IoC) container. Serialization is at the mercy of whatever Json-serializer the PostJsonAsync is using.
             //    // To ensure the ServiceStack JSON serializer and deserializer is used, we use SS serializers to serialize to a string, then pass that string to the HttpClient's PostJsonAsync method 
             //    // Serialize the ComplexData instance object using ServiceStack 
             //    // Convert the ComplexDataDictionary to a string
-            //    var reqComplexDataDictionaryDemo2AsString = ServiceStack.Text.JsonSerializer.SerializeToString<ComplexDataDictionary>(reqComplexDataDictionaryDemo2);
-            //    Logger.LogDebug($"in PostComplexDataDictionary: reqComplexDataDictionaryDemo2AsString: {reqComplexDataDictionaryDemo2AsString}");
+            //    var reqComplexDataDictionaryAsString = ServiceStack.Text.JsonSerializer.SerializeToString<ComplexDataDictionary>(reqComplexDataDictionary);
+            //    Logger.LogDebug($"in PostComplexDataDictionary: reqComplexDataDictionaryAsString: {reqComplexDataDictionaryAsString}");
             //    // Create an an instance of the request DTO class and initialize it with the ComplexDataDictionary object we just created
-            //    ReqComplexDataDictionaryAsStringDemo2DTO reqComplexDataDictionaryAsStringDemo2DTO = new ReqComplexDataDictionaryAsStringDemo2DTO() { ComplexDataDictionaryAsStringDemo2 = reqComplexDataDictionaryDemo2AsString };
+            //    ReqComplexDataDictionaryAsStringDemo2DTO reqComplexDataDictionaryAsStringDemo2DTO = new ReqComplexDataDictionaryAsStringDemo2DTO() { ComplexDataDictionaryAsStringDemo2 = reqComplexDataDictionaryAsString };
             //    // Log the ReqComplexDataDictionaryAsStringDemo2DTO
             //    Logger.LogDebug($"in PostComplexDataDictionary: reqComplexDataDictionaryAsStringDemo2DTO: {reqComplexDataDictionaryAsStringDemo2DTO.Dump()}");
             //    // pass that string to the PostAsync and await its return 
@@ -168,12 +248,12 @@ namespace GUI.Pages {
             //    string rspComplexDataAsDictionaryDemo2AsString = rspComplexDataDictionaryAsStringDemo2DTO.ComplexDataDictionaryAsStringDemo2;
             //    Logger.LogDebug($"in PostComplexDataDictionary: rspComplexDataAsStringDemo2DTO.ComplexDataAsStringDemo2: {rspComplexDataAsDictionaryDemo2AsString}");
             //    // Deserialize the response from a string to a PostComplexDataRspDTO using the ServiceStack Json-deserializer
-            //    ComplexDataDictionary rspComplexDataDictionaryDemo2 = ServiceStack.Text.JsonSerializer.DeserializeFromString<ComplexDataDictionary>(rspComplexDataAsDictionaryDemo2AsString);
+            //    ComplexDataDictionary rspComplexDataDictionary = ServiceStack.Text.JsonSerializer.DeserializeFromString<ComplexDataDictionary>(rspComplexDataAsDictionaryDemo2AsString);
             //    // Dump the complex object to a human-readable string
-            //    Logger.LogDebug($"in PostComplexDataDictionary: RspPostComplexData: {rspComplexDataDictionaryDemo2.Dump()}");
+            //    Logger.LogDebug($"in PostComplexDataDictionary: RspPostComplexData: {rspComplexDataDictionary.Dump()}");
             //    // pretty print it to a string field, and also to the logger
-            //    rspComplexDataDictionaryDemo2Dump = rspComplexDataDictionaryDemo2.Dump();
-            //    Logger.LogDebug($"in PostComplexDataDictionary dumpComplexDataViaSS: {rspComplexDataDictionaryDemo2Dump}");
+            //    rspComplexDataDictionaryDump = rspComplexDataDictionary.Dump();
+            //    Logger.LogDebug($"in PostComplexDataDictionary dumpComplexDataViaSS: {rspComplexDataDictionaryDump}");
             //    Logger.LogDebug($"Leaving PostComplexDataDictionary");
             //}
             #endregion
@@ -183,11 +263,12 @@ namespace GUI.Pages {
         #region Demo01 code
         public string dataToPost;
         public string dataReceivedFromPost;
-        public string dumpDataViaSS;
+        public string rspPostDataDump;
         #endregion
 
         #region Demo02 and Demo03 code
         public ComplexData reqComplexData;
+        public string reqComplexDataDump;
         public ComplexData rspComplexData;
         public string rspComplexDataDump;
         public string rspComplexDataDictionaryDump;
@@ -195,9 +276,6 @@ namespace GUI.Pages {
 
         #region Demo02 code
 
-        public string dumpReqDemo2PostComplexData;
-        public string rspComplexDataDemo2Dump;
-        public string rspComplexDataDictionaryDemo2Dump;
         #endregion
 
         #region Demo03 code
