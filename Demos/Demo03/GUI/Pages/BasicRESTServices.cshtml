@@ -20,27 +20,27 @@ else
     </div>
     <button type="button" class="btn btn-default" onclick="@PostData">@labelForPostDataDataButton</button>
     <hr />
-    <p>@dumpPostDataRspDTOText @dumpDataViaSS </p>
+    <p>@rspPostDataDumpText @rspPostDataDump </p>
     <!-- endregion Demo01 code-->
     <!-- region Demo02 and Demo03 code -->
     <div>
-        <label for="ComplexDataDemo2StringData">@labelForComplexDataDemo2StringData</label>
-        <input type="text" class="form-control" id="ComplexDataDemo2StringData" bind="@reqComplexData.StringData" />
-        <label for="ComplexDataDemo2DateTimeData">@labelForComplexDataDemo2DateTimeData</label>
-        <input type="text" class="form-control" id="ComplexDataDemo2DateTimeData" bind="@reqComplexData.DateTimeData" />
-        <label for="ComplexDataDemo2IntData">@labelForComplexDataDemo2IntData</label>
-        <input type="text" class="form-control" id="ComplexDataDemo2IntData" bind="@reqComplexData.IntData" />
-        <label for="ComplexDataDemo2DoubleData">@labelForComplexDataDemo2DoubleData</label>
-        <input type="text" class="form-control" id="ComplexDataDemo2DoubleData" bind="@reqComplexData.DoubleData" />
-        <label for="ComplexDataDemo2DecimalData">@labelForComplexDataDemo2DecimalData</label>
-        <input type="text" class="form-control" id="ComplexDataDemo2DecimalData" bind="@reqComplexData.DecimalData" />
-        <p>@dumpPostComplexDataReqDTOText @dumpReqDemo2PostComplexData </p>
+        <label for="ComplexDataStringData">@labelForComplexDataStringData</label>
+        <input type="text" class="form-control" id="ComplexDataStringData" bind="@reqComplexData.StringData" />
+        <label for="ComplexDataDateTimeData">@labelForComplexDataDateTimeData</label>
+        <input type="text" class="form-control" id="ComplexDataDateTimeData" bind="@reqComplexData.DateTimeData" />
+        <label for="ComplexDataIntData">@labelForComplexDataIntData</label>
+        <input type="text" class="form-control" id="ComplexDataIntData" bind="@reqComplexData.IntData" />
+        <label for="ComplexDataDoubleData">@labelForComplexDataDoubleData</label>
+        <input type="text" class="form-control" id="ComplexDataDoubleData" bind="@reqComplexData.DoubleData" />
+        <label for="ComplexDataDecimalData">@labelForComplexDataDecimalData</label>
+        <input type="text" class="form-control" id="ComplexDataDecimalData" bind="@reqComplexData.DecimalData" />
+        <p>@reqComplexDataDumpText @reqComplexDataDump </p>
     </div>
     <button type="button" class="btn btn-default" onclick="@PostComplexDataAsString">@labelForPostComplexDataAsStringButton</button>
     <button type="button" class="btn btn-default" onclick="@PostComplexDataDictionaryAsString">@labelForPostComplexDataDictionaryAsStringButton</button>
     <button type="button" class="btn btn-default" onclick="@PostComplexDataAsObject">@labelForPostComplexDataDataAsObjectButton</button>
     <hr />
-    <p>@rspComplexDataDemo2DumpText @rspComplexDataDemo2Dump </p>
-    <p>@rspComplexDataDictionaryDemo2DumpText @rspComplexDataDictionaryDemo2Dump </p>
+    <p>@rspComplexDataDumpText @rspComplexDataDump </p>
+    <p>@rspComplexDataDictionaryDumpText @rspComplexDataDictionaryDump </p>
 }
 
