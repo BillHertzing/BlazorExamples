@@ -18,65 +18,15 @@ using System;
 namespace GUI.Pages
 {
 
-    public class BasicRESTServicesCodeBehind : ComponentBase
-    {
-
-        #region string constants
-        // Eventually replace with localization
-        public const string labelForDataToPost = "Data To Post";
-        public const string labelForDataReceivedFromPost = "Data Received from last Post";
-        public const string labelForPostDataDataButton = "Press to Post Data";
-        public const string rspPostDataDumpText = "Pretry Print the postDataRspDTO object via the ServiceStack.Text extension method Dump: ";
-        #region Demo02
-        public const string labelForComplexDataStringData = "ComplexData.StringData To Post";
-        public const string labelForComplexDataDateTimeData = "ComplexData.DateTimeData To Post";
-        public const string labelForComplexDataIntData = "ComplexData.IntData To Post";
-        public const string labelForComplexDataDoubleData = "ComplexData.DoubleData To Post";
-        public const string labelForComplexDataDecimalData = "ComplexData.DecimalData To Post";
-        public const string reqComplexDataDumpText = "Pretty Print the reqComplexData object via the ServiceStack.Text extension method Dump:";
-        public const string reqComplexDataAsStringDTODumpText = "Pretty Print the reqComplexDataAsStringDTO object via the ServiceStack.Text extension method Dump:";
-        public const string labelForComplexDataReceivedFromPost = "ComplexData received from last Post";
-        public const string labelForComplexDataReceivedFromPostStringData = "String Data:";
-        public const string labelForComplexDataReceivedFromPostDateTimeData = "DateTime (UTC) Data:";
-        public const string rspComplexDataAsStringDTODumpText = "Pretty Print the rspComplexDataAsStringDTO object via Dump:";
-        public const string rspComplexDataAsStringDumpText = "Pretty Print the stringified rspComplexData object:";
-        public const string rspComplexDataDumpText = "Pretty Print the rspComplexData object via Dump:";
-        public const string rspComplexDataDictionaryAsStringDTODumpText = "Pretty Print the rspComplexDataDictionaryAsStringDTO object via Dump:";
-        public const string rspComplexDataDictionaryAsStringDumpText = "Pretty Print the rspComplexDataDictionaryAsString object via Dump:";
-        public const string labelForPostComplexDataAsStringButton = "Press to Post ComplexData As a String";
-        public const string labelForPostComplexDataDictionaryAsStringButton = "Press to Post ComplexDataDictionaryAsObject As a String";
-        public const string labelForPostComplexDataDataAsObjectButton = "Press to Post ComplexData As an object";
-        #endregion
-
-        #region Demo03
-        public const string rspComplexDataAsObjectDTODumpText = "Pretty Print the rspComplexDataAsObjectDTO object via Dump:";
-        public const string rspComplexDataAsObjectDumpText = "Pretty Print the rspComplexData object via Dump:";
-        public const string rspComplexDataDictionaryAsObjectDTODumpText = "Pretty Print the rspComplexDataDictionaryAsObjectDTO object via Dump:";
-        public const string rspComplexDataDictionaryAsObjectDumpText = "Pretty Print the rspComplexDataDictionaryAsObject object via Dump:";
-
-        #endregion
-        #endregion
-
-        #region DI container Auto-wired properties
-        // This syntax adds to the class a Property that accesses the DI container, and retrieves the instance having the specified type from the DI container.
-        // Access the builtin Blazor service that has registered a pre-configured and extended object as a HTTPClient type registered in the DI container
-        [Inject]
-        HttpClient HttpClient {
-            get;
-            set;
-        }
-
-        // Access the Logging extensions registered in the DI container
-        //[Inject]
-        //public ILogger<BasicRESTServicesCodeBehind> Logger { get; set; }
-
-
-        #endregion
-
-        #region Page Initialization Handler
-        protected override async Task OnInitAsync()
-        {
-            //Logger.LogDebug($"Starting OnInitAsync");
+namespace GUI.Pages {
+    public class BasicRESTServicesCodeBehind : BlazorComponent {
+    #region Page Initialization Handler
+        protected override async Task OnInitAsync() {
+            Logger.LogDebug($"Starting OnInitAsync");
+            //Logger.LogDebug($"Initializing IServiceClient");
+            // Someday this will work 
+            //IServiceClient client = new JsonHttpClient("http://localhost:21100");
+            //Logger.LogDebug($"client is null: {client == null}");
             InitializationReqDTO initializationReqDTO = new InitializationReqDTO();
             //Logger.LogDebug($"Calling PostJsonAsync<BaseServicesInitializationRspPayload>");
             InitializationRspDTO = await HttpClient.PostJsonAsync<InitializationRspDTO>("Initialization",
