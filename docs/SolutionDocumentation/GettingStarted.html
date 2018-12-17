@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Getting tarted with the Blazor - ServiceStack Demos | Blazor Examples with ServiceStack </title>
+    <title>Getting started with the Blazor - ServiceStack Demos (at the SolutionDocumentation subfolder level) | Blazor Examples with ServiceStack </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Getting tarted with the Blazor - ServiceStack Demos | Blazor Examples with ServiceStack ">
+    <meta name="title" content="Getting started with the Blazor - ServiceStack Demos (at the SolutionDocumentation subfolder level) | Blazor Examples with ServiceStack ">
     <meta name="generator" content="docfx 2.40.2.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
@@ -77,13 +77,44 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="getting-tarted-with-the-blazor---servicestack-demos">Getting tarted with the Blazor - ServiceStack Demos</h1>
+<h1 id="getting-started-with-the-blazor---servicestack-demos-at-the-solutiondocumentation-subfolder-level">Getting started with the Blazor - ServiceStack Demos (at the SolutionDocumentation subfolder level)</h1>
 
-<p>The projects in thei Repository/solution demonstrate howto use Blazor with ServiceStack as the static site server.</p>
-<p>This repository is not yet sophisticated enough o create a zip with binaries and be able to safely secure that. Instead, only building from source code is supported.</p>
-<p>1, Fork the repository and attach your Visual Studio Source Code Control provider to the fork</p>
-<ol start="2">
-<li>Tell Visual Studio to not build the documentation project.</li>
+<p>If you are viewing this GettingStarted.md in GitHub, <a href="GettingStarted.html">here is this same document on the documentation site</a></p>
+<p>These are detailed instructions for getting started building, running and extending these demonstrations</p>
+<h2 id="a-documentationorganization-documentation-organization"><a documentationorganization/=""> Documentation organization</a></h2>
+<p><a href="Organization.html">Details on the documentation and code organization</a> will provide details on how the code for these demos is organized, and details on what documentation is available at each level of the code.</p>
+<h2 id="a-prerequisites-prerequisites"><a prerequisites/=""> Prerequisites</a></h2>
+<ol>
+<li>A C# / .NET  development environment capable of supporting Blazor development
+ The documentation is currently written only for Visual Studio V15.9 (or higher) IDE. Pull requests that expand the documentation to cover the command-line MSBuild environment or other IDEs would be most welcome!
+ The specific instructions to extend the VS IDE to build Blazor apps are in the <a href="https://blazor.net/docs/get-started.html">Get started with Blazor</a> documentation, so head over there and make sure you have the necessary .Net Core 2.1 SDK and then install the Blazor bits
+ <a href="">optional 3rd-party extensions and tools</a> is a link to instructions on some specific 3rd party tools that make it easier to debug these demos, or see what&#39;s going on under the hood
+      a. <a href="">Fiddler</a> - to see what is being sent between the Blazor app and the ServiceStack Host
+      b. <a href="">Sentinel</a> - a logging target that listens on a UDP port and displays log messages
+      c. <a href="">Structured Build Log Viewer</a> - a viewer to see details of how MSBuild is building the assemblies.</li>
+</ol>
+<h2 id="getting-the-demo-projects">Getting the Demo projects</h2>
+<pre><code>This repository is not yet sophisticated enough to create a zip with binaries and be able to safely secure and deliver that. Besides, building these demos from source is probably the best way to understand what&#39;s going on. Your current choices are to fork or clone this repository. GitHub has a nice explanation of the differences, as well as [detailed instructions on how to fork or clone](https://github.community/t5/Support-Protips/The-difference-between-forking-and-cloning-a-repository/ba-p/1372). Start by forking or cloning your own copy the repository, and then and attach your Visual Studio Source Code Control provider to the fork.
+</code></pre><h2 id="building-the-demo-projects">Building the Demo projects</h2>
+<p>There is documentation that goes into details for <a href="BuildingNotes.html">building the demos here</a>. Below is a high-level description of what needs to be done.</p>
+<ol>
+<li>Open the top level .sln file with Visual Studio</li>
+<li>Tell Visual Studio to not build the documentation project <em>ATAP.Utilities.AutoDoc</em>, as it will take quite a bit of time, and is not needed to run the demos. <a href="https://docs.microsoft.com/en-us/visualstudio/ide/how-to-exclude-projects-from-a-build?view=vs-2017">How to: Exclude projects from a build</a></li>
+<li>Build the entire solution in the Debug configuration.</li>
+<li>Go into each individual Demo, and &quot;Publish&quot; the GUI.</li>
+<li>Start the SS Console App</li>
+<li>Open a browser and navigate to <a href="http://localhost:21200">http://localhost:21200</a> as this is the default address and port that the ConsoleApp will be listening on..</li>
+</ol>
+<h2 id="running-each-demo-project">Running each Demo project</h2>
+<p>Each demo tries to make a short, focused point. In the GUI, this means only a very few pages with which to interact. The individual demo&#39;s documentation should make it clear how to interact with each page and what to expect.</p>
+<h2 id="contributing">Contributing</h2>
+<p>Pull requests for collaborating on and extending these demonstrations are most welcome! Please see the <a href="Contributing.html">the Contributing guidelines</a> for further details.
+Contributing to the documentation for these examples is welcome as well. There is no written documentation on how to accomplish that yet, but please refer to the incredibly well written document <a href="https://github.com/aspnet/Blazor.Docs/blob/master/CONTRIBUTING.md">Contributing to the Blazor documentation</a> for ideas. Our Folder Structure conventions differ from the examples in that document.</p>
+<h2 id="attribution">Attribution</h2>
+<p>The maintainers and contributors to this repository feel it is important to credit the individuals and organizations who have taken their time to publish ideas and guides. We have two documents that try to provide credit where it is due:</p>
+<ol>
+<li><a href="Attribution.html">Attribution for guides and articles related to Blazor and ServiceStack</a></li>
+<li><a href="https:///GitHub.com/BillHertzing/Atap.Utilities/SolutionDocumentation/Attribution.html">Attribution for guides and articles related to the Utility assemblies, related to DocFx, and related to design, building, and debugging code in general</a></li>
 </ol>
 </article>
           </div>

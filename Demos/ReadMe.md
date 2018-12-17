@@ -1,6 +1,11 @@
-# Common Documentation for all Demos
+# Blazor With ServiceStack Demonstrations ReadMe (at the common Demos Solution subfolder level)
+If you are viewing this ReadMe.md in GitHub, [here is this same ReadMe on the documentation site](ReadMe.html)
+
+## Common Documentation for all Demos
 Information here relates to all of the demos. At the bottom of this page is a [list of the demos and what each does](./ReadMe.html#DemoList)
-# Prerequisites
+## Prerequisites
+Refer to [Getting Started](../SolutionDocumentation/GettingStarted#prerequisites) for the necessary prerequisites.
+
 1. Visual Studio (VS) 2017 Version 15.8 or newer. All of the following instructions assume you are using a Visual Studio (VS) 2017 IDE for development. The section below on [Building](./ReadMe.html#Building) does reference additional documentation on options for building the demos outside of Visual Studio
 1. Familiarity with using Git and GitHub in VS.
 1. ServiceStack (SS) Version 5.*. You will need to refer to [Instructions for adding ServiceStack via NuGet into a solution](https://servicestack.net/download). Unless you purchase a license, SS will be the "Starter" version, limited to about 10 REST service endpoints Each of the demonstration programs here will be written to stay below the limit. 
@@ -25,8 +30,18 @@ The Blazor GUI requires an additional publishing step beyond just building the a
 
 # <a id="DemoList"/>A List of the Demos
 
-  1. Demo01 : [Blazor GUI served by ServiceStack having two REST endpoints](Demo01/ReadMe.html)
+    1. Demo01 : [Blazor GUI served by ServiceStack having two REST endpoints](Demo01/ReadMe.html)
   
-    The first example program is the most basic. The Blazor GUI portion consists of two Razor pages, and code that makes two REST calls to ServiceStack, one REST call with no data payload sent or received, and one that sends a string and receives a string. The ServiceStack application portion consist of a Console program for .Net (full framework) which serves the static files for the Blazor application, and handles the two simple REST service endpoints. The CommonDTOs project defines the data payload sent and received between the ConsoleApp and the Blazor GUI.
+      The first demonstration program is the most basic. The Blazor GUI portion consists of two Razor pages, and code that makes two REST calls to ServiceStack, one REST call with no data payload sent or received, and one that sends a string and receives a string. The ServiceStack application portion consist of a Console program for .Net (full framework) which serves the static files for the Blazor application, and handles the two simple REST service endpoints. The CommonDTOs project defines the data payload sent and received between the ConsoleApp and the Blazor GUI. Added in V0.1.0
 
+    1. Demo02 : [Blazor GUI with ServiceStack TextUtils, using the .Dump() method and the JSON serializer and Deserializer, round-tripping a omplexData object (POCO), and a dictionary of these ComplexData objects]
+      
+	  The second demonstration program jumps through hoops to demonstrate that the SS TextUtils can work within the client side Blazor. The .Dump() extension is used to prettyprint complex data objects to a string, and puts it to both the console log and to the Demo02 page. The serializers and deserializers convert complex data objects to / from a string, and uses the built-in HttpClient to send/receive the strings. Added in V0.2.0.
 
+    1. Demo03 : [Blazor GUI with ServiceStack C# HttpClient-based JsonHttpClient library]
+      
+	   The third demonstration program demonstrates that the SS C# HttpClient-based JsonHttpClient library can work within the client- side Blazor as a replacement for the HttpClient service that Blazor supplies out of the box. Added in V0.3.0.
+
+	1. Demo04 : [Blazor GUI with ServiceStack C# Client]
+      
+	   The fourth demonstration program demonstrates using some of the SS JsonHttpClient library's features including (TBD). Added in V0.4.0.
