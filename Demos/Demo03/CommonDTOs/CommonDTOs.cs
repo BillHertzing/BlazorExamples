@@ -55,7 +55,7 @@ namespace CommonDTOs
     }
     #endregion
 
-    #region Demo02 PostComplexDataDictionary DTO classes and route attribute
+    #region Demo02 PostComplexDataDictionaryAsString DTO classes and route attribute
     [Route("/PostComplexDataDictionaryAsString")]
     public class ReqComplexDataDictionaryAsStringDTO : IReturn<RspComplexDataDictionaryAsStringDTO>
     {
@@ -67,27 +67,25 @@ namespace CommonDTOs
     }
     #endregion
 
-	#region Demo03 PostComplexDataClases and route attribute
-    [Route("/PostComplexData")]
-    public class ReqComplexDataDemo03DTO : IReturn<RspComplexDataDemo03DTO>
+    #region Demo03 PostComplexDataAsObject and PostComplexDataDictionary AsObject DTO Classes and route attribute
+    [Route("/PostComplexDataAsObject")]
+    public class ReqComplexDataAsObjectDTO : IReturn<RspComplexDataOsObjectDTO>
     {
-        public ComplexData ComplexDataDemo03 { get; set; }
+        public ComplexData ComplexDataAsObject { get; set; }
     }
-    public class RspComplexDataDemo03DTO
+    public class RspComplexDataOsObjectDTO
     {
-        public ComplexData ComplexDataDemo03 { get; set; }
+        public ComplexData ComplexDataAsObject { get; set; }
     }
-    #endregion
 
-    #region Demo03" PostComplexDataClases and route attribute
-    [Route("/PostComplexDataDictionary")]
-    public class ReqComplexDataDictionaryDTO : IReturn<RspComplexDataDictionaryDTO>
+    [Route("/PostComplexDataDictionaryAsObject")]
+    public class ReqComplexDataDictionaryAsObjectDTO : IReturn<RspComplexDataDictionaryAsObjectDTO>
     {
-        public ComplexDataDictionary ComplexDataDictionary { get; set; }
+        public ComplexDataDictionary ComplexDataDictionaryAsObject { get; set; }
     }
-    public class RspComplexDataDictionaryDTO
+    public class RspComplexDataDictionaryAsObjectDTO
     {
-        public ComplexDataDictionary ComplexDataDictionary { get; set; }
+        public ComplexDataDictionary ComplexDataDictionaryAsObject { get; set; }
     }
     #endregion
 }
