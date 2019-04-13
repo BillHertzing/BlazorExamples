@@ -3,10 +3,10 @@ using System.Net.Http;
 using System.Threading.Tasks;
 // Required for Blazor
 using Microsoft.AspNetCore.Blazor;
-using Microsoft.AspNetCore.Blazor.Components;
+using Microsoft.AspNetCore.Components;
 // Required for the logger/logging
 using Microsoft.Extensions.Logging;
-using Blazor.Extensions.Logging;
+//using Blazor.Extensions.Logging;
 
 // Access the DTOs defined in a separate assembly, shared with teh Console App
 using CommonDTOs;
@@ -15,21 +15,22 @@ using CommonDTOs;
 //using ServiceStack;
 
 namespace GUI.Pages {
-    public class BasicRESTServicesCodeBehind : BlazorComponent {
+    public class BasicRESTServicesCodeBehind : ComponentBase
+    {
     #region Page Initialization Handler
         protected override async Task OnInitAsync() {
-            Logger.LogDebug($"Starting OnInitAsync");
-            //Logger.LogDebug($"Initializing IServiceClient");
+            //Logger.LogDebug($"Starting OnInitAsync");
+            ////Logger.LogDebug($"Initializing IServiceClient");
             // Someday this will work 
             //IServiceClient client = new JsonHttpClient("http://localhost:21100");
-            //Logger.LogDebug($"client is null: {client == null}");
+            ////Logger.LogDebug($"client is null: {client == null}");
             InitializationReqDTO initializationReqDTO = new InitializationReqDTO();
 
-            Logger.LogDebug($"Calling PostJsonAsync<BaseServicesInitializationRspPayload>");
+            //Logger.LogDebug($"Calling PostJsonAsync<BaseServicesInitializationRspPayload>");
             InitializationRspDTO = await HttpClient.PostJsonAsync<InitializationRspDTO>("Initialization",
                                                                                                              initializationReqDTO);
-            Logger.LogDebug($"Returned from PostJsonAsync<InitializationRspDTO>, InitializationRspDTO = {InitializationRspDTO}");
-            Logger.LogDebug($"Leaving OnInitAsync");
+            //Logger.LogDebug($"Returned from PostJsonAsync<InitializationRspDTO>, InitializationRspDTO = {InitializationRspDTO}");
+            //Logger.LogDebug($"Leaving OnInitAsync");
         }
         //  Create a Property for the Response DTO
         public InitializationRspDTO InitializationRspDTO { get; set; }
@@ -37,15 +38,15 @@ namespace GUI.Pages {
 
     #region Post Data Button OnClick Handler
     public async Task PostData() {
-        Logger.LogDebug($"Starting PostData");
+        //Logger.LogDebug($"Starting PostData");
         // Create the payload for the Post
         PostDataReqDTO postDataReqDTO = new PostDataReqDTO { StringDataObject = dataToPost };
-        Logger.LogDebug($"Calling PostJsonAsync<PostDataReqDTO> with PostDataReqDTO.StringDataObject = {dataToPost}");
+        //Logger.LogDebug($"Calling PostJsonAsync<PostDataReqDTO> with PostDataReqDTO.StringDataObject = {dataToPost}");
         PostDataRspDTO postDataRspDTO =
           await HttpClient.PostJsonAsync<PostDataRspDTO>("/PostData?format=json", postDataReqDTO);
-        Logger.LogDebug($"Returned from PostJsonAsync<PostDataRspDTO> with PostDataRspDTO.StringDataObject = {postDataRspDTO.StringDataObject}");
+        //Logger.LogDebug($"Returned from PostJsonAsync<PostDataRspDTO> with PostDataRspDTO.StringDataObject = {postDataRspDTO.StringDataObject}");
         dataReceivedFromPost = postDataRspDTO.StringDataObject;
-        Logger.LogDebug($"Leaving PostData");
+        //Logger.LogDebug($"Leaving PostData");
     }
     #endregion
 
@@ -68,14 +69,10 @@ namespace GUI.Pages {
     }
 
     // Access the Logging extensions registered in the DI container
-    [Inject]
-    public ILogger<BasicRESTServicesCodeBehind> Logger
-    {
-        get;
-        set;
-    }
+    //[Inject]
+    //public ILogger<BasicRESTServicesCodeBehind> Logger { get; set; }
 
-    #endregion
+     #endregion
 
     #region public fields
       public string dataToPost;
