@@ -1,6 +1,6 @@
 {
   "homepages": [],
-  "source_base_path": "C:/Dropbox/whertzing/GitHub/BlazorExamples/ATAP.Utilities.AutoDoc",
+  "source_base_path": "C:/Dropbox/whertzing/GitHub/BlazorExamples",
   "xrefmap": "xrefmap.yml",
   "files": [
     {
@@ -13,12 +13,27 @@
       "is_incremental": false
     },
     {
-      "type": "Conceptual",
-      "source_relative_path": "../Demos/Demo01/CommonDTOs/Documentation/Details.md",
+      "log_codes": [
+        "DuplicateUids"
+      ],
+      "type": "ManagedReference",
+      "source_relative_path": "ATAP.Utilities.AutoDoc/obj/docfx/api/net471/CommonDTOs.InitializationReqDTO.yml",
       "output": {
         ".html": {
-          "relative_path": "Demos/Demo01/CommonDTOs/Documentation/Details.html",
-          "hash": "82emObwp+LpzRN0EgkLMtg=="
+          "relative_path": "ApiDocumentation/net471/CommonDTOs.InitializationReqDTO.html",
+          "hash": "97zFWidiQwUGjtmmIYNSBw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "ATAP.Utilities.AutoDoc/obj/docfx/api/net471/CommonDTOs.InitializationRspDTO.yml",
+      "output": {
+        ".html": {
+          "relative_path": "ApiDocumentation/net471/CommonDTOs.InitializationRspDTO.html",
+          "hash": "wCPJb0tzOALPhIRoJ++H8Q=="
         }
       },
       "is_incremental": false,
@@ -26,122 +41,14 @@
     },
     {
       "log_codes": [
-        "InvalidFileLink"
+        "DuplicateUids"
       ],
-      "type": "Conceptual",
-      "source_relative_path": "../Demos/Demo01/CommonDTOs/ReadMe.md",
+      "type": "ManagedReference",
+      "source_relative_path": "ATAP.Utilities.AutoDoc/obj/docfx/api/net471/CommonDTOs.PostDataReqDTO.yml",
       "output": {
         ".html": {
-          "relative_path": "Demos/Demo01/CommonDTOs/ReadMe.html",
-          "hash": "Cn2vJ45EXih03ZJMuBxqxg=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "../Demos/Demo01/ConsoleApp/Documentation/Details.md",
-      "output": {
-        ".html": {
-          "relative_path": "Demos/Demo01/ConsoleApp/Documentation/Details.html",
-          "hash": "9PDI6Xy6iDOWbp1PXim0jQ=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "../Demos/Demo01/ConsoleApp/ReadMe.md",
-      "output": {
-        ".html": {
-          "relative_path": "Demos/Demo01/ConsoleApp/ReadMe.html",
-          "hash": "N7eAV5uqqv0k5XJ6fPZaIA=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "../Demos/Demo01/Documentation/Overview.md",
-      "output": {
-        ".html": {
-          "relative_path": "Demos/Demo01/Documentation/Overview.html",
-          "hash": "4InPEuQ+MoI59DRGCzyHnQ=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "../Demos/Demo01/GUI/Documentation/Details.md",
-      "output": {
-        ".html": {
-          "relative_path": "Demos/Demo01/GUI/Documentation/Details.html",
-          "hash": "LhWkIIEZXm5iTXbsuYbJUQ=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "../Demos/Demo01/GUI/ReadMe.md",
-      "output": {
-        ".html": {
-          "relative_path": "Demos/Demo01/GUI/ReadMe.html",
-          "hash": "qLn4Og5zaI4I0pWnxdjTJg=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "../Demos/Demo01/GUI/bin/Debug/netstandard2.0/Publish/GUI/dist/css/open-iconic/README.md",
-      "output": {
-        ".html": {
-          "relative_path": "Demos/Demo01/GUI/bin/Debug/netstandard2.0/Publish/GUI/dist/css/open-iconic/README.html",
-          "hash": "7pPSFP65GJV9DJE4EQ6LqQ=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "../Demos/Demo01/GUI/obj/Release/netstandard2.0/PubTmp/Out/GUI/dist/css/open-iconic/README.md",
-      "output": {
-        ".html": {
-          "relative_path": "Demos/Demo01/GUI/obj/Release/netstandard2.0/PubTmp/Out/GUI/dist/css/open-iconic/README.html",
-          "hash": "C1hwxsyo6cYAN88+1M2W0A=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "../Demos/Demo01/GUI/wwwroot/css/open-iconic/README.md",
-      "output": {
-        ".html": {
-          "relative_path": "Demos/Demo01/GUI/wwwroot/css/open-iconic/README.html",
-          "hash": "ABXzv3MEDbEC8P5UZh7pnA=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "../Demos/Demo01/ReadMe.md",
-      "output": {
-        ".html": {
-          "relative_path": "Demos/Demo01/ReadMe.html",
-          "hash": "lkQfoFpE5g94xE+YLPyA3w=="
+          "relative_path": "ApiDocumentation/net471/CommonDTOs.PostDataReqDTO.html",
+          "hash": "PzxB9ruanNkCDAnvdZLyJg=="
         }
       },
       "is_incremental": false,
@@ -149,14 +56,635 @@
     },
     {
       "log_codes": [
-        "InvalidFileLink"
+        "DuplicateUids"
       ],
-      "type": "Conceptual",
-      "source_relative_path": "../Demos/ReadMe.md",
+      "type": "ManagedReference",
+      "source_relative_path": "ATAP.Utilities.AutoDoc/obj/docfx/api/net471/CommonDTOs.PostDataRspDTO.yml",
       "output": {
         ".html": {
-          "relative_path": "Demos/ReadMe.html",
-          "hash": "M1jeFZu8S+/CF2VArdPs1g=="
+          "relative_path": "ApiDocumentation/net471/CommonDTOs.PostDataRspDTO.html",
+          "hash": "E01pn+umVX/axJlyArCbOA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "DuplicateUids"
+      ],
+      "type": "ManagedReference",
+      "source_relative_path": "ATAP.Utilities.AutoDoc/obj/docfx/api/net471/CommonDTOs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "ApiDocumentation/net471/CommonDTOs.html",
+          "hash": "RUqZc1YPnQG+P8OszuQTQg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "ATAP.Utilities.AutoDoc/obj/docfx/api/net471/ConsoleApp.AppHost.yml",
+      "output": {
+        ".html": {
+          "relative_path": "ApiDocumentation/net471/ConsoleApp.AppHost.html",
+          "hash": "AHcxzOWFYmA8NURQqgqPzg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "DuplicateUids"
+      ],
+      "type": "ManagedReference",
+      "source_relative_path": "ATAP.Utilities.AutoDoc/obj/docfx/api/net471/ConsoleApp.BaseServices.yml",
+      "output": {
+        ".html": {
+          "relative_path": "ApiDocumentation/net471/ConsoleApp.BaseServices.html",
+          "hash": "BL79kRfVL6l8IGXNNzjkzg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "DuplicateUids"
+      ],
+      "type": "ManagedReference",
+      "source_relative_path": "ATAP.Utilities.AutoDoc/obj/docfx/api/net471/ConsoleApp.yml",
+      "output": {
+        ".html": {
+          "relative_path": "ApiDocumentation/net471/ConsoleApp.html",
+          "hash": "BUeVDtdqqUC61XD0tEdIIw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "ATAP.Utilities.AutoDoc/obj/docfx/api/net471/GUI.Pages.BasicRESTServicesCodeBehind.yml",
+      "output": {
+        ".html": {
+          "relative_path": "ApiDocumentation/net471/GUI.Pages.BasicRESTServicesCodeBehind.html",
+          "hash": "d/hX+ppSI8tyGBEokViG0A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "ATAP.Utilities.AutoDoc/obj/docfx/api/net471/GUI.Pages.yml",
+      "output": {
+        ".html": {
+          "relative_path": "ApiDocumentation/net471/GUI.Pages.html",
+          "hash": "S3W1bFOFmKSbEcApNI6L+w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "DuplicateUids"
+      ],
+      "type": "ManagedReference",
+      "source_relative_path": "ATAP.Utilities.AutoDoc/obj/docfx/api/net471/GUI.Program.yml",
+      "output": {
+        ".html": {
+          "relative_path": "ApiDocumentation/net471/GUI.Program.html",
+          "hash": "jM9CSIoAS4LogoOBJQgpNg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "DuplicateUids"
+      ],
+      "type": "ManagedReference",
+      "source_relative_path": "ATAP.Utilities.AutoDoc/obj/docfx/api/net471/GUI.Startup.yml",
+      "output": {
+        ".html": {
+          "relative_path": "ApiDocumentation/net471/GUI.Startup.html",
+          "hash": "Gp3oUwwURufGRc5i+O0zEA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "DuplicateUids"
+      ],
+      "type": "ManagedReference",
+      "source_relative_path": "ATAP.Utilities.AutoDoc/obj/docfx/api/net471/GUI.yml",
+      "output": {
+        ".html": {
+          "relative_path": "ApiDocumentation/net471/GUI.html",
+          "hash": "KqIrS9lwqgWWg5Zy/t6oHA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "ATAP.Utilities.AutoDoc/obj/docfx/api/net471/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "ApiDocumentation/net471/toc.html",
+          "hash": "V2pjUHrud3t/ZqKHC2BOFg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "ATAP.Utilities.AutoDoc/obj/docfx/api/netcoreapp2.0/CommonDTOs.InitializationReqDTO.yml",
+      "output": {
+        ".html": {
+          "relative_path": "ApiDocumentation/netcoreapp2.0/CommonDTOs.InitializationReqDTO.html",
+          "hash": "4rj+f8P16NgkiEqimsDN6A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "DuplicateUids"
+      ],
+      "type": "ManagedReference",
+      "source_relative_path": "ATAP.Utilities.AutoDoc/obj/docfx/api/netcoreapp2.0/CommonDTOs.InitializationRspDTO.yml",
+      "output": {
+        ".html": {
+          "relative_path": "ApiDocumentation/netcoreapp2.0/CommonDTOs.InitializationRspDTO.html",
+          "hash": "S5GzcuMpAXERdhVFqAl2Gg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "ATAP.Utilities.AutoDoc/obj/docfx/api/netcoreapp2.0/CommonDTOs.PostDataReqDTO.yml",
+      "output": {
+        ".html": {
+          "relative_path": "ApiDocumentation/netcoreapp2.0/CommonDTOs.PostDataReqDTO.html",
+          "hash": "cK/qrCUb0+Kb9vXmr6TAUQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "DuplicateUids"
+      ],
+      "type": "ManagedReference",
+      "source_relative_path": "ATAP.Utilities.AutoDoc/obj/docfx/api/netcoreapp2.0/CommonDTOs.PostDataRspDTO.yml",
+      "output": {
+        ".html": {
+          "relative_path": "ApiDocumentation/netcoreapp2.0/CommonDTOs.PostDataRspDTO.html",
+          "hash": "NPakcXAzyMigVWz/VnsZZQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "DuplicateUids"
+      ],
+      "type": "ManagedReference",
+      "source_relative_path": "ATAP.Utilities.AutoDoc/obj/docfx/api/netcoreapp2.0/CommonDTOs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "ApiDocumentation/netcoreapp2.0/CommonDTOs.html",
+          "hash": "mJkjFnwgzdHpq211CLZWNA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "DuplicateUids"
+      ],
+      "type": "ManagedReference",
+      "source_relative_path": "ATAP.Utilities.AutoDoc/obj/docfx/api/netcoreapp2.0/ConsoleApp.AppHost.yml",
+      "output": {
+        ".html": {
+          "relative_path": "ApiDocumentation/netcoreapp2.0/ConsoleApp.AppHost.html",
+          "hash": "uDaQkvFW3Rf/J+xxMU8cDg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "DuplicateUids"
+      ],
+      "type": "ManagedReference",
+      "source_relative_path": "ATAP.Utilities.AutoDoc/obj/docfx/api/netcoreapp2.0/ConsoleApp.BaseServices.yml",
+      "output": {
+        ".html": {
+          "relative_path": "ApiDocumentation/netcoreapp2.0/ConsoleApp.BaseServices.html",
+          "hash": "Bc6Oj6X4wsm+6UkP5+gWUA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "DuplicateUids"
+      ],
+      "type": "ManagedReference",
+      "source_relative_path": "ATAP.Utilities.AutoDoc/obj/docfx/api/netcoreapp2.0/ConsoleApp.yml",
+      "output": {
+        ".html": {
+          "relative_path": "ApiDocumentation/netcoreapp2.0/ConsoleApp.html",
+          "hash": "UISqz7G+wkBHEYTUHBbKpw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "DuplicateUids"
+      ],
+      "type": "ManagedReference",
+      "source_relative_path": "ATAP.Utilities.AutoDoc/obj/docfx/api/netcoreapp2.0/GUI.Pages.BasicRESTServicesCodeBehind.yml",
+      "output": {
+        ".html": {
+          "relative_path": "ApiDocumentation/netcoreapp2.0/GUI.Pages.BasicRESTServicesCodeBehind.html",
+          "hash": "g150GGrGOtgOjhTevY9/lA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "DuplicateUids"
+      ],
+      "type": "ManagedReference",
+      "source_relative_path": "ATAP.Utilities.AutoDoc/obj/docfx/api/netcoreapp2.0/GUI.Pages.yml",
+      "output": {
+        ".html": {
+          "relative_path": "ApiDocumentation/netcoreapp2.0/GUI.Pages.html",
+          "hash": "ghOL01N3SdYtMXdH3xyQIQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "DuplicateUids"
+      ],
+      "type": "ManagedReference",
+      "source_relative_path": "ATAP.Utilities.AutoDoc/obj/docfx/api/netcoreapp2.0/GUI.Program.yml",
+      "output": {
+        ".html": {
+          "relative_path": "ApiDocumentation/netcoreapp2.0/GUI.Program.html",
+          "hash": "jM9CSIoAS4LogoOBJQgpNg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "DuplicateUids"
+      ],
+      "type": "ManagedReference",
+      "source_relative_path": "ATAP.Utilities.AutoDoc/obj/docfx/api/netcoreapp2.0/GUI.Startup.yml",
+      "output": {
+        ".html": {
+          "relative_path": "ApiDocumentation/netcoreapp2.0/GUI.Startup.html",
+          "hash": "Gp3oUwwURufGRc5i+O0zEA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "DuplicateUids"
+      ],
+      "type": "ManagedReference",
+      "source_relative_path": "ATAP.Utilities.AutoDoc/obj/docfx/api/netcoreapp2.0/GUI.yml",
+      "output": {
+        ".html": {
+          "relative_path": "ApiDocumentation/netcoreapp2.0/GUI.html",
+          "hash": "KqIrS9lwqgWWg5Zy/t6oHA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "ATAP.Utilities.AutoDoc/obj/docfx/api/netcoreapp2.0/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "ApiDocumentation/netcoreapp2.0/toc.html",
+          "hash": "lkiKiG8DTBsKwYx2tVvDCQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "DuplicateUids"
+      ],
+      "type": "ManagedReference",
+      "source_relative_path": "ATAP.Utilities.AutoDoc/obj/docfx/api/netstandard2.0/CommonDTOs.InitializationReqDTO.yml",
+      "output": {
+        ".html": {
+          "relative_path": "ApiDocumentation/netstandard2.0/CommonDTOs.InitializationReqDTO.html",
+          "hash": "8TKoibTeW1OJOumcJjUiTw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "DuplicateUids"
+      ],
+      "type": "ManagedReference",
+      "source_relative_path": "ATAP.Utilities.AutoDoc/obj/docfx/api/netstandard2.0/CommonDTOs.InitializationRspDTO.yml",
+      "output": {
+        ".html": {
+          "relative_path": "ApiDocumentation/netstandard2.0/CommonDTOs.InitializationRspDTO.html",
+          "hash": "LXGLBnpoJI4hcEA0Q8Y6Ew=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "DuplicateUids"
+      ],
+      "type": "ManagedReference",
+      "source_relative_path": "ATAP.Utilities.AutoDoc/obj/docfx/api/netstandard2.0/CommonDTOs.PostDataReqDTO.yml",
+      "output": {
+        ".html": {
+          "relative_path": "ApiDocumentation/netstandard2.0/CommonDTOs.PostDataReqDTO.html",
+          "hash": "RX7MpON/hReRwuSltG58rg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "ATAP.Utilities.AutoDoc/obj/docfx/api/netstandard2.0/CommonDTOs.PostDataRspDTO.yml",
+      "output": {
+        ".html": {
+          "relative_path": "ApiDocumentation/netstandard2.0/CommonDTOs.PostDataRspDTO.html",
+          "hash": "CFLaiuHHFuXvlPM4OxTE9A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "ATAP.Utilities.AutoDoc/obj/docfx/api/netstandard2.0/CommonDTOs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "ApiDocumentation/netstandard2.0/CommonDTOs.html",
+          "hash": "q2fzVOKsoh06Qajt3BOrzg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "DuplicateUids"
+      ],
+      "type": "ManagedReference",
+      "source_relative_path": "ATAP.Utilities.AutoDoc/obj/docfx/api/netstandard2.0/ConsoleApp.AppHost.yml",
+      "output": {
+        ".html": {
+          "relative_path": "ApiDocumentation/netstandard2.0/ConsoleApp.AppHost.html",
+          "hash": "8RgUwUfgcU+9QXUyTCYtvw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "ATAP.Utilities.AutoDoc/obj/docfx/api/netstandard2.0/ConsoleApp.BaseServices.yml",
+      "output": {
+        ".html": {
+          "relative_path": "ApiDocumentation/netstandard2.0/ConsoleApp.BaseServices.html",
+          "hash": "YnZRRPBwRdVrVwoCxTt78w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "ATAP.Utilities.AutoDoc/obj/docfx/api/netstandard2.0/ConsoleApp.yml",
+      "output": {
+        ".html": {
+          "relative_path": "ApiDocumentation/netstandard2.0/ConsoleApp.html",
+          "hash": "5kMytoAT9nTtOzh5jDI0/g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "ATAP.Utilities.AutoDoc/obj/docfx/api/netstandard2.0/GUI.App.yml",
+      "output": {
+        ".html": {
+          "relative_path": "ApiDocumentation/netstandard2.0/GUI.App.html",
+          "hash": "9Qmr6SSpNUjtYSE6J/LSAA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "ATAP.Utilities.AutoDoc/obj/docfx/api/netstandard2.0/GUI.Pages.BasicRESTServices.yml",
+      "output": {
+        ".html": {
+          "relative_path": "ApiDocumentation/netstandard2.0/GUI.Pages.BasicRESTServices.html",
+          "hash": "8Q53UpBOrtpRKMg5UXzr1Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "DuplicateUids"
+      ],
+      "type": "ManagedReference",
+      "source_relative_path": "ATAP.Utilities.AutoDoc/obj/docfx/api/netstandard2.0/GUI.Pages.BasicRESTServicesCodeBehind.yml",
+      "output": {
+        ".html": {
+          "relative_path": "ApiDocumentation/netstandard2.0/GUI.Pages.BasicRESTServicesCodeBehind.html",
+          "hash": "sv/9DmJ+PrxmtEoga0RKJA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "ATAP.Utilities.AutoDoc/obj/docfx/api/netstandard2.0/GUI.Pages.Index.yml",
+      "output": {
+        ".html": {
+          "relative_path": "ApiDocumentation/netstandard2.0/GUI.Pages.Index.html",
+          "hash": "E58NIMxWeWldfVZCxv92KA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "ATAP.Utilities.AutoDoc/obj/docfx/api/netstandard2.0/GUI.Pages._ViewImports.yml",
+      "output": {
+        ".html": {
+          "relative_path": "ApiDocumentation/netstandard2.0/GUI.Pages._ViewImports.html",
+          "hash": "G6unxHfrr0qZiSBxpt6K6w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "DuplicateUids"
+      ],
+      "type": "ManagedReference",
+      "source_relative_path": "ATAP.Utilities.AutoDoc/obj/docfx/api/netstandard2.0/GUI.Pages.yml",
+      "output": {
+        ".html": {
+          "relative_path": "ApiDocumentation/netstandard2.0/GUI.Pages.html",
+          "hash": "jqHbkRRS8/TntNcUTh8myA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "ATAP.Utilities.AutoDoc/obj/docfx/api/netstandard2.0/GUI.Program.yml",
+      "output": {
+        ".html": {
+          "relative_path": "ApiDocumentation/netstandard2.0/GUI.Program.html",
+          "hash": "Q0cD7JTJkjr4c701KSTUAQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "ATAP.Utilities.AutoDoc/obj/docfx/api/netstandard2.0/GUI.Shared.MainLayout.yml",
+      "output": {
+        ".html": {
+          "relative_path": "ApiDocumentation/netstandard2.0/GUI.Shared.MainLayout.html",
+          "hash": "df/gYYIvMnp00jNrU2FQPg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "ATAP.Utilities.AutoDoc/obj/docfx/api/netstandard2.0/GUI.Shared.NavMenu.yml",
+      "output": {
+        ".html": {
+          "relative_path": "ApiDocumentation/netstandard2.0/GUI.Shared.NavMenu.html",
+          "hash": "QZVVSn9rx0nKh70xwV2bOQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "ATAP.Utilities.AutoDoc/obj/docfx/api/netstandard2.0/GUI.Shared.yml",
+      "output": {
+        ".html": {
+          "relative_path": "ApiDocumentation/netstandard2.0/GUI.Shared.html",
+          "hash": "iS6u0MzUdY13BITNmNt6GA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "ATAP.Utilities.AutoDoc/obj/docfx/api/netstandard2.0/GUI.Startup.yml",
+      "output": {
+        ".html": {
+          "relative_path": "ApiDocumentation/netstandard2.0/GUI.Startup.html",
+          "hash": "l+Mdpwa1fMLRfzkmKfIMNA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "ATAP.Utilities.AutoDoc/obj/docfx/api/netstandard2.0/GUI._ViewImports.yml",
+      "output": {
+        ".html": {
+          "relative_path": "ApiDocumentation/netstandard2.0/GUI._ViewImports.html",
+          "hash": "5oCK0pNFlLQ1dSJaECyC9Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "ATAP.Utilities.AutoDoc/obj/docfx/api/netstandard2.0/GUI.yml",
+      "output": {
+        ".html": {
+          "relative_path": "ApiDocumentation/netstandard2.0/GUI.html",
+          "hash": "Mm1OJxztpbbDkGgrcQtcAA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "ATAP.Utilities.AutoDoc/obj/docfx/api/netstandard2.0/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "ApiDocumentation/netstandard2.0/toc.html",
+          "hash": "aUNu9RXNMuvVw31Xml1QrQ=="
         }
       },
       "is_incremental": false,
@@ -167,7 +695,7 @@
         "InvalidFileLink"
       ],
       "type": "Toc",
-      "source_relative_path": "../Demos/toc.yml",
+      "source_relative_path": "Demos/toc.yml",
       "output": {
         ".html": {
           "relative_path": "Demos/toc.html",
@@ -182,11 +710,11 @@
         "InvalidFileLink"
       ],
       "type": "Conceptual",
-      "source_relative_path": "../README.md",
+      "source_relative_path": "README.md",
       "output": {
         ".html": {
           "relative_path": "README.html",
-          "hash": "Ky1LNIO4Q6ZUSYrIQsqezw=="
+          "hash": "EJ3ZD5/bGuNhV9GgtUVShA=="
         }
       },
       "is_incremental": false,
@@ -194,11 +722,26 @@
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "../SolutionDocumentation/BuildingNotes.MD",
+      "source_relative_path": "SolutionDocumentation/Attribution.md",
+      "output": {
+        ".html": {
+          "relative_path": "SolutionDocumentation/Attribution.html",
+          "hash": "CMApCUpbhfvg7wNAMXYyvA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "InvalidFileLink"
+      ],
+      "type": "Conceptual",
+      "source_relative_path": "SolutionDocumentation/BuildingNotes.MD",
       "output": {
         ".html": {
           "relative_path": "SolutionDocumentation/BuildingNotes.html",
-          "hash": "1XF28JfAWmkLlSDkOJ6H3w=="
+          "hash": "t4d8JBDnlZobnl1nsyIGUg=="
         }
       },
       "is_incremental": false,
@@ -206,35 +749,56 @@
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "../SolutionDocumentation/GettingStarted.md",
+      "source_relative_path": "SolutionDocumentation/ContributingGuidelines.md",
+      "output": {
+        ".html": {
+          "relative_path": "SolutionDocumentation/ContributingGuidelines.html",
+          "hash": "LTdp0xXcmdakX1IAdyHA0A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "InvalidFileLink"
+      ],
+      "type": "Conceptual",
+      "source_relative_path": "SolutionDocumentation/GettingStarted.md",
       "output": {
         ".html": {
           "relative_path": "SolutionDocumentation/GettingStarted.html",
-          "hash": "aiiFjgsXiE+vf6NxTmah8A=="
+          "hash": "ceRBP4yotPT53EwuisP7VA=="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
+      "log_codes": [
+        "InvalidFileLink"
+      ],
       "type": "Conceptual",
-      "source_relative_path": "../SolutionDocumentation/Organization.md",
+      "source_relative_path": "SolutionDocumentation/Organization.md",
       "output": {
         ".html": {
           "relative_path": "SolutionDocumentation/Organization.html",
-          "hash": "TZ7b4fAlop9Ikpj57PfmMQ=="
+          "hash": "TVXz8LUCkBdbY146musWrQ=="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
+      "log_codes": [
+        "InvalidFileLink"
+      ],
       "type": "Conceptual",
-      "source_relative_path": "../SolutionDocumentation/ReadMe.md",
+      "source_relative_path": "SolutionDocumentation/ReadMe.md",
       "output": {
         ".html": {
           "relative_path": "SolutionDocumentation/ReadMe.html",
-          "hash": "mRo7R/T0aVqYd4ytq20qMQ=="
+          "hash": "Bm0Vnxrx9nVzYsTBtVo4hQ=="
         }
       },
       "is_incremental": false,
@@ -245,11 +809,11 @@
         "InvalidFileLink"
       ],
       "type": "Toc",
-      "source_relative_path": "../SolutionDocumentation/toc.yml",
+      "source_relative_path": "SolutionDocumentation/toc.yml",
       "output": {
         ".html": {
           "relative_path": "SolutionDocumentation/toc.html",
-          "hash": "AjCp5PerCjP5Dm0dOnmpiA=="
+          "hash": "Rs21XRO0uJneoCi0b/iY3A=="
         }
       },
       "is_incremental": false,
@@ -260,44 +824,11 @@
         "InvalidFileLink"
       ],
       "type": "Conceptual",
-      "source_relative_path": "../index.md",
+      "source_relative_path": "index.md",
       "output": {
         ".html": {
           "relative_path": "index.html",
-          "hash": "QUC4NiY97EgK9gcfGsUflg=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "images/ataplogo - 1 inch high.bmp",
-      "output": {
-        "resource": {
-          "relative_path": "images/ataplogo - 1 inch high.bmp"
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "images/ataplogo.bmp",
-      "output": {
-        "resource": {
-          "relative_path": "images/ataplogo.bmp"
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "images/ataplogo1inch.bmp",
-      "output": {
-        "resource": {
-          "relative_path": "images/ataplogo1inch.bmp"
+          "hash": "/l0dR0YZ0lZO4gOu9Bl/HA=="
         }
       },
       "is_incremental": false,
@@ -305,677 +836,14 @@
     },
     {
       "log_codes": [
-        "DuplicateUids"
+        "InvalidFileLink"
       ],
-      "type": "ManagedReference",
-      "source_relative_path": "obj/docfx/api/net471/CommonDTOs.InitializationReqDTO.yml",
-      "output": {
-        ".html": {
-          "relative_path": "ApiDocumentation/net471/CommonDTOs.InitializationReqDTO.html",
-          "hash": "AURf14EQORF5GXXF3l4Jpw=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "log_codes": [
-        "DuplicateUids"
-      ],
-      "type": "ManagedReference",
-      "source_relative_path": "obj/docfx/api/net471/CommonDTOs.InitializationRspDTO.yml",
-      "output": {
-        ".html": {
-          "relative_path": "ApiDocumentation/net471/CommonDTOs.InitializationRspDTO.html",
-          "hash": "HdLB8BHNkRW/dLwtTavhvw=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "log_codes": [
-        "DuplicateUids"
-      ],
-      "type": "ManagedReference",
-      "source_relative_path": "obj/docfx/api/net471/CommonDTOs.PostDataReqDTO.yml",
-      "output": {
-        ".html": {
-          "relative_path": "ApiDocumentation/net471/CommonDTOs.PostDataReqDTO.html",
-          "hash": "PU47kP/0U0LqOoOQMEQvwA=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "log_codes": [
-        "DuplicateUids"
-      ],
-      "type": "ManagedReference",
-      "source_relative_path": "obj/docfx/api/net471/CommonDTOs.PostDataRspDTO.yml",
-      "output": {
-        ".html": {
-          "relative_path": "ApiDocumentation/net471/CommonDTOs.PostDataRspDTO.html",
-          "hash": "Nm7Tarh6zDNLJXewU1MHcQ=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "log_codes": [
-        "DuplicateUids"
-      ],
-      "type": "ManagedReference",
-      "source_relative_path": "obj/docfx/api/net471/CommonDTOs.yml",
-      "output": {
-        ".html": {
-          "relative_path": "Api/net471/CommonDTOs.html",
-          "hash": "pI1q0siHLxn7riRLOSUnMQ=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/docfx/api/net471/ConsoleApp.AppHost.yml",
-      "output": {
-        ".html": {
-          "relative_path": "ApiDocumentation/net471/ConsoleApp.AppHost.html",
-          "hash": "QxquAaEmFHq2uy8/EU/prA=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/docfx/api/net471/ConsoleApp.BaseServices.yml",
-      "output": {
-        ".html": {
-          "relative_path": "ApiDocumentation/net471/ConsoleApp.BaseServices.html",
-          "hash": "yqQ37goFhzuWf0e0zdmtMQ=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "log_codes": [
-        "DuplicateUids"
-      ],
-      "type": "ManagedReference",
-      "source_relative_path": "obj/docfx/api/net471/ConsoleApp.yml",
-      "output": {
-        ".html": {
-          "relative_path": "Api/net471/ConsoleApp.html",
-          "hash": "GcDWdQv5n+LKnEnoceMAtg=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/docfx/api/net471/GUI.Pages.BasicRESTServicesCodeBehind.yml",
-      "output": {
-        ".html": {
-          "relative_path": "ApiDocumentation/net471/GUI.Pages.BasicRESTServicesCodeBehind.html",
-          "hash": "N5zfN7GoTMQ+sLH5rhy62w=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "log_codes": [
-        "DuplicateUids"
-      ],
-      "type": "ManagedReference",
-      "source_relative_path": "obj/docfx/api/net471/GUI.Pages.yml",
-      "output": {
-        ".html": {
-          "relative_path": "Api/net471/GUI.Pages.html",
-          "hash": "J4S3RCMzhZ+Np3J6BiUSnw=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "log_codes": [
-        "DuplicateUids"
-      ],
-      "type": "ManagedReference",
-      "source_relative_path": "obj/docfx/api/net471/GUI.Program.yml",
-      "output": {
-        ".html": {
-          "relative_path": "ApiDocumentation/net471/GUI.Program.html",
-          "hash": "TPfDWxfosY5lSAOKQ7ZDbw=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "log_codes": [
-        "DuplicateUids"
-      ],
-      "type": "ManagedReference",
-      "source_relative_path": "obj/docfx/api/net471/GUI.Startup.yml",
-      "output": {
-        ".html": {
-          "relative_path": "ApiDocumentation/net471/GUI.Startup.html",
-          "hash": "x6pQ51ubtMUpcjw8JC5/IQ=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "log_codes": [
-        "DuplicateUids"
-      ],
-      "type": "ManagedReference",
-      "source_relative_path": "obj/docfx/api/net471/GUI.yml",
-      "output": {
-        ".html": {
-          "relative_path": "Api/net471/GUI.html",
-          "hash": "QqT5z8TZuVB7qj5Q6Htoaw=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
       "type": "Toc",
-      "source_relative_path": "obj/docfx/api/net471/toc.yml",
+      "source_relative_path": "toc.yml",
       "output": {
         ".html": {
-          "relative_path": "ApiDocumentation/net471/toc.html",
-          "hash": "sR2IPpdrb1iBgAhm2No+zw=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/docfx/api/netcoreapp2.0/CommonDTOs.InitializationReqDTO.yml",
-      "output": {
-        ".html": {
-          "relative_path": "ApiDocumentation/netcoreapp2.0/CommonDTOs.InitializationReqDTO.html",
-          "hash": "Z/zYpBCmbRqfW7Q+3eghxQ=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/docfx/api/netcoreapp2.0/CommonDTOs.InitializationRspDTO.yml",
-      "output": {
-        ".html": {
-          "relative_path": "ApiDocumentation/netcoreapp2.0/CommonDTOs.InitializationRspDTO.html",
-          "hash": "oTY5Xjwrq+j6QM170Efw8g=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/docfx/api/netcoreapp2.0/CommonDTOs.PostDataReqDTO.yml",
-      "output": {
-        ".html": {
-          "relative_path": "ApiDocumentation/netcoreapp2.0/CommonDTOs.PostDataReqDTO.html",
-          "hash": "Egy64Akz+oYeNXkiI//k4w=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/docfx/api/netcoreapp2.0/CommonDTOs.PostDataRspDTO.yml",
-      "output": {
-        ".html": {
-          "relative_path": "ApiDocumentation/netcoreapp2.0/CommonDTOs.PostDataRspDTO.html",
-          "hash": "nBI8zdcPsXKSOeSj2o4ISA=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "log_codes": [
-        "DuplicateUids"
-      ],
-      "type": "ManagedReference",
-      "source_relative_path": "obj/docfx/api/netcoreapp2.0/CommonDTOs.yml",
-      "output": {
-        ".html": {
-          "relative_path": "Api/netcoreapp2.0/CommonDTOs.html",
-          "hash": "pI1q0siHLxn7riRLOSUnMQ=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "log_codes": [
-        "DuplicateUids"
-      ],
-      "type": "ManagedReference",
-      "source_relative_path": "obj/docfx/api/netcoreapp2.0/ConsoleApp.AppHost.yml",
-      "output": {
-        ".html": {
-          "relative_path": "ApiDocumentation/netcoreapp2.0/ConsoleApp.AppHost.html",
-          "hash": "VR5O3kvplY0/XBLeK2FLYA=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "log_codes": [
-        "DuplicateUids"
-      ],
-      "type": "ManagedReference",
-      "source_relative_path": "obj/docfx/api/netcoreapp2.0/ConsoleApp.BaseServices.yml",
-      "output": {
-        ".html": {
-          "relative_path": "ApiDocumentation/netcoreapp2.0/ConsoleApp.BaseServices.html",
-          "hash": "6HFj5lhd/27yO4r6xpqc/A=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/docfx/api/netcoreapp2.0/ConsoleApp.yml",
-      "output": {
-        ".html": {
-          "relative_path": "Api/netcoreapp2.0/ConsoleApp.html",
-          "hash": "X/0aELsc5385mqVsvNg2Mg=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "log_codes": [
-        "DuplicateUids"
-      ],
-      "type": "ManagedReference",
-      "source_relative_path": "obj/docfx/api/netcoreapp2.0/GUI.Pages.BasicRESTServicesCodeBehind.yml",
-      "output": {
-        ".html": {
-          "relative_path": "ApiDocumentation/netcoreapp2.0/GUI.Pages.BasicRESTServicesCodeBehind.html",
-          "hash": "iew4GMO2IIi+nxl3ZywzQQ=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/docfx/api/netcoreapp2.0/GUI.Pages.yml",
-      "output": {
-        ".html": {
-          "relative_path": "Api/netcoreapp2.0/GUI.Pages.html",
-          "hash": "wmoIWq+ydFV8OnLURN+8LA=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/docfx/api/netcoreapp2.0/GUI.Program.yml",
-      "output": {
-        ".html": {
-          "relative_path": "ApiDocumentation/netcoreapp2.0/GUI.Program.html",
-          "hash": "TPfDWxfosY5lSAOKQ7ZDbw=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/docfx/api/netcoreapp2.0/GUI.Startup.yml",
-      "output": {
-        ".html": {
-          "relative_path": "ApiDocumentation/netcoreapp2.0/GUI.Startup.html",
-          "hash": "x6pQ51ubtMUpcjw8JC5/IQ=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "log_codes": [
-        "DuplicateUids"
-      ],
-      "type": "ManagedReference",
-      "source_relative_path": "obj/docfx/api/netcoreapp2.0/GUI.yml",
-      "output": {
-        ".html": {
-          "relative_path": "Api/netcoreapp2.0/GUI.html",
-          "hash": "QqT5z8TZuVB7qj5Q6Htoaw=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "Toc",
-      "source_relative_path": "obj/docfx/api/netcoreapp2.0/toc.yml",
-      "output": {
-        ".html": {
-          "relative_path": "ApiDocumentation/netcoreapp2.0/toc.html",
-          "hash": "nWNcuVs6W0ngeFyC8F+TGg=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "log_codes": [
-        "DuplicateUids"
-      ],
-      "type": "ManagedReference",
-      "source_relative_path": "obj/docfx/api/netstandard2.0/CommonDTOs.InitializationReqDTO.yml",
-      "output": {
-        ".html": {
-          "relative_path": "ApiDocumentation/netstandard2.0/CommonDTOs.InitializationReqDTO.html",
-          "hash": "lDDu9/h0MdlolTcHkaiPFw=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "log_codes": [
-        "DuplicateUids"
-      ],
-      "type": "ManagedReference",
-      "source_relative_path": "obj/docfx/api/netstandard2.0/CommonDTOs.InitializationRspDTO.yml",
-      "output": {
-        ".html": {
-          "relative_path": "ApiDocumentation/netstandard2.0/CommonDTOs.InitializationRspDTO.html",
-          "hash": "NQW1JZvGmAYypojFKX8P1g=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "log_codes": [
-        "DuplicateUids"
-      ],
-      "type": "ManagedReference",
-      "source_relative_path": "obj/docfx/api/netstandard2.0/CommonDTOs.PostDataReqDTO.yml",
-      "output": {
-        ".html": {
-          "relative_path": "ApiDocumentation/netstandard2.0/CommonDTOs.PostDataReqDTO.html",
-          "hash": "B0gKzpEJ/nGV5vCs3cJeYw=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "log_codes": [
-        "DuplicateUids"
-      ],
-      "type": "ManagedReference",
-      "source_relative_path": "obj/docfx/api/netstandard2.0/CommonDTOs.PostDataRspDTO.yml",
-      "output": {
-        ".html": {
-          "relative_path": "ApiDocumentation/netstandard2.0/CommonDTOs.PostDataRspDTO.html",
-          "hash": "gu40/i/pLkoon6//5j34bQ=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/docfx/api/netstandard2.0/CommonDTOs.yml",
-      "output": {
-        ".html": {
-          "relative_path": "Api/netstandard2.0/CommonDTOs.html",
-          "hash": "lXAoqi45ddbr41x4E52RmQ=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "log_codes": [
-        "DuplicateUids"
-      ],
-      "type": "ManagedReference",
-      "source_relative_path": "obj/docfx/api/netstandard2.0/ConsoleApp.AppHost.yml",
-      "output": {
-        ".html": {
-          "relative_path": "ApiDocumentation/netstandard2.0/ConsoleApp.AppHost.html",
-          "hash": "YrdWFfJsYYbt7avPb1wYHQ=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "log_codes": [
-        "DuplicateUids"
-      ],
-      "type": "ManagedReference",
-      "source_relative_path": "obj/docfx/api/netstandard2.0/ConsoleApp.BaseServices.yml",
-      "output": {
-        ".html": {
-          "relative_path": "ApiDocumentation/netstandard2.0/ConsoleApp.BaseServices.html",
-          "hash": "yqQ37goFhzuWf0e0zdmtMQ=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "log_codes": [
-        "DuplicateUids"
-      ],
-      "type": "ManagedReference",
-      "source_relative_path": "obj/docfx/api/netstandard2.0/ConsoleApp.yml",
-      "output": {
-        ".html": {
-          "relative_path": "Api/netstandard2.0/ConsoleApp.html",
-          "hash": "GcDWdQv5n+LKnEnoceMAtg=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/docfx/api/netstandard2.0/GUI.App.yml",
-      "output": {
-        ".html": {
-          "relative_path": "ApiDocumentation/netstandard2.0/GUI.App.html",
-          "hash": "2MjEnOxkmx6kIv36giWepA=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/docfx/api/netstandard2.0/GUI.Pages.BasicRESTServices.yml",
-      "output": {
-        ".html": {
-          "relative_path": "ApiDocumentation/netstandard2.0/GUI.Pages.BasicRESTServices.html",
-          "hash": "DYzIBWRHct3dVrZoXUKknw=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "log_codes": [
-        "DuplicateUids"
-      ],
-      "type": "ManagedReference",
-      "source_relative_path": "obj/docfx/api/netstandard2.0/GUI.Pages.BasicRESTServicesCodeBehind.yml",
-      "output": {
-        ".html": {
-          "relative_path": "ApiDocumentation/netstandard2.0/GUI.Pages.BasicRESTServicesCodeBehind.html",
-          "hash": "0J9cd1d20BnoUqJcV4WEpg=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/docfx/api/netstandard2.0/GUI.Pages.Index.yml",
-      "output": {
-        ".html": {
-          "relative_path": "ApiDocumentation/netstandard2.0/GUI.Pages.Index.html",
-          "hash": "e2FzQuMIddbbakCNmd0GUw=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/docfx/api/netstandard2.0/GUI.Pages._ViewImports.yml",
-      "output": {
-        ".html": {
-          "relative_path": "ApiDocumentation/netstandard2.0/GUI.Pages._ViewImports.html",
-          "hash": "poWp61nhtQwnnVDOwSf9Vw=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "log_codes": [
-        "DuplicateUids"
-      ],
-      "type": "ManagedReference",
-      "source_relative_path": "obj/docfx/api/netstandard2.0/GUI.Pages.yml",
-      "output": {
-        ".html": {
-          "relative_path": "Api/netstandard2.0/GUI.Pages.html",
-          "hash": "MYqR2BCNKmTvJt/x57bD6A=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "log_codes": [
-        "DuplicateUids"
-      ],
-      "type": "ManagedReference",
-      "source_relative_path": "obj/docfx/api/netstandard2.0/GUI.Program.yml",
-      "output": {
-        ".html": {
-          "relative_path": "ApiDocumentation/netstandard2.0/GUI.Program.html",
-          "hash": "Qu9s98HKXGSZZjWR8O2HxQ=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/docfx/api/netstandard2.0/GUI.Shared.MainLayout.yml",
-      "output": {
-        ".html": {
-          "relative_path": "ApiDocumentation/netstandard2.0/GUI.Shared.MainLayout.html",
-          "hash": "JWd+Mg54xkkrby/RdqNQqg=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/docfx/api/netstandard2.0/GUI.Shared.NavMenu.yml",
-      "output": {
-        ".html": {
-          "relative_path": "ApiDocumentation/netstandard2.0/GUI.Shared.NavMenu.html",
-          "hash": "RehyzVeSrVXsvf09f81D3w=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/docfx/api/netstandard2.0/GUI.Shared.yml",
-      "output": {
-        ".html": {
-          "relative_path": "ApiDocumentation/netstandard2.0/GUI.Shared.html",
-          "hash": "InmGodRPxjln990RK7l9jA=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "log_codes": [
-        "DuplicateUids"
-      ],
-      "type": "ManagedReference",
-      "source_relative_path": "obj/docfx/api/netstandard2.0/GUI.Startup.yml",
-      "output": {
-        ".html": {
-          "relative_path": "ApiDocumentation/netstandard2.0/GUI.Startup.html",
-          "hash": "D/FL/VI/7hE7pfzUUtCFdw=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/docfx/api/netstandard2.0/GUI._ViewImports.yml",
-      "output": {
-        ".html": {
-          "relative_path": "ApiDocumentation/netstandard2.0/GUI._ViewImports.html",
-          "hash": "cVYXrUkKazlkCEyXJ4h73A=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/docfx/api/netstandard2.0/GUI.yml",
-      "output": {
-        ".html": {
-          "relative_path": "Api/netstandard2.0/GUI.html",
-          "hash": "o8FnwBy0wM87Pn+lWNkV5w=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "Toc",
-      "source_relative_path": "obj/docfx/api/netstandard2.0/toc.yml",
-      "output": {
-        ".html": {
-          "relative_path": "ApiDocumentation/netstandard2.0/toc.html",
-          "hash": "KJnp1FqB/rAI4OPuE14RKA=="
+          "relative_path": "toc.html",
+          "hash": "D/AaX4c7KsPicmiljGhzoQ=="
         }
       },
       "is_incremental": false,
@@ -985,7 +853,8 @@
   "incremental_info": [
     {
       "status": {
-        "can_incremental": true,
+        "can_incremental": false,
+        "details": "Cannot build incrementally because last build info is missing.",
         "incrementalPhase": "build"
       },
       "processors": {
@@ -994,17 +863,12 @@
           "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
           "incrementalPhase": "build"
         },
-        "ResourceDocumentProcessor": {
-          "can_incremental": false,
-          "details": "Processor ResourceDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
-          "incrementalPhase": "build"
-        },
         "ManagedReferenceDocumentProcessor": {
-          "can_incremental": true,
+          "can_incremental": false,
           "incrementalPhase": "build"
         },
         "ConceptualDocumentProcessor": {
-          "can_incremental": true,
+          "can_incremental": false,
           "incrementalPhase": "build"
         }
       }

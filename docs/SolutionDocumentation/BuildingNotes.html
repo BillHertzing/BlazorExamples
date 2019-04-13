@@ -79,31 +79,47 @@
             <article class="content wrap" id="_content" data-uid="">
 <h1 id="notes-on-building-the-solution">Notes on Building the solution</h1>
 
+<p>If you are viewing this BuildingNotes.md in GitHub, <a href="GettingStarted.html">here is this same document on the documentation site</a></p>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>Details for the <a href="GettingStarted.html#Prerequisites">Prerequisites</a>
+Details for thhe <a href="">optional 3rd-party tools</a></p>
+<h2 id="general-background-build-information">General Background Build Information</h2>
+<p>In the interest of &quot;Don&#39;t Repeat Yourself (DRY)&quot; principles, you will find general documentation on the build tools, versioning methodology, Documentation creation, etc, in the ATAP.Utilities repository.
+    1.<a href="https://billhertzing.github.io/ATAP.Utilities/SolutionDocumentation/Building.html">Configuring and using the Visual Studio IDE and Visual Studio Team Explorer</a>. 
+    2.<a href="">GitFlow branch and release strategy</a> used by this repository.
+    3.<a href="">Versioning and Packaging</a> used by this repository.
+    1.<a href="">Building Documentation</a> general instructions for using DocFx to build documentation for a repository</p>
 <h2 id="versioning">Versioning</h2>
-<ul>
-<li>Only in Github, no versioning done in any AssemblyInfo.cs file</li>
-</ul>
-<h1 id="directorybuildprops">Directory.Build.Props</h1>
+<p>This repository follows the general guidelines above. </p>
+<h2 id="organization">Organization</h2>
+<p>Refer to the <a href="Organization.html">Organization documentation</a> to pictures of how the solution and filesystem layouts are organized.</p>
+<h2 id="build-configuration-information-at-the-solution-level">Build Configuration information at the Solution level</h2>
+<p>The Solution Item solution folder level contains build configuration information that applies to all projects in the solution, as follows:</p>
+<h3 id="directorybuildprops">Directory.Build.Props</h3>
 <ul>
 <li>Tells all projects to use the latest C# language features, and that VersionInformation is explicitly defined in each project. Defines common compilation symbols and flags.</li>
+<li>TargetFrameworks</li>
 </ul>
-<h2 id="consoleapp">ConsoleApp</h2>
+<h2 id="build-configuration-information-at-the-demoxx-level">Build Configuration information at the Demoxx level</h2>
+<p>Individual under each Demoxx folder are three projects. To build a working Demo, all three projects must be built, and the GUI project must also be published. Building notes for each project are below</p>
+<h3 id="build-the-consoleappexe">Build the ConsoleApp.exe</h3>
 <ul>
 <li>The .csproj should specify &lt;TargetFramework&gt;net471&lt;/TargetFramework&gt;.</li>
 </ul>
-<h2 id="gui">GUI</h2>
-<ul>
-<li>The .csproj should specify &lt;TargetFramework&gt;netnetstandard2.0&lt;/TargetFramework&gt;.</li>
-</ul>
-<h2 id="commondto">CommonDTo</h2>
+<h3 id="build-the-commondto-library">Build the CommonDTO library</h3>
 <ul>
 <li>The .csproj should specify &lt;TargetFrameworks&gt;netstandard2.0;net471&lt;/TargetFrameworks&gt;. Note the plural form of the Property. This will ensure that assemblies are built for both target frameworks.</li>
 </ul>
-<h2 id="publish-profiles">Publish Profiles</h2>
+<h2 id="build-the-gui">Build the GUI</h2>
+<ul>
+<li>The .csproj should specify &lt;TargetFramework&gt;netnetstandard2.0&lt;/TargetFramework&gt;.</li>
+</ul>
+<h2 id="publish-the-gui">Publish the GUI</h2>
+<h3 id="publish-profiles">Publish Profiles</h3>
 <ul>
 <li>There is a DebugFolderProfile and a ReleaseFolderProfile. Both publish to the filesystem. The DebugFolderProfile publishes to a subfolder relative to the GUI project&#39;s folder. The ReleaseFolderProfile publishes to a Release subfolder relative to the root of the solution.</li>
 </ul>
-<h1 id="nuget-packaging">NuGet Packaging</h1>
+<h2 id="nuget-packaging">NuGet Packaging</h2>
 <ul>
 <li>N/A, none of the projects in this solution create NuGet packages</li>
 </ul>

@@ -3,7 +3,7 @@ sorted: true
 references:
 - uid: CommonDTOs
   name: CommonDTOs
-  href: Api/netstandard2.0/CommonDTOs.html
+  href: ApiDocumentation/netstandard2.0/CommonDTOs.html
   commentId: N:CommonDTOs
   fullName: CommonDTOs
   nameWithType: CommonDTOs
@@ -15,7 +15,7 @@ references:
   nameWithType: InitializationReqDTO
 - uid: CommonDTOs.InitializationRspDTO
   name: InitializationRspDTO
-  href: ApiDocumentation/netcoreapp2.0/CommonDTOs.InitializationRspDTO.html
+  href: ApiDocumentation/net471/CommonDTOs.InitializationRspDTO.html
   commentId: T:CommonDTOs.InitializationRspDTO
   fullName: CommonDTOs.InitializationRspDTO
   nameWithType: InitializationRspDTO
@@ -40,26 +40,26 @@ references:
   nameWithType: PostDataReqDTO.StringDataObject
 - uid: CommonDTOs.PostDataRspDTO
   name: PostDataRspDTO
-  href: ApiDocumentation/netcoreapp2.0/CommonDTOs.PostDataRspDTO.html
+  href: ApiDocumentation/netstandard2.0/CommonDTOs.PostDataRspDTO.html
   commentId: T:CommonDTOs.PostDataRspDTO
   fullName: CommonDTOs.PostDataRspDTO
   nameWithType: PostDataRspDTO
 - uid: CommonDTOs.PostDataRspDTO.StringDataObject
   name: StringDataObject
-  href: ApiDocumentation/netcoreapp2.0/CommonDTOs.PostDataRspDTO.html#CommonDTOs_PostDataRspDTO_StringDataObject
+  href: ApiDocumentation/netstandard2.0/CommonDTOs.PostDataRspDTO.html#CommonDTOs_PostDataRspDTO_StringDataObject
   commentId: P:CommonDTOs.PostDataRspDTO.StringDataObject
   fullName: CommonDTOs.PostDataRspDTO.StringDataObject
   nameWithType: PostDataRspDTO.StringDataObject
 - uid: CommonDTOs.PostDataRspDTO.StringDataObject*
   name: StringDataObject
-  href: ApiDocumentation/netcoreapp2.0/CommonDTOs.PostDataRspDTO.html#CommonDTOs_PostDataRspDTO_StringDataObject_
+  href: ApiDocumentation/netstandard2.0/CommonDTOs.PostDataRspDTO.html#CommonDTOs_PostDataRspDTO_StringDataObject_
   commentId: Overload:CommonDTOs.PostDataRspDTO.StringDataObject
   isSpec: "True"
   fullName: CommonDTOs.PostDataRspDTO.StringDataObject
   nameWithType: PostDataRspDTO.StringDataObject
 - uid: ConsoleApp
   name: ConsoleApp
-  href: Api/netcoreapp2.0/ConsoleApp.html
+  href: ApiDocumentation/netstandard2.0/ConsoleApp.html
   commentId: N:ConsoleApp
   fullName: ConsoleApp
   nameWithType: ConsoleApp
@@ -110,32 +110,32 @@ references:
   nameWithType: AppHost.Stop
 - uid: ConsoleApp.BaseServices
   name: BaseServices
-  href: ApiDocumentation/net471/ConsoleApp.BaseServices.html
+  href: ApiDocumentation/netstandard2.0/ConsoleApp.BaseServices.html
   commentId: T:ConsoleApp.BaseServices
   fullName: ConsoleApp.BaseServices
   nameWithType: BaseServices
 - uid: ConsoleApp.BaseServices.Post(CommonDTOs.InitializationReqDTO)
   name: Post(InitializationReqDTO)
-  href: ApiDocumentation/net471/ConsoleApp.BaseServices.html#ConsoleApp_BaseServices_Post_CommonDTOs_InitializationReqDTO_
+  href: ApiDocumentation/netstandard2.0/ConsoleApp.BaseServices.html#ConsoleApp_BaseServices_Post_CommonDTOs_InitializationReqDTO_
   commentId: M:ConsoleApp.BaseServices.Post(CommonDTOs.InitializationReqDTO)
   fullName: ConsoleApp.BaseServices.Post(CommonDTOs.InitializationReqDTO)
   nameWithType: BaseServices.Post(InitializationReqDTO)
 - uid: ConsoleApp.BaseServices.Post(CommonDTOs.PostDataReqDTO)
   name: Post(PostDataReqDTO)
-  href: ApiDocumentation/net471/ConsoleApp.BaseServices.html#ConsoleApp_BaseServices_Post_CommonDTOs_PostDataReqDTO_
+  href: ApiDocumentation/netstandard2.0/ConsoleApp.BaseServices.html#ConsoleApp_BaseServices_Post_CommonDTOs_PostDataReqDTO_
   commentId: M:ConsoleApp.BaseServices.Post(CommonDTOs.PostDataReqDTO)
   fullName: ConsoleApp.BaseServices.Post(CommonDTOs.PostDataReqDTO)
   nameWithType: BaseServices.Post(PostDataReqDTO)
 - uid: ConsoleApp.BaseServices.Post*
   name: Post
-  href: ApiDocumentation/net471/ConsoleApp.BaseServices.html#ConsoleApp_BaseServices_Post_
+  href: ApiDocumentation/netstandard2.0/ConsoleApp.BaseServices.html#ConsoleApp_BaseServices_Post_
   commentId: Overload:ConsoleApp.BaseServices.Post
   isSpec: "True"
   fullName: ConsoleApp.BaseServices.Post
   nameWithType: BaseServices.Post
 - uid: GUI
   name: GUI
-  href: Api/netstandard2.0/GUI.html
+  href: ApiDocumentation/netstandard2.0/GUI.html
   commentId: N:GUI
   fullName: GUI
   nameWithType: GUI
@@ -179,7 +179,7 @@ references:
   nameWithType: App.BuildRenderTree
 - uid: GUI.Pages
   name: GUI.Pages
-  href: Api/netcoreapp2.0/GUI.Pages.html
+  href: ApiDocumentation/net471/GUI.Pages.html
   commentId: N:GUI.Pages
   fullName: GUI.Pages
   nameWithType: GUI.Pages
@@ -330,13 +330,13 @@ references:
   nameWithType: Index.BuildRenderTree
 - uid: GUI.Program
   name: Program
-  href: ApiDocumentation/netcoreapp2.0/GUI.Program.html
+  href: ApiDocumentation/netstandard2.0/GUI.Program.html
   commentId: T:GUI.Program
   fullName: GUI.Program
   nameWithType: Program
 - uid: GUI.Program.CreateHostBuilder(System.String[])
   name: CreateHostBuilder(String[])
-  href: ApiDocumentation/netcoreapp2.0/GUI.Program.html#GUI_Program_CreateHostBuilder_System_String___
+  href: ApiDocumentation/netstandard2.0/GUI.Program.html#GUI_Program_CreateHostBuilder_System_String___
   commentId: M:GUI.Program.CreateHostBuilder(System.String[])
   name.vb: CreateHostBuilder(String())
   fullName: GUI.Program.CreateHostBuilder(System.String[])
@@ -345,14 +345,14 @@ references:
   nameWithType.vb: Program.CreateHostBuilder(String())
 - uid: GUI.Program.CreateHostBuilder*
   name: CreateHostBuilder
-  href: ApiDocumentation/netcoreapp2.0/GUI.Program.html#GUI_Program_CreateHostBuilder_
+  href: ApiDocumentation/netstandard2.0/GUI.Program.html#GUI_Program_CreateHostBuilder_
   commentId: Overload:GUI.Program.CreateHostBuilder
   isSpec: "True"
   fullName: GUI.Program.CreateHostBuilder
   nameWithType: Program.CreateHostBuilder
 - uid: GUI.Program.Main(System.String[])
   name: Main(String[])
-  href: ApiDocumentation/netcoreapp2.0/GUI.Program.html#GUI_Program_Main_System_String___
+  href: ApiDocumentation/netstandard2.0/GUI.Program.html#GUI_Program_Main_System_String___
   commentId: M:GUI.Program.Main(System.String[])
   name.vb: Main(String())
   fullName: GUI.Program.Main(System.String[])
@@ -361,7 +361,7 @@ references:
   nameWithType.vb: Program.Main(String())
 - uid: GUI.Program.Main*
   name: Main
-  href: ApiDocumentation/netcoreapp2.0/GUI.Program.html#GUI_Program_Main_
+  href: ApiDocumentation/netstandard2.0/GUI.Program.html#GUI_Program_Main_
   commentId: Overload:GUI.Program.Main
   isSpec: "True"
   fullName: GUI.Program.Main
@@ -412,7 +412,7 @@ references:
   nameWithType: NavMenu.BuildRenderTree
 - uid: GUI.Startup
   name: Startup
-  href: ApiDocumentation/netcoreapp2.0/GUI.Startup.html
+  href: ApiDocumentation/netstandard2.0/GUI.Startup.html
   commentId: T:GUI.Startup
   fullName: GUI.Startup
   nameWithType: Startup
@@ -430,7 +430,7 @@ references:
   nameWithType: Startup.Configure(IBlazorApplicationBuilder)
 - uid: GUI.Startup.Configure*
   name: Configure
-  href: ApiDocumentation/netcoreapp2.0/GUI.Startup.html#GUI_Startup_Configure_
+  href: ApiDocumentation/netstandard2.0/GUI.Startup.html#GUI_Startup_Configure_
   commentId: Overload:GUI.Startup.Configure
   isSpec: "True"
   fullName: GUI.Startup.Configure
@@ -449,7 +449,7 @@ references:
   nameWithType: Startup.ConfigureServices(IServiceCollection)
 - uid: GUI.Startup.ConfigureServices*
   name: ConfigureServices
-  href: ApiDocumentation/netcoreapp2.0/GUI.Startup.html#GUI_Startup_ConfigureServices_
+  href: ApiDocumentation/netstandard2.0/GUI.Startup.html#GUI_Startup_ConfigureServices_
   commentId: Overload:GUI.Startup.ConfigureServices
   isSpec: "True"
   fullName: GUI.Startup.ConfigureServices
