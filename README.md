@@ -23,12 +23,13 @@ The [Common Documentation for all Demos]() has a section for [Building, Running,
 The first example program is the most basic. The Blazor GUI portion consists of two Razor pages, and code that makes two REST calls to ServiceStack, one REST call with no data payload sent or received, and one that sends a string and receives a string. The ServiceStack application portion consist of a Console program for .Net (full framework) which serves the static files for the Blazor application, and handles the two simple REST service endpoints. 
 
 ## Prerequisites
-1. Visual Studio 2017 Version 15.8 or newer. All of the following instructions assume you are using a Visual Studio (VS) 2017 IDE for development, and are pretty familiar with using Git and GitHub in VS.
-1. ServiceStack (SS) Version 5.4.1. Instructions for adding ServiceStack via NuGet into a solution can be found here: https://servicestack.net/download. Unless you purchase a license, SS will be the "Starter" version, limited to about 10 REST service endpoints Each of the demonstration programs here will be written to stay below the limit. 
+1. Visual Studio 2019 Preview Version 16.0.0 or newer. All of the following instructions assume you are using a Visual Studio (VS) 2017 IDE for development, and are pretty familiar with using Git and GitHub in VS.
+1. ServiceStack (SS) Version 5.5.0. Instructions for adding ServiceStack via NuGet into a solution can be found here: https://servicestack.net/download. Unless you purchase a license, SS will be the "Starter" version, limited to about 10 REST service endpoints Each of the demonstration programs here will be written to stay below the limit. 
     * You should also be aware that the ServiceStack development team does a great job of patching and enhancing ServiceStack, and there may be times you will want to get new patches from ServiceStack's MyGet feed. You will want to go to VS's Tools-> Options -> NuGet Package Manager -> Package Sources and add to the "Available package sources". Add https://www.myget.org/F/servicestack to the list of package sources.		
-1. Blazor 0.6.0 components installed into VS. Instructions for getting Blazor setup for VS can be found here: https://blazor.net/docs/get-started.html. Blazor is changing rapidly, and I will do my best to ensure that the examples in this repository track the changes in Blazor.
+1. Blazor 0.9.0 components installed into VS. Instructions for getting Blazor setup for VS can be found here: https://blazor.net/docs/get-started.html. Blazor is changing rapidly, and I will do my best to ensure that the examples in this repository track the changes in Blazor.
+1. .NET Core 3.0 Preview 3 SDK (3.0.100-preview3-010431) installed onto the development computer, and Visual Studio 2019 configured to use preview SDKs. Instructions for loading the .NET Core 3.0 Preview 3 SDK can be found here: https://dotnet.microsoft.com/download/dotnet-core/3.0. To configure VS 2019 to use the preview version, go to Tools -> Options -> Projects and Solutions -> .NET Core, and check the box "use previews of the .NET Core SDK"
 1. A logging framework such as the Open Source Software (OSS) NLog installed into VS. A good post explaining how to integrate NLog with VS can be found here: https://www.codeguru.com/csharp/csharp/cs_network/integrating-nlog-with-visual-studio.html. The examples here use NLog. The NLog configuration file included in these examples also specifies a UDP-based logger. Sentinel, described below is a good choice for a UDP-based logging application.
-1. Blazor logging framework. Source and ReadMe.md for the extensions can be found here: https://github.com/BlazorExtensions/Logging. A good post explaining how to use the extension in your Blazor project can be found here: https://www.c-sharpcorner.com/article/introduction-to-logging-framework-in-blazor-with-net-core/. The examples in this repository are currently using Version 0.9.0. I will do my best to ensure that the examples in this repository track the changes in the Blazor logging extensions.
+1. ~~Blazor logging framework. Source and ReadMe.md for the extensions can be found here: https://github.com/BlazorExtensions/Logging. A good post explaining how to use the extension in your Blazor project can be found here: https://www.c-sharpcorner.com/article/introduction-to-logging-framework-in-blazor-with-net-core/. The examples in this repository are currently using Version 0.9.0. I will do my best to ensure that the examples in this repository track the changes in the Blazor logging extensions.~~ As of 4/13/19, the Blazor Logging Framework, both V0.9.0 and V0.10.0, reference Blazor V0.7.0. This causes an incompatability. Logging from teh C# code on the browser is currently "commented out" in all examples. I try to update this when the Blazor logging framework is updated.
 
 ## Suggested but not required
 1. The free UDP logging application Sentinel Version 0.13.0.0 or equivalent, which can be installed to Windows from here: https://github.com/yarseyah/sentinel.
@@ -69,9 +70,11 @@ Before running the example, I suggest you get the monitoring tools up and runnin
 # How to make ServiceStack deliver the Blazor app
 You will need to start with version  5.4.1 or higher, because ServiceStack developers added some allowed file types to this version to make it work better.
 
-## Allow the delivery of .json files
-Blazor requires the static file server to deliver a file named blazor.boot.json from the _frameworks subfolder. By default, delivery of .json files are not allowed. In the `AppHost.cs` file, this line instructs SS to allow the .json suffix.
+## Allow the delivery of .json, .dll, and .wasm files
+Blazor requires the static file server to deliver a files that have the suffixes .json, .dll, and .wasm. By default, delivery of these types of files are not allowed. In the `AppHost.cs` file, these line instructs SS to allow the delivery of these kinds of suffixes.
 ```C#
+this.Config.AllowFileExtensions.Add("wasm");
+this.Config.AllowFileExtensions.Add("dll");
 this.Config.AllowFileExtensions.Add("json");
 ```
 ## Change the default redirect path
