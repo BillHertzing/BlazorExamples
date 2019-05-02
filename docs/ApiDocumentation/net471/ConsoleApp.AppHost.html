@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class AppHost
    | Blazor Examples with ServiceStack ">
-    <meta name="generator" content="docfx 2.40.2.0">
+    <meta name="generator" content="docfx 2.42.0.0">
     
     <link rel="shortcut icon" href="../../favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -88,13 +88,635 @@
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">System.Object</span></div>
-    <div class="level1"><span class="xref">AppHost</span></div>
+    <div class="level1"><span class="xref">ServiceStack.ServiceStackHost</span></div>
+    <div class="level2"><span class="xref">ServiceStack.Host.HttpListener.HttpListenerBase</span></div>
+    <div class="level3"><span class="xref">ServiceStack.AppHostHttpListenerBase</span></div>
+    <div class="level4"><span class="xref">ServiceStack.AppHostHttpListenerPoolBase</span></div>
+    <div class="level5"><span class="xref">ServiceStack.AppSelfHostBase</span></div>
+    <div class="level6"><span class="xref">AppHost</span></div>
   </div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="../netstandard2.0/ConsoleApp.html">ConsoleApp</a></h6>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><span class="xref">ServiceStack.IAppHost</span></div>
+    <div><span class="xref">ServiceStack.Configuration.IResolver</span></div>
+    <div><span class="xref">Funq.IFunqlet</span></div>
+    <div><span class="xref">Funq.IHasContainer</span></div>
+    <div><span class="xref">System.IDisposable</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">ServiceStack.AppHostHttpListenerPoolBase.Dispose(System.Boolean)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.AppHostHttpListenerPoolBase.Listen(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.AppHostHttpListenerBase.ThreadsPerProcessor</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.AppHostHttpListenerBase.CalculatePoolSize()</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.AppHostHttpListenerBase.ProcessRequestAsync(System.Net.HttpListenerContext)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.AppHostHttpListenerBase.OnConfigLoad()</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.AppHostHttpListenerBase.HandlerPath</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.Host.HttpListener.HttpListenerBase.Listener</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.Host.HttpListener.HttpListenerBase.IsStarted</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.Host.HttpListener.HttpListenerBase.registeredReservedUrl</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.Host.HttpListener.HttpListenerBase.OnAfterInit()</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.Host.HttpListener.HttpListenerBase.SetAppDomainData()</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.Host.HttpListener.HttpListenerBase.Start(System.String)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.Host.HttpListener.HttpListenerBase.Start(System.Collections.Generic.IEnumerable&lt;System.String&gt;)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.Host.HttpListener.HttpListenerBase.CreateRequest(System.Net.HttpListenerContext, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.Host.HttpListener.HttpListenerBase.Start(System.String, System.Threading.WaitCallback)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.Host.HttpListener.HttpListenerBase.Start(System.Collections.Generic.IEnumerable&lt;System.String&gt;, System.Threading.WaitCallback)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.Host.HttpListener.HttpListenerBase.CreateHttpListener()</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.Host.HttpListener.HttpListenerBase.ProcessRequestContext(System.Net.HttpListenerContext)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.Host.HttpListener.HttpListenerBase.HandleError(System.Exception, System.Net.HttpListenerContext)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.Host.HttpListener.HttpListenerBase.WriteUnhandledErrorResponse(ServiceStack.Web.IRequest, System.Exception)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.Host.HttpListener.HttpListenerBase.OnBeginRequest(System.Net.HttpListenerContext)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.Host.HttpListener.HttpListenerBase.AddUrlReservationToAcl(System.String)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.Host.HttpListener.HttpListenerBase.RemoveUrlReservationFromAcl(System.String)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.Host.HttpListener.HttpListenerBase.BeforeRequest</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.RestPaths</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.ExportSoapOperationTypes(System.Collections.Generic.List&lt;System.Type&gt;)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.ExportSoapType(System.Type)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.WriteSoapMessage(ServiceStack.Web.IRequest, System.ServiceModel.Channels.Message, System.IO.Stream)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.IsReady()</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.CreateServiceController(System.Reflection.Assembly[])</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.SetConfig(ServiceStack.HostConfig)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.Init()</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.RegisterLicenseKey(System.String)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.PopulateArrayFilters()</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.GetWebRootPath()</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.GetVirtualFileSources()</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.OnPreExecuteServiceFilter(ServiceStack.IService, System.Object, ServiceStack.Web.IRequest, ServiceStack.Web.IResponse)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.OnPostExecuteServiceFilter(ServiceStack.IService, System.Object, ServiceStack.Web.IRequest, ServiceStack.Web.IResponse)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.OnServiceException(ServiceStack.Web.IRequest, System.Object, System.Exception)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.OnUncaughtException(ServiceStack.Web.IRequest, ServiceStack.Web.IResponse, System.String, System.Exception)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.HandleUncaughtException(ServiceStack.Web.IRequest, ServiceStack.Web.IResponse, System.String, System.Exception)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.HandleShortCircuitedErrors(ServiceStack.Web.IRequest, ServiceStack.Web.IResponse, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.OnStartupException(System.Exception)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.OnAfterConfigChanged()</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.OnBeforeInit()</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.Release(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.OnEndRequest(ServiceStack.Web.IRequest)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.Register&lt;T&gt;(T)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.RegisterAs&lt;T, TAs&gt;()</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.TryResolve&lt;T&gt;()</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.Resolve&lt;T&gt;()</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.GetPlugin&lt;T&gt;()</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.HasPlugin&lt;T&gt;()</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.CreateServiceRunner&lt;TRequest&gt;(ServiceStack.Host.ActionContext)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.ResolveLocalizedString(System.String, ServiceStack.Web.IRequest)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.ResolveAbsoluteUrl(System.String, ServiceStack.Web.IRequest)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.UseHttps(ServiceStack.Web.IRequest)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.GetBaseUrl(ServiceStack.Web.IRequest)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.ResolvePhysicalPath(System.String, ServiceStack.Web.IRequest)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.LoadPlugin(ServiceStack.IPlugin[])</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.ExecuteService(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.ExecuteService(System.Object, ServiceStack.Web.IRequest)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.ExecuteServiceAsync(System.Object, ServiceStack.Web.IRequest)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.ExecuteService(System.Object, ServiceStack.RequestAttributes)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.ExecuteMessage(ServiceStack.Messaging.IMessage)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.ExecuteMessage(ServiceStack.Messaging.IMessage, ServiceStack.Web.IRequest)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.RegisterService(System.Type, System.String[])</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.RegisterServicesInAssembly(System.Reflection.Assembly)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.GetRouteAttributes(System.Type)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.GenerateWsdl(ServiceStack.Metadata.WsdlTemplateBase)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.RegisterTypedRequestFilter&lt;T&gt;(System.Action&lt;ServiceStack.Web.IRequest, ServiceStack.Web.IResponse, T&gt;)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.RegisterTypedRequestFilter&lt;T&gt;(System.Func&lt;Funq.Container, ServiceStack.Host.ITypedFilter&lt;T&gt;&gt;)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.RegisterTypedResponseFilter&lt;T&gt;(System.Action&lt;ServiceStack.Web.IRequest, ServiceStack.Web.IResponse, T&gt;)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.RegisterTypedResponseFilter&lt;T&gt;(System.Func&lt;Funq.Container, ServiceStack.Host.ITypedFilter&lt;T&gt;&gt;)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.RegisterTypedMessageRequestFilter&lt;T&gt;(System.Action&lt;ServiceStack.Web.IRequest, ServiceStack.Web.IResponse, T&gt;)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.RegisterTypedMessageResponseFilter&lt;T&gt;(System.Action&lt;ServiceStack.Web.IRequest, ServiceStack.Web.IResponse, T&gt;)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.MapProjectPath(System.String)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.ResolvePathInfo(ServiceStack.Web.IRequest, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.NormalizePathInfo(System.String, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.ReturnRedirectHandler(ServiceStack.Web.IHttpRequest)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.ReturnRequestInfoHandler(ServiceStack.Web.IHttpRequest)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.Dispose()</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.ApplyRequestConvertersAsync(ServiceStack.Web.IRequest, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.ApplyResponseConvertersAsync(ServiceStack.Web.IRequest, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.ApplyCustomHandlerRequestFilters(ServiceStack.Web.IRequest, ServiceStack.Web.IResponse)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.ApplyPreAuthenticateFilters(ServiceStack.Web.IRequest, ServiceStack.Web.IResponse)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.ApplyPreRequestFilters(ServiceStack.Web.IRequest, ServiceStack.Web.IResponse)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.ApplyRequestFilters(ServiceStack.Web.IRequest, ServiceStack.Web.IResponse, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.ApplyRequestFiltersAsync(ServiceStack.Web.IRequest, ServiceStack.Web.IResponse, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.ApplyRequestFiltersSingleAsync(ServiceStack.Web.IRequest, ServiceStack.Web.IResponse, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.ApplyResponseFilters(ServiceStack.Web.IRequest, ServiceStack.Web.IResponse, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.ApplyResponseFiltersAsync(ServiceStack.Web.IRequest, ServiceStack.Web.IResponse, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.ApplyResponseFiltersSingleAsync(ServiceStack.Web.IRequest, ServiceStack.Web.IResponse, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.ApplyMessageRequestFilters(ServiceStack.Web.IRequest, ServiceStack.Web.IResponse, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.ApplyMessageResponseFilters(ServiceStack.Web.IRequest, ServiceStack.Web.IResponse, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.ExecTypedFilters(System.Collections.Generic.Dictionary&lt;System.Type, ServiceStack.Host.ITypedFilter&gt;, ServiceStack.Web.IRequest, ServiceStack.Web.IResponse, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.GetDefaultSessionExpiry(ServiceStack.Web.IRequest)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.HasFeature(ServiceStack.Feature)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.AssertFeatures(ServiceStack.Feature)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.AssertContentType(System.String)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.HasAccessToMetadata(ServiceStack.Web.IRequest, ServiceStack.Web.IResponse)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.HandleErrorResponse(ServiceStack.Web.IRequest, ServiceStack.Web.IResponse, System.Net.HttpStatusCode, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.GetCustomErrorHandler(System.Int32)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.GetCustomErrorHandler(System.Net.HttpStatusCode)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.GetNotFoundHandler()</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.GetCustomErrorHttpHandler(System.Net.HttpStatusCode)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.HasValidAuthSecret(ServiceStack.Web.IRequest)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.ResolveResponseException(System.Exception)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.OnExceptionTypeFilter(System.Exception, ServiceStack.ResponseStatus)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.OnLogError(System.Type, System.String, System.Exception)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.OnSaveSession(ServiceStack.Web.IRequest, ServiceStack.Auth.IAuthSession, System.Nullable&lt;System.TimeSpan&gt;)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.OnSessionFilter(ServiceStack.Auth.IAuthSession, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.OnSessionFilter(ServiceStack.Web.IRequest, ServiceStack.Auth.IAuthSession, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.HttpCookieFilter(System.Web.HttpCookie)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.SetCookieFilter(ServiceStack.Web.IRequest, System.Net.Cookie)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.AllowSetCookie(ServiceStack.Web.IRequest, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.TryGetCurrentRequest()</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.OnAfterExecute(ServiceStack.Web.IRequest, System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.GetTypesConfigForMetadata(ServiceStack.Web.IRequest)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.GetDbConnection(ServiceStack.Web.IRequest)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.GetRedisClient(ServiceStack.Web.IRequest)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.GetCacheClient(ServiceStack.Web.IRequest)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.GetMemoryCacheClient(ServiceStack.Web.IRequest)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.GetMessageProducer(ServiceStack.Web.IRequest)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.GetServiceGateway()</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.GetServiceGateway(ServiceStack.Web.IRequest)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.GetAuthRepository(ServiceStack.Web.IRequest)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.GetCookies(ServiceStack.Web.IHttpResponse)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.ShouldCompressFile(ServiceStack.IO.IVirtualFile)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.GetRuntimeConfig&lt;T&gt;(ServiceStack.Web.IRequest, System.String, T)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.PublishMessage&lt;T&gt;(ServiceStack.Messaging.IMessageProducer, T)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.WriteAutoHtmlResponseAsync(ServiceStack.Web.IRequest, System.Object, System.String, System.IO.Stream)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.Instance</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.StartedAt</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.AfterInitAt</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.ReadyAt</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.TestMode</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.ServiceAssemblies</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.HasStarted</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.ServiceName</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.AppSettings</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.Metadata</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.ServiceController</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.ExcludeAutoRegisteringServiceTypes</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.Container</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.Routes</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.RequestBinders</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.ContentTypes</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.PreRequestFilters</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.RequestConverters</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.ResponseConverters</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.GlobalRequestFilters</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.GlobalRequestFiltersAsync</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.GlobalTypedRequestFilters</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.GlobalResponseFilters</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.GlobalResponseFiltersAsync</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.GlobalTypedResponseFilters</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.GlobalMessageRequestFilters</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.GlobalMessageRequestFiltersAsync</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.GlobalTypedMessageRequestFilters</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.GlobalMessageResponseFilters</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.GlobalMessageResponseFiltersAsync</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.GlobalTypedMessageResponseFilters</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.ViewEngines</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.ServiceExceptionHandlers</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.ServiceExceptionHandlersAsync</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.UncaughtExceptionHandlers</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.UncaughtExceptionHandlersAsync</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.BeforeConfigure</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.AfterConfigure</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.AfterInitCallbacks</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.OnDisposeCallbacks</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.OnEndRequestCallbacks</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.RawHttpHandlers</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.CatchAllHandlers</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.FallbackHandlers</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.GlobalHtmlErrorHttpHandler</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.CustomErrorHttpHandlers</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.StartUpErrors</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.AsyncErrors</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.PluginsLoaded</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.Plugins</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.VirtualFiles</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.VirtualFileSources</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.RootDirectory</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.ContentRootDirectory</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.InsertVirtualFileSources</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.AddVirtualFileSources</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.GatewayRequestFilters</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.GatewayRequestFiltersAsync</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.GatewayResponseFilters</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.GatewayResponseFiltersAsync</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.Config</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.ServiceStackHost.MetadataPagesConfig</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="ConsoleApp.html">ConsoleApp</a></h6>
   <h6><strong>Assembly</strong>: ConsoleApp.dll</h6>
   <h5 id="ConsoleApp_AppHost_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class AppHost : AppSelfHostBase</code></pre>
+    <pre><code class="lang-csharp hljs">public class AppHost : AppSelfHostBase, IAppHost, IResolver, IFunqlet, IHasContainer, IDisposable</code></pre>
   </div>
   <h3 id="constructors">Constructors
   </h3>
@@ -110,7 +732,7 @@
   <h3 id="methods">Methods
   </h3>
   <a id="ConsoleApp_AppHost_Configure_" data-uid="ConsoleApp.AppHost.Configure*"></a>
-  <h4 id="ConsoleApp_AppHost_Configure_Container_" data-uid="ConsoleApp.AppHost.Configure(Container)">Configure(Container)</h4>
+  <h4 id="ConsoleApp_AppHost_Configure_Funq_Container_" data-uid="ConsoleApp.AppHost.Configure(Funq.Container)">Configure(Container)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -128,12 +750,14 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Container</span></td>
+        <td><span class="xref">Funq.Container</span></td>
         <td><span class="parametername">container</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">ServiceStack.ServiceStackHost.Configure(Funq.Container)</span></div>
   <a id="ConsoleApp_AppHost_Stop_" data-uid="ConsoleApp.AppHost.Stop*"></a>
   <h4 id="ConsoleApp_AppHost_Stop" data-uid="ConsoleApp.AppHost.Stop">Stop()</h4>
   <div class="markdown level1 summary"></div>
@@ -141,6 +765,24 @@
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public override void Stop()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">ServiceStack.Host.HttpListener.HttpListenerBase.Stop()</span></div>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <span class="xref">ServiceStack.IAppHost</span>
+  </div>
+  <div>
+      <span class="xref">ServiceStack.Configuration.IResolver</span>
+  </div>
+  <div>
+      <span class="xref">Funq.IFunqlet</span>
+  </div>
+  <div>
+      <span class="xref">Funq.IHasContainer</span>
+  </div>
+  <div>
+      <span class="xref">System.IDisposable</span>
   </div>
 </article>
           </div>

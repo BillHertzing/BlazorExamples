@@ -1,0 +1,25 @@
+@page "/BasicRESTServices"
+@inherits GUI.Pages.BasicRESTServicesCodeBehind
+<h2>Demonstrate simple Telerik components</h2>
+
+
+@if (@InitializationRspDTO == null)
+{
+<p>Loading (Calling onInitAsync)</p>
+}
+else
+{
+<div>
+    <label for="DataToPost">@labelForDataToPost</label>
+    <!--<TelerikTextBox id="DataToPost" bind-Value="@dataToPost" />-->
+        <input type="text" class="form-control" id="DataToPost" bind="@DataToPost" />
+</div>
+<div>
+    <label for="DataReceivedFromPost">@labelForDataReceivedFromPost</label>
+    <!--<TelerikTextBox id="DataReceivedFromPost" bind="@dataReceivedFromPost" />-->
+        <input type="text" class="form-control"  id="DataReceivedFromPost" bind="@DataReceivedFromPost" />
+</div>
+<TelerikButton onclick="async () => await PostData()">@labelForPostDataDataButton</TelerikButton>
+    
+}
+

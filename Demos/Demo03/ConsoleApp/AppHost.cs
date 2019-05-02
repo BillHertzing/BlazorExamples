@@ -38,13 +38,14 @@ namespace ConsoleApp
 
       Log.Debug($"Entering AppHost.Configure method");
 
-        // Blazor as of version 0.5.0 expects to be able to download a static file with the extensions "json"
-        // ServiceStack by default will not allow downloading a static file with "json" extensions
-        // Configure ServiceStack to allow the delivery of static files that end in json
-        this.Config.AllowFileExtensions.Add("json");
+            // Blazor requires the delivery of static files ending in certain file suffixes.
+            // SS disallows some of these by default, so here we tell SS to allow certain file suffixes
+            this.Config.AllowFileExtensions.Add("dll");
+            this.Config.AllowFileExtensions.Add("json");
+            this.Config.AllowFileExtensions.Add("pdb");
 
-        // // change the default redirect path so that a request that does not match a route will redirect to /index.html
-        this.Config.DefaultRedirectPath = "/index.html";
+            // // change the default redirect path so that a request that does not match a route will redirect to /index.html
+            //this.Config.DefaultRedirectPath = "/index.html";
 
         // Tell ServiceStack where to find the static files of the Blazor application.
         // In a real application, this can be quite complicated, if users are allowed to install the application in custom locations
@@ -66,7 +67,7 @@ namespace ConsoleApp
             try
       {
         this.AddVirtualFileSources
-            .Add(new FileSystemMapping("", physicalRootPath));
+            .Add(new FileSystemMapping(virtualRootPath, physicalRootPath));
       }
       catch (Exception e)
       {
@@ -74,6 +75,7 @@ namespace ConsoleApp
         throw new Exception("Could not create ServiceStack Virtual File Mapping: ", e);
       }
 
+            this.Config.EnableFeatures = Feature.All.Remove(Feature.Metadata);
       // Blazor requires CORS support, enable the ServiceStack feature
       Plugins.Add(new CorsFeature(
          allowedMethods: "GET, POST, PUT, DELETE, OPTIONS",
@@ -88,7 +90,7 @@ namespace ConsoleApp
   // Create the Service that will handle the Initialization and PostData REST routes
   public class BaseServices : Service
   {
-        // Added logging here in Demo02
+   
         static readonly ILog Log = LogManager.GetLogger(typeof(BaseServices));
         
         #region BaseServices Initialization

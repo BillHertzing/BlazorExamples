@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class BaseServices
    | Blazor Examples with ServiceStack ">
-    <meta name="generator" content="docfx 2.40.2.0">
+    <meta name="generator" content="docfx 2.42.0.0">
     
     <link rel="shortcut icon" href="../../favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -88,13 +88,128 @@
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">System.Object</span></div>
-    <div class="level1"><span class="xref">BaseServices</span></div>
+    <div class="level1"><span class="xref">ServiceStack.Service</span></div>
+    <div class="level2"><span class="xref">BaseServices</span></div>
   </div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="../netstandard2.0/ConsoleApp.html">ConsoleApp</a></h6>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><span class="xref">ServiceStack.IService</span></div>
+    <div><span class="xref">ServiceStack.IServiceBase</span></div>
+    <div><span class="xref">ServiceStack.Web.IRequiresRequest</span></div>
+    <div><span class="xref">ServiceStack.Configuration.IResolver</span></div>
+    <div><span class="xref">System.IDisposable</span></div>
+    <div><span class="xref">ServiceStack.IServiceFilters</span></div>
+    <div><span class="xref">ServiceStack.IServiceBeforeFilter</span></div>
+    <div><span class="xref">ServiceStack.IServiceAfterFilter</span></div>
+    <div><span class="xref">ServiceStack.IServiceErrorFilter</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">ServiceStack.Service.GetResolver()</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.Service.SetResolver(ServiceStack.Configuration.IResolver)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.Service.TryResolve&lt;T&gt;()</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.Service.ResolveService&lt;T&gt;()</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.Service.GetSession(System.Boolean)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.Service.SessionAs&lt;TUserSession&gt;()</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.Service.PublishMessage&lt;T&gt;(T)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.Service.Dispose()</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.Service.OnBeforeExecute(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.Service.OnAfterExecute(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.Service.OnExceptionAsync(System.Object, System.Exception)</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.Service.GlobalResolver</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.Service.Request</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.Service.Response</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.Service.Cache</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.Service.LocalCache</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.Service.Db</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.Service.Redis</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.Service.MessageProducer</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.Service.SessionFactory</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.Service.AuthRepository</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.Service.Gateway</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.Service.VirtualFileSources</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.Service.VirtualFiles</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.Service.SessionBag</span>
+    </div>
+    <div>
+      <span class="xref">ServiceStack.Service.IsAuthenticated</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="ConsoleApp.html">ConsoleApp</a></h6>
   <h6><strong>Assembly</strong>: ConsoleApp.dll</h6>
   <h5 id="ConsoleApp_BaseServices_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class BaseServices : Service</code></pre>
+    <pre><code class="lang-csharp hljs">public class BaseServices : Service, IService, IServiceBase, IRequiresRequest, IResolver, IDisposable, IServiceFilters, IServiceBeforeFilter, IServiceAfterFilter, IServiceErrorFilter</code></pre>
   </div>
   <h3 id="methods">Methods
   </h3>
@@ -117,7 +232,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="../netcoreapp2.0/CommonDTOs.InitializationReqDTO.html">InitializationReqDTO</a></td>
+        <td><a class="xref" href="CommonDTOs.InitializationReqDTO.html">InitializationReqDTO</a></td>
         <td><span class="parametername">request</span></td>
         <td></td>
       </tr>
@@ -157,7 +272,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="../netcoreapp2.0/CommonDTOs.PostDataReqDTO.html">PostDataReqDTO</a></td>
+        <td><a class="xref" href="CommonDTOs.PostDataReqDTO.html">PostDataReqDTO</a></td>
         <td><span class="parametername">request</span></td>
         <td></td>
       </tr>
@@ -178,6 +293,34 @@
       </tr>
     </tbody>
   </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <span class="xref">ServiceStack.IService</span>
+  </div>
+  <div>
+      <span class="xref">ServiceStack.IServiceBase</span>
+  </div>
+  <div>
+      <span class="xref">ServiceStack.Web.IRequiresRequest</span>
+  </div>
+  <div>
+      <span class="xref">ServiceStack.Configuration.IResolver</span>
+  </div>
+  <div>
+      <span class="xref">System.IDisposable</span>
+  </div>
+  <div>
+      <span class="xref">ServiceStack.IServiceFilters</span>
+  </div>
+  <div>
+      <span class="xref">ServiceStack.IServiceBeforeFilter</span>
+  </div>
+  <div>
+      <span class="xref">ServiceStack.IServiceAfterFilter</span>
+  </div>
+  <div>
+      <span class="xref">ServiceStack.IServiceErrorFilter</span>
+  </div>
 </article>
           </div>
           

@@ -1,0 +1,163 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>The ServiceStack (SS) ConsoleApp.exe Project/program | Blazor Examples with ServiceStack </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="The ServiceStack (SS) ConsoleApp.exe Project/program | Blazor Examples with ServiceStack ">
+    <meta name="generator" content="docfx 2.42.0.0">
+    
+    <link rel="shortcut icon" href="../../../../favicon.ico">
+    <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../../styles/main.css">
+    <meta property="docfx:navrel" content="../../../../toc.html">
+    <meta property="docfx:tocrel" content="../../../toc.html">
+    
+    <meta property="docfx:rel" content="../../../../">
+    <meta property="docfx:newtab" content="true">
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../../../index.html">
+                <img id="logo" class="svg" src="../../../../images/ataplogo1inch.bmp" alt="Logo For ATAP Technology, Inc.">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="the-servicestack-ss-consoleappexe-projectprogram">The ServiceStack (SS) ConsoleApp.exe Project/program</h1>
+
+<p>A simple Console program the implements the ServiceStack console host for two endpoints, plus the sauce needed to make ServiceStack deliver the static files that make up the GUI.</p>
+<h1 id="the-rest-endpoints">The REST endpoints</h1>
+<p>SS provides the infrastructure to handle REST endpoints as well as serve the static files. Both are supported in the same SS application. Demo01 has two endpoints, whose Routes are; <em>/Initialization</em> and <em>/PostData</em>. Each Route has two Data Transfer Objects (DTOs), one DTO for the route&#39;s Request and one for the route&#39;s Response. Each endpoint is handled by a SS service. </p>
+<h1 id="the-ss-services-that-handle-the-endpoints">The SS Services that handle the endpoints</h1>
+<p>SS places the code that responds to a Request, and creates the Response, in methods that are part of a class that inherits from SS&#39;s Service class. There is a ton of documentation on the web about SS, and its (very feature rich) Service class. Demo01 uses just the most basic of these features. In Demo01, the actions that the Service takes for each endpoint are defined in the AppHost.cs file, in a class there called <code>BaseServices</code> and the two methods  therein. One method signature indicates the method should be called for a POST to the <em>/Initialization</em> Route, the other method&#39;s signature indicates it should be called for a POST on the <em>/PostData</em> Route. These methods signatures specify the DTO classes for their respective Request and Response. </p>
+<h1 id="targetframework">TargetFramework</h1>
+<p>For Demo01, the TargetFramework for the ConsoleApp.exe program is the full .Net, Version 4.7.1 in this case.</p>
+<h1 id="how-to-make-servicestack-deliver-the-blazor-app">How to make ServiceStack deliver the Blazor app</h1>
+<p>You will need to start with version  5.4.1 or higher, because ServiceStack developers added some allowed file types to this version to make it work better. The following discussion applies to the code found in <code>AppHost.cs</code>.</p>
+<h2 id="allow-the-delivery-of-json-files">Allow the delivery of .json files</h2>
+<p>Blazor requires the static file server to deliver a file named <code>blazor.boot.json</code> from the <code>_frameworks</code> subfolder. By default, delivery of .json files are not allowed. In the <code>AppHost.cs</code> file, this line instructs SS to allow the .json suffix.</p>
+<pre><code class="lang-C#">this.Config.AllowFileExtensions.Add(&quot;json&quot;);
+</code></pre><h2 id="change-the-default-redirect-path">Change the default redirect path</h2>
+<p>Blazor routing requires that when the static file server sees a request made to a URL that does not match a known route, that the server return the contents of index.html. In the <code>AppHost.cs</code> file, this line instructs SS to do that.</p>
+<pre><code class="lang-C#">this.Config.DefaultRedirectPath = &quot;/index.html&quot;;
+</code></pre><h2 id="map-a-virtual-path-to-the-location-of-the-files-to-serve">Map a virtual path to the location of the files to serve</h2>
+<p>Being able to tell the ConsoleApp where the static files are located is a key requirement.You could use an absolute location, but that would not be very portable. Using a path relative to the location of the executing assembly is more portable. But how to specify that? The answer typically depends on the lifecycle stage of the application. In production, staging, and QA stages, there will be an &#39;AsInstalled&#39; architecture, and the relationship of the static files to the production .exe will be known. In development under VS, the relationship of the location of static files to the location of the exe being developed, is a bit complicated.</p>
+<p>A more sophisticated example will use SS AppSettings to create a Configuration setting value that can be controlled by a settings file. But this example will simply use a string constant. In the <code>AppHost.cs</code> file, this line, the var <code>physicalRootPath</code>, specifies the relative location of the ConsoleApp&#39;s .exe file to the Blazor app&#39;s static files.</p>
+<pre><code class="lang-C#">var physicalRootPath = &quot;../../../../GUI/bin/Debug/netstandard2.0/Publish/GUI/dist&quot;;
+</code></pre><h3 id="details-on-the-physicalrootpath-value">Details on the physicalRootPath value.</h3>
+<p>The value of <code>physicalRootPath</code> shown here is specific to the way VS uses MSBuild, and to the way the GUI&#39;s Publish action uses the <code>DebugFolderProfile</code>. </p>
+<h4 id="gui-project-publish-action">GUI project Publish action</h4>
+<p>Under the GUI project&#39;s Properties subfolder is the file <code>DebugFolderProfile.pubxml</code>. This file has the property &lt;publishUrl&gt; which controls the location to which the GUI project is published. The Publish action creates a subfolder path <em>&lt;ProjectName&gt;\dist</em> under the location specified in the &lt;publishUrl&gt;. I wanted it to be easy to delete the published GUI files during development, so I decided to put the Publish location underneath the GUI project&#39;s &lt;OutputDir&gt;. Since the &lt;publishUrl&gt; is relative to the &lt;ProjectDir&gt;, I hardcoded the path I wanted (&lt;OutputDir&gt; for Debug and netstandard2.0), making it <em>bin\Debug\netstandard2.0\Publish</em>. The complete path of the published GUI will be <em>bin\Debug\netstandard2.0\Publish\GUI\dist</em>. After you have done a Publish of the GUI project, use a file explorer to verify the contents of the <em>&lt;GUIProjectDir&gt;\bin\Debug\netstandard2.0\Publish\GUI\dist</em>. You will find the static files that make up the Blazor app, including the wwwroot static content and the multitude of DLLs.</p>
+<h4 id="consoleapps-exes-location-after-build">ConsoleApp&#39;s .EXE&#39;s location after build</h4>
+<p>By default VS puts the compile/link artifacts of the ConsoleApp under it&#39;s project&#39;s MSBuild &lt;OutputDir&gt;, which defaults to the <em>./bin/&lt;Config&gt;/&lt;framework&gt;</em> subfolder relative to the &lt;ProjectDir&gt;.
+Under VS debugging of the ConsoleApp, VS starts the .exe in that same &lt;OutputDir&gt;.</p>
+<h4 id="relative-location-of-the-guis-static-content-to-consoleapps-exe-location">Relative location of the GUI&#39;s static content to ConsoleApp&#39;s .exe location</h4>
+<p>So to map from the ConsoleApp&#39;s .exe startup directory to the GUI&#39;s static content files, the physicalRootPath value consist of:</p>
+<ul>
+<li>The four <em>../../.././</em> patterns maps to the MSBuild &lt;SolutionDir&gt; top-level folder, just above each &lt;ProjectDir&gt;. The &lt;SolutionDir&gt; is the root folder common to both the ConsoleApp project&#39;s subfolder tree and the GUI project&#39;s subfolder tree.</li>
+<li>From that common folder, the GUI app&#39;s static files are down the path &lt;ProjectDir&gt; (GUI), then the location specified in the DebugFolderProfile.pubxml, (<em>bin/&lt;Config&gt;/&lt;Framework&gt;/Publish</em>) and then <em>/GUI/dist</em> as created by the Publish operation.</li>
+<li>Putting it all together, the ConsoleApp knows where the GUI app&#39;s static files are by going up the ConsoleApp project&#39;s directory tree to the &lt;SolutionDir&gt;, then down the path to the GUI project&#39;s $&lt;ProjectDir&gt; and then down into the <em>bin/&lt;Config&gt;/&lt;Framework&gt;/Publish/</em> specified by &lt;publishUrl&gt; in <code>DebugFolderProfile.pubxml</code>, then down to the subfolder <em>GUI/dist</em> created by the Publish operation.</li>
+<li>Again to reiterate, the solution above is very specific to the way VS and MSBuild works, and that specific convoluted physicalRootPath is specific to the way the example project structure was organized. In production or other scenarios, the var physicalRootPath would have a different value..</li>
+</ul>
+<h3 id="details-on-the-virtualrootpath">Details on the virtualRootPath</h3>
+<p>In the first example, the GUI uses an empty virtual path root. In the <code>AppHost.cs</code> file, this line, the var <code>virtualRootPath</code>, specifies the virtual path to the GUI Blazor app&#39;s static files. Using an empty path for the virtual path means, for this example, that Index.html is found at (<a href="http://localhost:21200/Index.html">http://localhost:21200/Index.html</a>).</p>
+<pre><code class="lang-C#">var virtualRootPath = &quot;&quot;;
+</code></pre><p>Later examples (hopefully) will show that non-empty values will let SS support multiple Blazor GUIs side-by-side, by aligning different virtualRootPath values with different physicalRootPath values, and modifying each Blazor GUI project&#39;s base URL routing slightly.</p>
+<h2 id="map-it">Map it</h2>
+<p>In the ConsoleApp&#39;s AppHost.cs Configure method, the following line tells SS to add a new location from which to serve static files that do not match a known SS route.</p>
+<pre><code class="lang-C#">this.AddVirtualFileSources.Add(new FileSystemMapping(virtualRootPath, physicalRootPath));
+</code></pre><p>It appears wrapped in a try-catch block, to catch an exception if the physicalRootPath does not exists.</p>
+<h2 id="add-cors-support-to-ss">Add CORS support to SS</h2>
+<p>Blazor apps require that Cross Browser Scripting Requests be allowed. SS makes it very easy to support CORS, by including the following lines in the ConsoleApp&#39;s AppHost.cs Configure method:</p>
+<pre><code class="lang-C#">Plugins.Add(new CorsFeature(
+         allowedMethods: &quot;GET, POST, PUT, DELETE, OPTIONS&quot;,
+         allowedOrigins: &quot;*&quot;,
+         allowCredentials: true,
+         allowedHeaders: &quot;content-type, Authorization, Accept&quot;));
+</code></pre><p>This is all that&#39;s required for SS to serve a Blazor application!</p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Code Documentation autogenerated by <strong>GhostDoc Enterprise</strong>, static website generated by <strong>DocFX</strong>, Documentation website hosted by <strong>GitHub Pages</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>
