@@ -1,0 +1,45 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <!-- Override the TargetFameworks specified in the Directory.Build.props  -->
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <TargetFrameworks>netcoreapp3.0;</TargetFrameworks>
+    <OutputType>Exe</OutputType>
+    <StartupObject>ConsoleApp.Program</StartupObject>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <IsPackable>false</IsPackable>
+    <!-- Assembly, File, and Package Information for this assembly-->
+    <!-- Build and revision are created based on date-->
+    <MajorVersion>1</MajorVersion>
+    <MinorVersion>3</MinorVersion>
+    <PatchVersion>0</PatchVersion>
+    <!-- Current Lifecycle stage for this assembly-->
+    <PackageLifeCycleStage>Dev</PackageLifeCycleStage>
+    <!-- However, if the LifeCyclestage is Production, the NuGet Package Label is ignored, but MSBuild expects a non-null value  -->
+    <PackageLabel>Alpha</PackageLabel>	
+  </PropertyGroup>
+
+  <!-- Common for all TargetFrameworks references, compilation flags and build options -->
+  <ItemGroup>
+    <PackageReference Include="ServiceStack.Core" Version="5.5.1" />
+    <PackageReference Include="ServiceStack.Logging.NLog" Version="5.5.1" />
+  </ItemGroup>
+  
+  
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="NLog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="NLog.xsd">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\CommonDTOs\CommonDTOs.csproj" />
+  </ItemGroup>
+</Project>
