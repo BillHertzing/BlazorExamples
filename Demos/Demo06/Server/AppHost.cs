@@ -6,33 +6,32 @@ using ServiceStack.Logging;
 using ServiceStack.VirtualPath;
 using CommonDTOs;
 
-namespace ConsoleApp
+namespace Server
 {
 
-    public class AppHost : AppSelfHostBase
-    {
+    public class AppHost : AppHostBase {
         static readonly ILog Log = LogManager.GetLogger(typeof(AppHost));
 
         /// <summary>
         /// Base constructor requires a Name and Assembly where web service implementation is located
         /// </summary>
-        public AppHost() : base("ConsoleApp", typeof(AppHost).Assembly)
+        public AppHost() : base("Server", typeof(AppHost).Assembly)
         {
             Log.Debug("Entering ConsoleApp Ctor");
             Log.Debug("Leaving ConsoleApp Ctor");
         }
 
 
-        public override void Stop()
-        {
-            Log.Debug("Entering AppHost Stop Method");
-            // If this ServiceStack application creates objects that implement IDisposable, they need to be disposed of here
-            // This sample does not have any objects to dispose, but this override provides logging  when the Stop method is called
-            // call the ServiceStack AppSelfHostBase Stop method
-            Log.Debug("Entering the ServiceStack AppSelfHostBase Stop Method");
-            base.Stop();
-            Log.Debug("Leaving AppHost Stop Method");
-        }
+        //public override void Stop()
+        //{
+        //    Log.Debug("Entering AppHost Stop Method");
+        //    // If this ServiceStack application creates objects that implement IDisposable, they need to be disposed of here
+        //    // This sample does not have any objects to dispose, but this override provides logging  when the Stop method is called
+        //    // call the ServiceStack AppSelfHostBase Stop method
+        //    Log.Debug("Entering the ServiceStack AppSelfHostBase Stop Method");
+        //    base.Stop();
+        //    Log.Debug("Leaving AppHost Stop Method");
+        //}
 
         public override void Configure(Container container)
         {
