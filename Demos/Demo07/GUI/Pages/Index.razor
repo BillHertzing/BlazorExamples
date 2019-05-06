@@ -1,11 +1,11 @@
 @page "/"
 @page "/index.html"
 
-<h1> Blazor served by ServiceStack middleware in an ASP.Net Core (V3.0) Host (IIS in-process integrated with Kestrel) </h1>
+<h1> Blazor served by ServiceStack middleware in an ASP.Net Core (V3.0) Host (Kestrel-only) </h1>
 
-<p>Welcome to a simple demonstration of a Blazor app served from ServiceStack middleware in an ASP.Net Core (V3.0) Host (IIS in-process integrated with Kestrel)</p>
+<p>Welcome to a simple demonstration of a Blazor app served from a ServiceStack DotNet Core Host running under DotNetCore (self-hosted kestrel only).</p>
 
-<p> Run this command in a powershell window: ps | ?{$_.name -match "iis"}, and you will see iis listed</p>
+<p> Run this command in a powershell window: ps | ?{$_.name -match "iis"}, and you will NOT see iis listed</p>
 
 <p>Having Fiddler installed and running is good idea to see the network interaction between the Blazor app and the ServiceStack app.</p>
 

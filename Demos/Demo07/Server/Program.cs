@@ -38,13 +38,12 @@ namespace Server {
             // Set the program's current directory to the location where the executing assembly resides
             Directory.SetCurrentDirectory(loadedFromDir);
 
+            // Create the web server host
+            // Create a self-hosted host with just Kestrel
+            Log.Debug("in Program.Main: create webHostBuilderSelfHostedKestrel");
 
-            // Create a kestrel server and host it iis in-process
-            //  The WebHost.CreateDefaultBuilder helper enables IISIntegration
-            var webHostBuilderInProcessIIS = WebHost.CreateDefaultBuilder(args)
-                .UseConfiguration(new ConfigurationBuilder()
-                    .AddCommandLine(args)
-                    .Build())
+            var webHostBuilderSelfHostedKestrel = new WebHostBuilder()
+                .UseKestrel()
                 // In V30P4, all SS interfaces return an error that "synchronous writes are disallowed", see following issue
                 //  https://github.com/aspnet/AspNetCore/issues/8302
                 // Woraround is to configure the default web server to AllowSynchronousIO=true
@@ -57,7 +56,7 @@ namespace Server {
                 .UseUrls(Environment.GetEnvironmentVariable("ASPNETCORE_URLS")??"http://localhost:21200/")
                 ;
 
-            var webHostBuilder = webHostBuilderInProcessIIS;
+            var webHostBuilder = webHostBuilderSelfHostedKestrel;
 
             // ToDo: Treat errors differently based on environment (Debug, or Production)
             Log.Debug("in Program.Main: modify webHostBuilder based on the environment in whihc the Net Core Host is executing ");
@@ -170,4 +169,3 @@ namespace Server {
 
 */
 }
-
