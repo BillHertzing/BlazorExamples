@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0</TargetFrameworks>
+    <OutputType>Library</OutputType>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <IsPackable>false</IsPackable>
+    <!-- Assembly, File, and Package Information for this assembly-->
+    <!-- Build and revision are created based on date-->
+    <MajorVersion>1</MajorVersion>
+    <MinorVersion>3</MinorVersion>
+    <PatchVersion>0</PatchVersion>
+    <!-- Current Lifecycle stage for this assembly-->
+    <PackageLifeCycleStage>Dev</PackageLifeCycleStage>
+    <!-- However, if the LifeCyclestage is Production, the NuGet Package Label is ignored, but MSBuild expects a non-null value  -->
+    <PackageLabel>alpha</PackageLabel>	
+  </PropertyGroup>
+
+  <!-- Common for all .Net Standard libraries that reference ServiceStack-->
+  <ItemGroup>
+    <PackageReference Include="ServiceStack" Version="5.5.1" />
+  </ItemGroup>
+  
+</Project>
