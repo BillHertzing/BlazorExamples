@@ -34,7 +34,7 @@
   </ItemGroup>
   
     <ItemGroup>
-      <ProjectReference Include="..\..\Demo01\CommonDTOs\CommonDTOs.csproj" />
+      <ProjectReference Include="..\..\CommonDTOs\CommonDTOs.csproj" />
     </ItemGroup>
 
 </Project>

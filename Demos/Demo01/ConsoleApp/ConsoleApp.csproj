@@ -55,8 +55,8 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
-  
+
   <ItemGroup>
-    <ProjectReference Include="..\CommonDTOs\CommonDTOs.csproj" />
+    <ProjectReference Include="..\..\CommonDTOs\CommonDTOs.csproj" />
   </ItemGroup>
 </Project>

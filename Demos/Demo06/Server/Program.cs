@@ -14,6 +14,7 @@ using System.Diagnostics;
 using System.Reflection;
 using System.Linq;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Hosting;
 
 namespace Server {
     class Program {
@@ -29,16 +30,11 @@ namespace Server {
             Log.Debug("Entering Program.Main");
 
             // determine where this program's entry point's executing assembly resides
-            var loadedFromDir =
-              Path
-              .GetDirectoryName(Assembly
-              .GetExecutingAssembly()
-                .Location);
+            var loadedFromDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
                 
             // Set the program's current directory to the location where the executing assembly resides
             Directory.SetCurrentDirectory(loadedFromDir);
-
-
+            /*
             // Create a kestrel server and host it iis in-process
             //  The WebHost.CreateDefaultBuilder helper enables IISIntegration
             var webHostBuilderInProcessIIS = WebHost.CreateDefaultBuilder(args)
@@ -74,12 +70,40 @@ namespace Server {
             Log.Debug("in Program.Main: webHost created, starting RunAsync and awaiting it");
 
             await webHost.RunAsync();
-            
+            */
+            var genericHostBuilder = CreateGenericHostBuilder(args);
+            var genericHost = genericHostBuilder.Build();
+            await genericHost.RunAsync();
+
             Log.Debug($"webHost.RunAsync called at {DateTime.Now}, listening on {"ToDo: get the list of listening proto:host:port from the webHost"}");
 
             Console.WriteLine("press any key to close the hosting environment that is running as a ConsoleApp");
             Console.ReadKey();
             Log.Debug("Leaving Program.Main");
+
+        }
+
+        // This (older) post has great info and examples on setting up the Kestrel options
+        //https://github.com/aspnet/KestrelHttpServer/issues/1334
+        public static IHostBuilder CreateGenericHostBuilder(string[] args) { 
+            // CreateDefaultBuilder includes IISIntegration which is NOT desired, so
+            // The Kestral Web Server must be manually configured into the Generic Host
+            // Configure Kestral
+            return new HostBuilder()
+                .ConfigureWebHostDefaults(webBuilder => {
+                    webBuilder.UseKestrel()
+                    // In V30P4, all SS interfaces return an error that "synchronous writes are disallowed", see following issue
+                    //  https://github.com/aspnet/AspNetCore/issues/8302
+                    // Woraround is to configure the default web server to AllowSynchronousIO=true
+                    // ToDo: see if this is fixed in a release after V30P4
+                    .ConfigureKestrel((context, options) => {
+                        options.AllowSynchronousIO=true;
+                    })
+                    .UseContentRoot(Directory.GetCurrentDirectory())
+                    .UseStartup<Startup>()
+                    .UseUrls(Environment.GetEnvironmentVariable("ASPNETCORE_URLS")??"http://localhost:21200/")
+                    ;
+                });
 
         }
 

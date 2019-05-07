@@ -36,10 +36,8 @@
     <PackageReference Include="Microsoft.Extensions.Logging" Version="3.0.0-preview4.19216.2" />
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0" />
   </ItemGroup>
-
- 
   <ItemGroup>
-    <ProjectReference Include="..\CommonDTOs\CommonDTOs.csproj" />
+    <ProjectReference Include="..\..\CommonDTOs\CommonDTOs.csproj" />
   </ItemGroup>
 
 </Project>
