@@ -1,6 +1,5 @@
 using System;
 using System.IO;
-using System.Linq;
 using System.Reflection;
 using ServiceStack.Logging;
 // Ths example uses NLog for the logger, be sure it is installed on your system, or, change the logging framework

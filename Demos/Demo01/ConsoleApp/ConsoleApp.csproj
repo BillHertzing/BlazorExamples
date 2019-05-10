@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <!-- Override the TargetFameworks specified in the Directory.Build.props  -->
-    <TargetFrameworks>net471</TargetFrameworks>
+    <!-- Override the TargetFamework specified in the Directory.Build.props  -->
+    <TargetFramework>net471</TargetFramework>
     <OutputType>Exe</OutputType>
     <StartupObject>ConsoleApp.Program</StartupObject>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>

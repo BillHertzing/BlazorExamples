@@ -110,7 +110,7 @@ namespace ConsoleApp
         #endregion
 
         #region BaseServices PostComplexDataAsString
-        public object Post(ReqComplexDataAsStringDTO request)
+        public object Post(ComplexDataAsStringReqDTO request)
         {
             Log.Debug("entering PostComplexDataAsString Post");
             Log.Debug($"in PostComplexDataAsString Post; request: {request.Dump()}");
@@ -130,7 +130,7 @@ namespace ConsoleApp
             string rspComplexDataAsString = ServiceStack.Text.JsonSerializer.SerializeToString<ComplexData>(rspComplexData);
             Log.Debug($"in PostComplexDataAsString Post; rspComplexDataAsString: {rspComplexDataAsString}");
             // Create a responseDTO object
-            RspComplexDataAsStringDTO rspComplexDataAsStringDTO = new RspComplexDataAsStringDTO() { ComplexDataAsString = rspComplexDataAsString };
+            ComplexDataAsStringRspDTO rspComplexDataAsStringDTO = new ComplexDataAsStringRspDTO() { ComplexDataAsString = rspComplexDataAsString };
             Log.Debug($"in PostComplexDataAsString Post; rspComplexDataAsStringDTO = {rspComplexDataAsStringDTO}");
             Log.Debug("leaving PostComplexDataAsString Post");
             return rspComplexDataAsStringDTO;
@@ -138,7 +138,7 @@ namespace ConsoleApp
         #endregion
 
         #region BaseServices PostComplexDataAsDictionary
-        public object Post(ReqComplexDataDictionaryAsStringDTO request)
+        public object Post(ComplexDataDictionaryAsStringReqDTO request)
         {
             Log.Debug("entering PostComplexDataDictionaryAsString Post");
             Log.Debug($"in PostComplexDataDictionaryAsString Post; request = {request.Dump()}");
@@ -161,7 +161,7 @@ namespace ConsoleApp
             string rspComplexDataDictionaryAsString = ServiceStack.Text.JsonSerializer.SerializeToString<ComplexDataDictionary>(rspComplexDataDict);
             Log.Debug($"in PostComplexDataDictionaryAsString Post; rspComplexDataAsString: {rspComplexDataDictionaryAsString}");
             // Create a responseDTO object
-            RspComplexDataDictionaryAsStringDTO rspComplexDataDictionaryAsStringDTO = new RspComplexDataDictionaryAsStringDTO() { ComplexDataDictionaryAsString = rspComplexDataDictionaryAsString };
+            ComplexDataDictionaryAsStringRspDTO rspComplexDataDictionaryAsStringDTO = new ComplexDataDictionaryAsStringRspDTO() { ComplexDataDictionaryAsString = rspComplexDataDictionaryAsString };
             Log.Debug($"in PostComplexDataDictionaryAsString Post; rspComplexDataDictionaryAsStringDTO: {rspComplexDataDictionaryAsStringDTO.Dump()}");
             Log.Debug("leaving PostComplexDataDictionaryAsString Post");
             return rspComplexDataDictionaryAsStringDTO;

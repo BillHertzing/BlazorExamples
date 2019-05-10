@@ -1,0 +1,13 @@
+{
+  "profiles": {
+    "ConsoleApp": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "http://localhost:21200/",
+      "environmentVariables": {
+        
+      },
+      "applicationUrl": "http://localhost:21200/"
+    }
+  }
+}

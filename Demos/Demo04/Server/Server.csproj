@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <!-- Override the TargetFameworks specified in the Directory.Build.props  -->
-    <TargetFrameworks>net471</TargetFrameworks>
+    <TargetFramework>net471</TargetFramework>
     <OutputType>Exe</OutputType>
     <StartupObject>ConsoleApp.Program</StartupObject>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
@@ -55,8 +55,8 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
-  
+
   <ItemGroup>
-    <ProjectReference Include="..\CommonDTOs\CommonDTOs.csproj" />
+    <ProjectReference Include="..\..\CommonDTOs\CommonDTOs.csproj" />
   </ItemGroup>
 </Project>

@@ -2,17 +2,12 @@
 
   <!-- Solution wide msBuild settings -->
   <!-- Can be overridden if desired by a property of the same name in a project file for an assembly -->
+
   <PropertyGroup>
     <!-- All projects use Properties/AssemblyInfo.cs as their AssemblyInfo location -->
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 	<!-- Use the latest version of the C# language -->
-    <LangVersion>latest</LangVersion>
-  </PropertyGroup>
-
-  <!-- In this simple example, the CommonDTOs project uses the TargetFrameworks defined here,
-      but both the ConsoleApp project and the GUI project override this and individually set their own TragetFrameworks -->
-  <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net471</TargetFrameworks>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
 
   <!-- Release Configuration compilation symbols, flags and build options -->
@@ -35,6 +30,11 @@
 
   <!-- .NET Core 2.0 references, compilation flags and build options -->
   <PropertyGroup Condition=" '$(TargetFramework)' == 'netcoreapp2.0'">
+    <DefineConstants>NETCORE;</DefineConstants>
+  </PropertyGroup>
+  
+    <!-- .NET Core 3.0 references, compilation flags and build options -->
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'netcoreapp3.0'">
     <DefineConstants>NETCORE;</DefineConstants>
   </PropertyGroup>
 
