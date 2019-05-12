@@ -10,6 +10,7 @@ using System.Linq;
 // Use the Serializers from ServiceStack.text
 using ServiceStack.Text;
 
+
 namespace ConsoleApp
 {
   //VS.NET Template Info: https://servicestack.net/vs-templates/EmptyWindowService
@@ -123,8 +124,8 @@ namespace ConsoleApp
             ComplexData reqComplexData = ServiceStack.Text.JsonSerializer.DeserializeFromString<ComplexData>(reqComplexDataAsString);
             Log.Debug($"in PostComplexDataAsString Post; reqComplexDataDumped: {reqComplexData.Dump()}");
             // Create a response ComplexData
-            // var now = DateTime.UtcNow;
-            ComplexData rspComplexData = new ComplexData(reqComplexData.StringData+"... Right Back At Ya", reqComplexData.IntData+1, reqComplexData.DoubleData*2, reqComplexData.DecimalData/10); // DateTimeData = now, TimeSpanData = now - reqComplexData.DateTimeData,
+            var now = DateTime.UtcNow;
+            ComplexData rspComplexData = new ComplexData(reqComplexData.StringData+"... Right Back At Ya", DateTime.UtcNow, reqComplexData.IntData+1, reqComplexData.DoubleData*2, reqComplexData.DecimalData/10); // DateTimeData = now, TimeSpanData = now - reqComplexData.DateTimeData,
                 
             Log.Debug($"in PostComplexDataAsString Post; rspComplexDataDumped: {rspComplexData.Dump()}");
             // Serialize it to a string using ServiceStack Serializer
@@ -152,7 +153,7 @@ namespace ConsoleApp
             ComplexData reqComplexData = demo2ComplexDataDict["firstkey"];
             // Create a response ComplexData
             //var now = DateTime.UtcNow;
-            ComplexData rspComplexData = new ComplexData(reqComplexData.StringData+"... Right Back At Ya", reqComplexData.IntData+1, reqComplexData.DoubleData*2, reqComplexData.DecimalData/10); // DateTimeData = now, TimeSpanData = now - reqComplexData.DateTimeData
+            ComplexData rspComplexData = new ComplexData(reqComplexData.StringData+"... Right Back At Ya", DateTime.UtcNow, reqComplexData.IntData+1, reqComplexData.DoubleData*2, reqComplexData.DecimalData/10); // DateTimeData = now, TimeSpanData = now - reqComplexData.DateTimeData
             Log.Debug($"in PostComplexDataDictionaryAsString Post; rspComplexData: {rspComplexData.Dump()}");
             ComplexDataDictionary rspComplexDataDict = new ComplexDataDictionary(new Dictionary<string, ComplexData>());
             rspComplexDataDict.ComplexDataDict.Add("ComplexObjectReceived", reqComplexData);

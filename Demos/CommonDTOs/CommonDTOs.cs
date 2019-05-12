@@ -38,22 +38,20 @@ namespace CommonDTOs {
     #region Demo02 
     #region ComplexData and ComplexDataDictionary classes
     public class ComplexData {
-        public ComplexData() : this(string.Empty, 0, 0, decimal.Zero) { }
-        //public ComplexData() : this(string.Empty, new DateTime(), new TimeSpan(), 0, 0, decimal.Zero) { }
+        //public ComplexData() : this(string.Empty, 0, 0, decimal.Zero) { }
+        public ComplexData() : this(string.Empty, new DateTime(), 0, 0, decimal.Zero) { }
 
-        public ComplexData(string stringData, int intData, double doubleData, decimal decimalData) {
-            //            public ComplexData(string stringData, DateTime dateTimeData, TimeSpan timeSpanData, int intData, double doubleData, decimal decimalData) {
+        //public ComplexData(string stringData, int intData, double doubleData, decimal decimalData) {
+                        public ComplexData(string stringData, DateTime dateTimeData, int intData, double doubleData, decimal decimalData) {
             StringData=stringData;
-            //DateTimeData=dateTimeData;
-            //TimeSpanData=timeSpanData;
+            DateTimeData=dateTimeData;
             IntData=intData;
             DoubleData=doubleData;
             DecimalData=decimalData;
         }
 
         public string StringData { get; set; }
-        // public DateTime DateTimeData { get; set; }
-        // public TimeSpan TimeSpanData { get; set; }
+         public DateTime DateTimeData { get; set; }
         public int IntData { get; set; }
         public double DoubleData { get; set; }
         public decimal DecimalData { get; set; }

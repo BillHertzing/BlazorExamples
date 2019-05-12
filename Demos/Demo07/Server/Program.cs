@@ -24,16 +24,15 @@ namespace Server {
             Log.Debug("Entering Program.Main");
 
             // determine where this program's entry point's executing assembly resides
+            //   then change the working dir to the location where the Exe (and configuration files) are installed to.
             var loadedFromDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-
-            // Set the program's current directory to the location where the executing assembly resides
             Directory.SetCurrentDirectory(loadedFromDir);
 
             // Create the web server host
             Log.Debug("in Program.Main: create webHostBuilderSelfHostedKestrel");
 
             // Create a self-hosted host with just Kestrel WITHOUT IIS Integration
-            var webHostBuilder = CreateWebHostBuilder(args);
+            var webHostBuilder = CreateKestrelWebHostWithOutIISBuilder(args);
 
             // ToDo: Treat errors differently based on environment (Debug, or Production)
             Log.Debug("in Program.Main: modify webHostBuilder based on the environment in whihc the Net Core Host is executing ");
@@ -60,7 +59,7 @@ namespace Server {
         // This (older) post has great info and examples on setting up the Kestrel options
         //https://github.com/aspnet/KestrelHttpServer/issues/1334
         // This Builder pattern creates a GenericHostBuilder populated with Kestrel WITHOUT IIS integration
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+        public static IWebHostBuilder CreateKestrelWebHostWithOutIISBuilder(string[] args) =>
             // CreateDefaultBuilder includes IISIntegration which is NOT desired, so
             // The Kestrel Web Server must be manually configured into the WebHost
             // Configure Kestrel

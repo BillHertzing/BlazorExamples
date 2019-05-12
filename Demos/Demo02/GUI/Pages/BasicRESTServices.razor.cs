@@ -1,3 +1,4 @@
+using System;
 // Required for the injected HttpClient
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -7,12 +8,12 @@ using Microsoft.AspNetCore.Components;
 // Required for the logger/logging
 using Microsoft.Extensions.Logging;
 
-
 // Access the DTOs defined in a separate assembly, shared with the Console App
 using CommonDTOs;
 // Use the Serializers and .Dump() extension from ServiceStack.text
 using ServiceStack.Text;
-using System;
+// Use the Serializers Newtonsoft
+using Newtonsoft;
 
 namespace GUI.Pages {
     public class BasicRESTServicesCodeBehind : ComponentBase {
@@ -26,10 +27,11 @@ namespace GUI.Pages {
         public const string labelForPostDataDataButton = "Press to Post Data";
         public const string rspSimpleDataRspDTODumpText = "String representation of simple string object via the ServiceStack.Text extension method .Dump(): ";
         #endregion
-        #region StringConstants:Demo1
+        #region StringConstants:Demo2
         public const string textForDemo2Area = "The Demo02 functions show how the ServiceStack .Dump extension can be used to serialize a complex object instance to a string";
         public const string labelForComplexDataStringData = "ComplexData.StringData";
         public const string labelForComplexDataDateTimeData = "ComplexData.DateTimeData";
+        public const string labelForComplexDataTimeSpanData = "ComplexData.TimeSpanData";
         public const string labelForComplexDataIntData = "ComplexData.IntData";
         public const string labelForComplexDataDoubleData = "ComplexData.DoubleData";
         public const string labelForComplexDataDecimalData = "ComplexData.DecimalData";
@@ -120,6 +122,7 @@ namespace GUI.Pages {
         }
         #endregion
         #endregion
+
         #region Demo02
         #region PostComplexDataAsString OnClick Handler
         public async Task PostComplexDataAsString() {
@@ -138,9 +141,13 @@ namespace GUI.Pages {
             // To ensure the ServiceStack JSON serializer and deserializer is used, 
             //    use SS serializers to serialize to a string, 
             //    then pass that string to the HttpClient's PostJsonAsync method 
-
+            // To ensure the Newtonsoft JSON serializer and deserializer is used, 
+            //    use Newtonsoft serializers to serialize to a string, 
+            //    then pass that string to the HttpClient's PostJsonAsync method 
             // Serialize the ComplexData instance object using ServiceStack 
             string reqComplexDataAsString = ServiceStack.Text.JsonSerializer.SerializeToString<ComplexData>(ComplexDataP);
+            // Serialize the ComplexData instance object using Newtonsoft 
+            // string reqComplexDataAsString= Newtonsoft.Json.JsonConvert.SerializeObject(ComplexDataP);
             // Log the reqComplexDataAsString object
             Logger.LogDebug($"in PostComplexDataAsString: ComplexDataAsString: {reqComplexDataAsString.Dump()}");
             // Display the ComplexData object in the GUI as a string using Dump()
@@ -170,10 +177,11 @@ namespace GUI.Pages {
             Logger.LogDebug($"in PostComplexDataAsString: rspComplexDataAsString: {rspComplexDataAsString.Dump()}");
             // Display the string object in the GUI as a string using Dump()
             RspComplexDataAsStringDumped=rspComplexDataAsString.Dump();
-            Logger.LogDebug($"1");
+            // Deserialize the response from a string to a ComplexData using the Newtonsoft Json-deserializer
+             ComplexData rspComplexData = Newtonsoft.Json.JsonConvert.DeserializeObject<ComplexData>(rspComplexDataAsString);
             // Deserialize the response from a string to a ComplexData using the ServiceStack Json-deserializer
-            ComplexData rspComplexData = ServiceStack.Text.JsonSerializer.DeserializeFromString<ComplexData>(rspComplexDataAsString);
-            Logger.LogDebug($"2");
+            // Deserialization using SS fails to work so it is commented out
+            // ComplexData rspComplexData = ServiceStack.Text.JsonSerializer.DeserializeFromString<ComplexData>(rspComplexDataAsString);
             // Log the rspComplexData using Dump()
             Logger.LogDebug($"in PostComplexDataAsString: rspComplexData.Dump(): {rspComplexData.Dump()}");
             // Display the rspComplexData in the GUI as a string using Dump()

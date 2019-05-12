@@ -18,13 +18,9 @@ namespace ConsoleApp {
             Log = LogManager.GetLogger(typeof(Program));
             Log.Debug("Entering Program.Main");
 
-            // Change the working dir to the location where the Exe and configuration files are installed to.
-            var loadedFromDir =
-              Path
-              .GetDirectoryName(Assembly
-              .GetExecutingAssembly()
-                .Location);
-            Log.Debug($"loadedFromDir is {loadedFromDir}");
+            // determine where this program's entry point's executing assembly resides
+            //   then change the working dir to the location where the Exe (and configuration files) are installed to.
+            var loadedFromDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             Directory.SetCurrentDirectory(loadedFromDir);
 
             // set the port on which this ServiceStack application will listen.
