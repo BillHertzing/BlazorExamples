@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -6,14 +5,10 @@ using Microsoft.Extensions.DependencyInjection;
 using ServiceStack;
 using ServiceStack.Logging;
 using ServiceStack.Logging.NLogger;
-using Funq;
 using System;
 using System.IO;
 using System.Threading.Tasks;
-using System.Diagnostics;
 using System.Reflection;
-using System.Linq;
-using Microsoft.Extensions.Logging;
 
 namespace Server {
     class Program {
@@ -29,20 +24,46 @@ namespace Server {
             Log.Debug("Entering Program.Main");
 
             // determine where this program's entry point's executing assembly resides
-            var loadedFromDir =
-              Path
-              .GetDirectoryName(Assembly
-              .GetExecutingAssembly()
-                .Location);
-                
-            // Set the program's current directory to the location where the executing assembly resides
+            //   then change the working dir to the location where the Exe (and configuration files) are installed to.
+            var loadedFromDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             Directory.SetCurrentDirectory(loadedFromDir);
 
             // Create the web server host
-            // Create a self-hosted host with just Kestrel
             Log.Debug("in Program.Main: create webHostBuilderSelfHostedKestrel");
 
-            var webHostBuilderSelfHostedKestrel = new WebHostBuilder()
+            // Create a self-hosted host with just Kestrel WITHOUT IIS Integration
+            var webHostBuilder = CreateKestrelWebHostWithOutIISBuilder(args);
+
+            // ToDo: Treat errors differently based on environment (Debug, or Production)
+            Log.Debug("in Program.Main: modify webHostBuilder based on the environment in whihc the Net Core Host is executing ");
+            webHostBuilder=webHostBuilder
+                .CaptureStartupErrors(true)
+                .UseSetting("detailedErrors", "true")
+           ;
+
+            // Create the web server host
+            Log.Debug("in Program.Main: create webHost by calling .Build() on the webHostBuilder");
+            var webHost = webHostBuilder.Build();
+
+            // Start the webHost async
+            Log.Debug("in Program.Main: webHost created, starting RunAsync and awaiting it");
+            await webHost.RunAsync();
+            Log.Debug($"webHost.RunAsync called at {DateTime.Now}, listening on {"ToDo: get the list of listening proto:host:port from the webHost"}");
+
+            // Hold the Console window open as we await the webHost
+            Console.WriteLine("press any key to close the hosting environment that is running as a ConsoleApp");
+            Console.ReadKey();
+            Log.Debug("Leaving Program.Main");
+        }
+
+        // This (older) post has great info and examples on setting up the Kestrel options
+        //https://github.com/aspnet/KestrelHttpServer/issues/1334
+        // This Builder pattern creates a GenericHostBuilder populated with Kestrel WITHOUT IIS integration
+        public static IWebHostBuilder CreateKestrelWebHostWithOutIISBuilder(string[] args) =>
+            // CreateDefaultBuilder includes IISIntegration which is NOT desired, so
+            // The Kestrel Web Server must be manually configured into the WebHost
+            // Configure Kestrel
+            new WebHostBuilder()
                 .UseKestrel()
                 // In V30P4, all SS interfaces return an error that "synchronous writes are disallowed", see following issue
                 //  https://github.com/aspnet/AspNetCore/issues/8302
@@ -55,34 +76,8 @@ namespace Server {
                 .UseStartup<Startup>()
                 .UseUrls(Environment.GetEnvironmentVariable("ASPNETCORE_URLS")??"http://localhost:21200/")
                 ;
-
-            var webHostBuilder = webHostBuilderSelfHostedKestrel;
-
-            // ToDo: Treat errors differently based on environment (Debug, or Production)
-            Log.Debug("in Program.Main: modify webHostBuilder based on the environment in whihc the Net Core Host is executing ");
-            webHostBuilder=webHostBuilder
-                .CaptureStartupErrors(true)
-                .UseSetting("detailedErrors", "true")
-           ;
-                
-            // Create the web server host
-            Log.Debug("in Program.Main: create webHost by calling .Build() on the webHostBuilder");
-            var webHost = webHostBuilder.Build();
-
-            // Start the webHost
-            Log.Debug("in Program.Main: webHost created, starting RunAsync and awaiting it");
-
-            await webHost.RunAsync();
-            
-            Log.Debug($"webHost.RunAsync called at {DateTime.Now}, listening on {"ToDo: get the list of listening proto:host:port from the webHost"}");
-
-            Console.WriteLine("press any key to close the hosting environment that is running as a ConsoleApp");
-            Console.ReadKey();
-            Log.Debug("Leaving Program.Main");
-
-        }
-
     }
+
     public class Startup {
         static ILog Log { get; set; }
         public IConfiguration Configuration { get; }
@@ -108,7 +103,7 @@ namespace Server {
             });
 
             // The supplied lambda becomes the final handler in the HTTP pipeline
-            app.Run(async  (context) => {
+            app.Run(async (context) => {
                 Log.Debug("Last HTTP Pipeline handler");
                 context.Response.StatusCode=404;
                 await Task.FromResult(0);

@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <!-- Override the TargetFamework specified in the Directory.Build.props  -->
+    <!-- Override the TargetFameworks specified in the Directory.Build.props  -->
     <TargetFramework>net471</TargetFramework>
     <OutputType>Exe</OutputType>
     <StartupObject>ConsoleApp.Program</StartupObject>
@@ -10,17 +10,16 @@
     <!-- Assembly, File, and Package Information for this assembly-->
     <!-- Build and revision are created based on date-->
     <MajorVersion>1</MajorVersion>
-    <MinorVersion>1</MinorVersion>
+    <MinorVersion>0</MinorVersion>
     <PatchVersion>0</PatchVersion>
     <!-- Current Lifecycle stage for this assembly-->
-    <PackageLifeCycleStage>Dev</PackageLifeCycleStage>
+    <PackageLifeCycleStage>Production</PackageLifeCycleStage>
     <!-- However, if the LifeCyclestage is Production, the NuGet Package Label is ignored, but MSBuild expects a non-null value  -->
-    <PackageLabel>Alpha</PackageLabel>	
+    <PackageLabel>NA</PackageLabel>	
   </PropertyGroup>
 
   <!-- Common for all TargetFrameworks references, compilation flags and build options -->
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
     <PackageReference Include="ServiceStack" Version="5.5.1" />
     <PackageReference Include="ServiceStack.Logging.NLog" Version="5.5.1" />
   </ItemGroup>

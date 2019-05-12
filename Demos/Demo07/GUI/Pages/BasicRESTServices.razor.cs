@@ -49,7 +49,7 @@ namespace GUI.Pages
             // Someday this will work 
             //IServiceClient client = new JsonHttpClient("http://localhost:21100");
             ////Logger.LogDebug($"client is null: {client == null}");
-            InitializationReqDTO initializationReqDTO = new InitializationReqDTO($"testing");
+            InitializationReqDTO initializationReqDTO = new InitializationReqDTO();
              
             // Issue in Preview 4 requires the "route" to be a complete URL
             var uriBuilder = new UriBuilder("http://localhost:21200/Initialization");

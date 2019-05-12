@@ -20,7 +20,7 @@ namespace ConsoleApp {
 
             // determine where this program's entry point's executing assembly resides
             //   then change the working dir to the location where the Exe (and configuration files) are installed to.
-            var loadedFromDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            var loadedFromDir =Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             Directory.SetCurrentDirectory(loadedFromDir);
 
             // set the port on which this ServiceStack application will listen.

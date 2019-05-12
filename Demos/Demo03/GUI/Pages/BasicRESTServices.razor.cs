@@ -24,7 +24,7 @@ namespace GUI.Pages {
         public const string labelForDataToPost = "Data To Post";
         public const string labelForDataReceivedFromPost = "Data Received from last Post";
         public const string labelForPostDataDataButton = "Press to Post Data";
-        public const string rspPostDataDumpText = "Pretry Print the postDataRspDTO object via the ServiceStack.Text extension method Dump: ";
+        public const string rspPostDataDumpText = "Pretty Print the postDataRspDTO object via the ServiceStack.Text extension method .Dump(): ";
         #endregion
         #region Demo02
         public const string textForDemo2Area = "The Demo02 functions show how the ServiceStack .Dump extension can be used to serialize a complex object instance to a string";
@@ -66,10 +66,9 @@ namespace GUI.Pages {
             InitializationReqDTO initializationReqDTO = new InitializationReqDTO();
             var uriBuilder = new UriBuilder("http://localhost:21200/Initialization");
             Logger.LogTrace($"Calling PostJsonAsync<BaseServicesInitializationRspPayload>");
-            InitializationRspDTO=await HttpClient.PostJsonAsync<InitializationRspDTO>(uriBuilder.Uri.ToString(),
+            InitializationRspDTO = await HttpClient.PostJsonAsync<InitializationRspDTO>(uriBuilder.Uri.ToString(),
                                                                                                                  initializationReqDTO);
             Logger.LogTrace($"Returned from PostJsonAsync<InitializationRspDTO>, InitializationRspDTO: {InitializationRspDTO}");
-            Logger.LogTrace($"Leaving OnInitAsync");
             // create the instance of the ComplexData to be posted
             reqComplexData=new ComplexData() {
                 // initialize the fields
@@ -92,40 +91,45 @@ namespace GUI.Pages {
         public async Task PostData() {
             Logger.LogTrace($"Starting PostData");
             // Create the payload for the Post
-            PostDataReqDTO postDataReqDTO = new PostDataReqDTO() { StringDataObject=DataToPost };
+            PostDataReqDTO postDataReqDTO = new PostDataReqDTO() { StringDataObject = DataToPost };
             Logger.LogTrace($"Calling PostJsonAsync<PostDataReqDTO> with PostDataReqDTO.StringDataObject = {DataToPost}");
             PostDataRspDTO postDataRspDTO =
               await HttpClient.PostJsonAsync<PostDataRspDTO>(new UriBuilder("http://localhost:21200/PostData").Uri.ToString(), postDataReqDTO);
             Logger.LogTrace($"Returned from PostJsonAsync<PostDataRspDTO> with PostDataRspDTO.StringDataObject: {postDataRspDTO.StringDataObject}");
-            DataReceivedFromPost=postDataRspDTO.StringDataObject;
-            rspPostDataDump=postDataRspDTO.Dump();
+            DataReceivedFromPost = postDataRspDTO.StringDataObject;
+            rspPostDataDump = postDataRspDTO.Dump();
             Logger.LogTrace($"Leaving PostData");
         }
         #endregion
         #endregion
+
         #region Demo02
         #region PostComplexDataAsString OnClick Handler
         public async Task PostComplexDataAsString() {
             Logger.LogTrace($"Starting PostComplexDataAsString");
-            // Create the payload for the Post. Validation tests on the data entered by the user are not being done, using default types if an input is null
+            // Create the payload for the Post. 
+			//  Validation tests on the data entered by the user are not being done, using default types if an input is null
             // Log what is in the page's ComplexDataToPost object
             Logger.LogDebug($"in PostComplexDataAsString: reqComplexData.Dump: {reqComplexData.Dump()}");
+			
             // The HttpClient instance used below came from the DI  (IoC) container. Serialization is at the mercy of whatever Json-serializer the PostJsonAsync is using.
-            // To ensure the ServiceStack JSON serializer and deserializer is used, we use SS serializers to serialize to a string, then pass that string to the HttpClient's PostJsonAsync method 
+            // To ensure the ServiceStack JSON serializer and deserializer is used, 
+			//    use SS serializers to serialize to a string, 
+			//    then pass that string to the HttpClient's PostJsonAsync method 
             // Serialize the ComplexData instance object using ServiceStack 
             string reqComplexDataAsString = ServiceStack.Text.JsonSerializer.SerializeToString<ComplexData>(reqComplexData);
             Logger.LogDebug($"in PostComplexDataAsString: reqComplexDataAsString: {reqComplexDataAsString}");
             // Display the ComplexData object-as-string in the GUI
             reqComplexDataDump=reqComplexData.Dump();
             // Create an instance of the request DTO class and populate its data property
-            ReqComplexDataAsStringDTO reqComplexDataAsStringDTO = new ReqComplexDataAsStringDTO() { ComplexDataAsString=reqComplexDataAsString };
+            ComplexDataAsStringReqDTO reqComplexDataAsStringDTO = new ComplexDataAsStringReqDTO() { ComplexDataAsString=reqComplexDataAsString };
             // Log the DTO object
             Logger.LogDebug($"in PostComplexDataAsString: reqComplexDataAsStringDTO.Dump(): {reqComplexDataAsStringDTO.Dump()}");
             // Display the DTO object in the GUI
             reqComplexDataAsStringDTODump=reqComplexDataAsStringDTO.Dump();
             // pass that object to the PostJsonAsync<string> and await its return 
             // There are no try/catch blocks for error handling in Demo02
-            var rspComplexDataAsStringDTO = await HttpClient.PostJsonAsync<RspComplexDataAsStringDTO>(new UriBuilder("http://localhost:21200/PostComplexDataAsString").Uri.ToString(), reqComplexDataAsStringDTO);
+            var rspComplexDataAsStringDTO = await HttpClient.PostJsonAsync<ComplexDataAsStringRspDTO>(new UriBuilder("http://localhost:21200/PostComplexDataAsString").Uri.ToString(), reqComplexDataAsStringDTO);
             // Don't make any assumptions about what the response was, start by dumping it out for inspection
             Logger.LogDebug($"in PostComplexDataAsString: rspComplexDataAsStringDTO.Dump(): {rspComplexDataAsStringDTO.Dump()}");
             // Print what we expect to be the payload
@@ -163,12 +167,12 @@ namespace GUI.Pages {
             var reqComplexDataDictionaryAsString = ServiceStack.Text.JsonSerializer.SerializeToString<ComplexDataDictionary>(reqComplexDataDictionary);
             Logger.LogDebug($"in PostComplexDataDictionaryAsString: reqComplexDataDictionaryAsString: {reqComplexDataDictionaryAsString}");
             // Create an an instance of the request DTO class and initialize it with the ComplexDataDictionary object we just created
-            ReqComplexDataDictionaryAsStringDTO reqComplexDataDictionaryAsStringDTO = new ReqComplexDataDictionaryAsStringDTO() { ComplexDataDictionaryAsString=reqComplexDataDictionaryAsString };
-            // Log the ReqComplexDataDictionaryAsStringDTO
+            ComplexDataDictionaryAsStringReqDTO reqComplexDataDictionaryAsStringDTO = new ComplexDataDictionaryAsStringReqDTO() { ComplexDataDictionaryAsString=reqComplexDataDictionaryAsString };
+            // Log the ComplexDataDictionaryAsStringReqDTO
             Logger.LogDebug($"in PostComplexDataDictionaryAsString: reqComplexDataDictionaryAsStringDTO.Dump(): {reqComplexDataDictionaryAsStringDTO.Dump()}");
             // pass that string to the PostAsync and await its return 
             // There are no try/catch blocks for error handling in Demo02
-            var rspComplexDataDictionaryAsStringDTO = await HttpClient.PostJsonAsync<RspComplexDataDictionaryAsStringDTO>(new UriBuilder("http://localhost:21200/PostComplexDataDictionaryAsString").Uri.ToString(), reqComplexDataDictionaryAsStringDTO);
+            var rspComplexDataDictionaryAsStringDTO = await HttpClient.PostJsonAsync<ComplexDataDictionaryAsStringRspDTO>(new UriBuilder("http://localhost:21200/PostComplexDataDictionaryAsString").Uri.ToString(), reqComplexDataDictionaryAsStringDTO);
             // Don't make any assumptions about what the response was, start by dumping it out for inspection
             Logger.LogDebug($"in PostComplexDataDictionaryAsString: rspComplexDataAsStringDTO.Dump(): {rspComplexDataDictionaryAsStringDTO.Dump()}");
             string rspComplexDataAsDictionaryAsString = rspComplexDataDictionaryAsStringDTO.ComplexDataDictionaryAsString;
@@ -184,6 +188,7 @@ namespace GUI.Pages {
         }
         #endregion
         #endregion
+
         #region public fields
 
         #region Demo01 code

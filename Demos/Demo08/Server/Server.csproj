@@ -50,9 +50,8 @@
     <PackageReference Include="ServiceStack" Version="5.5.1" />
     <PackageReference Include="ServiceStack.Logging.NLog" Version="5.5.1" />
   </ItemGroup>
-
   <ItemGroup>
-    <ProjectReference Include="..\CommonDTOs\CommonDTOs.csproj" />
+    <ProjectReference Include="..\..\CommonDTOs\CommonDTOs.csproj" />
   </ItemGroup>
 
   <ItemGroup>
