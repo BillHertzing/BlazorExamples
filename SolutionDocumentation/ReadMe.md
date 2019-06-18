@@ -10,3 +10,7 @@ The static documentation site has been created with [DocFx](https://dotnet.githu
 ## Organization of teh Documentation
 
 ## Building
+
+Add the Telerik NuGet Feed to build Demo05
+https://docs.telerik.com/devtools/aspnet-ajax/installation/installing-the-telerik-controls-from-nuget-package
+ https://nuget.telerik.com/nuget

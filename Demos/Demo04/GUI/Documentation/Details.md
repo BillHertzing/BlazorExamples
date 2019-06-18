@@ -1,3 +1,3 @@
-# Demo04 GUI Documentation
+# Demo04 GUI Documentation Details
 
 Demo04 Adds 

@@ -57,8 +57,8 @@ namespace ConsoleApp
             // The GUI project has a Publish Profile for DebugProfile that publishes to the filesystem in a location relative to the GUI $ProjectDir
             //  at $ProjectDir/bin/<Config>/netstandard2.0/Publish/dist/GUI 
 
-            // Assuming you build and run this example in VS 2017 set to Debug configuration targeting the .Net standard 2.0 framework
-            var physicalRootPath = "../../../../GUI/bin/Debug/netstandard2.0/Publish/GUI/dist";
+            // Assuming you build and run this example in VS 2019 set to Release configuration targeting the .Net standard 2.0 framework
+            var physicalRootPath = "../../../../GUI/bin/Release/netstandard2.0/Publish/GUI/dist";
 
             // For this demo, set the virtual path to the empty string
             var virtualRootPath = "";

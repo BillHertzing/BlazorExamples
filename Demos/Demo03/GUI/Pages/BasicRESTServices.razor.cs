@@ -74,7 +74,6 @@ namespace GUI.Pages {
                 // initialize the fields
                 StringData="Set By OnInitAsync",
                 //                    DateTimeData = DateTime.UtcNow,
-                TimeSpanData=default,
                 IntData=default,
                 DoubleData=default,
                 DecimalData=default

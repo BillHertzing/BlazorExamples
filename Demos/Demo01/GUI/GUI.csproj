@@ -1,13 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
+  <!-- Target Framework for Blazor CSB -->
   <PropertyGroup>
+    <!-- Override the TargetFameworks specified in the Directory.Build.props  -->
+    <!-- In all Demos, the GUI project is built for .Net Standard 2.0  -->
     <TargetFramework>netstandard2.0</TargetFramework>
-    <RazorLangVersion>3.0</RazorLangVersion>
-    <RestoreAdditionalProjectSources>
-      https://dotnet.myget.org/F/aspnetcore-dev/api/v3/index.json;
-      https://dotnet.myget.org/F/blazor-dev/api/v3/index.json;
-    </RestoreAdditionalProjectSources>
-    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <!-- Separate Property Group for Version Control -->
+  <PropertyGroup>
     <!-- Assembly, File, and Package Information for this assembly-->
     <!-- Build and revision are created based on date-->
     <MajorVersion>1</MajorVersion>
@@ -16,26 +17,40 @@
     <!-- Current Lifecycle stage for this assembly-->
     <PackageLifeCycleStage>Dev</PackageLifeCycleStage>
     <!-- However, if the LifeCyclestage is Production, the NuGet Package Label is ignored, but MSBuild expects a non-null value  -->
-    <PackageLabel>alpha</PackageLabel>
+    <PackageLabel>Alpha</PackageLabel>
+  </PropertyGroup>
+  
+  <!-- Separate Property Group for NuGet Packaging -->
+  <PropertyGroup>
+    <IsPackable>false</IsPackable>
+	<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
 
+  <!-- Instruct the Blazor Linker NOT to strip out unused assemblies (needed in .Net Core V3.0 Preview 5)-->
   <PropertyGroup>
     <BlazorLinkOnBuild>false</BlazorLinkOnBuild>
   </PropertyGroup>
 
+  <!-- Designate a Razor Language Version for Blazor (needed in .Net Core V3.0 Preview 5)-->
+  <PropertyGroup>
+    <RazorLangVersion>3.0</RazorLangVersion>
+  </PropertyGroup>
+
+  <!-- Current list of dependencies common to all Blazor CSB projects -->
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Blazor" Version="3.0.0-preview5-19227-01" />
     <PackageReference Include="Microsoft.AspNetCore.Blazor.Build" Version="3.0.0-preview5-19227-01" PrivateAssets="all" />
     <PackageReference Include="Microsoft.AspNetCore.Blazor.DevServer" Version="3.0.0-preview4-19216-03" PrivateAssets="all" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="3.0.0-preview5.19227.9" />
-  </ItemGroup>
-  
-    <ItemGroup>
-    <PackageReference Include="Blazor.Extensions.Logging" Version="0.1.11" />
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0" />
   </ItemGroup>
+  
+  <!-- Logging provider dependency for CSB Blazor projects -->
+  <ItemGroup>
+    <PackageReference Include="Blazor.Extensions.Logging" Version="0.1.11" />
+  </ItemGroup>
 
+  <!-- Reference the CommonDTOs projects -->
   <ItemGroup>
     <ProjectReference Include="..\..\CommonDTOs\CommonDTOs.csproj" />
   </ItemGroup>

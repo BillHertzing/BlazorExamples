@@ -1,2 +1,3 @@
-# ReadMe for Demo01 CommonDTOs 
-Documentation for the ConsoleApp used in Demo01 can be found here: [Demo01 ConsoleApp Documentation](Documentation/Details.html)
+# ReadMe for Demo06 Server
+
+Documentation for the Server used in Demo06 can be found here: [Demo06 Server Documentation](Documentation/Details.html)

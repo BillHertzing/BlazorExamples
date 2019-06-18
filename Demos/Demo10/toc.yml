@@ -1,0 +1,20 @@
+- name: Overview
+  href: Documentation/Overview.html
+- name: GUI
+  items:
+  - name: ReadMe
+    href: GUI/ReadMe.html
+  - name: Details
+    href: GUI/Documentation/Details.html
+- name: Server
+  items:
+  - name: ReadMe
+    href: Server/ReadMe.html
+  - name: Details
+    href: Server/Documentation/Details.html
+- name: CommonDTOs
+  items:
+  - name: ReadMe
+    href: CommonDTOs/ReadMe.html
+  - name: Details
+    href: CommonDTOs/Documentation/Details.html

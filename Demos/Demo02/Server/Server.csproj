@@ -1,0 +1,41 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <!-- Override the TargetFameworks specified in the Directory.Build.props  -->
+    <!-- In this Demo, the Server project is built for .Net Core 2.1  -->
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TargetFrameworks>netcoreapp2.1;</TargetFrameworks>
+    <OutputType>Exe</OutputType>
+    <LangVersion>7.1</LangVersion>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <!-- Separate Property Group for Version Control -->
+  <PropertyGroup>
+    <!-- Assembly, File, and Package Information for this assembly-->
+    <!-- Build and revision are created based on date-->
+    <MajorVersion>1</MajorVersion>
+    <MinorVersion>3</MinorVersion>
+    <PatchVersion>0</PatchVersion>
+    <!-- Current Lifecycle stage for this assembly-->
+    <PackageLifeCycleStage>Dev</PackageLifeCycleStage>
+    <!-- However, if the LifeCyclestage is Production, the NuGet Package Label is ignored, but MSBuild expects a non-null value  -->
+    <PackageLabel>Alpha</PackageLabel>
+  </PropertyGroup>
+
+  <!-- Common for all Core apps that reference ServiceStack-->
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore" Version="2.2.0" />
+    <PackageReference Include="ServiceStack.Core" Version="5.5.1" />
+    <PackageReference Include="ServiceStack.Logging.NLog" Version="5.5.1" />
+    <PackageReference Include="ServiceStack.Text.Core" Version="5.5.1" />
+  </ItemGroup>
+
+  <!-- Reference the CommonDTOs projects -->
+  <ItemGroup>
+    <ProjectReference Include="..\..\CommonDTOs\CommonDTOs.csproj" />
+  </ItemGroup>
+
+</Project>
+

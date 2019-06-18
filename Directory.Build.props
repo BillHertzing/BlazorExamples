@@ -6,7 +6,7 @@
   <PropertyGroup>
     <!-- All projects use Properties/AssemblyInfo.cs as their AssemblyInfo location -->
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-	<!-- Use the latest version of the C# language -->
+    <!-- Use the latest version of the C# language -->
     <LangVersion>8.0</LangVersion>
   </PropertyGroup>
 
@@ -45,7 +45,7 @@
 
   <!-- Bonus Easter egg: Demonstrate the difference between msbuild run from inside Visual Studio, and msbuild called from dotnet CLI
        Replace Never with Clean -->
-  <Target Name="HighlightDifferencesBetweenMSBuild" BeforeTargets="Never">
+  <Target Name="HighlightDifferencesBetweenMSBuild" BeforeTargets="Clean">
     <Message  Text="MSBuildRuntimeType = $(MSBuildRuntimeType)" />
     <Message Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'" Text="SolutionDir undefined or null"/>
     <Message Condition="$(SolutionDir) != '' And $(SolutionDir) != '*Undefined*'" Text="SolutionDir =$(SolutionDir)"/>

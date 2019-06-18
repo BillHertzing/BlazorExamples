@@ -1,4 +1,4 @@
-# The ServiceStack (SS) ConsoleApp.exe Project/program
+# The ServiceStack (SS) ConsoleApp.exe Project / Assembly / executable program
 A simple Console program the implements the ServiceStack console host for two endpoints, plus the sauce needed to make ServiceStack deliver the static files that make up the GUI.
 
 # The REST endpoints

@@ -1,0 +1,63 @@
+{
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:54339/",
+      "sslPort": 0
+    }
+  },
+  "profiles": {
+    "IntegratedIISInProcessDev": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "launchUrl": "http://localhost:54339/",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "BlazorDemos_WebHostBuilder": "IntegratedIISInProcessWebHostBuilder"
+      },
+      "applicationUrl": "http://localhost:20910/"
+    },
+    "KestrelOnlyDev": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "http://localhost:20900/",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ASPNETCORE_URLS": "http://localhost:20900/",
+        "BlazorDemos_WebHostBuilder": "KestrelAloneWebHostBuilder"
+      },
+      "applicationUrl": "http://localhost:20900/"
+    },
+    "KestrelOnlyTesting": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "http://localhost:20920/",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Testing",
+        "BlazorDemos_WebHostBuilder": "KestrelAloneWebHostBuilder"
+      },
+      "applicationUrl": "http://localhost:20920/"
+    },
+    "KestrelOnlyProd": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "http://localhost:20940/",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Production",
+        "BlazorDemos_WebHostBuilder": "KestrelAloneWebHostBuilder"
+      },
+      "applicationUrl": "http://localhost:20940/"
+    },
+    "IntegratedIISInProcessProd": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "launchUrl": "http://localhost:54339/",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Production",
+        "BlazorDemos_WebHostBuilder": "IntegratedIISInProcessWebHostBuilder"
+      }
+    }
+
+  }
+}

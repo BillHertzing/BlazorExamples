@@ -2,16 +2,13 @@
 
   <PropertyGroup>
     <!-- Override the TargetFameworks specified in the Directory.Build.props  -->
+    <!-- In this Demo, the Server project is built for .Net Core 3.0  -->
     <TargetFramework>netcoreapp3.0</TargetFramework>
     <TargetFrameworks>netcoreapp3.0;</TargetFrameworks>
     <OutputType>Exe</OutputType>
     <LangVersion>8.0</LangVersion>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <IsPackable>false</IsPackable>
-    <RestoreAdditionalProjectSources>
-      https://dotnet.myget.org/F/aspnetcore-dev/api/v3/index.json;
-      https://dotnet.myget.org/F/blazor-dev/api/v3/index.json;
-    </RestoreAdditionalProjectSources>
   </PropertyGroup>
 
   <!-- Separate Property Group for Version Control -->
@@ -27,67 +24,30 @@
     <PackageLabel>Alpha</PackageLabel>
   </PropertyGroup>
 
-  <!-- Packages necessary to host .Net Core apps as a service, not working in V30P4 / not yet part of demo06
-   <ItemGroup>
-    <PackageReference Include="System.ServiceProcess.ServiceController" Version="4.6.0-preview4.19212.13" />
-    <PackageReference Include="Microsoft.Extensions.Hosting" Version="3.0.0-preview4.19216.2" />
-    <PackageReference Include="Microsoft.Extensions.Configuration" Version="3.0.0-preview4.19216.2" />
-    <PackageReference Include="Microsoft.Extensions.Logging" Version="3.0.0-preview4.19216.2" />
-  </ItemGroup>
-  -->
+  <!-- During Core 3.0 preview, these additional NuGet package servers provide the latest preview packages -->
+  <PropertyGroup>
+    <RestoreAdditionalProjectSources>
+      https://dotnet.myget.org/F/aspnetcore-dev/api/v3/index.json;
+      https://dotnet.myget.org/F/blazor-dev/api/v3/index.json;
+    </RestoreAdditionalProjectSources>
+  </PropertyGroup>
 
-  <!-- Packages necessary to run the ASP.Net Core Blazor Server -->
+  <!-- Packages necessary to run the ASP.Net Core Generic Host and web server hosts Server -->
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Blazor.Server" Version="3.0.0-preview5-19227-01" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.0.0-preview5-19227-01" />
     <PackageReference Include="Microsoft.AspNetCore.Components" Version="3.0.0-preview5-19227-01" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="3.0.0-preview5.19227.9" />
   </ItemGroup>
 
-
   <!-- Common for all Core apps that reference ServiceStack-->
   <ItemGroup>
-    <PackageReference Include="ServiceStack" Version="5.5.1" />
+    <PackageReference Include="ServiceStack.Core" Version="5.5.1" />
     <PackageReference Include="ServiceStack.Logging.NLog" Version="5.5.1" />
+    <PackageReference Include="ServiceStack.Text.Core" Version="5.5.1" />
   </ItemGroup>
+
+  <!-- Reference the CommonDTOs projects -->
   <ItemGroup>
     <ProjectReference Include="..\..\CommonDTOs\CommonDTOs.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Content Update="App.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Update="NLog.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-
 </Project>
-
-<!-- Tell the build process to copy any/all json, config, and xsd files to the output directory if the source is newer than than the copy in the output directory 
-  Conflicts with the default behaviour of the Microsoft.NET.Sdk.Web sdk specified at the top of this project
-      <ItemGroup>
-    <Content Include="**\*.json" Exclude="bin\**\*;obj\**\*" CopyToOutputDirectory="PreserveNewest" />
-    <Content Include="**\*.config" Exclude="bin\**\*;obj\**\*" CopyToOutputDirectory="PreserveNewest" />
-    <Content Include="**\*.xsd" Exclude="bin\**\*;obj\**\*" CopyToOutputDirectory="PreserveNewest" />
-  </ItemGroup>
-  -->
-
-  <!-- Identify specific files that come with a Designer application in Visual Studio   
-  <ItemGroup>
-    <None Include="App.config">
-      <SubType>Designer</SubType>
-    </None>
-    <Content Include="NLog.config">
-      <SubType>Designer</SubType>
-    </Content>
-    <None Include="NLog.xsd">
-      <SubType>Designer</SubType>
-    </None>
-  </ItemGroup>
-
-  -->
-
-
- 

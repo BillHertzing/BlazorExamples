@@ -72,7 +72,7 @@ namespace GUI.Pages {
             Logger.LogTrace($"Starting OnInitAsync");
             #region Demo1 Initialization Code
             InitializationReqDTO initializationReqDTO = new InitializationReqDTO();
-            var uriBuilder = new UriBuilder("http://localhost:21200/Initialization");
+            var uriBuilder = new UriBuilder("http://localhost:20200/Initialization");
             Logger.LogTrace($"Calling PostJsonAsync<BaseServicesInitializationRspPayload>");
             InitializationRspDTO = await HttpClient.PostJsonAsync<InitializationRspDTO>(uriBuilder.Uri.ToString(),
                                                                                                                  initializationReqDTO);
@@ -114,7 +114,7 @@ namespace GUI.Pages {
             PostDataReqDTO postDataReqDTO = new PostDataReqDTO() { StringDataObject = DataToPost };
             Logger.LogTrace($"Calling PostJsonAsync<PostDataReqDTO> with PostDataReqDTO.StringDataObject = {DataToPost}");
             PostDataRspDTO postDataRspDTO =
-              await HttpClient.PostJsonAsync<PostDataRspDTO>(new UriBuilder("http://localhost:21200/PostSimpleData").Uri.ToString(), postDataReqDTO);
+              await HttpClient.PostJsonAsync<PostDataRspDTO>(new UriBuilder("http://localhost:20200/PostSimpleData").Uri.ToString(), postDataReqDTO);
             Logger.LogTrace($"Returned from PostJsonAsync<PostDataRspDTO> with PostDataRspDTO.StringDataObject: {postDataRspDTO.StringDataObject}");
             RspSimpleDataRspDTODumped=postDataRspDTO.Dump();
             StringDataObjectReceivedFromPost= postDataRspDTO.StringDataObject;
@@ -163,7 +163,7 @@ namespace GUI.Pages {
             // pass that object to the PostJsonAsync<string> and await its return 
             // There are no try/catch blocks for error handling 
             Logger.LogDebug($"in PostComplexDataAsString: calling HttpClient.PostJsonAsync<ComplexDataAsStringRspDTO>");
-            var complexDataAsStringRspDTO = await HttpClient.PostJsonAsync<ComplexDataAsStringRspDTO>(new UriBuilder("http://localhost:21200/PostComplexDataAsString").Uri.ToString(), complexDataAsStringReqDTO);
+            var complexDataAsStringRspDTO = await HttpClient.PostJsonAsync<ComplexDataAsStringRspDTO>(new UriBuilder("http://localhost:20200/PostComplexDataAsString").Uri.ToString(), complexDataAsStringReqDTO);
 
             // ToDo: better understaanding of the await in this specific useage. Is it 'assured" that the next line won't execute until a response is received?
             // Log the DTO object received
@@ -229,7 +229,7 @@ namespace GUI.Pages {
 
             // pass that string to the PostAsync and await its return 
             // There are no try/catch blocks for error handling in Demo02
-            var complexDataDictionaryAsStringRspDTO = await HttpClient.PostJsonAsync<ComplexDataDictionaryAsStringRspDTO> (new UriBuilder("http://localhost:21200/PostComplexDataDictionaryAsString").Uri.ToString(), complexDataDictionaryAsStringReqDTO);
+            var complexDataDictionaryAsStringRspDTO = await HttpClient.PostJsonAsync<ComplexDataDictionaryAsStringRspDTO> (new UriBuilder("http://localhost:20200/PostComplexDataDictionaryAsString").Uri.ToString(), complexDataDictionaryAsStringReqDTO);
 
             // Log the DTO object received
             Logger.LogDebug($"in PostComplexDataDictionaryAsString: complexDataDictionaryAsStringRspDTO.Dump(): {complexDataDictionaryAsStringRspDTO.Dump()}");
