@@ -24,7 +24,7 @@ namespace Server {
         /// </summary>
         public SSAppHost() : base("SSServer", typeof(SSAppHost).Assembly) {
             Log.Debug("Entering SSAppHost Ctor");
-            Log.Debug("in SSAppHost .ctor, base.Configuration.Dump() = {V}", base.Configuration.Dump());
+           // Log.Debug("in SSAppHost .ctor, base.Configuration.Dump() = {V}", base.Configuration.Dump());
             Log.Debug("Leaving SSAppHost Ctor");
         }
 
@@ -42,7 +42,7 @@ namespace Server {
         public override void Configure(Container container) {
             Log.Debug("Entering SSAppHost.Configure method");
             //Log.Debug($"in SSAppHost.Configure, base.Configuration.GetValue<String>(PhysicalRootPathConfigKey).Dump() = {base.Configuration.GetValue<String>(PhysicalRootPathConfigKey).Dump()}");
-            Log.Debug("in SSAppHost.Configure, base.Configuration.GetValue<String>(Program.URLSConfigRootKey).Dump() = {V}", base.Configuration.GetValue<String>(Program.URLSConfigRootKey).Dump());
+            //Log.Debug("in SSAppHost.Configure, base.Configuration.GetValue<String>(Program.URLSConfigRootKey).Dump() = {V}", base.Configuration.GetValue<String>(Program.URLSConfigRootKey).Dump());
 
             // Blazor requires the delivery of static files ending in certain file suffixes.
             // SS disallows some of these by default, so here we tell SS to allow certain file suffixes
@@ -64,7 +64,7 @@ namespace Server {
 
             // Assuming you build and run this example in VS 2017 set to Debug configuration targeting the .Net standard 2.0 framework
 
-            string physicalRootPath = base.Configuration.GetValue<String>(PhysicalRootPathConfigKey);
+            //string physicalRootPath = base.Configuration.GetValue<String>(PhysicalRootPathConfigKey);
 
             // For this demo, set the virtual path to the empty string
             var virtualRootPath = "";

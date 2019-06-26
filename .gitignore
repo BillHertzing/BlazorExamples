@@ -12,6 +12,8 @@
 *.lock
 # (Experimental) DocFx Documentation generation log file
 ATAP.Utilities.AutoDoc/log.txt
+# (Experimental) DocFx output artifacts, don't put anything into GitHub control
+docs/
 # User Secrets file for things like DB connection string passwords and API access Keys (DO NOT CHECKIN)
 
 # User-specific files

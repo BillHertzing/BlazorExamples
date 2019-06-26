@@ -22,7 +22,7 @@ namespace Server {
         /// </summary>
         public SSAppHost() : base("SSServer", typeof(SSAppHost).Assembly) {
             Log.Debug("Entering SSAppHost Ctor");
-            Log.Debug($"in SSAppHost .ctor, base.Configuration.Dump() = {base.Configuration.Dump()}");
+           // Log.Debug($"in SSAppHost .ctor, base.Configuration.Dump() = {base.Configuration.Dump()}");
             Log.Debug("Leaving SSAppHost Ctor");
         }
 

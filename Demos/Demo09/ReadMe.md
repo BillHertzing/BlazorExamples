@@ -22,7 +22,7 @@ The `genericHostSettings.json` and `genericHostSettings.development.json` files 
 `genericHostSettings.json` (production) configures Serilog with the `Seq` writer. The Serilog `LogContext` is enriched with the current threadID, and an additional property, `Application` having the value 'Demo09"
 `genericHostSettings.json` (Development) configures Serilog with the `Seq` writer, the `Console` writer, and the `DebugOutpu` writer. 
 The Serilog static Log object is initialized with the Serilog configuration read from the ConfigurationRoot
-The static method CreateGenericHost adds `Serilog.AspNetCore` logging to the genericHost's `ConfigureWebHostDefaults` builder extension and to the `.ConfigureLogging` builder extensionvia `.UseSerilog()`
+The static method CreateGenericHost adds `Serilog.AspNetCore` logging to the genericHost's `ConfigureWebHostDefaults` builder extension and to the `.ConfigureLogging` builder extension via `.UseSerilog()`
 The NLog.config and NLog.xsd files are removed. They will not reappear in future demos
 The Serilog Analyzer is installed vi NuGet
 The Log statements that used String expansion are replaced with SeriLog structured logging messages. The Analyzer provides a suggested replacement, so this step is just a "replace all occurrences" in the project
