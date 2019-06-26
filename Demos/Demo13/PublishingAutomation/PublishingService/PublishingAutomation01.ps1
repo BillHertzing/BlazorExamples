@@ -78,7 +78,7 @@ Param(
     InDir = '.\Inputs'
     OutDir = '.\outputs'
     Force = $false
-	ServiceName = 'Demo11'
+	ServiceName = 'Demo13'
 	CopyRules = @{}
   }
 

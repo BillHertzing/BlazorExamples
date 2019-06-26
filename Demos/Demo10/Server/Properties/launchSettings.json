@@ -3,56 +3,62 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:54339/",
+      "applicationUrl": "http://localhost:20910/",
       "sslPort": 0
     }
   },
   "profiles": {
-    "KestrelOnlyDev": {
-      "commandName": "Project",
-      "commandLineArgs": "--Console=true",
-      "launchBrowser": true,
-      "launchUrl": "http://localhost:21000/",
-      "environmentVariables": {
-        "ASPNETCORE_Environment": "Development",
-        "BlazorDemos_WebHostBuilder": "KestrelAloneWebHostBuilder",
-        "ASPNETCORE_URLS": "http://localhost:21000/"
-      },
-      "applicationUrl": "http://localhost:21000/"
-    },
     "IntegratedIISInProcessDev": {
       "commandName": "IISExpress",
-      "commandLineArgs": "-Console true",
       "launchBrowser": true,
-      "launchUrl": "http://localhost:21010/",
+      "launchUrl": "http://localhost:20910/",
       "environmentVariables": {
-        "ASPNETCORE_Environment": "Development",
-        "BlazorDemos_WebHostBuilder": "IntegratedIISInProcessWebHostBuilder",
-        "ASPNETCORE_URLS": "http://localhost:21010/"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "BlazorDemos_WebHostBuilder": "IntegratedIISInProcessWebHostBuilder"
+      }
+    },
+    "KestrelOnlyDev": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "http://localhost:20910/",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ASPNETCORE_URLS": "http://localhost:20910/",
+        "BlazorDemos_WebHostBuilder": "KestrelAloneWebHostBuilder"
       },
-      "applicationUrl": "http://localhost:21010/"
+      "applicationUrl": "http://localhost:20900/"
+    },
+    "KestrelOnlyTesting": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "http://localhost:20910/",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Testing",
+        "ASPNETCORE_URLS": "http://localhost:20910/",
+        "BlazorDemos_WebHostBuilder": "KestrelAloneWebHostBuilder"
+      },
+      "applicationUrl": "http://localhost:20910/"
     },
     "KestrelOnlyProd": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "http://localhost:21020/",
+      "launchUrl": "http://localhost:20915/",
       "environmentVariables": {
-        "ASPNETCORE_Environment": "Production",
-        "BlazorDemos_WebHostBuilder": "KestrelAloneWebHostBuilder",
-        "ASPNETCORE_URLS": "http://localhost:21020/"
+        "ASPNETCORE_ENVIRONMENT": "Production",
+        "ASPNETCORE_URLS": "http://localhost:20915/",
+        "BlazorDemos_WebHostBuilder": "KestrelAloneWebHostBuilder"
       },
-      "applicationUrl": "http://localhost:21020/"
+      "applicationUrl": "http://localhost:20915/"
     },
     "IntegratedIISInProcessProd": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "http://localhost:21030/",
+      "launchUrl": "http://localhost:20915/",
       "environmentVariables": {
-        "ASPNETCORE_Environment": "Production",
-        "BlazorDemos_WebHostBuilder": "IntegratedIISInProcessWebHostBuilder",
-        "ASPNETCORE_URLS": "http://localhost:21030/"
-      },
-      "applicationUrl": "http://localhost:21030/"
+        "ASPNETCORE_ENVIRONMENT": "Production",
+        "ASPNETCORE_URLS": "http://localhost:20915/",
+        "BlazorDemos_WebHostBuilder": "IntegratedIISInProcessWebHostBuilder"
+      }
     }
   }
 }

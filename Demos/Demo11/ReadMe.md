@@ -18,11 +18,7 @@ This demo focuses on getting the new `PublishedService.pubxml` file setup proper
 Details in [Demo11 Blazor GUI](GUI/ReadMe.html)
 
 ## Server
-This demo focuses on automating the process of moving the code from a pure development location to a location akin to what the final installation location for the service will look like.
-creating the basic windows service additions, then hosting the ServiceStack middleware in a Kestrel-only webHost inside a GenericHost under Net Core V3.0 and running it as a Service
-Introduction of a PowerShell script to partially automate the process of distribution and installation
-Install WiX Toolset V3.11.1 https://github.com/wixtoolset/wix3/releases/tag/wix3111rtm .exe file and run as administrator
-WiX Toolset build tools RC for VS 2019 extension called Votive2019.vsix; install
+ILWeaving
 
 Details in [Demo11 Server](Server/ReadMe.html)
 

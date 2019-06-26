@@ -6,7 +6,7 @@ SS provides the infrastructure to handle REST endpoints as well as serve the sta
 # The SS Services that handle the endpoints
 SS places the code that responds to a Request, and creates the Response, in methods that are part of a class that inherits from SS's Service class. There is a ton of documentation on the web about SS, and its (very feature rich) Service class. Demo01 uses just the most basic of these features. In Demo01, the actions that the Service takes for each endpoint are defined in the AppHost.cs file, in a class there called `BaseServices` and the two methods  therein. One method signature indicates the method should be called for a POST to the */Initialization* Route, the other method's signature indicates it should be called for a POST on the */PostData* Route. These methods signatures specify the DTO classes for their respective Request and Response. 
 # TargetFramework
-For Demo07, the TargetFramework for the server.exe program is netcoreapp3.0.
+For Demo10, the TargetFramework for the server.exe program is netcoreapp3.0.
 
 # How to make ServiceStack deliver the Blazor app
 You will need to start with version  5.4.1 or higher, because ServiceStack developers added some allowed file types to this version to make it work better. The following discussion applies to the code found in `AppHost.cs`.
@@ -67,7 +67,7 @@ Plugins.Add(new CorsFeature(
 ```
 This is all that's required for SS to serve a Blazor application!
 
-#Demo09 Server as a Windows Service and Linux Daemon
+#Demo10 Server as a Windows Service and Linux Daemon
 
 Build the Server project.
 
@@ -75,10 +75,10 @@ Build the Server project.
 The Publish Step for the Server project places the executable and all required content files into a PublishedService folder
 
 ### Creating the PublishedService folder
-Create a new Solution Folder and rename it to PublishedService. Under the Demo09 subfolder create a new Windows folder called PublishedService. 
+Create a new Solution Folder and rename it to PublishedService. Under the Demo10 subfolder create a new Windows folder called PublishedService. 
 
 ### Create a new Server Publish Profile
-Right-Click `Server.csproj file` in the Solution explorer, click `Publish...`, then Start, then select Folder as the Publish target. Chose a folder, use the folder picker, select the PublishedService folder under Demo09.
+Right-Click `Server.csproj file` in the Solution explorer, click `Publish...`, then Start, then select Folder as the Publish target. Chose a folder, use the folder picker, select the PublishedService folder under Demo10.
 
 Select `Create Profile`, then `Rename`. New name is PublishedService. 
 
