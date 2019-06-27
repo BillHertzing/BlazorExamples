@@ -3,7 +3,7 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:20910/",
+      "applicationUrl": "http://localhost:21010/",
       "sslPort": 0
     }
   },
@@ -11,7 +11,7 @@
     "IntegratedIISInProcessDev": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "http://localhost:20910/",
+      "launchUrl": "http://localhost:21010/",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
         "BlazorDemos_WebHostBuilder": "IntegratedIISInProcessWebHostBuilder"
@@ -20,43 +20,43 @@
     "KestrelOnlyDev": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "http://localhost:20910/",
+      "launchUrl": "http://localhost:21010/",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "ASPNETCORE_URLS": "http://localhost:20910/",
+        "ASPNETCORE_URLS": "http://localhost:21010/",
         "BlazorDemos_WebHostBuilder": "KestrelAloneWebHostBuilder"
       },
-      "applicationUrl": "http://localhost:20900/"
+      "applicationUrl": "http://localhost:21010/"
     },
     "KestrelOnlyTesting": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "http://localhost:20910/",
+      "launchUrl": "http://localhost:21010/",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Testing",
-        "ASPNETCORE_URLS": "http://localhost:20910/",
+        "ASPNETCORE_URLS": "http://localhost:21010/",
         "BlazorDemos_WebHostBuilder": "KestrelAloneWebHostBuilder"
       },
-      "applicationUrl": "http://localhost:20910/"
+      "applicationUrl": "http://localhost:21010/"
     },
     "KestrelOnlyProd": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "http://localhost:20915/",
+      "launchUrl": "http://localhost:21010/",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Production",
-        "ASPNETCORE_URLS": "http://localhost:20915/",
+        "ASPNETCORE_URLS": "http://localhost:21010/",
         "BlazorDemos_WebHostBuilder": "KestrelAloneWebHostBuilder"
       },
-      "applicationUrl": "http://localhost:20915/"
+      "applicationUrl": "http://localhost:21010/"
     },
     "IntegratedIISInProcessProd": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "http://localhost:20915/",
+      "launchUrl": "http://localhost:21010/",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Production",
-        "ASPNETCORE_URLS": "http://localhost:20915/",
+        "ASPNETCORE_URLS": "http://localhost:21010/",
         "BlazorDemos_WebHostBuilder": "IntegratedIISInProcessWebHostBuilder"
       }
     }

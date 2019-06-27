@@ -30,6 +30,11 @@
       https://dotnet.myget.org/F/blazor-dev/api/v3/index.json;
     </RestoreAdditionalProjectSources>
   </PropertyGroup>
+ 
+  <!-- Packages to implement ETW logging -->
+  <ItemGroup>
+    <PackageReference Include="System.Diagnostics.EventLog" Version="4.6.0-preview6.19303.8" />
+  </ItemGroup>
 
   <!-- https://github.com/Azure/azure-functions-vs-build-sdk/issues/160 -->
   <!-- Adding the DemoETWEventSoruce references caused build to look for .Net Framework System DLL, this fixes that problem-->
@@ -70,7 +75,6 @@
   <!-- Packages to implement ServiceStack-->
   <ItemGroup>
     <PackageReference Include="ServiceStack" Version="5.5.1" />
-    <PackageReference Include="System.Diagnostics.EventLog" Version="4.6.0-preview6.19303.8" />
   </ItemGroup>
   
   <!-- Reference the CommonDTOs projects -->

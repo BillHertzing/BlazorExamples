@@ -31,7 +31,7 @@
     ],
     "Enrich": [ "FromLogContext", "WithThreadId" ],
     "Properties": {
-      "Application": "Demo09.1"
+      "Application": "Demo11"
     }
   }
 } 

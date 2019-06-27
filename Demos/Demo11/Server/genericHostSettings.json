@@ -1,5 +1,4 @@
 {
-
   "Logging": {
     "PathFormat": "./Logs/genericPathFormat.{Date}.log",
     "LogLevel": {
@@ -21,9 +20,10 @@
     ],
     "Enrich": [ "FromLogContext", "WithThreadId" ],
     "Properties": {
-      "Application": "Demo09.1"
+      "Application": "Demo11"
     }
   },
+
   "ConnectionStrings": {
     "DefaultConnection": "Server=(localdb)\\MSSQLLocalDB;Database=_CHANGE_ME;Trusted_Connection=True;MultipleActiveResultSets=true"
   }

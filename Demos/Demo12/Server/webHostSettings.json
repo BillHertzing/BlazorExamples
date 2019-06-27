@@ -1,0 +1,5 @@
+{
+  "from": "webHostSettings.json",
+  "fromWebHostSettings.json": "true",
+  "urls": "http://localhost:21210;"
+}

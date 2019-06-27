@@ -64,7 +64,7 @@ namespace Server {
 
             // Assuming you build and run this example in VS 2017 set to Debug configuration targeting the .Net standard 2.0 framework
 
-            //string physicalRootPath = base.Configuration.GetValue<String>(PhysicalRootPathConfigKey);
+            string physicalRootPath = base.Configuration.GetValue<String>(PhysicalRootPathConfigKey);
 
             // For this demo, set the virtual path to the empty string
             var virtualRootPath = "";

@@ -49,10 +49,11 @@ namespace Server {
         public static async Task Main(string[] args) {
 
             // ETW Logging 
-            DemoETWProvider.Log.Information("Entering Program.Main Information message");
+            DemoETWProvider.Log.MethodBoundry("<");
 
-            // ToDo: Create default production logger configuration prior to having a ConfigurationRoot
-            Log.Debug("Entering Program.Main");
+            // ToDo: Create default production logger configuration prior to having a ConfigurationRoot in order to log startup errors in Main
+            // ToDo:  or, see if ETW logging can be used instead
+            //Log.Debug("Entering Program.Main");
 
             // determine where this program's entry point's executing assembly resides
             //   then change the working directory to the location where the assembly (and configuration files) are installed to.
@@ -63,7 +64,7 @@ namespace Server {
             //  Initial configuration does not take Environment into account. 
             var initialGenericHostConfigurationBuilder = new ConfigurationBuilder()
                 // Start with a "compiled-in defaults" for anything that is REQUIRED to be provided in configuration for Production
-                .AddInMemoryCollection(genericHostConfigurationCompileTimeProduction)
+                .AddInMemoryCollection(GenericHostDefaultConfiguration.Production)
                 // SetBasePath creates a Physical File provider, which will be used by the following methods
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile(genericHostSettingsFileName +hostSettingsFileNameSuffix, optional: true)
@@ -90,19 +91,9 @@ namespace Server {
                 // Recreate the ConfigurationBuilder for this genericHost, this time including environment-specific configuration providers.
                 IConfigurationBuilder genericHostConfigurationBuilder = new ConfigurationBuilder()
                     // Start with a "compiled-in defaults" for anything that is REQUIRED to be provided in configuration for Production
-                    .AddInMemoryCollection(genericHostConfigurationCompileTimeProduction);
-                // Add environment-specific "compiled-in defaults"
-                switch (initialEnvName) {
-                    case EnvironmentDevelopment:
-                        genericHostConfigurationBuilder.AddInMemoryCollection(genericHostConfigurationCompileTimeDevelopment);
-                        break;
-                    case EnvironmentProduction:
-                        throw new InvalidOperationException(String.Format(InvalidCircularEnvironmentExceptionMessage, initialEnvName));
-                    default:
-                        throw new NotImplementedException(String.Format(InvalidSupportedEnvironmentExceptionMessage, initialEnvName));
-                }
-                // SetBasePath creates a Physical File provider, which will be used by the following methods that read files
-                genericHostConfigurationBuilder.SetBasePath(Directory.GetCurrentDirectory())
+                    .AddInMemoryCollection(GenericHostDefaultConfiguration.Production)
+                    // SetBasePath creates a Physical File provider, which will be used by the following methods that read files
+                    .SetBasePath(Directory.GetCurrentDirectory())
                     .AddJsonFile(genericHostSettingsFileName + hostSettingsFileNameSuffix, optional: true);
                 // Add environment-specific settings file
                 switch (initialEnvName) {
@@ -155,8 +146,6 @@ namespace Server {
             // The Serilog.Log is a static entry to the Serilog logging provider
             // Create a Serilog logger based on the ConfigurationRoot and assign it to the static Serilog.Log object
 
-
-
             // Configure logging based on the information in ConfigurationRoot
             // Example of setting up Serilogger in configuration
             Serilog.Core.Logger x = new LoggerConfiguration().ReadFrom.Configuration(genericHostConfigurationRoot).CreateLogger();
@@ -178,11 +167,6 @@ namespace Server {
             
             // Select which CoreLogger to use
             Serilog.Log.Logger=x;
-
-            // Insert a breakpoint here, add a watch for Serilog.Log.Logger, then drilldown on the Non-Public members to find the hierarchy of sinks, 
-            //   and validate the logging sinks that are present are the same as what is defined, either in code or in the ConfigurationRoot, are present
-            DemoETWProvider.Log.Information("in Program.Main ETW Information message Environment= { @envName}");
-          //  DemoETWProvider.Log.Critical("in Program.Main ETW Critical messagetest");
 
             Log.Debug("Environment = {@envName}", envName);
             Log.Debug("webHostBuilderToBuild = {@webHostBuilderToBuild}", webHostBuilderToBuild);
@@ -240,17 +224,19 @@ namespace Server {
             Log.Debug("in Program.Main: Leaving Program.Main");
 
             Log.CloseAndFlush();
+            DemoETWProvider.Log.MethodBoundry(">");
         }
 
 
         #region genericHostBuilder creation / configuration
         // This Builder pattern creates a GenericHostBuilder populated by a specific web host as specified by a paramter
         public static IHostBuilder CreateSpecificHostBuilder(string[] args, IConfigurationRoot genericHostConfigurationRoot) {
+            DemoETWProvider.Log.MethodBoundry("<");
             var hb = new HostBuilder()
             // The Generic Host Configuration. 
             .ConfigureHostConfiguration(configHostBuilder => {
                 // Start with a "compiled-in defaults" for anything that is required to be provided in configuration for Production
-                configHostBuilder.AddInMemoryCollection(genericHostConfigurationCompileTimeProduction);
+                configHostBuilder.AddInMemoryCollection(GenericHostDefaultConfiguration.Production);
                 // SetBasePath creates a Physical File provider, which will be used by the two following methods
                 configHostBuilder.SetBasePath(Directory.GetCurrentDirectory());
                 configHostBuilder.AddJsonFile(genericHostSettingsFileName+hostSettingsFileNameSuffix, optional: true);
@@ -294,20 +280,9 @@ namespace Server {
             // the WebHost configuration
             .ConfigureAppConfiguration((genericHostBuilderContext, configWebHostBuilder) => {
                 // Start with a "compiled-in defaults" for anything that is required to be provided in configuration  
-                configWebHostBuilder.AddInMemoryCollection(webHostConfigurationCompileTimeProduction);
+                configWebHostBuilder.AddInMemoryCollection(WebHostDefaultConfiguration.Production);
                 // Add additional required configuration variables to be provided in configuration for other environments
                 string env = genericHostBuilderContext.Configuration.GetValue<string>(EnvironmentConfigRootKey);
-                switch (env) {
-                    case EnvironmentDevelopment:
-                        // This is where many developer conveniences are configured for Development environment
-                        // In the Development environment, modify the WebHostBuilder's settings to use the detailed error pages, and to capture startup errors
-                        configWebHostBuilder.AddInMemoryCollection(webHostConfigurationCompileTimeDevelopment);
-                        break;
-                    case EnvironmentProduction:
-                        break;
-                    default:
-                        throw new NotImplementedException(String.Format(InvalidSupportedEnvironmentExceptionMessage, env));
-                }
                 // webHost configuration can see the global configuration, and will default to using the Physical File provider present in the GenericWebHost'scofiguration
                 configWebHostBuilder.AddJsonFile(webHostSettingsFileName, optional: true);
                 configWebHostBuilder.AddJsonFile(
@@ -368,6 +343,7 @@ namespace Server {
                 //  will pickup by default, as documented 
                 //   https://docs.microsoft.com/en-us/aspnet/core/fundamentals/configuration/?view=aspnetcore-3.0#environment-variables-configuration-provider
             });
+            DemoETWProvider.Log.MethodBoundry(">");
             return hb;
         }
         #endregion
@@ -384,27 +360,27 @@ namespace Server {
 
         // This class gets created by the runtime when .Build is called on the webHostBuilder. The .ctor populates this class' Configuration property .
         public HostedWebServerStartup(IConfiguration configuration) {
-            DemoETWProvider.Log.Information("<");
+            DemoETWProvider.Log.MethodBoundry("<");
             Log.Debug("in HostedWebServerStartup.ctor; populating the HostedWebServerStartup.Configuration property by Constructior Injection");
             Configuration=configuration;
             Log.Debug("in HostedWebServerStartup.ctor; Configuration.Dump() = {V}", Configuration.Dump());
-            DemoETWProvider.Log.Information(">");
+            DemoETWProvider.Log.MethodBoundry(">");
         }
 
         // This method gets called by the runtime after the HostedWebServerStartup.ctor completes.
         //    Use this method to add services to the hostedWebServer container.
         public void ConfigureServices(IServiceCollection services) {
-            DemoETWProvider.Log.Information("<");
+            DemoETWProvider.Log.MethodBoundry("<");
             // Todo: Logging, environment, configuration, cancellation token?
             Log.Debug("in HostedWebServerStartup.ConfigureServices: no service(s) have been injected in this Demo");
             //Log.Debug($"in HostedWebServerStartup.ConfigureServices; services.Dump() = {services.Dump()}");
             //Log.Debug($"in HostedWebServerStartup.ConfigureServices; Configuration.Dump() = {Configuration.Dump()}");
-            DemoETWProvider.Log.Information(">");
+            DemoETWProvider.Log.MethodBoundry(">");
         }
 
         // This method gets called by the runtime after HostedWebServerStartup.ConfigureServices completes. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env) {
-            DemoETWProvider.Log.Information("<");
+            DemoETWProvider.Log.MethodBoundry("<");
             // Looking at env.Dump(), both EnvironmentName and ApplicationName are present
             // the ContentRootPathProvider is a PhysicalFileProvider
             // the ContentRootPath is the current directory, as expected (by default, as we have never set it explicitly)
@@ -439,7 +415,7 @@ namespace Server {
                 await Task.FromResult(0);
                 Log.Debug("leaving the last HTTP Pipeline handler (returns 404)");
             });
-            DemoETWProvider.Log.Information(">");
+            DemoETWProvider.Log.MethodBoundry(">");
         }
     }
 }

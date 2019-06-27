@@ -8,10 +8,5 @@ namespace Server {
             KestrelAloneWebHostBuilder
         }
 
-        // Create an enumeration for the kinds of environments this program knows how to support
-        public enum SupportedEnvironments {
-            Development,
-            Production
-        }
     }
 }
