@@ -6,12 +6,12 @@
     href: GUI/ReadMe.html
   - name: Details
     href: GUI/Documentation/Details.html
-- name: Server
+- name: ConsoleApp
   items:
   - name: ReadMe
-    href: Server/ReadMe.html
+    href: ConsoleApp/ReadMe.html
   - name: Details
-    href: Server/Documentation/Details.html
+    href: ConsoleApp/Documentation/Details.html
 - name: CommonDTOs
   items:
   - name: ReadMe

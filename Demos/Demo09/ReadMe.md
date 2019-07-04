@@ -1,11 +1,11 @@
 # Blazor With ServiceStack Demonstrations Demo09 ReadMe (at the common Demo09 Solution subfolder level)
 If you are viewing this ReadMe.md in GitHub, [here is this same ReadMe on the documentation site](ReadMe.html)
 
-This is the specific documentation for Demo09, *Adding Serilog loggers*.
+This is the specific documentation for Demo09, *Adding Serilog as a Microsoft.Extensions.Logging logger*.
 
 ## Introduction
 The Blazor GUI project ...
-The server project 
+The server project demonstrates how to add / reference SeriLog as a MEL logger, configure logging, and view logging in a stream database.
 The Common DTOs ..
 
 ## Blazor GUI
@@ -23,8 +23,8 @@ The `genericHostSettings.json` and `genericHostSettings.development.json` files 
 `genericHostSettings.json` (Development) configures Serilog with the `Seq` writer, the `Console` writer, and the `DebugOutpu` writer. 
 The Serilog static Log object is initialized with the Serilog configuration read from the ConfigurationRoot
 The static method CreateGenericHost adds `Serilog.AspNetCore` logging to the genericHost's `ConfigureWebHostDefaults` builder extension and to the `.ConfigureLogging` builder extension via `.UseSerilog()`
-The NLog.config and NLog.xsd files are removed. They will not reappear in future demos
-The Serilog Analyzer is installed vi NuGet
+The NLog.config and NLog.xsd files are removed. 
+The Serilog Analyzer, installed via NuGet, will provide IntelliSense for the Serilog Log methods
 The Log statements that used String expansion are replaced with SeriLog structured logging messages. The Analyzer provides a suggested replacement, so this step is just a "replace all occurrences" in the project
 
 Details in [Demo09 Server](Server/ReadMe.html)

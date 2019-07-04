@@ -1,14 +1,16 @@
 @page "/"
 @page "/index.html"
+@inherits GUI.Pages.IndexCodeBehind
 
-<h1> Blazor served by ServiceStack in a Console App </h1>
+<h1> A Blazor GUI served by ServiceStack Middleware in a .Net Core 2.1 WebHost (an Integrated IIS InProcess WebHost) </h1>
 
 <p>Welcome to a simple demonstration of a Blazor app served from a ServiceStack Console app.</p>
 
-<p>Having Fiddler installed and running is good idea to see the network interaction between the Blazor app and the ServiceStack app.</p>
+<p> Having the browser's Developer Tools window open, showing the Console window, will display the logging message from the GUI in the Console window. Note that it "just works" on FireFox and Edge, but Chrome, by default, won't show logging messages. Here's a link how to configure Chrone to show logging messages, if you are using Chrome</p>
 
-<p> Having the browser's Developer tools window open, showing the Console window, will display the logging statements inside the GUI code (broke on Chrome, works on Firefox)</p>
+<p>The number below will increment with each button click, but will reset to 0 if the page is refreshed (browser refresh button).</p>
 
-<p>Navigate to the BasicRESTServices page to cause this Blazor app to send an Initialization Post to the ServiceStack Console app.</p>
+<p>@aIntProperty</p>
+<button @onclick=( ()=> )>click to increment</button>
 
-<p>Enter data in the "Data To Post" field, press the "Post Data" button, and see (in Fiddler and on the screen) ServiceStack echo back the data you entered.</p>
+<p>This page has no State storage so `aIntProperty` re-initializes each time the page is initialized</p>

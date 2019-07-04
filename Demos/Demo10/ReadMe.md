@@ -1,11 +1,11 @@
-# Blazor With ServiceStack Demonstrations Demo10 ReadMe (at the Demo10 subfolder level)
+# Blazor With ServiceStack Demonstrations Demo10 ReadMe (at the common Demo10 Solution subfolder level)
 If you are viewing this ReadMe.md in GitHub, [here is this same ReadMe on the documentation site](ReadMe.html)
 
-This is the specific documentation for Demo10, *Blazor GUI served by ServiceStack Middleware hosted by Kestrel-Only Web Host hosted in a GenericHost having a Windows Service Lifetime
+This is the specific documentation for Demo10, *Adding Event Tracing for Windows (ETW)*.
 
 ## Introduction
-The Blazor GUI project adds the ability to publish to a specific folder within the _\_PublishedAgent\PublishedService_ subdirectory tree using the `PublishedService.pubxml` publishing option
-The server project grows into a Windows Service
+The Blazor GUI project ...
+The server project logs method boundries in the tracing window (not getters or setters yet) 
 The Common DTOs ..
 
 ## Blazor GUI
@@ -13,11 +13,16 @@ This demo focuses on
 Details in [Demo10 Blazor GUI](GUI/ReadMe.html)
 
 ## Server
-This demo focuses on creating the basic windows service additions, then hosting the ServiceStack middleware in a Kestrel-only webHost inside a GenericHost under Net Core V3.0 and running it as a Service
-The differences between a ConsoleApp and a Service are explored
-A key runtime variable is introduced, IsConsoleApp, as are concepts from the Runtime, to determine if the program is running under Windows or Linux
-switchMappings are added to the program's ConfigurationRoot to detect -C or -Console as a commandline switch
-Instructions for using sc.exe for manually installing and uninstalling the genericHost as a Windows Service are documented 
+This demo focuses on Tracing and Profiling
+A managed ETW provider, named `DemoETWProvider`, derived form `EventSource` is added.
+The `DemoETWProvider` class has one static Property, `Log`, which holds an instance of the `DemoETWProvider` class.
+The `DemoETWProvider` has one method, `Information`, which writes to the ETW subsystem via `System.Diagnostics.Tracing`.
+The Serilog logging messages for method entry and exit throughout the Server classes are replaced with calls to the `DemoETWProvider.Log.Information`
+A number of external tools useful for collecting, viewing, and analyzing ETW events are discussed in the documentation, along with links to further information
+  1. Visual Studio Diagnostics Event window
+  1. PerfView, and how to use it to collect ETW events from the demo, and view the ETW logs
+  1. ToDo: --WPA, Windows Performance Analyzer--
+ 
 Details in [Demo10 Server](Server/ReadMe.html)
 
 ## CommonDTOs
@@ -27,6 +32,5 @@ The demonstration illustrates two service endpoints.
 | Route | Service Name | Verb | RequestDTO Type Name | ResponseDTO type Name|
 |---|---|---|---|---||
 |`/Initialization` | `BaseServices` | `Post` | `InitializationReqDTO` | `InitializationRspDTO`
-
 	
 	: [Demo10 Overview](Documentation/Overview.html)

@@ -1,0 +1,94 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <!-- Override the TargetFameworks specified in the Directory.Build.props  -->
+    <!-- In this Demo, the Server project is built for .Net Core 3.0  -->
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <TargetFrameworks>netcoreapp3.0;</TargetFrameworks>
+    <OutputType>Exe</OutputType>
+    <LangVersion>8.0</LangVersion>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <!-- Separate Property Group for Version Control -->
+  <PropertyGroup>
+    <!-- Assembly, File, and Package Information for this assembly-->
+    <!-- Build and revision are created based on date-->
+    <MajorVersion>1</MajorVersion>
+    <MinorVersion>3</MinorVersion>
+    <PatchVersion>0</PatchVersion>
+    <!-- Current Lifecycle stage for this assembly-->
+    <PackageLifeCycleStage>Dev</PackageLifeCycleStage>
+    <!-- However, if the LifeCyclestage is Production, the NuGet Package Label is ignored, but MSBuild expects a non-null value  -->
+    <PackageLabel>Alpha</PackageLabel>
+  </PropertyGroup>
+
+  <!-- During Core 3.0 preview, these additional NuGet package servers provide the latest preview packages -->
+  <PropertyGroup>
+    <RestoreAdditionalProjectSources>
+      https://dotnet.myget.org/F/aspnetcore-dev/api/v3/index.json;
+      https://dotnet.myget.org/F/blazor-dev/api/v3/index.json;
+    </RestoreAdditionalProjectSources>
+  </PropertyGroup>
+  
+    <!-- Packages necessary to run the ASP.Net Core Generic Host and web server hosts Server -->
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components" Version="3.0.0-preview6.19307.2" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="3.0.0-preview6.19304.6" />
+  </ItemGroup>
+
+  <!-- Common for all Core apps that reference ServiceStack-->
+  <ItemGroup>
+    <PackageReference Include="ServiceStack.Core" Version="5.5.1" />
+    <PackageReference Include="ServiceStack.Text.Core" Version="5.5.1" />
+  </ItemGroup>
+
+  <!-- Common for all Core apps that include ServiceStack logging and Serilog logging-->
+  <ItemGroup>
+    <PackageReference Include="ServiceStack.Logging.NLog" Version="5.5.1" />
+    <PackageReference Include="Serilog.Extensions.Logging" Version="2.0.4" />
+    <PackageReference Include="Serilog.Extensions.Logging.File" Version="1.1.0" />
+    <PackageReference Include="Serilog.Settings.Configuration" Version="3.1.0" />
+  </ItemGroup>
+
+  <!-- Reference the CommonDTOs projects -->
+  <ItemGroup>
+    <ProjectReference Include="..\..\CommonDTOs\CommonDTOs.csproj" />
+  </ItemGroup>
+
+  <!-- A RuntimeIdentifier is needed for the Windows Service 
+  <PropertyGroup>
+    <RuntimeIdentifier>win7-x64</RuntimeIdentifier>
+  </PropertyGroup>
+   -->
+   
+    <!-- Packages necessary to host/configure/log .Net Core apps as a service -->
+  <ItemGroup>
+    <PackageReference Include="System.ServiceProcess.ServiceController" Version="4.6.0-preview6.19303.8" />
+	
+    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="3.0.0-preview6.19304.6" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="3.0.0-preview6.19304.6" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.CommandLine" Version="3.0.0-preview6.19304.6" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="3.0.0-preview6.19304.6" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.0.0-preview6.19304.6" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="3.0.0-preview6.19304.6" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Configuration" Version="3.0.0-preview6.19304.6" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="3.0.0-preview6.19304.6" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.0.0-preview6.19304.6" />
+  </ItemGroup>
+ 
+
+  <!-- Packages necessary to run the ASP.Net Core Blazor Server -->
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Blazor.Server" Version="3.0.0-preview6.19307.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.0.0-preview6.19307.2" />
+  </ItemGroup>
+
+
+</Project>
+
+
+
+
+

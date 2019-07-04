@@ -19,8 +19,8 @@ namespace Server {
         public const string CouldNotCreateServiceStackVirtualFileMappingExceptionMessage = "Could not create ServiceStack Virtual File Mapping: ";
 
         public SSAppHost() : base("SSServer", typeof(SSAppHost).Assembly) {
-            Log.Debug("Entering SSAppHost Ctor");
-            Log.Debug("Leaving SSAppHost Ctor");
+            Log.Debug("Entering SSAppHost .ctor");
+            Log.Debug("Leaving SSAppHost .ctor");
         }
 
         public override void Configure(Container container) {

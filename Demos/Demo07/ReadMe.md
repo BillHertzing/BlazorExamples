@@ -15,7 +15,7 @@ Details in [Demo07 Blazor GUI](GUI/ReadMe.html)
 ## Server
 The concept of Configuration (ConfigurationBuilder, Configuration Providers, and a ConfigurationRoot) is introduced 
 An initial hostConfigurationRoot is created from InMemory, File, and EnvironmentVariable providers.
-A new compilation unit is introduced `DefaultConfiguration.cs`, which contains the minimal configKeys needed to run the program in production (URLs)
+A new compilation unit is introduced `DefaultConfiguration.cs`, which contains the minimal configKeys needed to run the program in production (For Demo07 and future, that minimum includes at least the list of URL(s) to ListenTo)
 LaunchSettings.json grows to include environment variables for the WebHostToBuild, Environment and URLs 
 WebHostToBuild and Environment strings from the ConfigurationRoot are validated. If not present, defaults are provided and added to the ConfigurationRoot.
 The static `IHostBuilder` method `CreateGenericHostBuilder()` grows an additional parameter of type `ConfigurationRoot`, and the `hostConfigurationRoot` is passed to the method
