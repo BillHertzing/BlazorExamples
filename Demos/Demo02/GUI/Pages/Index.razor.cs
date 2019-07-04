@@ -27,10 +27,10 @@ namespace GUI.Pages {
         #endregion
 
         #region the button's OnClick Handler
-        public void Button1OnClick() {
-            Logger.LogTrace($"Starting Button1OnClick");
+        public void IncrementAIntegerButtonOnClick() {
+            Logger.LogTrace("Starting IncrementAIntegerButtonOnClick");
             aIntProperty+=1;
-            Logger.LogTrace($"Leaving Button1OnClick");
+            Logger.LogTrace("Leaving IncrementAIntegerButtonOnClick");
         }
         #endregion
     }

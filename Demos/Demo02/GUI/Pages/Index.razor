@@ -6,11 +6,24 @@
 
 <p>Welcome to a simple demonstration of a Blazor app served from a ServiceStack Console app.</p>
 
-<p> Having the browser's Developer Tools window open, showing the Console window, will display the logging message from the GUI in the Console window. Note that it "just works" on FireFox and Edge, but Chrome, by default, won't show logging messages. Here's a link how to configure Chrone to show logging messages, if you are using Chrome</p>
+<p>
+    Having the browser's Developer Tools window open, showing the Console window, will display the logging message from the GUI in the Console window. The following links contain further reading on the browser's Developer Tools and Console Window.
+</p>
+<p>ToDo: Craft warning text about follwoing the links and going to 3rd-party sites outside of my control</p>
+<a href="https://support.airtable.com/hc/en-us/articles/232313848-How-to-open-the-developer-console">
+    How to open the developer console (Multiple Browsers)
+</a>
+<br />
+<a href="https://developers.google.com/web/tools/chrome-devtools/console/log">
+    Get Started With Logging Messages In The Console (Chrome-specific)
+</a>
+<br />
+<p>ToDo: Add Note that it "just works" on FireFox and Edge, but Chrome, by default, won't show logging messages. Add a link how to configure Chrone to show logging messages, if you are using Chrome
+</p>
 
-<p>The number below will increment with each button click, but will reset to 0 if the page is refreshed (browser refresh button).</p>
+<p>The number below is stored in a page-local Property named aIntProperty. The number will increment with each button click, but will reset to 0 if the page is initialized. Initialing loading the page initializes it. Refreshing the page (browser refresh button) is another way to initialze the page.</p>
 
-<p>@aIntProperty</p>
-<button @onclick=( @Button1OnClick )>click to increment</button>
+<p>aIntProperty: @aIntProperty</p>
+<button name="IncrementAInteger" class="btn btn-primary" @onclick="@IncrementAIntegerButtonOnClick">click to increment</button>
 
-<p>This page has no State storage so `aIntProperty` re-initializes each time the page is initialized</p>
+<p>This page does not use any storage so `aIntProperty` re-initializes to its default value (0) each time the page is initialized</p>
