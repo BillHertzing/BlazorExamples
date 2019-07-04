@@ -19,10 +19,10 @@ namespace Server {
         /// Base constructor requires a Name and Assembly where web service implementation is located
         /// </summary>
         public SSAppHost() : base("SSServer", typeof(SSAppHost).Assembly) {
-            DemoETWProvider.Log.MethodBoundry("<");
+            DemoETWProvider.Log.Information("<");
             // Log.Debug("in SSAppHost .ctor, base.Configuration.Dump() = {V}", base.Configuration.Dump());
             Log.Debug("Leaving SSAppHost Ctor");
-            DemoETWProvider.Log.MethodBoundry(">");
+            DemoETWProvider.Log.Information(">");
         }
 
 
@@ -38,7 +38,7 @@ namespace Server {
         //}
 
         public override void Configure(Container container) {
-            DemoETWProvider.Log.MethodBoundry("<");
+            DemoETWProvider.Log.Information("<");
             //Log.Debug($"in SSAppHost.Configure, base.Configuration.GetValue<String>(Program.URLSConfigRootKey).Dump() = {base.Configuration.GetValue<String>(Program.URLSConfigRootKey).Dump()}");
 
             // Blazor requires the delivery of static files ending in certain file suffixes.
@@ -86,7 +86,7 @@ namespace Server {
                allowCredentials: true,
                allowedHeaders: "content-type, Authorization, Accept"));
 
-            DemoETWProvider.Log.MethodBoundry(">");
+            DemoETWProvider.Log.Information(">");
         }
     }
 
@@ -94,19 +94,19 @@ namespace Server {
     public class BaseServices : Service {
         #region BaseServices Initialization
         public object Post(InitializationReqDTO request) {
-            DemoETWProvider.Log.MethodBoundry("<");
+            DemoETWProvider.Log.Information("<");
             // V30P4 has an error trying to serialize an empty response, so the InitializationRspDTO has been modified to return a string
             var rsp = new InitializationRspDTO();
-            DemoETWProvider.Log.MethodBoundry(">");
+            DemoETWProvider.Log.Information(">");
             return rsp;
         }
         #endregion
         #region BaseServices PostData
         public object Post(PostDataReqDTO request) {
-            DemoETWProvider.Log.MethodBoundry("<"); 
+            DemoETWProvider.Log.Information("<"); 
             // simply echo back in the response whatever data came in the request
             var postDataRspDTO = new PostDataRspDTO(request.StringDataObject);
-            DemoETWProvider.Log.MethodBoundry(">");
+            DemoETWProvider.Log.Information(">");
             return postDataRspDTO;
         }
         #endregion

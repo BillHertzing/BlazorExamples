@@ -19,6 +19,8 @@ using System.Threading.Tasks;
 using System.Reflection;
 
 namespace Server {
+    // Use the Custom ETWLog Attribute to specify ETW logging of all method boundries
+    [ETWLog]
     partial class Program {
 
         public const string ASPNETCOREEnvironmentVariablePrefix = "ASPNETCORE_";
@@ -48,9 +50,8 @@ namespace Server {
 
         public static async Task Main(string[] args) {
 
-            // ETW Logging 
-            DemoETWProvider.Log.Information("Entering Program.Main Information message");
-
+            // Skip logging property setters or getter
+            // var atr = new MethodBoundaryAspect.Fody.Attributes.AspectSkipPropertiesAttribute(true);
             // ToDo: Create default production logger configuration prior to having a ConfigurationRoot
             Log.Debug("Entering Program.Main");
 
@@ -171,6 +172,7 @@ namespace Server {
 
             // Insert a breakpoint here, add a watch for Serilog.Log.Logger, then drilldown on the Non-Public members to find the hierarchy of sinks, 
             //   and validate the logging sinks that are present are the same as what is defined, either in code or in the ConfigurationRoot, are present
+
             DemoETWProvider.Log.Information("in Program.Main ETW Information message Environment= { @envName}");
           //  DemoETWProvider.Log.Critical("in Program.Main ETW Critical messagetest");
 
@@ -227,7 +229,6 @@ namespace Server {
             // Hold the Console window open as we await the webHost
             Console.WriteLine("press any key to close the generic hosting environment that is running as a ConsoleApp");
             Console.ReadKey();
-            Log.Debug("in Program.Main: Leaving Program.Main");
 
             Log.CloseAndFlush();
         }
@@ -357,6 +358,7 @@ namespace Server {
     //  An instance is created when the GenericHostBuilder .Builds() the genericHost
     //  and just after creation, this instance's ConfigureServices method is called
     //  After creation
+    // Use the Custom ETWLog Attribute to specify ETW logging of all method boundries
     [ETWLog]
     public class HostedWebServerStartup {
         
@@ -364,27 +366,22 @@ namespace Server {
 
         // This class gets created by the runtime when .Build is called on the webHostBuilder. The .ctor populates this class' Configuration property .
         public HostedWebServerStartup(IConfiguration configuration) {
-            DemoETWProvider.Log.Information("<");
             Log.Debug("in HostedWebServerStartup.ctor; populating the HostedWebServerStartup.Configuration property by Constructior Injection");
             Configuration=configuration;
             Log.Debug("in HostedWebServerStartup.ctor; Configuration.Dump() = {V}", Configuration.Dump());
-            DemoETWProvider.Log.Information(">");
         }
 
         // This method gets called by the runtime after the HostedWebServerStartup.ctor completes.
         //    Use this method to add services to the hostedWebServer container.
         public void ConfigureServices(IServiceCollection services) {
-            DemoETWProvider.Log.Information("<");
             // Todo: Logging, environment, configuration, cancellation token?
             Log.Debug("in HostedWebServerStartup.ConfigureServices: no service(s) have been injected in this Demo");
             //Log.Debug($"in HostedWebServerStartup.ConfigureServices; services.Dump() = {services.Dump()}");
             //Log.Debug($"in HostedWebServerStartup.ConfigureServices; Configuration.Dump() = {Configuration.Dump()}");
-            DemoETWProvider.Log.Information(">");
         }
 
         // This method gets called by the runtime after HostedWebServerStartup.ConfigureServices completes. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env) {
-            DemoETWProvider.Log.Information("<");
             // Looking at env.Dump(), both EnvironmentName and ApplicationName are present
             // the ContentRootPathProvider is a PhysicalFileProvider
             // the ContentRootPath is the current directory, as expected (by default, as we have never set it explicitly)
@@ -419,7 +416,6 @@ namespace Server {
                 await Task.FromResult(0);
                 Log.Debug("leaving the last HTTP Pipeline handler (returns 404)");
             });
-            DemoETWProvider.Log.Information(">");
         }
     }
 }

@@ -5,7 +5,7 @@ This is the specific documentation for Demo10, *Adding Event Tracing for Windows
 
 ## Introduction
 The Blazor GUI project ...
-The server project 
+The server project logs method boundries in the tracing window (not getters or setters yet) 
 The Common DTOs ..
 
 ## Blazor GUI
@@ -14,16 +14,15 @@ Details in [Demo10 Blazor GUI](GUI/ReadMe.html)
 
 ## Server
 This demo focuses on Tracing and Profiling
-A managed ETW provider is added.
-The ETW Provider class has two methods, that create ETW events for method entry and method exit
-The Serilog logging messages for method entry and exit throughout the Server classes are replaced with the ETW methods 
+A managed ETW provider, named `DemoETWProvider`, derived form `EventSource` is added.
+The `DemoETWProvider` class has one static Property, `Log`, which holds an instance of the `DemoETWProvider` class.
+The `DemoETWProvider` has one method, `Information`, which writes to the ETW subsystem via `System.Diagnostics.Tracing`.
+The Serilog logging messages for method entry and exit throughout the Server classes are replaced with calls to the `DemoETWProvider.Log.Information`
 A number of external tools useful for collecting, viewing, and analyzing ETW events are discussed in the documentation, along with links to further information
+  1. Visual Studio Diagnostics Event window
   1. PerfView, and how to use it to collect ETW events from the demo, and view the ETW logs
-  1. WPA, Windows Performance Analyzer
+  1. ToDo: --WPA, Windows Performance Analyzer--
  
- Note that current implementation is a bit hackey, please see https://github.com/dotnet/csharplang/issues/87 for a better solution, which will need to wait for implementation of CallerTypeName added to Caller Info attribute
-
-
 Details in [Demo10 Server](Server/ReadMe.html)
 
 ## CommonDTOs

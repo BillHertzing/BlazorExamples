@@ -5,7 +5,8 @@ This is the specific documentation for Demo11, *Blazor GUI served by process hav
 
 ## Introduction
 The Blazor GUI project ...
-The server project focuses on the details of installing the server project as a Windows service, and partially automating that process.
+Todo: The server project focuses on the details of ILWeaving using Fody to provide ETW logging of method entry and exit, including getters and setters. MethodBoundryAspect Fody Plugin also logs exceptions to ETW automagically.
+ToDo: look some of that, and move to the next demo.The server project focuses on the details of installing the server project as a Windows service, and partially automating that process.
 The Common DTOs ..
 
 ## Publishing Steps

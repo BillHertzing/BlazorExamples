@@ -16,13 +16,7 @@ namespace Server {
         [Event(1, Message = "{0}", Opcode = EventOpcode.Info, Task = Tasks.Information)]
         public void Information(string message,[System.Runtime.CompilerServices.CallerMemberName] string memberName = "") {
             if (IsEnabled()) {
-                WriteEvent(1, message,  memberName);
-            }
-        }
-        [Event(2, Message = "{0}", Opcode = EventOpcode.Info, Task = Tasks.MethodBoundry)]
-        public void MethodBoundry(string message, [System.Runtime.CompilerServices.CallerMemberName] string memberName = "") {
-            if (IsEnabled()) {
-                WriteEvent(2, message+memberName);
+                WriteEvent(1, message, memberName);
             }
         }
     }

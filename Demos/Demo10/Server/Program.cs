@@ -49,7 +49,7 @@ namespace Server {
         public static async Task Main(string[] args) {
 
             // ETW Logging 
-            DemoETWProvider.Log.MethodBoundry("<");
+            DemoETWProvider.Log.Information("<");
 
             // ToDo: Create default production logger configuration prior to having a ConfigurationRoot in order to log startup errors in Main
             // ToDo:  or, see if ETW logging can be used instead
@@ -224,14 +224,14 @@ namespace Server {
             Log.Debug("in Program.Main: Leaving Program.Main");
 
             Log.CloseAndFlush();
-            DemoETWProvider.Log.MethodBoundry(">");
+            DemoETWProvider.Log.Information(">");
         }
 
 
         #region genericHostBuilder creation / configuration
         // This Builder pattern creates a GenericHostBuilder populated by a specific web host as specified by a paramter
         public static IHostBuilder CreateSpecificHostBuilder(string[] args, IConfigurationRoot genericHostConfigurationRoot) {
-            DemoETWProvider.Log.MethodBoundry("<");
+            DemoETWProvider.Log.Information("<");
             var hb = new HostBuilder()
             // The Generic Host Configuration. 
             .ConfigureHostConfiguration(configHostBuilder => {
@@ -343,7 +343,7 @@ namespace Server {
                 //  will pickup by default, as documented 
                 //   https://docs.microsoft.com/en-us/aspnet/core/fundamentals/configuration/?view=aspnetcore-3.0#environment-variables-configuration-provider
             });
-            DemoETWProvider.Log.MethodBoundry(">");
+            DemoETWProvider.Log.Information(">");
             return hb;
         }
         #endregion
@@ -360,27 +360,27 @@ namespace Server {
 
         // This class gets created by the runtime when .Build is called on the webHostBuilder. The .ctor populates this class' Configuration property .
         public HostedWebServerStartup(IConfiguration configuration) {
-            DemoETWProvider.Log.MethodBoundry("<");
+            DemoETWProvider.Log.Information("<");
             Log.Debug("in HostedWebServerStartup.ctor; populating the HostedWebServerStartup.Configuration property by Constructior Injection");
             Configuration=configuration;
             Log.Debug("in HostedWebServerStartup.ctor; Configuration.Dump() = {V}", Configuration.Dump());
-            DemoETWProvider.Log.MethodBoundry(">");
+            DemoETWProvider.Log.Information(">");
         }
 
         // This method gets called by the runtime after the HostedWebServerStartup.ctor completes.
         //    Use this method to add services to the hostedWebServer container.
         public void ConfigureServices(IServiceCollection services) {
-            DemoETWProvider.Log.MethodBoundry("<");
+            DemoETWProvider.Log.Information("<");
             // Todo: Logging, environment, configuration, cancellation token?
             Log.Debug("in HostedWebServerStartup.ConfigureServices: no service(s) have been injected in this Demo");
             //Log.Debug($"in HostedWebServerStartup.ConfigureServices; services.Dump() = {services.Dump()}");
             //Log.Debug($"in HostedWebServerStartup.ConfigureServices; Configuration.Dump() = {Configuration.Dump()}");
-            DemoETWProvider.Log.MethodBoundry(">");
+            DemoETWProvider.Log.Information(">");
         }
 
         // This method gets called by the runtime after HostedWebServerStartup.ConfigureServices completes. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env) {
-            DemoETWProvider.Log.MethodBoundry("<");
+            DemoETWProvider.Log.Information("<");
             // Looking at env.Dump(), both EnvironmentName and ApplicationName are present
             // the ContentRootPathProvider is a PhysicalFileProvider
             // the ContentRootPath is the current directory, as expected (by default, as we have never set it explicitly)
@@ -415,7 +415,7 @@ namespace Server {
                 await Task.FromResult(0);
                 Log.Debug("leaving the last HTTP Pipeline handler (returns 404)");
             });
-            DemoETWProvider.Log.MethodBoundry(">");
+            DemoETWProvider.Log.Information(">");
         }
     }
 }
