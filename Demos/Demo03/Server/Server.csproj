@@ -6,8 +6,6 @@
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <TargetFrameworks>netcoreapp2.2;</TargetFrameworks>
     <OutputType>Exe</OutputType>
-    <LangVersion>7.1</LangVersion>
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 

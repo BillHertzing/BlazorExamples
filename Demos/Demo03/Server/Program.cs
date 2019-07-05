@@ -51,52 +51,24 @@ namespace Server {
             Log.Debug("in Program.Main: Leaving Program.Main");
         }
 
-        // This Builder pattern creates a WebHostBuilder populated with Kestrel hosted within IISIntegration 
+        // This Builder pattern creates a WebHostBuilder populated with instructions to build an Integrated IIS In-Process WebHost
         public static IWebHostBuilder CreateIntegratedIISInProcessWebHostBuilder(string[] args) =>
             // The method CreateDefaultBuilder includes IISIntegration which IS desired
             WebHost.CreateDefaultBuilder()
                 //.UseContentRoot(Directory.GetCurrentDirectory())
                 .UseStartup<Startup>()
                 // Use hard-coded URLs for this demo tolisten on
-                .UseUrls(ListenOnURLs)
-                ;
+                .UseUrls(ListenOnURLs);
 
-        // This Builder pattern creates a WebHostBuilder populated with only Kestrel with no IIS integration
+        // This Builder pattern creates a WebHostBuilder populated with instructions to build a Kestrel WebHost
         public static IWebHostBuilder CreateKestrelAloneWebHostBuilder(string[] args) =>
             // CreateDefaultBuilder includes IISIntegration which is NOT desired, so
-            // The Kestrel Web Server must be manually configured into the WebHostBuilder
+            // The Kestrel WebHost must be manually configured into the WebHostBuilder
             new WebHostBuilder()
                 .UseKestrel()
                 .UseStartup<Startup>()
                 // Use hard-coded URLs for this demo to listen on
                 .UseUrls(ListenOnURLs)
-				// Other setup that CreateDefaultBuilder does...
-				/*
-				.UseContentRoot(Directory.GetCurrentDirectory())
-				.ConfigureAppConfiguration((hostingContext, config) => {
-					var env = hostingContext.HostingEnvironment;
-					config.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-						.AdJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true, reloadOnChange: true);
-
-					if (env.IsDevelopment()) {
-						var appAssembly = Assembly.Load(new AssemblyName(env.ApplicationName));
-						if (appAssembly != null) {
-							config.AddUserSecrets(appAssembly, optional: true);
-						}
-					}
-					config.AddEnvironmentVariables();
-					if (args != null) {
-						config.AddCommandLine(args);
-					}
-				})
-				.UseDefaultServiceProvider((context, options) => {
-					options.ValidateScopes = context.HostingEnvironment.IsDevelopment();
-				})
-				.ConfigureServices(services => {
-					services.AddTransient<IConfigureOptions<KestrelServerOptions>, KestrelServerOptionsSetup>();
-				})
-				;
-				*/
                 ;
     }
 

@@ -2,13 +2,13 @@
 @page "/index.html"
 @inherits GUI.Pages.IndexCodeBehind
 
-<h1> A Blazor GUI served by ServiceStack Middleware in a .Net Core 2.1 WebHost (an Integrated IIS InProcess WebHost) </h1>
-
+<h1> A Blazor GUI served by ServiceStack Middleware in a .Net Core 2.1 WebHost.</h1>
+<h2>This demo uses an Integrated IIS InProcess WebHost.</h2>
 <p>Welcome to a simple demonstration of a Blazor app served from a ServiceStack Console app.</p>
-
-<p>
-    Having the browser's Developer Tools window open, showing the Console window, will display the logging message from the GUI in the Console window. The following links contain further reading on the browser's Developer Tools and Console Window.
-</p>
+<p>This demo implements logging to the browser's Console using `Microsoft.Extensions.Logging` and a third-party logging package `Blazor.Extensions.Logging`</p>
+<br />
+<p>Having the browser's Developer Tools window open, showing the Console window, will display the logging message from the GUI in the Console window. The following links contain further reading on the browser's Developer Tools and Console Window.</p>
+<br />
 <p>ToDo: Craft warning text about follwoing the links and going to 3rd-party sites outside of my control</p>
 <a href="https://support.airtable.com/hc/en-us/articles/232313848-How-to-open-the-developer-console">
     How to open the developer console (Multiple Browsers)
@@ -18,9 +18,11 @@
     Get Started With Logging Messages In The Console (Chrome-specific)
 </a>
 <br />
-<p>ToDo: Add Note that it "just works" on FireFox and Edge, but Chrome, by default, won't show logging messages. Add a link how to configure Chrone to show logging messages, if you are using Chrome
+<p>Console Logging "just works" on FireFox and Edge, but Chrome, by default, won't show logging messages. Add a link how to configure Chrone to show logging messages, if you are using Chrome.
 </p>
-
+<br />
+<p>This demo implements a integer page-local Property, and a button, which increments the value of the Property.</p>
+<br />
 <p>The number below is stored in a page-local Property named aIntProperty. The number will increment with each button click, but will reset to 0 if the page is initialized. Initialing loading the page initializes it. Refreshing the page (browser refresh button) is another way to initialze the page.</p>
 
 <p>aIntProperty: @aIntProperty</p>

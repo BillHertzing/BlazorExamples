@@ -1,9 +1,8 @@
-using Blazor.Extensions.Logging;
 using Microsoft.AspNetCore.Components.Builder;
 using Microsoft.Extensions.DependencyInjection;
 // Both are required for the logger/logging
 using Microsoft.Extensions.Logging;
-//using Blazor.Extensions.Logging;
+using Blazor.Extensions.Logging;
 
 namespace GUI {
     public class Startup {

@@ -1,1 +1,1 @@
-# GUI QuickStart Demo03
+# GUI QuickStart
