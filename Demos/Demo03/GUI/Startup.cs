@@ -3,8 +3,9 @@ using Microsoft.Extensions.DependencyInjection;
 // Both are required for the logger/logging
 using Microsoft.Extensions.Logging;
 using Blazor.Extensions.Logging;
-// Required for keeping State
+// Required for simple state in browser-local storage
 using Blazored.LocalStorage;
+
 
 namespace GUI {
     public class Startup {
@@ -17,10 +18,10 @@ namespace GUI {
                 // Setting minimum LogLevel to Debug disables detailed tracing, but will show LogDebug logging calls
                 .SetMinimumLevel(LogLevel.Debug) // Set the minimum log level to Debug
             );
-            ;
             // Add a library that enables local storage on the browser
             //  https://github.com/Blazored/LocalStorage
             services.AddBlazoredLocalStorage();
+           
         }
 
         public void Configure(IComponentsApplicationBuilder app) {

@@ -1,15 +1,30 @@
-
+@page "/"
 @page "/index.html"
+@inherits GUI.Pages.IndexCodeBehind
+@using  Microsoft.Extensions.Logging
 
+<h1>A Blazor GUI served by ServiceStack Middleware in a .Net Core 3.0 WebHost.</h1>
+<h2>The server WebHost</h2>
+<p>The server in this demo uses either a Kestrel WebHost or an Integrated IIS InProcess WebHost. The choice is made at the server startup runtime via an environment variable `BlazorDemos_WebHostBuilder`</p>
+<h2>GUI changes</h2>
+<p>This demo implements storing state data in the browser local storage to persist the value of the Property on this page.</p>
+<h2>Developer tools</h2>
+<p>Having the browser's Developer Tools window open, showing the Console window, will display the logging message from the GUI in the Console window. Refer to Demo02 for more details.</p>
+<h2>Demo's point</h2>
+<p>The number below is stored in a page-local Property named AnIntegerProperty. The number will increment with each button click. Acess to the Property value is controlled by state. The Property value is read from   browser-local storage via the getter. Each time the page is initialized, the initialization logic will check the browser-local storage for the last stored value, and will set the property to that last stored value. Refreshing the page will <strong>NOT</strong> reset the value to 0 if the property is present in the browser-storage, However, if you clear the browser-local storage, then refresh the page, the property will go back to 0. Unless browser-local storage is cleared, the value of `AnIntegerProperty`, when a page is initialized for the first time, will be the value stored in browser-local storage. This means the last value will persist when the application is subsequently loaded, because browser-local storage is persistent.</p>
 
-<h1> Blazor served by ServiceStack in a Console App </h1>
+<p>AnIntegerProperty backed by State: <text id="AnIntegerPropertyTextSpan">@AnIntegerProperty</text></p>
 
-<p>Welcome to a simple demonstration of a Blazor app served from a ServiceStack Console app.</p>
+<button name="IncrementAnIntegerProperty" id="IncrementAnIntegerProperty"
+        class="@IncrementAnIntegerPropertyButtonClass" 
+        style="@IncrementAnIntegerPropertyButtonStyle" 
+        @onclick="@IncrementAnIntegerPropertyButtonHandlerCurrent">
+    @IncrementAnIntegerPropertyButtonText
+</button>
+<h2>Attribution and Further Reading</h2>
+<p>@StringConstants.ThirdPartyLinkCautionMessage</p>
+<p> TBD </p>
+<a href="https://github.com/Blazored/LocalStorage">
+    Blazored LocalStorage
+</a>
 
-<p>Having Fiddler installed and running is good idea to see the network interaction between the Blazor app and the ServiceStack app.</p>
-
-<p> Having the browser's Developer tools window open, showing the Console window, will display the logging statements inside the GUI code (broke on Chrome, works on Firefox)</p>
-
-<p>Navigate to the BasicRESTServices page to cause this Blazor app to send an Initialization Post to the ServiceStack Console app.</p>
-
-<p>Enter data in the "Data To Post" field, press the "Post Data" button, and see (in Fiddler and on the screen) ServiceStack echo back the data you entered.</p>

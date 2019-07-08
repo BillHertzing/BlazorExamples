@@ -6,8 +6,9 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Logging;
 // For the OnInit Async task
 using System.Threading.Tasks;
-// Required for keeping State
+// For browser-local persistence
 using Blazored.LocalStorage;
+
 
 namespace GUI.Pages {
     public class IndexCodeBehind : ComponentBase {
@@ -51,29 +52,26 @@ namespace GUI.Pages {
                 Logger.LogDebug("leaving AnIntegerProperty_set");
             }
         }
+
+        //public int AnotherIntegerProperty { get; set; }
         #endregion
 
-        # region Properties local to the page
-        //  Create a simple integer Property for the Page
+        #region Properties local to the page
+        // none
         #endregion
 
-        #region Page Initialization Handler
-        // This method is automagically called by the Blazor runtime as part of a page's lifecycle
-        protected override async Task OnInitAsync() {
-            Logger.LogDebug($"Starting Index.OnInitAsync");
-            Logger.LogDebug($"Leaving Index.OnInitAsync");
-        }
-        #endregion
 
-        #region the button's OnClick Handler
+        #region the buttons' OnClick Handlers
         public void IncrementAnIntegerPropertyButtonOnClick() {
             Logger.LogDebug("Starting IncrementAnIntegerPropertyButtonOnClick");
             AnIntegerProperty+=1;
             Logger.LogDebug("Leaving IncrementAnIntegerPropertyButtonOnClick");
         }
+
         #endregion
     }
 
+ 
     // ToDo: Localize these strings
     public static class StringConstants {
         public const string ThirdPartyLinkCautionMessage = "As always be cautious about clicking on links. These are not under our control, so make sure your anti-malware precautions are operational before following any of these third-party links.";

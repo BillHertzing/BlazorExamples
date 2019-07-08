@@ -3,27 +3,23 @@
 @inherits GUI.Pages.IndexCodeBehind
 
 <h1>A Blazor GUI served by ServiceStack Middleware in a .Net Core 2.2 WebHost.</h1>
-<h2>This demo uses a Kestrel WebHost.</h2>
+<h2>The server WebHost</h2>
+<p>The server in this demo uses a Kestrel WebHost.</p>
+<h2>GUI changes</h2>
+<p>This demo implements storing data in the browser local storage to persist the value of the Property on this page.</p>
+<h2>Developer tools</h2>
 <p>Having the browser's Developer Tools window open, showing the Console window, will display the logging message from the GUI in the Console window. Refer to Demo02 for more details.</p>
-<br />
-<p>This demo implements storing data in the browser local storage to persist the value of the Properties on this page.</p>
+<h2>Demo's point</h2>
+<p>The number below is stored in a page-local Property named AnIntegerProperty. The number will increment with each button click. The Property value is written to browser-local storage each time the setter is run. The Property value is read from   browser-local storage via the getter. Each time the page is initialized, the initialization logic will check the browser-local storage for the last stored value, and will set the property to that last stored value. Refreshing the page will <strong>NOT</strong> reset the value to 0 if the property is present in the browser-storage, However, if you clear the browser-local storage, then refresh the page, the property will go back to 0. Unless browser-local storage is cleared, the value of `AnIntegerProperty`, when a page is initialized for the first time, will be the value stored in browser-local storage. This means the last value will persist when the application is subsequently loaded, because browser-local storage is persistent.</p>
 
-<p>@StringConstants.ThirdPartyLinkCautionMessage</p>
-<a href="https://support.airtable.com/hc/en-us/articles/232313848-How-to-open-the-developer-console">
-    ToDo: simple state link
-</a>
-<br />
-<a href="https://developers.google.com/web/tools/chrome-devtools/console/log">
-    ToDo: Fluxor state link
-</a>
-<br />
-
-<p>The number below is stored in a page-local Property named AnIntegerProperty. The number will increment with each button click. The Property value is written to browser-local storage each time the setter is run. The Property value is read from   browser-local storage via the getter. Each time the page is initialized, the initialization logic will check the browser-local storage for the last stored value, and will set the property to that last stored value. Refreshing the page will <strong>NOT</strong> reset the value to 0 if the property is present in the browser-storage, However, if you clear the browser-local storage, then refresh the page, the property will go back to 0. Unless browser-local storage is cleared, the value of `AnIntegerProperty`, when a page is initialized for the first time, will be the value stored in browser-local storage. This means the last value will persist when the application is subsequently loaded.</p>
-
-<p>AnIntegerProperty: @AnIntegerProperty</p>
+<p>AnIntegerProperty backed by Blazored.Localstorage: @AnIntegerProperty</p>
 <button name="IncrementAnIntegerProperty" class="btn btn-primary" @onclick="@IncrementAnIntegerPropertyButtonOnClick">click to increment</button>
-
+<h2>Attribution and Further Reading</h2>
 <p>@StringConstants.ThirdPartyLinkCautionMessage</p>
-<a href="https://support.airtable.com/hc/en-us/articles/232313848-How-to-open-the-developer-console">
-    ToDo: how to clear browser-local storage for major browsers
+<a href="https://github.com/Blazored/LocalStorage">
+    Blazored LocalStorage
+</a>
+<br />
+<a href="https://mid.as/kb/00103/enable-disable-or-clear-web-storage-cache">
+    How to enable, disable, or clear your browser's "Web Storage" cache
 </a>

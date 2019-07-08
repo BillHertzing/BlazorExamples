@@ -34,4 +34,10 @@ namespace GUI.Pages {
         }
         #endregion
     }
+
+
+    // ToDo: Localize these strings
+    public static class StringConstants {
+        public const string ThirdPartyLinkCautionMessage = "As always be cautious about clicking on links. These are not under our control, so make sure your anti-malware precautions are operational before following any of these third-party links.";
+    }
 }

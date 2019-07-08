@@ -1,7 +1,16 @@
 ﻿@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
 
-html, body {
+html {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background: -webkit-linear-gradient(left, #93B874, #C9DCB9);
+    background: -o-linear-gradient(right, #93B874, #C9DCB9);
+    background: -moz-linear-gradient(right, #93B874, #C9DCB9);
+    background: linear-gradient(to right, #93B874, #C9DCB9);
+    background-color: #93B874;
 }
 
 app {
