@@ -60,6 +60,7 @@ namespace GUI.Pages {
         #endregion
 
         #region Properties local to the page
+		public string AnIntegerPropertyTextStyle;
         public string IncrementAnIntegerPropertyButtonText;
         public string IncrementAnIntegerPropertyButtonClass;
         public string IncrementAnIntegerPropertyButtonStyle;
@@ -76,7 +77,7 @@ namespace GUI.Pages {
             TriggerActive=true;
             // create the initial element attributes and text spans
             IncrementAnIntegerPropertyButtonClass=$"\"btn btn-primary{(TriggerActive ? string.Empty : " disabled")}\"";
-            IncrementAnIntegerPropertyButtonStyle="background-color:black; color:white;";
+            IncrementAnIntegerPropertyButtonStyle="background-color:black; color:white;margin:0;";
             IncrementAnIntegerPropertyButtonText=$"click to increment class = {IncrementAnIntegerPropertyButtonClass} style = {IncrementAnIntegerPropertyButtonStyle}";
             Logger.LogDebug($"IncrementAnIntegerPropertyButtonText = {IncrementAnIntegerPropertyButtonText}");
             // create the array of onclick handlers
@@ -84,6 +85,8 @@ namespace GUI.Pages {
             // Set the Button's Current OnClick Handler to the OnClick handler (triggerActive = true)
             IncrementAnIntegerPropertyButtonHandlerCurrent=IncrementAnIntegerPropertyButtonHandlers[0];
             Logger.LogDebug($"IncrementAnIntegerPropertyButtonHandlerCurrent = {nameof(IncrementAnIntegerPropertyButtonHandlerCurrent)}");
+			// 
+			AnIntegerPropertyTextStyle = "margin:0;";
             StateHasChanged();
             // Connect (enable) the IncrementAnIntegerPropertyOnNotifyPropertyChange event handler method to the IncrementAnIntegerProperty's OnNotifyPropertyChange event 
             Logger.LogDebug($"Leaving Index.OnInitAsync");

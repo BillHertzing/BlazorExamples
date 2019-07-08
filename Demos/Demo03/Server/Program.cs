@@ -1,5 +1,8 @@
 using Microsoft.AspNetCore;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using ServiceStack;
 using ServiceStack.Logging;
 using ServiceStack.Logging.NLogger;
@@ -7,9 +10,7 @@ using System;
 using System.IO;
 using System.Threading.Tasks;
 using System.Reflection;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.AspNetCore.Builder;
+
 
 namespace Server {
     class Program {
@@ -32,9 +33,9 @@ namespace Server {
             var loadedFromDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             Directory.SetCurrentDirectory(loadedFromDir);
 
-            // Create an Kestrel web host builder
+            // Create an Kestrel WebHostBuilder
             Log.Debug("in Program.Main: create webHostBuilder by calling static method CreateKestrelAloneWebHostBuilder");
-            var webHostBuilder = CreateKestrelAloneWebHostBuilder(args);
+            IWebHostBuilder webHostBuilder = CreateKestrelAloneWebHostBuilder();
 
             // Create the web server webHost
             Log.Debug("in Program.Main: create webHost by calling .Build() on the webHostBuilder");
@@ -51,25 +52,36 @@ namespace Server {
             Log.Debug("in Program.Main: Leaving Program.Main");
         }
 
-        // This Builder pattern creates a WebHostBuilder populated with instructions to build an Integrated IIS In-Process WebHost
-        public static IWebHostBuilder CreateIntegratedIISInProcessWebHostBuilder(string[] args) =>
+        // This Builder pattern creates a WebHostBuilder populated with instructions to build an Integrated IIS InProcess WebHost
+        public static IWebHostBuilder CreateIntegratedIISInProcessWebHostBuilder() =>
             // The method CreateDefaultBuilder includes IISIntegration which IS desired
             WebHost.CreateDefaultBuilder()
-                //.UseContentRoot(Directory.GetCurrentDirectory())
+                // Specify the class to use when starting the WebHost
                 .UseStartup<Startup>()
-                // Use hard-coded URLs for this demo tolisten on
+                // Use hard-coded URLs for this demo to listen on
                 .UseUrls(ListenOnURLs);
 
-        // This Builder pattern creates a WebHostBuilder populated with instructions to build a Kestrel WebHost
-        public static IWebHostBuilder CreateKestrelAloneWebHostBuilder(string[] args) =>
+        // This Builder pattern creates a WebHostBuilder populated with instructions to build a Kestrel WebHost with no IIS integration
+        public static IWebHostBuilder CreateKestrelAloneWebHostBuilder() =>
             // CreateDefaultBuilder includes IISIntegration which is NOT desired, so
             // The Kestrel WebHost must be manually configured into the WebHostBuilder
             new WebHostBuilder()
                 .UseKestrel()
+                // This (older) post has great info and examples on setting up the Kestrel options
+                //https://github.com/aspnet/KestrelHttpServer/issues/1334
+                // In V30P5, all SS interfaces return an error that "synchronous writes are disallowed", see following issue
+                //  https://github.com/aspnet/AspNetCore/issues/8302
+                // Woraround is to configure the default web server to AllowSynchronousIO=true
+                // ToDo: see if this is fixed in a release after V30P5
+                // Configure Kestrel
+                .ConfigureKestrel((context, options) => {
+                    options.AllowSynchronousIO=true;
+                })
+				.UseContentRoot(Directory.GetCurrentDirectory())
+                // Specify the class to use when starting the WebHost
                 .UseStartup<Startup>()
                 // Use hard-coded URLs for this demo to listen on
-                .UseUrls(ListenOnURLs)
-                ;
+                .UseUrls(ListenOnURLs);
     }
 
     public class Startup {

@@ -1,15 +1,32 @@
-
+@page "/"
 @page "/index.html"
+@inherits GUI.Pages.IndexCodeBehind
+@using  Microsoft.Extensions.Logging
 
+<h1>A Blazor GUI served by ServiceStack Middleware in a .Net Core 3.0 WebHost.</h1>
+<h2>The server WebHost</h2>
+<p>The server in this demo uses either a Kestrel WebHost or an Integrated IIS InProcess WebHost. The choice is made at the server startup runtime via an environment variable `BlazorDemos_WebHostBuilder`</p>
+<h2>GUI changes</h2>
+<p>This demo implements storing state data in the browser local storage to persist the value of the Property on this page.</p>
+<h2>Developer tools</h2>
+<p>Having the browser's Developer Tools window open, showing the Console window, will display the logging message from the GUI in the Console window. Refer to Demo02 for more details.</p>
+<h2>Demo's point</h2>
+<p>The addition of timers to the GUI, and having the timers interact with the page's state</p>
 
-<h1> Blazor served by ServiceStack in a Console App </h1>
+<p>AnIntegerProperty backed by State: <text id="AnIntegerPropertyTextSpan" style="@AnIntegerPropertyTextStyle" >@AnIntegerProperty</text></p>
 
-<p>Welcome to a simple demonstration of a Blazor app served from a ServiceStack Console app.</p>
+<button name="IncrementAnIntegerProperty" id="IncrementAnIntegerProperty"
+        class="@IncrementAnIntegerPropertyButtonClass" 
+        style="@IncrementAnIntegerPropertyButtonStyle" 
+        @onclick="@IncrementAnIntegerPropertyButtonHandlerCurrent">
+    @IncrementAnIntegerPropertyButtonText
+</button>
 
-<p>Having Fiddler installed and running is good idea to see the network interaction between the Blazor app and the ServiceStack app.</p>
-
-<p> Having the browser's Developer tools window open, showing the Console window, will display the logging statements inside the GUI code (broke on Chrome, works on Firefox)</p>
-
-<p>Navigate to the BasicRESTServices page to cause this Blazor app to send an Initialization Post to the ServiceStack Console app.</p>
-
-<p>Enter data in the "Data To Post" field, press the "Post Data" button, and see (in Fiddler and on the screen) ServiceStack echo back the data you entered.</p>
+<br />
+<h4>Attribution and Further Reading</h4>
+<p>@StringConstants.ThirdPartyLinkCautionMessage</p>
+<ol>
+    <li><a href="https://github.com/Blazored/LocalStorage">
+    Blazored LocalStorage
+</a></li>
+</ol>

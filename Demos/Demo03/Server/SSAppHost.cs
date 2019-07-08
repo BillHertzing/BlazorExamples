@@ -1,4 +1,3 @@
-using CommonDTOs;
 // Define the Container being used when configuring the SSApp
 using Funq;
 using System;

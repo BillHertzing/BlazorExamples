@@ -6,8 +6,6 @@
     <TargetFramework>netcoreapp3.0</TargetFramework>
     <TargetFrameworks>netcoreapp3.0;</TargetFrameworks>
     <OutputType>Exe</OutputType>
-    <LangVersion>8.0</LangVersion>
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 
@@ -32,7 +30,7 @@
     </RestoreAdditionalProjectSources>
   </PropertyGroup>
 
-  <!-- Packages necessary to run the ASP.Net Core Generic Host and web server hosts Server -->
+  <!-- Packages necessary to run the ASP.Net Core GenericHost and WebServer host -->
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components" Version="3.0.0-preview6.19307.2" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="3.0.0-preview6.19304.6" />
@@ -45,9 +43,5 @@
     <PackageReference Include="ServiceStack.Text.Core" Version="5.5.1" />
   </ItemGroup>
 
-  <!-- Reference the CommonDTOs projects -->
-  <ItemGroup>
-    <ProjectReference Include="..\..\CommonDTOs\CommonDTOs.csproj" />
-  </ItemGroup>
-
 </Project>
+

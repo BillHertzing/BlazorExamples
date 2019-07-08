@@ -17,9 +17,9 @@ namespace Server {
 
         public const string ListenOnURLs = "http://localhost:20500/";
 
-        public const string EnvironmentVariablePrefix = "BlazorDemos";
+        public const string EnvironmentVariablePrefix = "BlazorDemos_";
         public const string EnvironmentVariableWebHostBuilder = "WebHostBuilder";
-        public const string WebHostBuilderDefault = "CreateIntegratedIISInProcessWebHostBuilder";
+        public const string WebHostBuilderStringDefault = "CreateIntegratedIISInProcessWebHostBuilder";
         public const string EnvironmentVariableEnvironment = "Environment";
         public const string EnvironmentDefault = "Production";
 
@@ -29,7 +29,7 @@ namespace Server {
         static ServiceStack.Logging.ILog Log { get; set; }
 
         // Helper method to properly combine the prefix with the suffix
-        static string EnvironmentVariableFullName(string name) { return EnvironmentVariablePrefix+"_"+name; }
+        static string EnvironmentVariableFullName(string name) { return EnvironmentVariablePrefix+name; }
 
         public static async Task Main(string[] args) {
 
@@ -46,7 +46,7 @@ namespace Server {
             Directory.SetCurrentDirectory(loadedFromDir);
 
             // Determine the web host builder to use from an EnvironmentVariable
-            var webHostBuilderName = Environment.GetEnvironmentVariable(EnvironmentVariableFullName(EnvironmentVariableWebHostBuilder))??WebHostBuilderDefault;
+            var webHostBuilderName = Environment.GetEnvironmentVariable(EnvironmentVariableFullName(EnvironmentVariableWebHostBuilder))??WebHostBuilderStringDefault;
 
             // ToDo: find clever (fast) way to express "Go through the list of static methods returning IHostBuilder", if a (string) cast of the method name matches the WebHostBuilder environment variable string, select the method with the matching name, log that fact,, and call it here...
             // Set the GenericHostBuilder instance based on the name supplied by the environment variable
@@ -54,11 +54,11 @@ namespace Server {
             if (webHostBuilderName=="IntegratedIISInProcessWebHostBuilder") {
                 // Create an IntegratedIISInProcess generic host builder
                 Log.Debug("in Program.Main: create genericHostBuilder by calling static method CreateGenericHostHostingIntegratedIISInProcessWebHostBuilder");
-                genericHostBuilder=CreateGenericHostHostingIntegratedIISInProcessWebHostBuilder(args);
+                genericHostBuilder=CreateGenericHostHostingIntegratedIISInProcessWebHostBuilder();
             } else if (webHostBuilderName=="KestrelAloneWebHostBuilder") {
                 // Create an Kestrel only generic host builder
                 Log.Debug("in Program.Main: create genericHostBuilder by calling static method CreateGenericHostHostingKestrelAloneBuilder");
-                genericHostBuilder=CreateGenericHostHostingKestrelAloneBuilder(args);
+                genericHostBuilder=CreateGenericHostHostingKestrelAloneBuilder();
             } else {
                 throw new InvalidDataException(InvalidWebHostBuilderStaticMethodNameExceptionMessage);
             }
@@ -99,36 +99,25 @@ namespace Server {
             Log.Debug("in Program.Main: Leaving Program.Main");
         }
 
-        // This Builder pattern creates a GenericHostBuilder populated with Kestrel hosted within IISIntegration
-        public static IHostBuilder CreateGenericHostHostingIntegratedIISInProcessWebHostBuilder(string[] args) =>
+        // This Builder pattern creates a GenericHostBuilder populated instructions to build an Integrated IIS InProcess WebHost
+        public static IHostBuilder CreateGenericHostHostingIntegratedIISInProcessWebHostBuilder() =>
             new HostBuilder()
                 .ConfigureWebHostDefaults(webHostBuilder => {
-                    // The method UseIISIntegration instructs teh HostBuilder to ise IISIntegration which IS desired
+                    // The method UseIISIntegration instructs the HostBuilder to use IISIntegration which IS desired
                     webHostBuilder.UseIISIntegration()
-                    // This (older) post has great info and examples on setting up the Kestrel options
-                    //https://github.com/aspnet/KestrelHttpServer/issues/1334
-                    // In V30P5, all SS interfaces return an error that "synchronous writes are disallowed", see following issue
-                    //  https://github.com/aspnet/AspNetCore/issues/8302
-                    // Woraround is to configure the default web server to AllowSynchronousIO=true
-                    // ToDo: see if this is fixed in a release after V30P5
-                    // Configure Kestrel
-                    .ConfigureKestrel((context, options) => {
-                        options.AllowSynchronousIO=true;
-                    })
+                        .UseContentRoot(Directory.GetCurrentDirectory())
                     // Specify the class to use when starting the WebHost
                     .UseStartup<Startup>()
                     // Use hard-coded URLs for this demo to listen on
-                    .UseUrls(ListenOnURLs)
-                    ;
+                    .UseUrls(ListenOnURLs);
                 });
 
-        // This Builder pattern creates a GenericHostBuilder populated with only Kestrel with no IIS integration
-        public static IHostBuilder CreateGenericHostHostingKestrelAloneBuilder(string[] args) =>
+        // This Builder pattern creates a GenericHostBuilder populated with instructions to build a Kestrel WebHost with no IIS integration
+        public static IHostBuilder CreateGenericHostHostingKestrelAloneBuilder() =>
             // CreateDefaultBuilder includes IISIntegration which is NOT desired, so
-            // The Kestrel Web Server must be manually configured into the Generic Host
+            // The Kestrel WebHost must be manually configured into the Generic Host
             new HostBuilder()
                 .ConfigureWebHostDefaults(webHostBuilder => {
-                    // specify Kestrel as the WebHost
                     webHostBuilder.UseKestrel()
                     // This (older) post has great info and examples on setting up the Kestrel options
                     //https://github.com/aspnet/KestrelHttpServer/issues/1334
@@ -140,13 +129,12 @@ namespace Server {
                     .ConfigureKestrel((context, options) => {
                         options.AllowSynchronousIO=true;
                     })
-                    // Specify the class to use when starting the WebHost
+				    .UseContentRoot(Directory.GetCurrentDirectory())
+                	// Specify the class to use when starting the WebHost
                     .UseStartup<Startup>()
                     // Use hard-coded URLs for this demo to listen on
-                    .UseUrls(ListenOnURLs)
-                    ;
+                    .UseUrls(ListenOnURLs);
                 });
-
     }
 
     public class Startup {

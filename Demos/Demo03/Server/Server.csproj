@@ -22,17 +22,17 @@
     <PackageLabel>Alpha</PackageLabel>
   </PropertyGroup>
 
-  <!-- Common for all Core apps that reference ServiceStack-->
+  <!-- Packages necessary to run the ASP.Net Core WebServer host -->
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore" Version="2.2.*" />
+  </ItemGroup>
+
+  <!-- Common for all Core apps that reference ServiceStack-->
+  <ItemGroup>
     <PackageReference Include="ServiceStack.Core" Version="5.5.1" />
     <PackageReference Include="ServiceStack.Logging.NLog" Version="5.5.1" />
     <PackageReference Include="ServiceStack.Text.Core" Version="5.5.1" />
   </ItemGroup>
 
-  <!-- Reference the CommonDTOs projects -->
-  <ItemGroup>
-    <ProjectReference Include="..\..\CommonDTOs\CommonDTOs.csproj" />
-  </ItemGroup>
-
 </Project>
+

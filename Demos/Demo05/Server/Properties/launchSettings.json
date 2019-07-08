@@ -16,7 +16,7 @@
         "BlazorDemos_WebHostBuilder": "IntegratedIISInProcessWebHostBuilder"
       }
     },
-	"KestrelOnlyDev": {
+    "KestrelOnlyDev": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "http://localhost:20500/",
@@ -37,12 +37,12 @@
     "KestrelOnlyProd": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "http://localhost:20550/",
+      "launchUrl": "http://localhost:20510/",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Production",
         "BlazorDemos_WebHostBuilder": "KestrelAloneWebHostBuilder"
       },
-      "applicationUrl": "http://localhost:20550/"
+      "applicationUrl": "http://localhost:20510/"
     }
   }
 }

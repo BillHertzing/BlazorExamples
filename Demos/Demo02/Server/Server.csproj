@@ -6,8 +6,6 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <TargetFrameworks>netcoreapp2.1;</TargetFrameworks>
     <OutputType>Exe</OutputType>
-    <LangVersion>7.1</LangVersion>
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 
@@ -24,17 +22,16 @@
     <PackageLabel>Alpha</PackageLabel>
   </PropertyGroup>
 
+  <!-- Packages necessary to run the ASP.Net Core WebServer host -->
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore" Version="2.1.*" />
+  </ItemGroup>
+
   <!-- Common for all Core apps that reference ServiceStack-->
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore" Version="2.2.0" />
     <PackageReference Include="ServiceStack.Core" Version="5.5.1" />
     <PackageReference Include="ServiceStack.Logging.NLog" Version="5.5.1" />
     <PackageReference Include="ServiceStack.Text.Core" Version="5.5.1" />
-  </ItemGroup>
-
-  <!-- Reference the CommonDTOs projects -->
-  <ItemGroup>
-    <ProjectReference Include="..\..\CommonDTOs\CommonDTOs.csproj" />
   </ItemGroup>
 
 </Project>

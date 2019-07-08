@@ -1,5 +1,4 @@
-// Use the common definitions of the data to pass between the GUI and the Server
-using CommonDTOs;
+
 // Define the Container being used when configuring the SSApp
 using Funq;
 using System;
