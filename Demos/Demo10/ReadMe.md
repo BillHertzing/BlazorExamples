@@ -14,7 +14,7 @@ Details in [Demo10 Blazor GUI](GUI/ReadMe.html)
 
 ## Server
 This demo focuses on Tracing and Profiling
-A managed ETW provider, named `DemoETWProvider`, derived form `EventSource` is added.
+A managed ETW provider, named `DemoETWProvider`, derived from `EventSource` is added.
 The `DemoETWProvider` class has one static Property, `Log`, which holds an instance of the `DemoETWProvider` class.
 The `DemoETWProvider` has one method, `Information`, which writes to the ETW subsystem via `System.Diagnostics.Tracing`.
 The Serilog logging messages for method entry and exit throughout the Server classes are replaced with calls to the `DemoETWProvider.Log.Information`

@@ -31,9 +31,6 @@
   <PropertyGroup>
     <BlazorLinkOnBuild>false</BlazorLinkOnBuild>
   </PropertyGroup>  
-  <ItemGroup>
-    <Content Remove="compilerconfig.json" />
-  </ItemGroup>
 
   <!-- Packages to implement persistent State through the Blazored.LocalStorage NuGet package-->  
   <ItemGroup>
@@ -45,10 +42,14 @@
     <PackageReference Include="Microsoft.Extensions.Logging" Version="3.0.0-preview6.19304.6" />
     <PackageReference Include="Blazor.Extensions.Logging" Version="0.1.11" />
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0" />
-  </ItemGroup>  
+  </ItemGroup>
+
   <ItemGroup>
     <None Include="compilerconfig.json" />
     <None Include="wwwroot\css\site.scss" />
+    <Content Update="wwwroot\css\site.min.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <!-- Packages to create a Blazor CSP project -->  
@@ -62,10 +63,4 @@
   <ItemGroup>
     <PackageReference Include="ServiceStack.Text" Version="5.*" />
   </ItemGroup>  
-  <ItemGroup>
-    <Content Update="wwwroot\css\site.min.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-
 </Project>

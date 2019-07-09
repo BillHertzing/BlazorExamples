@@ -18,6 +18,7 @@ The differences between a ConsoleApp and a Service are explored
 A key runtime variable is introduced, IsConsoleApp, as are concepts from the Runtime, to determine if the program is running under Windows or Linux
 switchMappings are added to the program's ConfigurationRoot to detect -C or -Console as a commandline switch
 Instructions for using sc.exe for manually installing and uninstalling the genericHost as a Windows Service are documented 
+ToDo: InstallUtil? Registering messages with Windows Application EventLog?
 Details in [Demo12 Server](Server/ReadMe.html)
 
 ## CommonDTOs

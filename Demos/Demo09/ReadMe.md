@@ -20,7 +20,7 @@ The `Microsoft.Extensions.Logging` NuGet Package dependency is added to the proj
 Serilog dependencies (NuGet Packages) are added to the project: (`Serilog, Serilog.AspNetCore, Serilog.Enrichers.Thread,S erilog.Exceptions, Serilog.Settings.Configuration, Serilog.Sinks.Console, Serilog.Sinks.Debug, Serilog.Sinks.File, Serilog.Sinks.Seq, SerilogAnalyzer`)
 The `genericHostSettings.json` and `genericHostSettings.development.json` files grow an extensive logging sections for `Microsoft.Extensions.Logging` and for Serilog
 `genericHostSettings.json` (production) configures Serilog with the `Seq` writer. The Serilog `LogContext` is enriched with the current threadID, and an additional property, `Application` having the value 'Demo09"
-`genericHostSettings.json` (Development) configures Serilog with the `Seq` writer, the `Console` writer, and the `DebugOutpu` writer. 
+`genericHostSettings.json` (Development) configures Serilog with the `Seq` writer, the `Console` writer, and the `DebugOutput` writer. 
 The Serilog static Log object is initialized with the Serilog configuration read from the ConfigurationRoot
 The static method CreateGenericHost adds `Serilog.AspNetCore` logging to the genericHost's `ConfigureWebHostDefaults` builder extension and to the `.ConfigureLogging` builder extension via `.UseSerilog()`
 The NLog.config and NLog.xsd files are removed. 
