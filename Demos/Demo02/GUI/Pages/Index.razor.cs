@@ -9,10 +9,7 @@ using System.Threading.Tasks;
 namespace GUI.Pages {
     public class IndexCodeBehind : ComponentBase {
 
-        #region String Constants
-        // ToDo: Eventually replace with localization
-        #endregion
-
+ 
         #region DI container Auto-wired properties
 
         // Access the Logging extensions registered in the DI container
@@ -23,14 +20,14 @@ namespace GUI.Pages {
 
         # region Properties local to the page
         //  Create a simple integer Property for the Page
-        public int aIntProperty { get; set; }
+        public int AnIntegerProperty { get; set; }
         #endregion
 
         #region the button's OnClick Handler
-        public void IncrementAIntegerButtonOnClick() {
-            Logger.LogTrace("Starting IncrementAIntegerButtonOnClick");
-            aIntProperty+=1;
-            Logger.LogTrace("Leaving IncrementAIntegerButtonOnClick");
+        public void IncrementAnIntegerPropertyButtonOnClick() {
+            Logger.LogTrace("Starting IncrementAnIntegerPropertyButtonOnClick");
+            AnIntegerProperty+=1;
+            Logger.LogTrace("Leaving IncrementAnIntegerPropertyButtonOnClick");
         }
         #endregion
     }

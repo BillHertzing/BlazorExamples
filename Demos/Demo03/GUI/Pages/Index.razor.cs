@@ -4,8 +4,6 @@ using Microsoft.AspNetCore.Blazor;
 using Microsoft.AspNetCore.Components;
 // Required for the logger/logging
 using Microsoft.Extensions.Logging;
-// For the OnInit Async task
-using System.Threading.Tasks;
 // For browser-local persistence
 using Blazored.LocalStorage;
 
