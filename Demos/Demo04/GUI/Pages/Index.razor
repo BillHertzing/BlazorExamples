@@ -6,20 +6,20 @@
 <h1>A Blazor GUI served by ServiceStack Middleware in a .Net Core 2.2 WebHost.</h1>
 <p>The server in this demo uses a TargetFramework: Net Core 2.2 and a WebHost: either a Kestrel WebHost or an Integrated IIS InProcess WebHost. The choice is made at the server startup runtime via an environment variable `BlazorDemos_WebHostBuilder`</p>
 <h2>Demo's point</h2>
-<p>This demo implements storing state data in the browser local storage to persist the value of the Property on this page.</p>
+<p>This demo implements storing state data in the browser local storage to control how the program responds to user input</p>
 <h3>GUI changes</h3>
-<p></p>
+<p>A lot of structures for keeping and controlling state transitions, and new styles for visually indicating state on the page's Property and button</p>
 <h3>Server changes</h3>
-<p></p>
+<p>Addition of an environment variable to selectivly control which WebHost is used</p>
 <h3>.sccs changes</h3>
-<p>Variables are introduced</p>
+<p>Variables are introduced.</p>
 <h2>Visual portion</h2>
 <p>The number below is stored in a page-local Property named AnIntegerProperty. The number will increment with each button click. Access to the Property value is controlled by state. The Property value is read from  browser-local storage via the getter. Each time the page is initialized, the initialization logic will check the browser-local storage for the last stored value, and will set the property to that last stored value. Refreshing the page will <strong>NOT</strong> reset the value to 0 if the property is present in the browser-storage, However, if you clear the browser-local storage, then refresh the page, the property will go back to 0. Unless browser-local storage is cleared, the value of `AnIntegerProperty`, when a page is initialized for the first time, will be the value stored in browser-local storage. This means the last value will persist when the application is subsequently loaded, because browser-local storage is persistent.</p>
 
 <p>This Property is now displayed as a text HTML element so it's styles can be controlled by Blazor code. The text span's style will be changed by the button's OnClick event handler as the event handler processes the handler's state transitions</p>
 <p>AnIntegerProperty backed by State: <text id="AnIntegerPropertyTextSpan" style="@AnIntegerPropertyTextSpanStyle">@AnIntegerProperty</text></p>
 
-<p>This button's OnClick event is now async. The event handler modifies the visual appearance of the button by manipulating the values of the Blazor page-local variables assigned to the class, style, and text attributes of the element.  </p>
+<p>This button's OnClick event is now async. The event handler modifies the visual appearance of the button by manipulating the values of the Blazor page-local variables assigned to the class, style, and text attributes of the element.</p>
 <button name="IncrementAnIntegerProperty" id="IncrementAnIntegerProperty"
         class="@IncrementAnIntegerPropertyButtonClass" 
         style="@IncrementAnIntegerPropertyButtonStyle" 
