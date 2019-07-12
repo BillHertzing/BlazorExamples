@@ -7,6 +7,7 @@
 <p>The server in this demo uses a TargetFramework: Net Core 2.2 and a WebHost: either a Kestrel WebHost or an Integrated IIS InProcess WebHost. The choice is made at the server startup runtime via an environment variable `BlazorDemos_WebHostBuilder`</p>
 <h2>Demo's point</h2>
 <p>This demo implements storing state data in the browser local storage to control how the program responds to user input</p>
+<p>This demo implements a selectable WebHost controlled via .launchsettings.json</p>
 <h3>GUI changes</h3>
 <p>A lot of structures for keeping and controlling state transitions, and new styles for visually indicating state on the page's Property and button</p>
 <h3>Server changes</h3>
@@ -21,8 +22,8 @@
 
 <p>This button's OnClick event is now async. The event handler modifies the visual appearance of the button by manipulating the values of the Blazor page-local variables assigned to the class, style, and text attributes of the element.</p>
 <button name="IncrementAnIntegerProperty" id="IncrementAnIntegerProperty"
-        class="@IncrementAnIntegerPropertyButtonClass" 
-        style="@IncrementAnIntegerPropertyButtonStyle" 
+        class="@IncrementAnIntegerPropertyButtonClass"
+        style="@IncrementAnIntegerPropertyButtonStyle"
         @onclick="@IncrementAnIntegerPropertyButtonHandlerCurrent">
     @IncrementAnIntegerPropertyButtonText
 </button>
@@ -30,9 +31,11 @@
 <h4>Attribution and Further Reading</h4>
 <p>@StringConstants.ThirdPartyLinkCautionMessage</p>
 <ol>
-    <li><a href="https://github.com/Blazored/LocalStorage">
-    Blazored LocalStorage
-</a></li>
+    <li>
+        <a href="https://github.com/Blazored/LocalStorage">
+            Blazored LocalStorage
+        </a>
+    </li>
 </ol>
 
 

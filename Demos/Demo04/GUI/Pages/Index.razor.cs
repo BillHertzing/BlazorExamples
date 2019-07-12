@@ -96,8 +96,8 @@ namespace GUI.Pages {
             // Create all the state triggers
             // ToDo: move to a separate assembly
             AllStateTransitionTriggerHandlers=new List<StateTransitionTriggerHandler>() {
-                //() => {ElementName: "IncrementAnIntegerProperty", ElementType: "Button", TriggerKind: StateTriggerKinds.OnClick TriggerState:StateTriggerStates.Active MethodToUse:IncrementAnIntegerPropertyButtonOnClickTriggerActive},
-                //() => {ElementName: "IncrementAnIntegerProperty", ElementType: "Button", TriggerKind: StateTriggerKinds.OnClick TriggerState:StateTriggerStates.Enqueue MethodToUse:IncrementAnIntegerPropertyButtonOnClickTriggerEnqueue},
+                new StateTransitionTriggerHandler(){ElementName= "IncrementAnIntegerProperty", ElementType= "Button", TriggerKind= StateTriggerKinds.OnClick, TriggerState = StateTriggerStates.Active, MethodToUse=IncrementAnIntegerPropertyButtonOnClickTriggerActive },
+                new StateTransitionTriggerHandler(){ElementName= "IncrementAnIntegerProperty", ElementType= "Button", TriggerKind= StateTriggerKinds.OnClick, TriggerState = StateTriggerStates.Enqueue, MethodToUse=IncrementAnIntegerPropertyButtonOnClickTriggerEnqueue },
             };
 
             // assign (in C#) the initial element attributes and text spans
@@ -276,13 +276,16 @@ namespace GUI.Pages {
         OnClick
     }
 
-    // A structure for identifying StateTransitionTrigger handlers
+    // A class for identifying StateTransitionTrigger handlers
     public class StateTransitionTriggerHandler {
         public string ElementName;
         public string ElementType;
         public StateTriggerKinds TriggerKind;
         public StateTriggerStates TriggerState;
         public Func<Task> MethodToUse;
+
+        public StateTransitionTriggerHandler() {
+        }
 
         public StateTransitionTriggerHandler(string elementName, string elementType, StateTriggerKinds triggerKind, StateTriggerStates triggerState, Func<Task> methodToUse) {
             ElementName=elementName;

@@ -1,17 +1,55 @@
 ﻿@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
 
-html {
+
+html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    -webkit-animation: colorchange 60s infinite;
+    animation: colorchange 60s infinite;
 }
 
-body {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    background: -webkit-linear-gradient(left, #93B874, #C9DCB9);
-    background: -o-linear-gradient(right, #93B874, #C9DCB9);
-    background: -moz-linear-gradient(right, #93B874, #C9DCB9);
-    background: linear-gradient(to right, #93B874, #C9DCB9);
-    background-color: #93B874;
+@-webkit-keyframes colorchange {
+    0% {
+        background: #33FFF3;
+    }
+
+    25% {
+        background: #78281F;
+    }
+
+    50% {
+        background: #117A65;
+    }
+
+    75% {
+        background: #DC7633;
+    }
+
+    100% {
+        background: #9B59B6;
+    }
 }
+
+@keyframes colorchange {
+    0% {
+        background: #33FFF3;
+    }
+
+    25% {
+        background: #78281F;
+    }
+
+    50% {
+        background: #117A65;
+    }
+
+    75% {
+        background: #DC7633;
+    }
+
+    100% {
+        background: #9B59B6;
+    }
+} 
 
 app {
     position: relative;
