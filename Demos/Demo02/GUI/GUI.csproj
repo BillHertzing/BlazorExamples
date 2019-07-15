@@ -26,12 +26,6 @@
       https://dotnet.myget.org/F/blazor-dev/api/v3/index.json;
     </RestoreAdditionalProjectSources>
   </PropertyGroup>
-  
-  <!-- While Blazor CSP remains in preview, do not use the ILLinker -->  
-  <PropertyGroup>
-    <BlazorLinkOnBuild>false</BlazorLinkOnBuild>
-  </PropertyGroup>
-
 
   <!-- Packages to implement MEL Logging through the Blazor.Extensions.Logging NuGet package-->  
   <ItemGroup>
@@ -40,15 +34,16 @@
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0" />
   </ItemGroup>
 
+  <!-- While Blazor CSP remains in preview, do not use the ILLinker -->  
+  <PropertyGroup>
+    <BlazorLinkOnBuild>false</BlazorLinkOnBuild>
+  </PropertyGroup>
+
   <!-- Packages to create a Blazor CSP project -->  
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Blazor" Version="3.0.0-preview6.19307.2" />
     <PackageReference Include="Microsoft.AspNetCore.Blazor.Build" Version="3.0.0-preview6.19307.2" PrivateAssets="all" />
     <PackageReference Include="Microsoft.AspNetCore.Blazor.DevServer" Version="3.0.0-preview6.19307.2" PrivateAssets="all" />
-  </ItemGroup>
-  <!-- Packages to implement ServiceStack-->  
-  <ItemGroup>
-    <PackageReference Include="ServiceStack.Text" Version="5.*" />
   </ItemGroup>
 
 </Project>

@@ -26,13 +26,23 @@
       https://dotnet.myget.org/F/blazor-dev/api/v3/index.json;
     </RestoreAdditionalProjectSources>
   </PropertyGroup>
-  
-  <!-- While Blazor CSP remains in preview, do not use the ILLinker -->  
-  <PropertyGroup>
-    <BlazorLinkOnBuild>false</BlazorLinkOnBuild>
-  </PropertyGroup>  
+
+  <!-- Files for the Web Compiler to support .sccs for CSS styles -->  
   <ItemGroup>
+    <None Include="compilerconfig.json" />
     <Content Remove="compilerconfig.json" />
+    <None Include="wwwroot\css\site.scss" />
+    <Content Update="wwwroot\css\site.min.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\timer_running.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <!-- Packages to support DynamicObject used in state -->  
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CSharp" Version="4.6.0-preview6.19303.8" />
   </ItemGroup>
 
   <!-- Packages to implement persistent State through the Blazored.LocalStorage NuGet package-->  
@@ -45,10 +55,12 @@
     <PackageReference Include="Microsoft.Extensions.Logging" Version="3.0.0-preview6.19304.6" />
     <PackageReference Include="Blazor.Extensions.Logging" Version="0.1.11" />
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0" />
-  </ItemGroup>  
-  <ItemGroup>
-    <None Include="compilerconfig.json" />
   </ItemGroup>
+
+  <!-- While Blazor CSP remains in preview, do not use the ILLinker -->  
+  <PropertyGroup>
+    <BlazorLinkOnBuild>false</BlazorLinkOnBuild>
+  </PropertyGroup>  
 
   <!-- Packages to create a Blazor CSP project -->  
   <ItemGroup>
@@ -57,9 +69,5 @@
     <PackageReference Include="Microsoft.AspNetCore.Blazor.DevServer" Version="3.0.0-preview6.19307.2" PrivateAssets="all" />
   </ItemGroup>
 
-  <!-- Packages to implement ServiceStack-->  
-  <ItemGroup>
-    <PackageReference Include="ServiceStack.Text" Version="5.*" />
-  </ItemGroup>
-
 </Project>
+

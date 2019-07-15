@@ -1,23 +1,14 @@
 ﻿@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
 
-// Used to scale the timer's animated gif
-// neither responsive nor adaptive
-img.animated-gif {
-    width: 120px;
-    height: auto;
-}
-
-// Use of variables
 $backgroundColorFrom: value #93B874;
 $backgroundColorTo: value #C9DCB9;
 
 html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    // used in background color animation
     -webkit-animation: colorchange 60s infinite;
     animation: colorchange 60s infinite;
 }
-// Used in background animation
+
 @-webkit-keyframes colorchange {
     0% {
         background: #33FFF3;
@@ -67,7 +58,6 @@ app {
     display: flex;
     flex-direction: column;
 }
-
 
 .top-row {
     height: 3.5rem;

@@ -5,16 +5,21 @@ This is the specific documentation for Demo03, *Blazor GUI served by ServiceStac
 
 ## Introduction
 A site.sccs file, and tools to compile the site.sccs file to the site.css file, are introduced.
-The Blazor GUI project introduces browser-local storage, and uses it to provide persistence for a page-local property.
+The GUI project introduces browser-local storage, and uses it to provide persistence for a page-local property.
 The server project targets Net Core V2.2. A KestrelAlone WebHost is introduced.
 
 ## Visual Studio Tooling
 The VSIX extension [Web Compiler](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.WebCompiler) is added to Visual Studio. Visual Studio is configured (by default) to compile any .sccs file into a .css file.
 
 ## Blazor GUI
-The site-wide site.sccs file is added to the wwwroot/css directory. The contents of the current site.css is copied into the new site.scss file for the GUI.
 The GUI references the third-party Blazor library Blazored.LocalStorage.
 The synchronous interface to Blazored.Localstorage is used to persist the page-local `AnIntegerProperty` via that property's getter and setter.
+
+## GUI Styling
+The site-wide site.sccs file is added to the wwwroot/css directory. The contents of the current site.css is converted into the new site.scss file for the GUI.
+The new Visual studio tooling automagically converts the .sccs file into the site.css and site.min.css files. 
+The GUI .csproj file copies `site.css` and `site.min.css` to the `$OUTPUTDIR`
+
 Details in [Demo03 Blazor GUI](GUI/ReadMe.html)
 
 ## Server

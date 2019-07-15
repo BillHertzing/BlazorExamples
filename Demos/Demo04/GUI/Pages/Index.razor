@@ -14,7 +14,7 @@
 <p>Addition of an environment variable to selectivly control which WebHost is used</p>
 <h3>.sccs changes</h3>
 <p>Variables are introduced.</p>
-<h2>Visual portion</h2>
+<h3>Visual portion</h3>
 <p>The number below is stored in a page-local Property named AnIntegerProperty. The number will increment with each button click. Access to the Property value is controlled by state. The Property value is read from  browser-local storage via the getter. Each time the page is initialized, the initialization logic will check the browser-local storage for the last stored value, and will set the property to that last stored value. Refreshing the page will <strong>NOT</strong> reset the value to 0 if the property is present in the browser-storage, However, if you clear the browser-local storage, then refresh the page, the property will go back to 0. Unless browser-local storage is cleared, the value of `AnIntegerProperty`, when a page is initialized for the first time, will be the value stored in browser-local storage. This means the last value will persist when the application is subsequently loaded, because browser-local storage is persistent.</p>
 
 <p>This Property is now displayed as a text HTML element so it's styles can be controlled by Blazor code. The text span's style will be changed by the button's OnClick event handler as the event handler processes the handler's state transitions</p>
@@ -24,7 +24,7 @@
 <button name="IncrementAnIntegerProperty" id="IncrementAnIntegerProperty"
         class="@IncrementAnIntegerPropertyButtonClass"
         style="@IncrementAnIntegerPropertyButtonStyle"
-        @onclick="@IncrementAnIntegerPropertyButtonHandlerCurrent">
+        @onclick="@IncrementAnIntegerPropertyButtonOnClickHandler">
     @IncrementAnIntegerPropertyButtonText
 </button>
 <br />

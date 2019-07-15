@@ -9,8 +9,12 @@ The GUI project introduces State to provide state-aware browser-local storage an
 The server project targets .Net Core 2.2. Launchsettings.json are introduced to allow the developer to select either of the two static WebHostBuilders when starting a debugging session.
 
 ## Blazor GUI
-The site.sccs uses variables for From and To colors for the <body> background.
-In the GUI, the async Event Handlers for the IncrementAnIntegerPropertyButton's onclick events are hooked and unhooked, an async Action is simulated, the button's visual attributes are manipulated.  
+
+the async Event Handlers for the IncrementAnIntegerPropertyButton's onclick events are hooked and unhooked, an async Action 
+the async Event Handlers for the IncrementAnIntegerPropertyButton's onclick events are hooked and unhooked, an async Action is simulated, the button's visual attributes are manipulated.  
+
+## GUI Styling
+site.sccs adds variables for From and To colors for the <body> background.
 
 Details in [Demo04 Blazor GUI](GUI/ReadMe.html)
 

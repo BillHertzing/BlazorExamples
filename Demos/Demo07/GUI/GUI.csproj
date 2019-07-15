@@ -3,11 +3,11 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <RazorLangVersion>3.0</RazorLangVersion>
-    <RestoreAdditionalProjectSources>
-      https://dotnet.myget.org/F/aspnetcore-dev/api/v3/index.json;
-      https://dotnet.myget.org/F/blazor-dev/api/v3/index.json;
-    </RestoreAdditionalProjectSources>
     <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <!-- Separate Property Group for Version Control -->
+  <PropertyGroup>
     <!-- Assembly, File, and Package Information for this assembly-->
     <!-- Build and revision are created based on date-->
     <MajorVersion>1</MajorVersion>
@@ -16,29 +16,50 @@
     <!-- Current Lifecycle stage for this assembly-->
     <PackageLifeCycleStage>Dev</PackageLifeCycleStage>
     <!-- However, if the LifeCyclestage is Production, the NuGet Package Label is ignored, but MSBuild expects a non-null value  -->
-    <PackageLabel>alpha</PackageLabel>
+    <PackageLabel>Alpha</PackageLabel>
   </PropertyGroup>
 
+  <!-- During Core 3.0 preview, these additional NuGet package servers provide the latest preview packages -->
+  <PropertyGroup>
+    <RestoreAdditionalProjectSources>
+      https://dotnet.myget.org/F/aspnetcore-dev/api/v3/index.json;
+      https://dotnet.myget.org/F/blazor-dev/api/v3/index.json;
+    </RestoreAdditionalProjectSources>
+  </PropertyGroup>
+
+  <!-- Files for the Web Compiler to support .sccs for CSS styles -->  
+  <ItemGroup>
+    <None Include="compilerconfig.json" />
+    <Content Remove="compilerconfig.json" />
+    <None Include="wwwroot\css\site.scss" />
+    <Content Update="wwwroot\css\site.min.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <!-- Packages to implement persistent State through the Blazored.LocalStorage NuGet package-->  
+  <ItemGroup>
+    <PackageReference Include="Blazored.LocalStorage" Version="2.*" />
+  </ItemGroup>
+
+  <!-- Packages to implement MEL Logging through the Blazor.Extensions.Logging NuGet package-->  
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="3.0.0-preview6.19304.6" />
+    <PackageReference Include="Blazor.Extensions.Logging" Version="0.1.11" />
+    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0" />
+  </ItemGroup>
+
+  <!-- While Blazor CSP remains in preview, do not use the ILLinker -->  
   <PropertyGroup>
     <BlazorLinkOnBuild>false</BlazorLinkOnBuild>
-  </PropertyGroup>
+  </PropertyGroup>  
 
+  <!-- Packages to create a Blazor CSP project -->  
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Blazor" Version="3.0.0-preview6.19307.2" />
     <PackageReference Include="Microsoft.AspNetCore.Blazor.Build" Version="3.0.0-preview6.19307.2" PrivateAssets="all" />
     <PackageReference Include="Microsoft.AspNetCore.Blazor.DevServer" Version="3.0.0-preview6.19307.2" PrivateAssets="all" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
-    <PackageReference Include="Microsoft.Extensions.Logging" Version="3.0.0-preview6.19304.6" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Blazor.Extensions.Logging" Version="0.1.11" />
-    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0" />
-    <PackageReference Include="ServiceStack.Text" Version="5.*" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\CommonDTOs\CommonDTOs.csproj" />
   </ItemGroup>
 
 </Project>
+

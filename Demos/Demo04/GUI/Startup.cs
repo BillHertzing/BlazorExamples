@@ -6,7 +6,6 @@ using Blazor.Extensions.Logging;
 // Required for simple state in browser-local storage
 using Blazored.LocalStorage;
 
-
 namespace GUI {
     public class Startup {
         public void ConfigureServices(IServiceCollection services) {

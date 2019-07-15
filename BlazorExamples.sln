@@ -48,7 +48,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionDocumentation", "So
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Demo03", "Demo03", "{8670EF5C-62F8-4B45-8D9E-6CDE151122C6}"
 	ProjectSection(SolutionItems) = preProject
-		Demos\Demo03\Documentation\Overview.md = Demos\Demo03\Documentation\Overview.md
 		Demos\Demo03\ReadMe.md = Demos\Demo03\ReadMe.md
 		Demos\Demo03\toc.yml = Demos\Demo03\toc.yml
 	EndProjectSection
@@ -67,6 +66,10 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GUI", "Demos\Demo03\GUI\GUI.csproj", "{F135B939-1C1C-467E-BFF8-ACBA93A9071A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Demo02", "Demo02", "{F7D5CC31-D3F0-457A-BDF1-CE6A972D7593}"
+	ProjectSection(SolutionItems) = preProject
+		Demos\Demo02\ReadMe.md = Demos\Demo02\ReadMe.md
+		Demos\Demo02\toc.yml = Demos\Demo02\toc.yml
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GUI", "GUI", "{E5E261D4-3D59-433C-A7EE-45611744C87B}"
 EndProject

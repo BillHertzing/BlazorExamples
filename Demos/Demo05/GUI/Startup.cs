@@ -1,4 +1,3 @@
-using Blazor.Extensions.Logging;
 using Microsoft.AspNetCore.Components.Builder;
 using Microsoft.Extensions.DependencyInjection;
 // Both are required for the logger/logging
@@ -6,6 +5,8 @@ using Microsoft.Extensions.Logging;
 using Blazor.Extensions.Logging;
 // Required for simple state in browser-local storage
 using Blazored.LocalStorage;
+// Required for State
+using GUI.State;
 
 namespace GUI {
     public class Startup {
@@ -21,7 +22,9 @@ namespace GUI {
             // Add a library that enables local storage on the browser
             //  https://github.com/Blazored/LocalStorage
             services.AddBlazoredLocalStorage();
-           
+            // Add State
+            services.AddState();
+
         }
 
         public void Configure(IComponentsApplicationBuilder app) {
