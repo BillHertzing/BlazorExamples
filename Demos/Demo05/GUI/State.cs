@@ -4,9 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 // For the dynamic Proxy object
 using System.Dynamic;
-// To get the Logging services from the MS DI Container
+// To get the Logging, LStorage services from the MS DI Container, and to add State service to the DI
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Blazored.LocalStorage;
 
 namespace GUI.State {
 
@@ -16,25 +17,14 @@ namespace GUI.State {
         }
     }
 
-    /*
-    public static class StateExtensions {
-        public static State Merge(State aState, State anotherState) {
-            List<Page> newPages = aState.Pages as List<Page>;
-            newPages.AddRange(anotherState.Pages);
-            StateBuilder newStateBuilder = new StateBuilder().AddPages(newPages);
-            return newStateBuilder.Build();
-        }
-
-    }
-    */
-
     public interface IState {
         IEnumerable<Page> Pages { get; set; }
         dynamic P { get; set; }
     }
 
     public class State : IState {
-        // public ILogger<State> Logger { get; set; }
+        public ILogger<State> Logger { get; set; }
+        public Blazored.LocalStorage.ISyncLocalStorageService LStorage { get; set; }
 
         // The list of pages in an application
         public IEnumerable<Page> Pages { get; set; }
@@ -42,112 +32,38 @@ namespace GUI.State {
         // Declare a dynamic object to hold the actual data
         public dynamic P { get; set; }
 
-        public State()  {
-
+        public State(ILoggerFactory loggerFactory, Blazored.LocalStorage.ISyncLocalStorageService lStorage) {
+            Logger=loggerFactory.CreateLogger<State>();
+            LStorage=lStorage;
         }
-
-        /* 
-        // ToDo move to later demo
-        private void BuildDynamicDictionary(IEnumerable<Page> pages, out dynamic p) {
-            foreach (var _p in pages) {
-                // Record p
-                foreach (var _e in elements) {
-                    // Record e
-                    foreach (var _a in attributes) {
-                        // Record a
-                        foreach (var _kvp in kvp) {
-                            // Record attribute name and attribute value
-                        }
-                    }
-                }
-                foreach (var _c in collections) {
-                    // Record c
-                    foreach (var _e in elements) {
-                        // Record e
-                        foreach (var _a in attributes) {
-                            // Record a
-                            foreach (var _kvp in kvp) {
-                                // Record attribute name and attribute value
-                            }
-                        }
-                    }
-                }
-            }
-            DynamicDictionary P = new DynamicDictionary();
-            IEnumerable<Page> _pT;
-            IEnumerable<Element> _eT;
-            IEnumerable<Collection> _eT;
-            IEnumerable<Attribute> _aT;
-            IEnumerable<KeyValuePair<string,string>> _kvpT;
-            IEnumerable<KeyValuePair<string, Func<Task>>>>_ftrT;
-            foreach (var _p in pages) {
-                // Record p
-                _pT.TryAdd(_p);
-                foreach (var _e in elements) {
-                    // Record e
-                    _eT.TryAdd(_p, _e);
-                    foreach (var _a in attributes) {
-                        // Record a
-                        _aC.TryAdd(_p, _e, _a);
-                        foreach (var _kvp in kvp) {
-                            // Record attribute name and attribute value
-                            _kvpC.TryAdd(_p, _e, _a, _kvp.name, _kvp.Value);
-                        }
-                        foreach (var _frt in frt) {
-                            // Record attribute name and attribute value
-                            _frtC.TryAdd(_p, _e, _a, _frt.name, _frt.Value);
-                        }
-                    }
-                }
-                foreach (var _c in collections) {
-                    // Record c
-                    _cC.TryAdd(_p, _c);
-                    foreach (var _e in elements) {
-                        // Record e
-                        _eT.TryAdd(_p, _c, _e);
-                        foreach (var _a in attributes) {
-                            // Record a
-                            _aC.TryAdd(_p, _c, _e, _a);
-                            foreach (var _kvp in kvp) {
-                                // Record attribute name and attribute value
-                                _kvpC.TryAdd(_p, _c, _e, _a, _kvp.name, _kvp.Value);
-                            }
-                            foreach (var _frt in frt) {
-                                // Record attribute name and attribute value
-                                _frtC.TryAdd(_p, _c, _e, _a, _frt.name, _frt.Value);
-                            }
-                        }
-                    }
-                }
-            }
-            // return the dynamic object back to the caller
-            p=P;
-        }
-    */
     }
     public interface IStateBuilder {
         IStateBuilder AddPage(Page p);
         State Build();
     }
 
+    // https://docs.microsoft.com/en-us/aspnet/core/blazor/dependency-injection?view=aspnetcore-3.0
+    // https://github.com/aspnet/Blazor/issues/424
+    // https://stackify.com/net-core-loggerfactory-use-correctly/
     public class StateBuilder : IStateBuilder {
-        public StateBuilder() {
+        public ILoggerFactory LoggerFactory { get; set; }
+        public Blazored.LocalStorage.ISyncLocalStorageService LStorage { get; set; }
+        public StateBuilder(ILoggerFactory loggerFactory, Blazored.LocalStorage.ISyncLocalStorageService lStorage) {
+            LoggerFactory=loggerFactory;
+            LStorage=lStorage;
             Pages=new List<Page>();
         }
-
-        //public ILogger<StateBuilder> Logger { get; set; }
 
         public List<Page> Pages { get; set; }
 
         public IStateBuilder AddPage(Page p) {
-            //Logger.LogDebug($"in AddPage p = {p}");
             this.Pages.Add(p);
             return this;
         }
         public State Build() {
-            State newState = new State() {
-                Pages=this.Pages,
-                P=new DynamicDictionary()
+            State newState = new State(LoggerFactory, LStorage) {
+                Pages = this.Pages,
+                P = new DynamicDictionary(LoggerFactory, LStorage)
             };
             //ToDo: BuildDynamicDictionary(newState.Pages, out newState.P);
             return newState;
@@ -183,7 +99,6 @@ namespace GUI.State {
             };
             return newPage;
         }
-
     }
 
     public class Page {
@@ -196,12 +111,15 @@ namespace GUI.State {
     public interface IElementBuilder {
         IElementBuilder AddNOID(NOID n);
         IElementBuilder AddVisualAttribute(VisualAttribute v);
+        IElementBuilder AddDataAttribute(DataAttribute<int> d);
         IElementBuilder AddAsyncMethodReturningTaskAttribute(Func<Task> m);
         Element Build();
     }
+
     public class ElementBuilder : IElementBuilder {
         public NOID NOID { get; set; }
         public List<VisualAttribute> VisualAttributes { get; set; }
+        public List<DataAttribute<int>> DataAttributes { get; set; }
         public List<Func<Task>> AsyncMethodReturningTaskAttributes { get; set; }
         public ElementBuilder() {
             VisualAttributes=new List<VisualAttribute>();
@@ -211,9 +129,12 @@ namespace GUI.State {
             this.NOID=n;
             return this;
         }
-
         public IElementBuilder AddVisualAttribute(VisualAttribute v) {
             this.VisualAttributes.Add(v);
+            return this;
+        }
+        public IElementBuilder AddDataAttribute(DataAttribute<int> d) {
+            this.DataAttributes.Add(d);
             return this;
         }
         public IElementBuilder AddAsyncMethodReturningTaskAttribute(Func<Task> m) {
@@ -224,6 +145,7 @@ namespace GUI.State {
             Element newElement = new Element() {
                 NOID=this.NOID,
                 VisualAttributes=this.VisualAttributes,
+                DataAttributes=this.DataAttributes,
                 AsyncMethodReturningTaskAttributes=this.AsyncMethodReturningTaskAttributes
             };
             return newElement;
@@ -233,6 +155,7 @@ namespace GUI.State {
     public class Element {
         public NOID NOID { get; set; }
         public IEnumerable<VisualAttribute> VisualAttributes { get; set; }
+        public IEnumerable<DataAttribute<int>> DataAttributes { get; set; }
         public IEnumerable<Func<Task>> AsyncMethodReturningTaskAttributes { get; set; }
         public Element() { }
     }
@@ -249,10 +172,9 @@ namespace GUI.State {
         public override string ToString() {
             return KVP.ToString();
         }
-
     }
 
-    public class DataAttrbute<T> {
+    public class DataAttribute<T> {
         public T Value { get; set; }
     }
 
@@ -276,19 +198,21 @@ namespace GUI.State {
             }
         }
     }
-    public static class KVPExtensions {
-        static string ToString(KeyValuePair<string, string> KVP) {
-            //ToDo: investigate faster alternatives if needed, also
-            // ToDo: support for other kinds of whitespace characters
-            return $"{(KVP.Key.Contains(" ") ? ""+KVP.Key+"" : KVP.Key)}={(KVP.Value.Contains(" ") ? ""+KVP.Value+"" : KVP.Value)}";
-        }
-    }
-
+    
     // https://docs.microsoft.com/en-us/dotnet/api/system.dynamic.dynamicobject?view=netcore-3.0
     public class DynamicDictionary : DynamicObject {
         // The inner dictionary.
         Dictionary<string, object> dictionary
             = new Dictionary<string, object>();
+        public ILogger<DynamicDictionary> Logger { get; set; }
+        public Blazored.LocalStorage.ISyncLocalStorageService LStorage { get; set; }
+
+        public DynamicDictionary(ILoggerFactory loggerFactory, ISyncLocalStorageService lStorage) {
+            Logger=loggerFactory.CreateLogger<DynamicDictionary>();
+            Logger.LogDebug("$<DynamicDictionary .ctor lStorage = {lStorage}");
+            LStorage=lStorage;
+            Logger.LogDebug("DynamicDictionary .ctor>");
+        }
 
         // This property returns the number of elements
         // in the inner dictionary.
@@ -302,26 +226,49 @@ namespace GUI.State {
         // not defined in the class, this method is called.
         public override bool TryGetMember(
             GetMemberBinder binder, out object result) {
-            // Converting the property name to lowercase
-            // so that property names become case-insensitive.
-            string name = binder.Name.ToLower();
+            Logger.LogDebug($"<TryGetMember binder.Name = {binder.Name}");
 
             // If the property name is found in a dictionary,
             // set the result parameter to the property value and return true.
             // Otherwise, return false.
-            return dictionary.TryGetValue(name, out result);
+            //bool success =  dictionary.TryGetValue(binder.Name, out result);
+            //if (success)
+            //    Logger.LogDebug($"success, result = {result} TryGetMember>");
+            //else
+            //    Logger.LogDebug($"failure, TryGetMember>");
+            result = LStorage.GetItem<string>(binder.Name);
+            Logger.LogDebug($"result = {result} TryGetMember>");
+            return true;
         }
 
         // If you try to set a value of a property that is
         // not defined in the class, this method is called.
         public override bool TrySetMember(
             SetMemberBinder binder, object value) {
-            // Converting the property name to lowercase
-            // so that property names become case-insensitive.
-            dictionary[binder.Name.ToLower()]=value;
-
+            Logger.LogDebug($"<TrySetMember  binder.Name = {binder.Name}");
+            //dictionary[binder.Name]=value;
+            LStorage.SetItem(binder.Name, value.ToString());
             // You can always add a value to a dictionary,
             // so this method always returns true.
+            Logger.LogDebug("TrySetMember>");
+            return true;
+        }
+
+        // https://docs.microsoft.com/en-us/dotnet/api/system.dynamic.dynamicobject.trygetindex?view=netframework-4.8
+        // Set the property value by index.
+        public override bool TrySetIndex(
+            SetIndexBinder binder, object[] indexes, object value) {
+            int index = (int)indexes[0];
+            // browser local storage allows for setting a value and creating a property if necessary atomicly
+            LStorage.SetItem("Property"+index, value.ToString());
+            return true;
+        }
+
+        // Get the property value by index.
+        public override bool TryGetIndex(
+            GetIndexBinder binder, object[] indexes, out object result) {
+            int index = (int)indexes[0];
+            result = LStorage.GetItem<object>("Property"+index);
             return true;
         }
     }
@@ -369,5 +316,50 @@ namespace GUI.State {
             MethodToUse=methodToUse;
         }
     }
+
+    // https://stackoverflow.com/questions/29923280/how-to-override-get-accessor-of-a-dynamic-objects-property
+    public class PersistentDynamicDictionary : DynamicObject {
+        public ILogger<PersistentDynamicDictionary> Logger { get; set; }
+        public Blazored.LocalStorage.ISyncLocalStorageService LStorage { get; set; }
+
+        public Func<string, dynamic, object> PropertyResolver { get; set; }
+
+        private Dictionary<string, object> obj = new Dictionary<string, object>();
+
+        /// <summary>Enables derived types to initialize a new instance of the <see cref="PersistentDynamicDictionary"></see> type.</summary>
+        public PersistentDynamicDictionary(ILoggerFactory loggerFactory, Blazored.LocalStorage.ISyncLocalStorageService lStorage) : base() {
+            Logger=loggerFactory.CreateLogger<PersistentDynamicDictionary>();
+            Logger.LogDebug("< PersistentDynamicDictionary (sync storage).ctor");
+            LStorage=lStorage;
+            Logger.LogDebug("> PersistentDynamicDictionary (sync storage) .ctor");
+        }
+
+        public override bool TryGetMember(GetMemberBinder binder, out object result) {
+            if (obj.ContainsKey(binder.Name)) {
+                result=obj[binder.Name];
+                return true;
+            }
+
+            if (PropertyResolver!=null) {
+                var actResult = PropertyResolver(binder.Name, this);
+                result=actResult;
+                return true;
+            }
+
+            return base.TryGetMember(binder, out result);
+        }
+
+        public override bool TrySetMember(SetMemberBinder binder, object value) {
+            Logger.LogDebug("entering TrySetMember");
+            Logger.LogDebug($"in TrySetMember binder.Name = {binder.Name}");
+            LStorage.SetItem(binder.Name, value.ToString());
+            Logger.LogDebug($"in TrySetMember setitem returned");
+            // ToDo: Raise OnPropertyChangeNotify event for the state-backed Property
+            obj[binder.Name]=value;
+            Logger.LogDebug("leaving TrySetMember");
+            return true;
+        }
+    }
+
 
 }

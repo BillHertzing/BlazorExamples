@@ -27,12 +27,22 @@
     </RestoreAdditionalProjectSources>
   </PropertyGroup>
 
+  <!-- GIF files for the page -->  
+  <ItemGroup>
+    <Content Update="wwwroot\timer_running.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
   <!-- Files for the Web Compiler to support .sccs for CSS styles -->  
   <ItemGroup>
     <None Include="compilerconfig.json" />
     <Content Remove="compilerconfig.json" />
     <None Include="wwwroot\css\site.scss" />
     <Content Update="wwwroot\css\site.min.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\timer_running.gif">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

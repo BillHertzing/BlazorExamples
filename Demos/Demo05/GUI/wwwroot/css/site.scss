@@ -3,7 +3,7 @@
 // Used to scale the timer's animated gif
 // neither responsive nor adaptive
 img.animated-gif {
-    width: 120px;
+    width: 1em;
     height: auto;
 }
 
@@ -67,7 +67,6 @@ app {
     display: flex;
     flex-direction: column;
 }
-
 
 .top-row {
     height: 3.5rem;

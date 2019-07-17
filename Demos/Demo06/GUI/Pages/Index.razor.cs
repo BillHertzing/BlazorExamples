@@ -27,6 +27,10 @@ namespace GUI.Pages {
 
         #region DI container Auto-wired properties
 
+        // Access the State instance registered in the DI container
+        [Inject]
+        public IState S { get; set; }
+
         // Access the synchronous LocalStorage extensions registered in the DI container
         [Inject]
         public Blazored.LocalStorage.ISyncLocalStorageService LStorage { get; set; }
@@ -34,6 +38,9 @@ namespace GUI.Pages {
         // Access the Logging extensions registered in the DI container
         [Inject]
         public ILogger<IndexCodeBehind> Logger { get; set; }
+
+        [Inject]
+        public ILoggerFactory LoggerFactory { get; set; }
 
         #endregion
 
@@ -133,7 +140,7 @@ namespace GUI.Pages {
         // Create local properties for the element's Func<Task>()  HTML attributes (AKA event handler methods)
         // We will choose to use async versions of the event handlers so the methods return Task objects
         #region OnClick
-        // S.Proxy.IncrementAnIntegerPropertyButtonOnClickHandler replaced this
+        // S.Index.IncrementAnIntegerPropertyButtonOnClickHandler replaced this
         // public Func<Task> IncrementAnIntegerPropertyButtonOnClickHandler;
         // Create local properties for the elements state transition trigger for each of the element's Func<Task>()  HTML attributes
         public TriggerStates IncrementAnIntegerPropertyButtonOnClickTriggerState { get; set; }
@@ -145,29 +152,8 @@ namespace GUI.Pages {
         // A structure to hold multiple state transition trigger handlers ( and hence multiple event handlers).
         //  The structure is populated via the page lifecycle event OnInitAsync
         //  The structure is populated with all the state transition trigger handlers for the program
-        //  The structure is manually constructred for this demo
+        //  The structure is manually constructed for this demo
         public IEnumerable<StateTransitionTriggerHandler> AllStateTransitionTriggerHandlers;
-
-        static IStateBuilder sb = new StateBuilder()
-               .AddElement(new ElementBuilder()
-                   .AddNOID(new NOID("AnIntegerProperty", ""))
-                   .AddVisualAttribute(new VisualAttribute() {
-                       KVP=new KeyValuePair<string, string>("AnIntegerPropertyTextSpanStyle", "background-color:blue;color:white;") // StringConstants.NotMutating;
-    }
-                   )
-                   .Build()
-               )
-               .AddElement(new ElementBuilder()
-                   .AddNOID(new NOID("ATestTextProperty", ""))
-                   .AddVisualAttribute(new VisualAttribute() {
-                       KVP=new KeyValuePair<string, string>("ATestTextPropertySpanStyle", "background-color:green;color:white;")
-                   }
-                   )
-                   .Build()
-            )
-            ;
-
-        public static State.State S = sb.Build();
 
         #endregion
 
@@ -176,22 +162,45 @@ namespace GUI.Pages {
         #region Page Initialization Handler
         // This method is automagically called by the Blazor runtime as part of a page's lifecycle
         protected override async Task OnInitAsync() {
-            Logger.LogDebug($"Starting Index.OnInitAsync");
-
+            Logger.LogDebug($"<Index.OnInitAsync");
+            
             #region InitializeState
-            // Create all the state triggers
-            // ToDo: move to a separate assembly
-            AllStateTransitionTriggerHandlers=new List<StateTransitionTriggerHandler>() {
+            // Create a StateBuilder with the information for this page
+            IStateBuilder sb = new StateBuilder(LoggerFactory, LStorage)
+                .AddPage(new PageBuilder()
+                    .AddPAID("index")
+                    .AddElement(new ElementBuilder()
+                        .AddNOID(new NOID("AnIntegerProperty", ""))
+                        //.AddDataAttribute(new DataAttribute<int>())
+                        .AddVisualAttribute(new VisualAttribute() {
+                            KVP=new KeyValuePair<string, string>("AnIntegerPropertyTextSpanStyle", StringConstants.NotMutating) // StringConstants.NotMutating;
+                        }
+                        )
+                        .Build() // Element Build
+                    ) // AddElement
+                    .Build() // Page Build
+                    )  // AddPage
+                ;
+
+            // If the State object S in the DI container already has this page's state present, good to go, otherwise 
+            //   merge this page's state into the DI state
+            if (true) {
+                // Create all the state triggers
+                // ToDo: move to a separate assembly
+                AllStateTransitionTriggerHandlers=new List<StateTransitionTriggerHandler>() {
                 new StateTransitionTriggerHandler(){ElementName= "IncrementAnIntegerPropertyTimerControl", ElementType= "Button", TriggerKind= StateTriggerKinds.OnClick, TriggerState = TriggerStates.Ignore, MethodToUse=IncrementAnIntegerPropertyTimerControlButtonOnClickTriggerIgnore },
                 new StateTransitionTriggerHandler(){ElementName= "IncrementAnIntegerPropertyTimerControl", ElementType= "Button", TriggerKind= StateTriggerKinds.OnClick, TriggerState = TriggerStates.Active, MethodToUse=IncrementAnIntegerPropertyTimerControlButtonOnClickTriggerActive },
                 new StateTransitionTriggerHandler(){ElementName= "IncrementAnIntegerPropertyTimerControl", ElementType= "Button", TriggerKind= StateTriggerKinds.OnClick, TriggerState = TriggerStates.Enqueue, MethodToUse=IncrementAnIntegerPropertyTimerControlButtonOnClickTriggerEnqueue },
-                new StateTransitionTriggerHandler(){ElementName= "IncrementAnIntegerPropertyTimer", ElementType= "Timer", TriggerKind= StateTriggerKinds.Expired, TriggerState = TriggerStates.Ignore, MethodToUse=IncrementAnIntegerPropertyTimerExpiredTriggerIgnore },
-                new StateTransitionTriggerHandler(){ElementName= "IncrementAnIntegerPropertyTimer", ElementType= "Timer", TriggerKind= StateTriggerKinds.Expired, TriggerState = TriggerStates.Active, MethodToUse=IncrementAnIntegerPropertyTimerExpiredTriggerActive },
-                new StateTransitionTriggerHandler(){ElementName= "IncrementAnIntegerPropertyTimer", ElementType= "Timer", TriggerKind= StateTriggerKinds.Expired, TriggerState = TriggerStates.Enqueue, MethodToUse=IncrementAnIntegerPropertyTimerExpiredTriggerEnqueue },
-                new StateTransitionTriggerHandler(){ElementName= "IncrementAnIntegerProperty", ElementType= "Button", TriggerKind= StateTriggerKinds.OnClick, TriggerState = TriggerStates.Ignore, MethodToUse=IncrementAnIntegerPropertyButtonOnClickTriggerIgnore },
-                new StateTransitionTriggerHandler(){ElementName= "IncrementAnIntegerProperty", ElementType= "Button", TriggerKind= StateTriggerKinds.OnClick, TriggerState = TriggerStates.Active, MethodToUse=IncrementAnIntegerPropertyButtonOnClickTriggerActive },
-                new StateTransitionTriggerHandler(){ElementName= "IncrementAnIntegerProperty", ElementType= "Button", TriggerKind= StateTriggerKinds.OnClick, TriggerState = TriggerStates.Enqueue, MethodToUse=IncrementAnIntegerPropertyButtonOnClickTriggerEnqueue },
-            };
+                    new StateTransitionTriggerHandler(){ElementName= "IncrementAnIntegerPropertyTimer", ElementType= "Timer", TriggerKind= StateTriggerKinds.Expired, TriggerState = TriggerStates.Ignore, MethodToUse=IncrementAnIntegerPropertyTimerExpiredTriggerIgnore },
+                    new StateTransitionTriggerHandler(){ElementName= "IncrementAnIntegerPropertyTimer", ElementType= "Timer", TriggerKind= StateTriggerKinds.Expired, TriggerState = TriggerStates.Active, MethodToUse=IncrementAnIntegerPropertyTimerExpiredTriggerActive },
+                    new StateTransitionTriggerHandler(){ElementName= "IncrementAnIntegerPropertyTimer", ElementType= "Timer", TriggerKind= StateTriggerKinds.Expired, TriggerState = TriggerStates.Enqueue, MethodToUse=IncrementAnIntegerPropertyTimerExpiredTriggerEnqueue },
+                    new StateTransitionTriggerHandler(){ElementName= "IncrementAnIntegerPropertyButton", ElementType= "Button", TriggerKind= StateTriggerKinds.OnClick, TriggerState = TriggerStates.Ignore, MethodToUse=IncrementAnIntegerPropertyButtonOnClickTriggerIgnore },
+                    new StateTransitionTriggerHandler(){ElementName= "IncrementAnIntegerPropertyButton", ElementType= "Button", TriggerKind= StateTriggerKinds.OnClick, TriggerState = TriggerStates.Active, MethodToUse=IncrementAnIntegerPropertyButtonOnClickTriggerActive },
+                    new StateTransitionTriggerHandler(){ElementName= "IncrementAnIntegerPropertyButton", ElementType= "Button", TriggerKind= StateTriggerKinds.OnClick, TriggerState = TriggerStates.Enqueue, MethodToUse=IncrementAnIntegerPropertyButtonOnClickTriggerEnqueue },
+                };
+                // Instantiate the State
+                S = sb.Build(); // replace the State currently in the DI with a new one
+            }
             #endregion
 
             #region Instantiate non-State, non-visual local objects
@@ -244,13 +253,13 @@ namespace GUI.Pages {
 
             #region IncrementAnIntegerPropertyTimer
             // IncrementAnIntegerPropertyTimer HTML element 
-            // assign values to the local properties corresonding to the element's HTML attributes
+            // assign values to the local properties corresponding to the element's HTML attributes
             // initialize local properties for the element's HTML attributes
             #region Visible attributes
-            // assign values to the local properties corresonding to the element's visible HTML attributes
-            IncrementAnIntegerPropertyTimerSrc = "~/timer_running.gif";
+            // assign values to the local properties corresponding to the element's visible HTML attributes
+            IncrementAnIntegerPropertyTimerSrc="timer_running.gif";
             IncrementAnIntegerPropertyTimerStyle="Enabled";
-            IncrementAnIntegerPropertyTimerClass= "\"timer bg-primary\"";
+            IncrementAnIntegerPropertyTimerClass="animated-gif";
             Logger.LogDebug($"IncrementAnIntegerPropertyTimerSrc = {IncrementAnIntegerPropertyTimerSrc};  class = {IncrementAnIntegerPropertyTimerClass}; style = {IncrementAnIntegerPropertyTimerStyle};");
             #endregion
 
@@ -260,14 +269,16 @@ namespace GUI.Pages {
             // initialize local properties for the elements state transition trigger for each of the element's Func<Task>()  HTML attributes
             #region Expired
             try {
-                IncrementAnIntegerPropertyTimerExpiredHandler=AllStateTransitionTriggerHandlers.Where(triggerHandler => triggerHandler.ElementName=="IncrementAnIntegerPropertyTimer"
-                                                                                 &&triggerHandler.ElementType=="Timer"
-                                                                                 &&triggerHandler.TriggerKind==StateTriggerKinds.Expired&&
-                                                                                 triggerHandler.TriggerState==TriggerStates.Active)
-                                                                                    .Single().MethodToUse;
+                IncrementAnIntegerPropertyTimerExpiredHandler=AllStateTransitionTriggerHandlers
+                    .Where(triggerHandler => triggerHandler.ElementName=="IncrementAnIntegerPropertyTimer"
+                        &&triggerHandler.ElementType=="Timer"
+                        &&triggerHandler.TriggerKind==StateTriggerKinds.Expired&&
+                        triggerHandler.TriggerState==TriggerStates.Active)
+                    .Single().MethodToUse;
             }
             catch (Exception e) {
-                Logger.LogError(StringConstants.StateProgramExceptionMessage);
+                Logger.LogError(string.Format(StringConstants.StateProgramExceptionMessage, "IncrementAnIntegerPropertyTimerExpiredHandler"));
+                // ToDo: Create a new kind of exception and then throw it upwards
             }
             //var x = IncrementAnIntegerPropertyTimerExpiredHandlerCurrent.GetMemberName<Func<Task>>(IncrementAnIntegerPropertyTimerExpiredHandlerCurrent);
             Logger.LogDebug($"IncrementAnIntegerPropertyTimerExpiredHandler = {IncrementAnIntegerPropertyTimerExpiredHandler}");
@@ -279,9 +290,9 @@ namespace GUI.Pages {
 
             #region IncrementAnIntegerPropertyButton
             // IncrementAnIntegerPropertyButton HTML element 
-            // assign values to the local properties corresonding to the element's HTML attributes
+            // assign values to the local properties corresponding to the element's HTML attributes
             #region Visible attributes
-            // assign values to the local properties corresonding to the element's visible HTML attributes
+            // assign values to the local properties corresponding to the element's visible HTML attributes
             IncrementAnIntegerPropertyButtonClass=$"\"btn btn-primary\"";
             IncrementAnIntegerPropertyButtonStyle="background-color:black;color:white;";
             IncrementAnIntegerPropertyButtonText=$"click to increment";
@@ -295,9 +306,9 @@ namespace GUI.Pages {
             #region OnClick
             try {
                 // Start with All trigger handlers,
-                S.Proxy.IncrementAnIntegerPropertyButtonOnClickHandler=AllStateTransitionTriggerHandlers
+                S.P.IncrementAnIntegerPropertyButtonOnClickHandler=AllStateTransitionTriggerHandlers
                 // use LINQ query to select just those triggerHandlers(s) that match the element's name, type, kind and having an Active TriggerState
-                    .Where(triggerHandler => triggerHandler.ElementName=="IncrementAnIntegerProperty"
+                    .Where(triggerHandler => triggerHandler.ElementName=="IncrementAnIntegerPropertyButton"
                         &&triggerHandler.ElementType=="Button"
                         &&triggerHandler.TriggerKind==StateTriggerKinds.OnClick&&
                         triggerHandler.TriggerState==TriggerStates.Active)
@@ -309,22 +320,24 @@ namespace GUI.Pages {
                     .MethodToUse;
             }
             catch (Exception e) {
-                Logger.LogError(StringConstants.StateProgramExceptionMessage);
+                Logger.LogError(string.Format(StringConstants.StateProgramExceptionMessage, "IncrementAnIntegerPropertyButtonOnClickHandler"));
+                // ToDo: throw it upwards
             }
             //Logger.LogDebug($"IncrementAnIntegerPropertyButtonOnClickHandler = {IncrementAnIntegerPropertyButtonOnClickHandler}");
             // Initialize the TriggerState for this element
-            IncrementAnIntegerPropertyButtonOnClickTriggerState = TriggerStates.Active;
+            IncrementAnIntegerPropertyButtonOnClickTriggerState=TriggerStates.Active;
             #endregion
             #endregion
             #endregion
 
             #region AnIntegerProperty
             // AnIntegerProperty HTML element 
-            // assign values to the local properties corresonding to the element's HTML attributes
+            // assign initial values to the local properties corresponding to the element's HTML attributes
             #region Visible attributes
-            // assign values to the local properties corresonding to the element's visible HTML attributes
+            // assign initial values to the local properties corresponding to the element's visible HTML attributes
             // AnIntegerPropertyTextSpan
-            S.Proxy.AnIntegerPropertyTextSpanStyle="background-color:blue;color:white;"; // StringConstants.NotMutating;
+            S.P.AnIntegerPropertyTextSpanStyle= StringConstants.NotMutating;
+            Logger.LogDebug($"S.P.AnIntegerPropertyTextSpanStyle = {S.P.AnIntegerPropertyTextSpanStyle}");
             #endregion
 
             #region state transition attributes
@@ -444,10 +457,9 @@ namespace GUI.Pages {
             // The OnInit State program specified the timer would be created with AutoRefresh false, otherwise we would stop the timer
             // Set the IncrementAnIntegerPropertyTimerExpired's current event handler to the Enqueue handler
             try {
-                // Start with All trigger handlers,
                 IncrementAnIntegerPropertyTimerExpiredHandler=AllStateTransitionTriggerHandlers
-                // use LINQ query to select just those triggerHandlers(s) that match the element's name, type, kind and having an Active TriggerState
-                    .Where(triggerHandler => triggerHandler.ElementName=="IncrementAnIntegerProperty"
+                // use LINQ query to select just those triggerHandlers(s) that match the element's name, type, kind and having an Enqueue TriggerState
+                    .Where(triggerHandler => triggerHandler.ElementName=="IncrementAnIntegerPropertyTimer"
                         &&triggerHandler.ElementType=="Timer"
                         &&triggerHandler.TriggerKind==StateTriggerKinds.Expired&&
                         triggerHandler.TriggerState==TriggerStates.Enqueue)
@@ -460,20 +472,21 @@ namespace GUI.Pages {
             }
             catch (Exception e) {
                 Logger.LogError(StringConstants.StateProgramExceptionMessage);
+                // ToDo: throw it upwards
             }
             Logger.LogDebug($"IncrementAnIntegerPropertyTimerExpiredHandler = {IncrementAnIntegerPropertyTimerExpiredHandler}");
 
             // Set the new TriggerState for this element
             IncrementAnIntegerPropertyTimerExpiredTriggerState=TriggerStates.Enqueue;
 
-            // change the visual appearence of the mutating property
-            S.Proxy.AnIntegerPropertyTextSpanStyle="background-color:green;color:white;"; // StringConstants.Mutating;
+            // change the visual appearance of the mutating property
+            S.P.AnIntegerPropertyTextSpanStyle = StringConstants.Mutating;
 
-            // change the visual appearence of other elements on the page that are part of this program that expect to react to this state transition
+            // change the visual appearance of other elements on the page that are part of this program that expect to react to this state transition
             IncrementAnIntegerPropertyButtonClass="\"btn btn-primary disabled\"";
             IncrementAnIntegerPropertyButtonStyle="background-color:white;color:black;margin:0;";
-            IncrementAnIntegerPropertyButtonText=$"click to enqueue. class = {IncrementAnIntegerPropertyButtonClass} style = {IncrementAnIntegerPropertyButtonStyle}";
-            Logger.LogDebug($"IncrementAnIntegerPropertyButtonText = {IncrementAnIntegerPropertyButtonText}");
+            IncrementAnIntegerPropertyButtonText=$"click to enqueue";
+            Logger.LogDebug($"IncrementAnIntegerPropertyButtonText = {IncrementAnIntegerPropertyButtonText};  class = {IncrementAnIntegerPropertyButtonClass}; style = {IncrementAnIntegerPropertyButtonStyle};");
 
             // ToDo: visually modify the IncrementAnIntegerPropertyTimerControlButton
 
@@ -501,27 +514,22 @@ namespace GUI.Pages {
             // Change the class, style, and text of the IncrementAnIntegerPropertyButton back to their active values
             IncrementAnIntegerPropertyButtonClass=$"\"btn btn-primary\"";
             IncrementAnIntegerPropertyButtonStyle="background-color:black;color:white;margin:0;";
-            IncrementAnIntegerPropertyButtonText=$"click to increment class = {IncrementAnIntegerPropertyButtonClass} style = {IncrementAnIntegerPropertyButtonStyle}";
-            Logger.LogDebug($"IncrementAnIntegerPropertyButtonText = {IncrementAnIntegerPropertyButtonText}");
+            IncrementAnIntegerPropertyButtonText=$"click to increment";
+            Logger.LogDebug($"IncrementAnIntegerPropertyButtonText = {IncrementAnIntegerPropertyButtonText};  class = {IncrementAnIntegerPropertyButtonClass}; style = {IncrementAnIntegerPropertyButtonStyle};");
 
             // Update visual attributes of the mutating element to show it is no longer being modified
-            S.Proxy.AnIntegerPropertyTextSpanStyle="background-color:blue;color:white;"; // StringConstants.NotMutating;
+            S.P.AnIntegerPropertyTextSpanStyle="background-color:blue;color:white;"; // StringConstants.NotMutating;
 
             // Set the Timers's Expired Handler to Active
             // Set the IncrementAnIntegerPropertyTimerExpired's current event handler to the Active handler
             try {
-                // Start with All trigger handlers,
                 IncrementAnIntegerPropertyTimerExpiredHandler=AllStateTransitionTriggerHandlers
                 // use LINQ query to select just those triggerHandlers(s) that match the element's name, type, kind and having an Active TriggerState
-                    .Where(triggerHandler => triggerHandler.ElementName=="IncrementAnIntegerProperty"
+                    .Where(triggerHandler => triggerHandler.ElementName=="IncrementAnIntegerPropertyTimer"
                         &&triggerHandler.ElementType=="Timer"
                         &&triggerHandler.TriggerKind==StateTriggerKinds.Expired&&
                         triggerHandler.TriggerState==TriggerStates.Active)
-                    // materialize the query into a single StateTransitionTriggerHandler instance
-                    // Zero or more than 1 is an error, implies a mistake in the state triggers definitions
                     .Single()
-                    // pull the state program assigned to this trigger handler and assign it to the elements OnClick.
-                    // i.e., hook the button's OnClick to the Enqueue state Event Handler method
                     .MethodToUse;
             }
             catch (Exception e) {
@@ -573,9 +581,9 @@ namespace GUI.Pages {
             // Set the IncrementAnIntegerPropertyButtonOnClick's current event handler to the Enqueue handler
             try {
                 // Start with All trigger handlers,
-                S.Proxy.IncrementAnIntegerPropertyButtonOnClickHandler=AllStateTransitionTriggerHandlers
+                S.P.IncrementAnIntegerPropertyButtonOnClickHandler=AllStateTransitionTriggerHandlers
                 // use LINQ query to select just those triggerHandlers(s) that match the element's name, type, kind and having an Active TriggerState
-                    .Where(triggerHandler => triggerHandler.ElementName=="IncrementAnIntegerProperty"
+                    .Where(triggerHandler => triggerHandler.ElementName=="IncrementAnIntegerPropertyButton"
                         &&triggerHandler.ElementType=="Button"
                         &&triggerHandler.TriggerKind==StateTriggerKinds.OnClick&&
                         triggerHandler.TriggerState==TriggerStates.Enqueue)
@@ -599,7 +607,7 @@ namespace GUI.Pages {
 
             // Modify the visual attributes of all elements affected by this state program
             // Update visual attributes of the mutating element to show it is being modified
-            S.Proxy.AnIntegerPropertyTextSpanStyle="background-color:green;color:white;"; // StringConstants.Mutating;
+            S.P.AnIntegerPropertyTextSpanStyle=StringConstants.Mutating;
             // Update visual attributes of the triggering element to show it has had a state transition pre-Action
             IncrementAnIntegerPropertyButtonClass=$"\"btn btn-primary disabled\"";
             IncrementAnIntegerPropertyButtonStyle="background-color:white;color:black;margin:0;";
@@ -628,7 +636,7 @@ namespace GUI.Pages {
             Logger.LogDebug($"IncrementAnIntegerPropertyButtonText = {IncrementAnIntegerPropertyButtonText};  class = {IncrementAnIntegerPropertyButtonClass}; style = {IncrementAnIntegerPropertyButtonStyle};");
 
             // Update visual attributes of the mutating element to show it is no longer being modified
-            S.Proxy.AnIntegerPropertyTextSpanStyle="background-color:blue;color:white;"; // StringConstants.NotMutating;
+            S.P.AnIntegerPropertyTextSpanStyle=StringConstants.NotMutating;
 
             // ToDo: retrieve the mutating Property's OnNotifyPropertyChange StateTriggerState
             // ToDo: set the mutating Property's OnNotifyPropertyChange StateTriggerState to the retrieved value
@@ -637,9 +645,9 @@ namespace GUI.Pages {
             // Set the IncrementAnIntegerPropertyButtonOnClick's current event handler to the Active handler
             try {
                 // Start with All trigger handlers,
-                S.Proxy.IncrementAnIntegerPropertyButtonOnClickHandler=AllStateTransitionTriggerHandlers
+                S.P.IncrementAnIntegerPropertyButtonOnClickHandler=AllStateTransitionTriggerHandlers
                 // use LINQ query to select just those triggerHandlers(s) that match the element's name, type, kind and having an Active TriggerState
-                    .Where(triggerHandler => triggerHandler.ElementName=="IncrementAnIntegerProperty"
+                    .Where(triggerHandler => triggerHandler.ElementName=="IncrementAnIntegerPropertyButton"
                         &&triggerHandler.ElementType=="Button"
                         &&triggerHandler.TriggerKind==StateTriggerKinds.OnClick&&
                         triggerHandler.TriggerState==TriggerStates.Active)
@@ -677,6 +685,59 @@ namespace GUI.Pages {
         #endregion
         #endregion
 
+        /*
+        IStateBuilder Buildsb() {
+            IElementBuilder eb = new ElementBuilder()
+                .AddNOID(new NOID("AnIntegerProperty", ""))
+                //.AddDataAttribute<int>()
+                .AddVisualAttribute(new VisualAttribute() {
+                    KVP=new KeyValuePair<string, string>("AnIntegerPropertyTextSpanStyle", "background-color:blue;color:white;") // StringConstants.NotMutating;
+                })
+                ;
+            Element element = eb.Build();
+            Logger.LogDebug($"element = {element}");
+            IPageBuilder pb = new PageBuilder()
+                .AddPAID("index")
+                .AddElement(eb.Build())
+                ;
+            Page page = pb.Build();
+            Logger.LogDebug($"page = {page}");
+            IStateBuilder sb = new StateBuilder()
+                .AddPage(pb.Build())
+                ;
+            State.State state = sb.Build();
+            Logger.LogDebug($"state = {state}");
+            /* 
+          Logger.LogDebug($"sb.Pages.Count = {sb.Pages.Count}");
+          Logger.LogDebug($"pb.Elements.Count = {pb.Elements.Count}");
+          IElementBuilder eb = new ElementBuilder();
+          Logger.LogDebug($"eb.Elements.Count = {eb.VisualAttributes.Count}");
+          */
+        /*
+    .AddPage(new PageBuilder()
+        .AddPAID("index")
+       .AddElement(new ElementBuilder()
+           .AddNOID(new NOID("AnIntegerProperty", ""))
+           //.AddDataAttribute<int>()
+           .AddVisualAttribute(new VisualAttribute() {
+    KVP=new KeyValuePair<string, string>("AnIntegerPropertyTextSpanStyle", "background-color:blue;color:white;") // StringConstants.NotMutating;
+           })
+           .Build()
+       )
+       .AddElement(new ElementBuilder()
+           .AddNOID(new NOID("ATestTextProperty", ""))
+           .AddVisualAttribute(new VisualAttribute() {
+    KVP=new KeyValuePair<string, string>("ATestTextPropertySpanStyle", "background-color:green;color:white;")
+           })
+           .Build()
+        )
+        .Build()
+    )
+    ;
+
+        return sb;
+    }
+    */
     }
 
     // ToDo: Localize these strings
@@ -684,7 +745,7 @@ namespace GUI.Pages {
         public const string Mutating = "background-color:orange;color:white;margin:0;";
         public const string NotMutating = "background-color:black;color:white;margin:0;";
         public const string IncrementAnIntegerPropertyTimerTimeoutInSeconds = "2";
-        public const string StateProgramExceptionMessage = "The StateProgram is invalid, The number of state program methods for the ElementTypeState is not 1. Element = {Element}";
+        public const string StateProgramExceptionMessage = "The StateProgram is invalid, The number of state program methods for the ElementTypeState is not 1. Element = {0}";
         public const string CannotParseLocalStorageForAnIntegerPropertyExceptionMessage = "The value returned from LocalStorage for AnIntegerProperty cannot be parsed to an int";
         public const string ThirdPartyLinkCautionMessage = "As always be cautious about clicking on links. These are not under our control, so make sure your anti-malware precautions are operational before following any of these third-party links.";
     }
