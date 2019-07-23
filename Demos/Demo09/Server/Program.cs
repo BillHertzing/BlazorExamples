@@ -129,7 +129,7 @@ namespace Server {
             //    the whole process of getting the environment above, has to be done without the loggers. That seems... wrong?
 
             // Serilog is the logging provider I picked to provide a logging solution more robust than NLog/
-            //  MLE is anacroynm for Microsoft.Logging.Extensions
+            //  MEL is an anacronym for Microsoft.Extensions.Logging
             //  Serilog.ILogger MLELog;
 
             // Enable Serilog's internal debug logging. Note that internal logging will not write to any user-defined sinks
@@ -205,7 +205,7 @@ namespace Server {
             // an implementation of an applicationLifetime (application (webserver) start and stopping events)
             // a hostLifetime implementation with EnvironmentName, ContentRootPath, the ApplicationName, and a ContentRootFileProvider (an implementation of a PhhysicalFileProvider)
             //  The hostLifetime implementation also contains Options. Up to this point in the demonstrations, all interaction has been through the debugger in Visual studio. 
-            //  This starts a ConsoleApplication and runs the async Program.Main method inside the ConnsoleApplication. 
+            //  This starts a ConsoleApplication and runs the async Program.Main method inside the ConsoleApplication. 
             //  The implementation of the InternalHost adds a ConsoleLifetimeOption, and that has only a single suboption "SuppressStatusMessages".
             // Soon the demos will have a different Option. and the applicationLifetime events will come into play.
 

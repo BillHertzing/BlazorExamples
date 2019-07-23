@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <!-- Override the TargetFameworks specified in the Directory.Build.props  -->
+    <!-- In this Demo, the Server project is built for .Net Core 3.0  -->
     <TargetFramework>netcoreapp3.0</TargetFramework>
     <TargetFrameworks>netcoreapp3.0;</TargetFrameworks>
     <OutputType>Exe</OutputType>

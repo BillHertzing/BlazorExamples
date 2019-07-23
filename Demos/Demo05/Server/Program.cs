@@ -123,7 +123,7 @@ namespace Server {
                     //https://github.com/aspnet/KestrelHttpServer/issues/1334
                     // In V30P5, all SS interfaces return an error that "synchronous writes are disallowed", see following issue
                     //  https://github.com/aspnet/AspNetCore/issues/8302
-                    // Woraround is to configure the default web server to AllowSynchronousIO=true
+                    // Workaround is to configure the default web server to AllowSynchronousIO=true
                     // ToDo: see if this is fixed in a release after V30P5
                     // Configure Kestrel
                     .ConfigureKestrel((context, options) => {

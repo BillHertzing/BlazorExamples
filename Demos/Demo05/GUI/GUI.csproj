@@ -34,22 +34,22 @@
     </Content>
   </ItemGroup>
 
+  <!-- Packages to support DynamicObject used in state -->  
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CSharp" Version="4.6.0-preview6.19303.8" />
+  </ItemGroup>
+
   <!-- Files for the Web Compiler to support .sccs for CSS styles -->  
   <ItemGroup>
     <None Include="compilerconfig.json" />
     <Content Remove="compilerconfig.json" />
     <None Include="wwwroot\css\site.scss" />
+    <Content Update="wwwroot\css\site.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Update="wwwroot\css\site.min.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Update="wwwroot\timer_running.gif">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-
-  <!-- Packages to support DynamicObject used in state -->  
-  <ItemGroup>
-    <PackageReference Include="Microsoft.CSharp" Version="4.6.0-preview6.19303.8" />
   </ItemGroup>
 
   <!-- Packages to implement persistent State through the Blazored.LocalStorage NuGet package-->  

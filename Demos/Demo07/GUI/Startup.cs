@@ -22,11 +22,11 @@ namespace GUI {
             // Add a library that enables local storage on the browser
             //  https://github.com/Blazored/LocalStorage
             services.AddBlazoredLocalStorage();
+            // Add State to the DI
             services.AddState();
+        }
 
-    }
-
-    public void Configure(IComponentsApplicationBuilder app) {
+        public void Configure(IComponentsApplicationBuilder app) {
             app.AddComponent<App>("app");
         }
     }

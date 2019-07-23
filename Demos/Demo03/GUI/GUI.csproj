@@ -32,6 +32,9 @@
     <None Include="compilerconfig.json" />
     <Content Remove="compilerconfig.json" />
     <None Include="wwwroot\css\site.scss" />
+    <Content Update="wwwroot\css\site.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Update="wwwroot\css\site.min.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

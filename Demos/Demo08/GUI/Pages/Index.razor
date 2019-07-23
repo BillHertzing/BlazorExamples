@@ -1,22 +1,54 @@
 @page "/"
 @page "/index.html"
+@inherits GUI.Pages.IndexCodeBehind
+@using  Microsoft.Extensions.Logging
 
-<h1>Blazor served by a GenericHost </h1>
-<ul>ServiceStack middleware app</ul>
-<ul>Hosted within a Kestrel WebServer</ul>
-<ul><bold>without</bold> IIS integration</ul>
-<ul>Running under ASP.NET CORE V3.0 Preview 5</ul>
-
-<p>Having Fiddler installed and running is good idea to see the network interaction between the Blazor app and the Kestrel WebServer hosting the ServiceStack app.</p>
-
-<p>The logging for the client side of this demo is configured to send debugging messages to the browser's Console window</p>
-<p>Having the browser's "Developer tools" window open, showing the browser Console window, will display the logging messages that originate from the GUI code</p>
-<p>Note that the Browser's Console Window will display log message "by default" only in Firefox and Edge; Chrome, by default, requires a setting change to be able to display the Console log messages </p>
-
-<p>The logging for the server side of this demo is configured to send debugging messages to the Console Window opened by the GenericHost (when running as a Console App)</p>
-
-<p>Run this command in a powershell window: ps | ?{$_.name -match "iis"}, and you will NOT see iis listed</p>
-
-<p>Navigate to the BasicRESTServices page to cause this Blazor app to send an Initialization Post to the ServiceStack app.</p>
-
-<p>Enter data in the "Data To Post" field, press the "Post Data" button, and see (in Fiddler and on the screen) ServiceStack echo back the data you entered.</p>
+<h1>Demo08 A Blazor GUI served by ServiceStack Middleware in a .Net Core 3.0 WebHost.</h1>
+<p>The server in this demo uses a TargetFramework: Net Core 3.0 and a WebHost: either a Kestrel WebHost or an Integrated IIS InProcess WebHost. The choice is made at the server startup runtime via an environment variable `BlazorDemos_WebHostBuilder`</p>
+<h4>Demo's point</h4>
+<p>The addition of a timer to the GUI program, a button to control the timer, and state additions to control how the timer and thew new button interact with the page's state</p>
+<h3>GUI changes</h3>
+<p>The GUI adds a timer that will increment AnIntegerProperty, a button to start/stop the timer, styles for the TimerControl button, and state triggers for the button and for the timer itself</p>
+<h3>Server changes</h3>
+<p></p>
+<h3>.sccs changes</h3>
+<p>Styles added in the previous Demo are migrated to the .sccs, which includes styling for the buttons, and for AnIntegerProperty's text span</p>
+<h3>Visual portion</h3>
+<p>The number below is stored in a page-local Property named AnIntegerProperty. The number will increment with each button click. and via a timer. Access to the Property value is controlled by state. A Timer will increment the Property named AnIntegerProperty. It does this by running the state program in the Timers Expired Acitve event handler</p>
+<p>This Property has two different 'mutating' visual styles to indicate which state program is mutating its value. Both the button's OnClick event and the timer's Expired callback event handler will increment the value of the Property, and  modifies the visual appearance of the Property's style by manipulating the values of the Blazor page-local variables assigned to the class, style, and text attributes of the element.</p>
+<p>AnIntegerProperty backed by State: <text id="AnIntegerPropertyTextSpan" style="@S.P.AnIntegerPropertyTextSpanStyle">@AnIntegerProperty</text></p>
+<button name="IncrementAnIntegerProperty" id="IncrementAnIntegerProperty"
+        class="@IncrementAnIntegerPropertyButtonClass"
+        style="@IncrementAnIntegerPropertyButtonStyle"
+        @onclick="@IncrementAnIntegerPropertyButtonOnClickHandler">
+    @IncrementAnIntegerPropertyButtonText
+</button>
+<br />
+<p>This button stops and starts the timer. timer duration is hardcoded at 2 seconds</p>
+<h4>Visual focus of the Demo</h4>
+<button name="IncrementAnIntegerPropertyTimerControl" id="IncrementAnIntegerPropertyTimerControl"
+        class="@IncrementAnIntegerPropertyTimerControlButtonClass"
+        style="@IncrementAnIntegerPropertyTimerControlButtonStyle"
+        @onclick="@IncrementAnIntegerPropertyTimerControlButtonOnClickHandler">
+    @IncrementAnIntegerPropertyTimerControlButtonText
+</button>
+<img name="IncrementAnIntegerPropertyTimer"
+     src="@IncrementAnIntegerPropertyTimerSrc"
+     class="@IncrementAnIntegerPropertyTimerClass"
+     style="@IncrementAnIntegerPropertyTimerStyle" />
+<button name="IncrementAnIntegerPropertyButton"
+        class="@IncrementAnIntegerPropertyButtonClass"
+        style="@IncrementAnIntegerPropertyButtonStyle"
+        @onclick="@(async () => await @S.P.IncrementAnIntegerPropertyButtonOnClickHandler())">
+    @S.P.IncrementAnIntegerPropertyButton.Text
+</button>
+<text name="AnIntegerPropertyTextSpan" style="@S.P.AnIntegerPropertyTextSpanStyle">@S.P.AnIntegerProperty.D</text>
+<h4>End Visual focus of the demo</h4>
+<h4>GUI changes</h4>
+<h4>Server changes</h4>
+<p></p>
+<h4>SCCS changes</h4>
+<h4>Attribution and Further Reading</h4>
+<p>@StringConstants.ThirdPartyLinkCautionMessage</p>
+<ol>
+</ol>

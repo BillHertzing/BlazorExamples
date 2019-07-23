@@ -4,19 +4,13 @@
 @using  Microsoft.Extensions.Logging
 
 <h1>Demo06 A Blazor GUI served by ServiceStack Middleware in a .Net Core 3.0 WebHost.</h1>
-<p>The server in this demo uses a TargetFramework: Net Core 3.0 and a WebHost: either a Kestrel WebHost or an Integrated IIS InProcess WebHost. The choice is made at the server startup runtime via an environment variable `BlazorDemos_WebHostBuilder`</p>
+<p>The server in this demo targets Net Core 3.0 and uses as the WebHost either a Kestrel WebHost or an Integrated IIS InProcess WebHost. The choice is made at the server startup runtime via an environment variable `BlazorDemos_WebHostBuilder`</p>
 <h4>Demo's point</h4>
-<p>The addition of a timer to the GUI program, a button to control the timer, and state additions to control how the timer and thew new button interact with the page's state</p>
-<h4>GUI changes</h4>
-<p>The GUI adds a timer that will increment AnIntegerProperty, a button to start/stop the timer, styles for the TimerControl button, and state triggers for the button and for the timer itself</p>
-<h4>Server changes</h4>
-<p></p>
-<h4>SCCS changes</h4>
-<p>Styles added in the previous Demo are migrated to the .sccs, which includes styling for the buttons, and for AnIntegerProperty's text span</p>
-<p>The number below is stored in a page-local Property named AnIntegerProperty. The number will increment with each button click. and via a timer. Access to the Property value is controlled by state. A Timer will increment the Property named AnIntegerProperty. It does this by running the state program in the Timers Expired Acitve event handler</p>
+<p>The addition of a button to control the timer, and state additions to control how the timer and the new button interact with the page's state</p>
+<p>The value of `AnIntegerProperty` is stored in a page-local Property named AnIntegerProperty. The number will increment with each button click. and via a timer. Access to the Property value is controlled by state. A Timer will increment the Property named AnIntegerProperty. It does this by running the state program in the Timers Expired Acitve event handler</p>
 <p>This Property has two different 'mutating' visual styles to indicate which state program is mutating its value. Both the button's OnClick event and the timer's Expired callback event handler will increment the value of the Property, and  modifies the visual appearance of the Property's style by manipulating the values of the Blazor page-local variables assigned to the class, style, and text attributes of the element.</p>
 <p>This button stops and starts the timer. timer duration is hardcoded at 2 seconds</p>
-<h4>Visual portion</h4>
+<h4>Visual focus of the Demo</h4>
 <button name="IncrementAnIntegerPropertyTimerControl" id="IncrementAnIntegerPropertyTimerControl"
         class="@IncrementAnIntegerPropertyTimerControlButtonClass"
         style="@IncrementAnIntegerPropertyTimerControlButtonStyle"
@@ -30,8 +24,17 @@
 <button name="IncrementAnIntegerPropertyButton"
         class="@IncrementAnIntegerPropertyButtonClass"
         style="@IncrementAnIntegerPropertyButtonStyle"
-        @onclick="@S.P.Index.IncrementAnIntegerPropertyButtonOnClickHandler">@IncrementAnIntegerPropertyButtonText</button>
-<text name="AnIntegerPropertyTextSpan" style="@S.P.AnIntegerPropertyTextSpanStyle">@AnIntegerProperty</text>
+        @onclick="@(async () => await @S.P.IncrementAnIntegerPropertyButtonOnClickHandler())">
+    @S.P.IncrementAnIntegerPropertyButton.Text
+</button>
+<text name="AnIntegerPropertyTextSpan" style="@S.P.AnIntegerPropertyTextSpanStyle">@S.P.AnIntegerProperty.D</text>
+<h4>End Visual focus of the demo</h4>
+<h4>GUI changes</h4>
+<p>The GUI adds  a button to start/stop the timer, styles for the TimerControl button, and state triggers for the button </p>
+<h4>Server changes</h4>
+<p></p>
+<h4>SCCS changes</h4>
+<p>Styles added in the previous Demo are migrated to the .sccs, which includes styling for the buttons, and for AnIntegerProperty's text span</p>
 <h4>Attribution and Further Reading</h4>
 <p>@StringConstants.ThirdPartyLinkCautionMessage</p>
 <ol>

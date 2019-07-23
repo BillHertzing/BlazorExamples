@@ -3,11 +3,11 @@
 @inherits GUI.Pages.IndexCodeBehind
 @using  Microsoft.Extensions.Logging
 
-<h1>A Blazor GUI served by ServiceStack Middleware in a .Net Core 2.2 WebHost.</h1>
-<p>The server in this demo uses a TargetFramework: Net Core 2.2 and a WebHost: either a Kestrel WebHost or an Integrated IIS InProcess WebHost. The choice is made at the server startup runtime via an environment variable `BlazorDemos_WebHostBuilder`</p>
-<h2>Demo's point</h2>
+<h1>Demo04 A Blazor GUI served by ServiceStack Middleware in a .Net Core 2.2 WebHost.</h1>
+<p>The server in this demo targets Net Core 2.2 and uses as the WebHost either a Kestrel WebHost or an Integrated IIS InProcess WebHost. The choice is made at the server startup runtime via an environment variable `BlazorDemos_WebHostBuilder`</p>
+<h4>Demo's point</h4>
 <p>This demo implements storing state data in the browser local storage to control how the program responds to user input</p>
-<p>This demo implements a selectable WebHost controlled via .launchsettings.json</p>
+<p>This demo implements a selectable WebHost controlled via an environment variable.</p>
 <h3>GUI changes</h3>
 <p>A lot of structures for keeping and controlling state transitions, and new styles for visually indicating state on the page's Property and button</p>
 <h3>Server changes</h3>
@@ -21,13 +21,28 @@
 <p>AnIntegerProperty backed by State: <text id="AnIntegerPropertyTextSpan" style="@AnIntegerPropertyTextSpanStyle">@AnIntegerProperty</text></p>
 
 <p>This button's OnClick event is now async. The event handler modifies the visual appearance of the button by manipulating the values of the Blazor page-local variables assigned to the class, style, and text attributes of the element.</p>
-<button name="IncrementAnIntegerProperty" id="IncrementAnIntegerProperty"
+<h4>Visual focus of the Demo</h4>
+<button name="IncrementAnIntegerPropertyButton"
         class="@IncrementAnIntegerPropertyButtonClass"
         style="@IncrementAnIntegerPropertyButtonStyle"
-        @onclick="@IncrementAnIntegerPropertyButtonOnClickHandler">
+        @onclick="@(async () => await @IncrementAnIntegerPropertyButtonOnClickHandler())">
     @IncrementAnIntegerPropertyButtonText
 </button>
-<br />
+<text name="AnIntegerPropertyTextSpan" style="@AnIntegerPropertyTextSpanStyle">@AnIntegerProperty</text>
+<h4>End Visual focus of the demo</h4>
+<h3>GUI changes</h3>
+<p>A lot of structures for keeping and controlling state transitions, and new styles for visually indicating state on the page's Property and button</p>
+<h3>Server changes</h3>
+<p>Addition of an environment variable to selectivly control which WebHost is used</p>
+<h3>.sccs changes</h3>
+<p>Variables are introduced.</p>
+<h4>GUI changes</h4>
+<p>The GUI adds a timer and state change triggers for the timer. Class and Style properties  </p>
+<h4>Server changes</h4>
+<p>Server targets .Net Core 3.0. Environment is added. Four run-time choices for running / debugging the server.</p>
+<h4>SCCS changes</h4>
+<p>Styles added in the previous Demo are migrated to the .sccs, which includes styling for the buttons, and for AnIntegerProperty's text span</p>
+
 <h4>Attribution and Further Reading</h4>
 <p>@StringConstants.ThirdPartyLinkCautionMessage</p>
 <ol>

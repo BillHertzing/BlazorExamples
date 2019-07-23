@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-// For querying and selecting State triggers
 using System.Linq;
 using System.Threading.Tasks;
 // For the dynamic Proxy object
@@ -17,6 +16,18 @@ namespace GUI.State {
             return services.AddSingleton<IState, State>();
         }
     }
+
+    /*
+    public static class StateExtensions {
+        public static State Merge(State aState, State anotherState) {
+            List<Page> newPages = aState.Pages as List<Page>;
+            newPages.AddRange(anotherState.Pages);
+            StateBuilder newStateBuilder = new StateBuilder().AddPages(newPages);
+            return newStateBuilder.Build();
+        }
+
+    }
+    */
 
     public interface IState {
         IEnumerable<Page> Pages { get; set; }
@@ -61,6 +72,85 @@ namespace GUI.State {
         }
 
     }
+
+    /* 
+    // ToDo move to later demo
+    private void BuildDynamicDictionary(IEnumerable<Page> pages, out dynamic p) {
+        foreach (var _p in pages) {
+            // Record p
+            foreach (var _e in elements) {
+                // Record e
+                foreach (var _a in attributes) {
+                    // Record a
+                    foreach (var _kvp in kvp) {
+                        // Record attribute name and attribute value
+                    }
+                }
+            }
+            foreach (var _c in collections) {
+                // Record c
+                foreach (var _e in elements) {
+                    // Record e
+                    foreach (var _a in attributes) {
+                        // Record a
+                        foreach (var _kvp in kvp) {
+                            // Record attribute name and attribute value
+                        }
+                    }
+                }
+            }
+        }
+        DynamicDictionary P = new DynamicDictionary();
+        IEnumerable<Page> _pT;
+        IEnumerable<Element> _eT;
+        IEnumerable<Collection> _eT;
+        IEnumerable<Attribute> _aT;
+        IEnumerable<KeyValuePair<string,string>> _kvpT;
+        IEnumerable<KeyValuePair<string, Func<Task>>>>_ftrT;
+        foreach (var _p in pages) {
+            // Record p
+            _pT.TryAdd(_p);
+            foreach (var _e in elements) {
+                // Record e
+                _eT.TryAdd(_p, _e);
+                foreach (var _a in attributes) {
+                    // Record a
+                    _aC.TryAdd(_p, _e, _a);
+                    foreach (var _kvp in kvp) {
+                        // Record attribute name and attribute value
+                        _kvpC.TryAdd(_p, _e, _a, _kvp.name, _kvp.Value);
+                    }
+                    foreach (var _frt in frt) {
+                        // Record attribute name and attribute value
+                        _frtC.TryAdd(_p, _e, _a, _frt.name, _frt.Value);
+                    }
+                }
+            }
+            foreach (var _c in collections) {
+                // Record c
+                _cC.TryAdd(_p, _c);
+                foreach (var _e in elements) {
+                    // Record e
+                    _eT.TryAdd(_p, _c, _e);
+                    foreach (var _a in attributes) {
+                        // Record a
+                        _aC.TryAdd(_p, _c, _e, _a);
+                        foreach (var _kvp in kvp) {
+                            // Record attribute name and attribute value
+                            _kvpC.TryAdd(_p, _c, _e, _a, _kvp.name, _kvp.Value);
+                        }
+                        foreach (var _frt in frt) {
+                            // Record attribute name and attribute value
+                            _frtC.TryAdd(_p, _c, _e, _a, _frt.name, _frt.Value);
+                        }
+                    }
+                }
+            }
+        }
+        // return the dynamic object back to the caller
+        p=P;
+    }
+*/
 
     public interface IStateBuilder {
         IStateBuilder AddPage(Page p);
