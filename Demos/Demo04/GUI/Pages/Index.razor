@@ -3,25 +3,12 @@
 @inherits GUI.Pages.IndexCodeBehind
 @using  Microsoft.Extensions.Logging
 
-<h1>Demo04 A Blazor GUI served by ServiceStack Middleware in a .Net Core 2.2 WebHost.</h1>
-<p>The server in this demo targets Net Core 2.2 and uses as the WebHost either a Kestrel WebHost or an Integrated IIS InProcess WebHost. The choice is made at the server startup runtime via an environment variable `BlazorDemos_WebHostBuilder`</p>
+<h1>Demo04 GUI adds visual attributes and async event handlers,  Server get Environment Variables and a selectable WebHost.</h1>
 <h4>Demo's point</h4>
-<p>This demo implements storing state data in the browser local storage to control how the program responds to user input</p>
-<p>This demo implements a selectable WebHost controlled via an environment variable.</p>
-<h3>GUI changes</h3>
-<p>A lot of structures for keeping and controlling state transitions, and new styles for visually indicating state on the page's Property and button</p>
-<h3>Server changes</h3>
-<p>Addition of an environment variable to selectivly control which WebHost is used</p>
-<h3>.sccs changes</h3>
-<p>Variables are introduced.</p>
-<h3>Visual portion</h3>
-<p>The number below is stored in a page-local Property named AnIntegerProperty. The number will increment with each button click. Access to the Property value is controlled by state. The Property value is read from  browser-local storage via the getter. Each time the page is initialized, the initialization logic will check the browser-local storage for the last stored value, and will set the property to that last stored value. Refreshing the page will <strong>NOT</strong> reset the value to 0 if the property is present in the browser-storage, However, if you clear the browser-local storage, then refresh the page, the property will go back to 0. Unless browser-local storage is cleared, the value of `AnIntegerProperty`, when a page is initialized for the first time, will be the value stored in browser-local storage. This means the last value will persist when the application is subsequently loaded, because browser-local storage is persistent.</p>
-
-<p>This Property is now displayed as a text HTML element so it's styles can be controlled by Blazor code. The text span's style will be changed by the button's OnClick event handler as the event handler processes the handler's state transitions</p>
-<p>AnIntegerProperty backed by State: <text id="AnIntegerPropertyTextSpan" style="@AnIntegerPropertyTextSpanStyle">@AnIntegerProperty</text></p>
-
-<p>This button's OnClick event is now async. The event handler modifies the visual appearance of the button by manipulating the values of the Blazor page-local variables assigned to the class, style, and text attributes of the element.</p>
-<h4>Visual focus of the Demo</h4>
+<p>The server in this demo targets Net Core 2.2 and uses as the WebHost either a Kestrel WebHost or an Integrated IIS InProcess WebHost. The choice is made at the server startup runtime via an environment variable `BlazorDemos_WebHostBuilder`</p>
+<p>This GUI in this demo implements storing properties in the browser local storage to persist the data when a page refreshes.</p>
+<h4>Visual focus</h4>
+<hr/>
 <button name="IncrementAnIntegerPropertyButton"
         class="@IncrementAnIntegerPropertyButtonClass"
         style="@IncrementAnIntegerPropertyButtonStyle"
@@ -29,20 +16,23 @@
     @IncrementAnIntegerPropertyButtonText
 </button>
 <text name="AnIntegerPropertyTextSpan" style="@AnIntegerPropertyTextSpanStyle">@AnIntegerProperty</text>
-<h4>End Visual focus of the demo</h4>
-<h3>GUI changes</h3>
-<p>A lot of structures for keeping and controlling state transitions, and new styles for visually indicating state on the page's Property and button</p>
-<h3>Server changes</h3>
-<p>Addition of an environment variable to selectivly control which WebHost is used</p>
-<h3>.sccs changes</h3>
-<p>Variables are introduced.</p>
-<h4>GUI changes</h4>
-<p>The GUI adds a timer and state change triggers for the timer. Class and Style properties  </p>
-<h4>Server changes</h4>
-<p>Server targets .Net Core 3.0. Environment is added. Four run-time choices for running / debugging the server.</p>
-<h4>SCCS changes</h4>
-<p>Styles added in the previous Demo are migrated to the .sccs, which includes styling for the buttons, and for AnIntegerProperty's text span</p>
+<hr/>
+<h4>Explanation</h4>
+<p>The number above is stored in a page-local Property named AnIntegerProperty. The number will increment with each button click, if the button's OnClick StateTransitionTrigger is Active. Access to the Property value is controlled by state. The Property value is read from  browser-local storage via the getter. Each time the page is initialized, the initialization logic will check the browser-local storage for the last stored value, and will set the property to that last stored value. Refreshing the page will <strong>NOT</strong> reset the value to 0 if the property is present in the browser-storage, However, if you clear the browser-local storage, then refresh the page, the property will go back to 0. Unless browser-local storage is cleared, the value of `AnIntegerProperty`, when a page is initialized for the first time, will be the value stored in browser-local storage. This means the last value will persist when the application is subsequently loaded, because browser-local storage is persistent.</p>
 
+<h4>GUI changes</h4>
+<p>The property AnIntegerProperty is now displayed as a text HTML element so it's styles can be controlled by Blazor code. The property AnIntegerPropertyTextSpanStyle will be changed by the button's OnClick event handler as the event handler processes the handler's state transitions. The button IncrementAnIntegerPropertyButton StateTransitionHandler is now async </p>
+<h5>.sccs changes</h5>
+<p>Variables are introduced.</p>
+<h4>Server changes</h4>
+<p>Addition of an environment variable to selectively control which WebHost is used. Four run-time choices for running / debugging the server.</p>
+<h4>Build / Debug tooling changes</h4>
+<p></p>
+
+<p>This button's OnClick event is now async. The event handler modifies the visual appearance of the button by manipulating the values of the Blazor page-local variables assigned to the class, style, and text attributes of the element.</p>
+<p>The GUI adds a timer and state change triggers for the timer. Class and Style properties  </p>
+<p>Styles added in the previous Demo are migrated to the .sccs, which includes styling for the buttons, and for AnIntegerProperty's text span</p>
+<hr/>
 <h4>Attribution and Further Reading</h4>
 <p>@StringConstants.ThirdPartyLinkCautionMessage</p>
 <ol>

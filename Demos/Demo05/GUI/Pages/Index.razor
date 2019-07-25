@@ -3,32 +3,39 @@
 @inherits GUI.Pages.IndexCodeBehind
 @using  Microsoft.Extensions.Logging
 
-<h1>Demo05 A Blazor GUI served by ServiceStack Middleware in a .Net Core 3.0 WebHost.</h1>
-<p>The server in this demo targets Net Core 3.0 and uses as the WebHost either a Kestrel WebHost or an Integrated IIS InProcess WebHost. The choice is made at the server startup runtime via an environment variable `BlazorDemos_WebHostBuilder`</p>
+<h1>Demo05 GUI gets a Timer and DI-injected State, Server gets .Net Core V3.0, Environment and environment-aware features</h1>
 <h4>Demo's point</h4>
-<p>The addition of a timer to the GUI program,and state additions to control how the timer and thew new button interact with the page's state. Server moves to .Net Core 3.0. Styling moves to String.Constants</p>
-<p>The number below is stored in a page-local Property named AnIntegerProperty. The number will increment with each button click. Access to the Property value is controlled by state. A Timer will increment the Property named AnIntegerProperty. It does this by running the state program in the Timers Expired Acitve event handler</p>
-<p>This Property has two different 'mutating' visual styles to indicate which state program is mutating its value. Both the button's OnClick event and the timer's Expired callback event handler will increment the value of the Property, and  modifies the visual appearance of the Property's style by manipulating the values of the Blazor page-local variables assigned to the class, style, and text attributes of the element.</p>
-<h4>Visual focus of the Demo</h4>
+<p>The server in this demo targets Net Core 3.0 and uses as the WebHost either a Kestrel WebHost or an Integrated IIS InProcess WebHost. The choice is made at the server startup runtime via an environment variable `BlazorDemos_WebHostBuilder`</p>
+<p>The GUI in this demo adds a timer to the GUI program,and state additions to control how the timer and thew new button interact with the page's state. Styling moves to String.Constants</p>
+<hr/>
+<h4>Visual focus</h4>
+<div class="pyro paused">
+  <div class="before"></div>
+  <div class="after"></div>
+</div>
 <img name="IncrementAnIntegerPropertyTimer"
      src="@IncrementAnIntegerPropertyTimerSrc"
      class="@IncrementAnIntegerPropertyTimerClass"
      style="@IncrementAnIntegerPropertyTimerStyle" />
 <button name="IncrementAnIntegerPropertyButton"
-        class="@IncrementAnIntegerPropertyButtonClass"
-        style="@IncrementAnIntegerPropertyButtonStyle"
+        class="@S.P.IncrementAnIntegerPropertyButtonClass"
+        style="@S.P.IncrementAnIntegerPropertyButtonStyle"
         @onclick="@(async () => await @IncrementAnIntegerPropertyButtonOnClickHandler())">
-    @IncrementAnIntegerPropertyButtonText
+    @S.P.IncrementAnIntegerPropertyButtonText
 </button>
 <text name="AnIntegerPropertyTextSpan" style="@S.P.AnIntegerPropertyTextSpanStyle">@AnIntegerProperty</text>
-<h4>End Visual focus of the demo</h4>
+<hr/>
+<h4>Explanation</h4>
+<p>The Timer is represented by an animated GIF file. The timer is hardcoded with a period of 2 seconds. </p>
 <h4>GUI changes</h4>
 <p>The GUI adds a timer and state change triggers for the timer. Class and Style properties  </p>
 <h4>Server changes</h4>
 <p>Server targets .Net Core 3.0. Environment is added. Four run-time choices for running / debugging the server.</p>
 <h4>SCCS changes</h4>
 <p>Styles added in the previous Demo are migrated to the .sccs, which includes styling for the buttons, and for AnIntegerProperty's text span</p>
-
+<p> A Timer will increment the Property named AnIntegerProperty. It does this by running the state program in the Timers Expired Acitve event handler</p>
+<p>This Property has two different 'mutating' visual styles to indicate which state program is mutating its value. Both the button's OnClick event and the timer's Expired callback event handler will increment the value of the Property, and  modifies the visual appearance of the Property's style by manipulating the values of the Blazor page-local variables assigned to the class, style, and text attributes of the element.</p>
+<hr/>
 <h4>Attribution and Further Reading</h4>
 <p>@StringConstants.ThirdPartyLinkCautionMessage</p>
 <ol>

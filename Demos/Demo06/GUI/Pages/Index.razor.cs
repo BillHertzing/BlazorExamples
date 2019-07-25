@@ -128,13 +128,6 @@ namespace GUI.Pages {
 
         #region IncrementAnIntegerPropertyButton
         // IncrementAnIntegerPropertyButton HTML element 
-        // Create local properties for the elements HTML attributes
-
-        #region Visual Attributes
-        public string IncrementAnIntegerPropertyButtonText;
-        public string IncrementAnIntegerPropertyButtonClass;
-        public string IncrementAnIntegerPropertyButtonStyle;
-        #endregion
 
         #region state transition attributes
         // Create local properties for the element's Func<Task>()  HTML attributes (AKA event handler methods)
@@ -163,15 +156,15 @@ namespace GUI.Pages {
                 .AddPage(new PageBuilder()
                     .AddPAID("index")
                     .AddElement(new ElementBuilder()
-                        .AddNOID(new NOID("AnIntegerProperty", ""))
-                        .AddVisualAttribute("AnIntegerPropertyTextSpanStyle", StringConstants.NotMutating)
+                        .AddNOID(new NOID("IncrementAnIntegerPropertyButton", ""))
+                        .AddVisualAttribute("IncrementAnIntegerPropertyButtonStyle", StringConstants.PrimaryButtonStyleActive)
+                        .AddVisualAttribute("IncrementAnIntegerPropertyButtonClass", StringConstants.PrimaryButtonClassActive)
+                        .AddVisualAttribute("IncrementAnIntegerPropertyButtonText", StringConstants.PrimaryButtonTextActive)
                         .Build() // Element Build
                     ) // AddElement
                     .AddElement(new ElementBuilder()
-                        .AddNOID(new NOID("IncrementAnIntegerPropertyButton", ""))
-                        .AddVisualAttribute("IncrementAnIntegerPropertyButtonClass", StringConstants.ButtonDefaultClass)
-                        .AddVisualAttribute("IncrementAnIntegerPropertyButtonStyle", StringConstants.ButtonDefaultStyle)
-                        .AddVisualAttribute("Text", StringConstants.IncrementAnIntegerPropertyButtonStyleDefaultText)
+                        .AddNOID(new NOID("AnIntegerProperty", ""))
+                        .AddVisualAttribute("AnIntegerPropertyTextSpanStyle", StringConstants.NotMutating)
                         .Build() // Element Build
                     ) // AddElement
                     .Build() // Page Build
@@ -276,12 +269,11 @@ namespace GUI.Pages {
             // assign values to the local properties corresponding to the element's HTML attributes
             #region Visible attributes
             // assign values to the local properties corresponding to the element's visible HTML attributes
-            IncrementAnIntegerPropertyButtonClass=$"\"btn btn-primary\"";
-            IncrementAnIntegerPropertyButtonStyle="background-color:black;color:white;";
+            S.P.IncrementAnIntegerPropertyButtonClass=StringConstants.PrimaryButtonClassActive;
+            S.P.IncrementAnIntegerPropertyButtonStyle=StringConstants.PrimaryButtonStyleActive;
+            S.P.IncrementAnIntegerPropertyButtonText=StringConstants.PrimaryButtonTextActive;
             // Logger.LogDebug(String.Format("S.P.IncrementAnIntegerPropertyButton {0} null; ", S.P.IncrementAnIntegerPropertyButton == null? "IS": "is NOT"));
-
-            IncrementAnIntegerPropertyButtonText=$"click to increment";
-            Logger.LogDebug($"IncrementAnIntegerPropertyButtonText = {IncrementAnIntegerPropertyButtonText};  class = {IncrementAnIntegerPropertyButtonClass}; style = {IncrementAnIntegerPropertyButtonStyle};");
+            Logger.LogDebug($"S.P.IncrementAnIntegerPropertyButtonText = {S.P.IncrementAnIntegerPropertyButtonText};  class = {S.P.IncrementAnIntegerPropertyButtonClass}; style = {S.P.IncrementAnIntegerPropertyButtonStyle};");
             #endregion
 
             #region state transition attributes
@@ -396,7 +388,7 @@ namespace GUI.Pages {
                 IncrementAnIntegerPropertyTimerControlButtonClass=$"\"btn btn-primary\"";
                 IncrementAnIntegerPropertyTimerControlButtonText="Start Timer";
             }
-            Logger.LogDebug($"IncrementAnIntegerPropertyTimerControlButtonText = {IncrementAnIntegerPropertyButtonText};  class = {IncrementAnIntegerPropertyTimerControlButtonClass}; style = {IncrementAnIntegerPropertyTimerControlButtonStyle};");
+            Logger.LogDebug($"IncrementAnIntegerPropertyTimerControlButtonText = {IncrementAnIntegerPropertyTimerControlButtonText};  class = {IncrementAnIntegerPropertyTimerControlButtonClass}; style = {IncrementAnIntegerPropertyTimerControlButtonStyle};");
             // IncrementAnIntegerPropertyTimer
             if (IncrementAnIntegerPropertyTimer.Enabled) {
                 IncrementAnIntegerPropertyTimerStyle="Running";
@@ -447,17 +439,17 @@ namespace GUI.Pages {
             S.P.AnIntegerPropertyTextSpanStyle = StringConstants.Mutating;
 
             // change the visual appearance of other elements on the page that are part of this program that expect to react to this state transition
-            IncrementAnIntegerPropertyButtonClass="\"btn btn-primary disabled\"";
-            IncrementAnIntegerPropertyButtonStyle="background-color:white;color:black;margin:0;";
-            IncrementAnIntegerPropertyButtonText=$"click to enqueue";
-            Logger.LogDebug($"IncrementAnIntegerPropertyButtonText = {IncrementAnIntegerPropertyButtonText};  class = {IncrementAnIntegerPropertyButtonClass}; style = {IncrementAnIntegerPropertyButtonStyle};");
+            //S.P.IncrementAnIntegerPropertyButtonClass=StringConstants.PrimaryButtonClassEnqueue;
+            //S.P.IncrementAnIntegerPropertyButtonStyle=StringConstants.PrimaryButtonStyleEnqueue;
+           //S.P.IncrementAnIntegerPropertyButtonText=StringConstants.PrimaryButtonTextEnqueue;
+            //Logger.LogDebug($"S.P.IncrementAnIntegerPropertyButtonText = {S.P.IncrementAnIntegerPropertyButtonText};  class = {S.P.IncrementAnIntegerPropertyButtonClass}; style = {S.P.IncrementAnIntegerPropertyButtonStyle};");
 
             // ToDo: visually modify the IncrementAnIntegerPropertyTimerControlButton
 
             // ToDo: Disable the Property's OnNotifyPropertyChange Handler
 
             // Tell Blazor to re-render, when execution comes back to the GUI thread
-            StateHasChanged();
+            await Invoke(() => StateHasChanged());
             // Perform the action on the state Property and await it
             await Task.Run(async () => {
                 // ensure this async method includes an await (eliminate Warning CS1998)
@@ -477,10 +469,10 @@ namespace GUI.Pages {
             // ToDo: visually modify the IncrementAnIntegerPropertyTimerControlButton
 
             // Change the class, style, and text of the IncrementAnIntegerPropertyButton back to their active values
-            IncrementAnIntegerPropertyButtonClass=$"\"btn btn-primary\"";
-            IncrementAnIntegerPropertyButtonStyle="background-color:black;color:white;margin:0;";
-            IncrementAnIntegerPropertyButtonText=$"click to increment";
-            Logger.LogDebug($"IncrementAnIntegerPropertyButtonText = {IncrementAnIntegerPropertyButtonText};  class = {IncrementAnIntegerPropertyButtonClass}; style = {IncrementAnIntegerPropertyButtonStyle};");
+            //S.P.IncrementAnIntegerPropertyButtonClass=StringConstants.PrimaryButtonClassActive;
+            //S.P.IncrementAnIntegerPropertyButtonStyle=StringConstants.PrimaryButtonStyleActive;
+            //S.P.IncrementAnIntegerPropertyButtonText=StringConstants.PrimaryButtonTextActive;
+            //Logger.LogDebug($"S.P.IncrementAnIntegerPropertyButtonText = {S.P.IncrementAnIntegerPropertyButtonText};  class = {S.P.IncrementAnIntegerPropertyButtonClass}; style = {S.P.IncrementAnIntegerPropertyButtonStyle};");
 
             // Update visual attributes of the mutating element to show it is no longer being modified
             S.P.AnIntegerPropertyTextSpanStyle= StringConstants.NotMutating;
@@ -502,7 +494,7 @@ namespace GUI.Pages {
             IncrementAnIntegerPropertyTimer.Start();
 
             // Tell Blazor to re-render when the GUI thread follows-up on the TaskContinuation
-            StateHasChanged();
+            await Invoke(() => StateHasChanged());
             Logger.LogDebug("Leaving IncrementAnIntegerPropertyTimerActive");
             // The continuation task ends here
         }
@@ -556,13 +548,13 @@ namespace GUI.Pages {
             // Update visual attributes of the mutating element to show it is being modified
             S.P.AnIntegerPropertyTextSpanStyle=StringConstants.Mutating;
             // Update visual attributes of the triggering element to show it has had a state transition pre-Action
-            IncrementAnIntegerPropertyButtonClass=$"\"btn btn-primary disabled\"";
-            IncrementAnIntegerPropertyButtonStyle="background-color:white;color:black;margin:0;";
-            IncrementAnIntegerPropertyButtonText=$"click to enqueue";
-            Logger.LogDebug($"IncrementAnIntegerPropertyButtonText = {IncrementAnIntegerPropertyButtonText};  class = {IncrementAnIntegerPropertyButtonClass}; style = {IncrementAnIntegerPropertyButtonStyle};");
+            S.P.IncrementAnIntegerPropertyButtonClass=StringConstants.PrimaryButtonClassEnqueue;
+            S.P.IncrementAnIntegerPropertyButtonStyle=StringConstants.PrimaryButtonStyleEnqueue;
+            S.P.IncrementAnIntegerPropertyButtonText=StringConstants.PrimaryButtonTextEnqueue;
+            Logger.LogDebug($"S.P.IncrementAnIntegerPropertyButtonText = {S.P.IncrementAnIntegerPropertyButtonText};  class = {S.P.IncrementAnIntegerPropertyButtonClass}; style = {S.P.IncrementAnIntegerPropertyButtonStyle};");
 
             // Tell Blazor to re-render, when execution comes back to the GUI thread
-            StateHasChanged();
+            await Invoke(() => StateHasChanged());
             // Execution will come back to the calling (usually the main GUI) thread as soon as the following await is hit (unless it completes immediately? is that a thing to worry about?)
             // Perform the action on the state Property and await it
             // For the demo, an async lambda performs the action, which runs a Task and returns that Task to the event handler right away
@@ -577,10 +569,10 @@ namespace GUI.Pages {
             // ToDo: ensure this TaskContinuation is run on a non-GUI thread (?)
             // Modify the visual attributes of all elements affected by this state program
             // Update visual attributes of the triggering element to show it has had a state transition post-Action
-            IncrementAnIntegerPropertyButtonClass=$"\"btn btn-primary\"";
-            IncrementAnIntegerPropertyButtonStyle="background-color:black;color:white;margin:0;";
-            IncrementAnIntegerPropertyButtonText=$"click to increment";
-            Logger.LogDebug($"IncrementAnIntegerPropertyButtonText = {IncrementAnIntegerPropertyButtonText};  class = {IncrementAnIntegerPropertyButtonClass}; style = {IncrementAnIntegerPropertyButtonStyle};");
+            S.P.IncrementAnIntegerPropertyButtonClass=StringConstants.PrimaryButtonClassActive;
+            S.P.IncrementAnIntegerPropertyButtonStyle=StringConstants.PrimaryButtonStyleActive;
+            S.P.IncrementAnIntegerPropertyButtonText=StringConstants.PrimaryButtonTextActive;
+            Logger.LogDebug($"S.P.IncrementAnIntegerPropertyButtonText = {S.P.IncrementAnIntegerPropertyButtonText};  class = {S.P.IncrementAnIntegerPropertyButtonClass}; style = {S.P.IncrementAnIntegerPropertyButtonStyle};");
 
             // Update visual attributes of the mutating element to show it is no longer being modified
             S.P.AnIntegerPropertyTextSpanStyle=StringConstants.NotMutating;
@@ -602,7 +594,7 @@ namespace GUI.Pages {
             IncrementAnIntegerPropertyButtonOnClickTriggerState=TriggerStates.Active;
 
             // Tell Blazor to re-render when the GUI thread follows-up on the TaskContinuation
-            StateHasChanged();
+            await Invoke(() => StateHasChanged());
             Logger.LogDebug("Leaving IncrementAnIntegerPropertyButtonOnClickTriggerActive");
             // The continuation task ends here, and ToDo: execution goes where?
         }
@@ -621,10 +613,12 @@ namespace GUI.Pages {
 
     // ToDo: Localize these strings
     public static class StringConstants {
-        public const string ButtonDefaultClass = "btn btn-primary";
-        public const string ButtonDefaultDisabledClass = "btn btn-primary";
-        public const string ButtonDefaultStyle = "background-color:black;color:white;";
-        public const string IncrementAnIntegerPropertyButtonStyleDefaultText = "click to increment";
+        public const string PrimaryButtonClassActive = "\"btn btn-primary\"";
+        public const string PrimaryButtonStyleActive = "background-color:black;color:white;margin:0;";
+        public const string PrimaryButtonTextActive = "click to increment";
+        public const string PrimaryButtonClassEnqueue = "\"btn btn-primary disabled\"";
+        public const string PrimaryButtonStyleEnqueue = "background-color:white;color:black;margin:0;";
+        public const string PrimaryButtonTextEnqueue = "click to enqueue";
         public const string Mutating = "background-color:orange;color:white;margin:0;";
         public const string NotMutating = "background-color:black;color:white;margin:0;";
         public const string IncrementAnIntegerPropertyTimerTimeoutInSeconds = "2";

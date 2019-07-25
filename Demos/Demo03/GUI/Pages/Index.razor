@@ -2,31 +2,35 @@
 @page "/index.html"
 @inherits GUI.Pages.IndexCodeBehind
 
-<h1>A Blazor GUI served by ServiceStack Middleware in a .Net Core 2.2 Kestrel WebHost.</h1>
-<p>The server in this demo uses a TargetFramework: Net Core 2.2 and a WebHost: Kestrel</p>
-
-<h2>Demo's point</h2>
-<p>To demonstrate Blazor storing data in the browser local storage, and a synchronous event handler to increment that variable</p>
-<h3>GUI changes</h3>
-<p>This demo implements storing data in the browser local storage to persist the value of the Property on this page.</p>
-<h3>Server changes</h3>
-<p></p>
-<h3>.sccs changes</h3>
-<p>The site.sccs file appears, the site.css files is migrated to site.sccs,</p>
-<h2>Developer tools</h2>
-<p>The build process is exteded with Web Compiler to produce site.css from site.scss</p>
-<h2>Visual portion</h2>
-<p>The number below is stored in a page-local Property named AnIntegerProperty. The number will increment with each button click. The Property value is written to browser-local storage each time the setter is run. The Property value is read from  browser-local storage via the getter. Each time the page is initialized, the initialization logic will check the browser-local storage for the last stored value, and will set the property to that last stored value. Refreshing the page will <strong>NOT</strong> reset the value to 0 if the property is present in the browser-storage, However, if you clear the browser-local storage, then refresh the page, the property will go back to 0. Unless browser-local storage is cleared, the value of `AnIntegerProperty`, when a page is initialized for the first time, will be the value stored in browser-local storage. This means the last value will persist when the application is subsequently loaded, because browser-local storage is persistent.</p>
-
-<p>AnIntegerProperty backed by Blazored.Localstorage: @AnIntegerProperty</p>
+<h1>Demo03 - GUI gets browser-local storage, Server moves to .Net Core V2.2 and Kestrel WebHost</h1>
+<h4>Demo's point</h4>
+<p>The GUI demonstrates Blazor storing data in the browser local storage, persistence, and a synchronous event handler to increment that variable</p>
+<p>The Server demonstrates /Net Core V2.2, and the Kestrel WebHost</p>
+<h4>Visual focus</h4>
+<hr/>
 <button name="IncrementAnIntegerProperty" class="btn btn-primary" @onclick="@IncrementAnIntegerPropertyButtonOnClick">click to increment</button>
+<p>AnIntegerProperty backed by browser-local STOrage via Blazored.Localstorage: @AnIntegerProperty</p>
+<hr/>
+<h4>Explanation</h4>
 
-<br />
+<p>The number above is stored in a page-local Property named AnIntegerProperty. The number will increment with each button click. The Property value is written to browser-local storage each time the setter is run. The Property value is read from  browser-local storage via the getter. Each time the page is initialized, the initialization logic will check the browser-local storage for the last stored value, and will set the property to that last stored value. Refreshing the page will <strong>NOT</strong> reset the value to 0 if the property is present in the browser-storage, However, if you clear the browser-local storage, then refresh the page, the property will go back to 0. Unless browser-local storage is cleared, the value of `AnIntegerProperty`, when a page is initialized for the first time, will be the value stored in browser-local storage. This means the last value will persist when the application is subsequently loaded, because browser-local storage is persistent.</p>
+
+<h4>GUI changes</h4>
+<p></p>
+<h5>.sccs changes</h5>
+<p>The site.sccs file appears, the site.css files is migrated to site.sccs,</p>
+<h4>Server changes</h4>
+<p></p>
+<h4>Build / Debug tooling changes</h4>
+<p>The build process is extended with Web Compiler to produce site.css from site.scss</p>
+
+
+<hr/>
 <h4>Attribution and Further Reading</h4>
 <p>@StringConstants.ThirdPartyLinkCautionMessage</p>
 <ol>
 <li><a href="https://github.com/Blazored/LocalStorage">
-    Blazored LocalStorage
+    Blazored LocalStorage by ....
 </a></li>
 <br />
 <li><a href="https://mid.as/kb/00103/enable-disable-or-clear-web-storage-cache">

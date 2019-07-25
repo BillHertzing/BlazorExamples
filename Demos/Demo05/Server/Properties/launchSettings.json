@@ -37,12 +37,12 @@
     "KestrelOnlyProd": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "http://localhost:20510/",
+      "launchUrl": "http://localhost:20500/",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Production",
         "BlazorDemos_WebHostBuilder": "KestrelAloneWebHostBuilder"
       },
-      "applicationUrl": "http://localhost:20510/"
+      "applicationUrl": "http://localhost:20500/"
     }
   }
 }

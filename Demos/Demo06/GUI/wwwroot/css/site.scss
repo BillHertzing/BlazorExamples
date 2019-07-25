@@ -1,6 +1,7 @@
 ﻿@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
 
 // ToDo include the .sccs files from Styles subdir
+@import '../../../Styles/Fireworks';
 
 // Used to scale the timer's animated gif
 // neither responsive nor adaptive
@@ -10,7 +11,7 @@ img.animated-gif {
 }
 
 // Use of variables
-$backgroundColor: #B9CCA9;
+$backgroundColor: #99ffff;
 
 html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
