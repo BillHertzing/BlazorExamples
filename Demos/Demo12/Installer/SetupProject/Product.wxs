@@ -23,8 +23,8 @@
 		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
 
   <Component Id="ServiceInstaller" Guid="3e412e3d-0339-325c-8633-f54ffaaa4921">
-    <File Id="Demo10Service.exe"
-     Name="Demo10Service.exe"
+    <File Id="Demo12Service.exe"
+     Name="Demo12Service.exe"
      KeyPath="yes"
      Source="C:\Dropbox\whertzing\GitHub\BlazorExamples\Demos\Demo11\_PublishedAgent\PublishedService\Server.exe"/>
     <ServiceInstall Id="Demo11ServerServiceInstaller"

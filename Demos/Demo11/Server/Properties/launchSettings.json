@@ -11,20 +11,20 @@
     "KestrelDev": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "http://localhost:21200/",
+      "launchUrl": "http://localhost:21100/",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
-      "applicationUrl": "http://localhost:21200/"
+      "applicationUrl": "http://localhost:21100/"
     },
     "KestrelWithIntegratedIISDev": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "http://localhost:21210/",
+      "launchUrl": "http://localhost:21110/",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
-      "applicationUrl": "http://localhost:21210/"
+      "applicationUrl": "http://localhost:21110/"
     },
     "KestrelTesting": {
       "commandName": "Project",

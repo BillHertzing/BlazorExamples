@@ -1,1 +1,2 @@
-# GUI QuickStart
+# Demo02 GUI Documentation Details
+

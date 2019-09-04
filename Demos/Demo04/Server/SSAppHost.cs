@@ -1,5 +1,4 @@
-// Use the common definitions of the data to pass between the GUI and the Server
-using CommonDTOs;
+
 // Define the Container being used when configuring the SSApp
 using Funq;
 using System;
@@ -75,65 +74,4 @@ namespace Server {
         }
     }
 
-    // Create the Service that will handle the Initialization and PostData REST routes
-    public class BaseServices : Service {
-        static readonly ILog Log = LogManager.GetLogger(typeof(BaseServices));
-
-        #region BaseServices Initialization
-        public object Post(InitializationReqDTO request) {
-            return new InitializationRspDTO { };
-        }
-        #endregion
-
-        #region BaseServices PostData
-        public object Post(PostDataReqDTO request) {
-            Log.Debug("entering PostDataReqDTO Post");
-            // simply echo back in the response whatever data came in the request
-            return new PostDataRspDTO { StringDataObject=request.StringDataObject };
-        }
-        #endregion
-
-        #region BaseServices PostComplexData
-        public object Post(ComplexDataReqDTO request)
-        {
-            Log.Debug("entering PostComplexData Post");
-            Log.Debug($"in PostComplexData Post; request.Dump(): {request.Dump()}");
-            // do some simple processing on the request data, then send both the original and the modified complex data objects back in the response.
-            ComplexData reqComplexData = request.ComplexData;
-            Log.Debug($"in PostComplexData Post; reqComplexData.Dump(): {reqComplexData.Dump()}");
-            // Create a response ComplexData
-            ComplexData rspComplexData = new ComplexData(reqComplexData.StringData+"... Right Back At Ya", DateTime.UtcNow, reqComplexData.IntData+1, reqComplexData.DoubleData*2, reqComplexData.DecimalData/10); // DateTimeData = now, TimeSpanData = now - reqComplexData.DateTimeData,
-                
-            Log.Debug($"in PostComplexData Post; rspComplexData.Dump(): {rspComplexData.Dump()}");
-            // Create a responseDTO object
-            ComplexDataRspDTO complexDataRspDTO = new ComplexDataRspDTO(rspComplexData);
-            Log.Debug($"in PostComplexData Post; complexDataRspDTO.Dump() = {complexDataRspDTO.Dump()}");
-            Log.Debug("leaving PostComplexData Post");
-            return complexDataRspDTO;
-        }
-        #endregion
-        #region BaseServices PostComplexDataAsDictionary
-        public object Post(ComplexDataDictionaryReqDTO request) {
-            Log.Debug("entering PostComplexDataAsDictionary Post");
-            Log.Debug($"in PostComplexDataAsDictionary Post; request.Dump() = {request.Dump()}");
-            // do some simple processing on the request data, then send both the original and the modified complex data objects back in the response.
-            // For demo, expect to get a dictionary with just one key:value pair, key is "firstKey"
-            ComplexDataDictionary complexDataDictionary = request.ComplexDataDictionary;
-            Log.Debug($"in PostComplexDataAsDictionary Post; complexDataDictionary.Dump() = {complexDataDictionary.Dump()}");
-            ComplexData complexDataFromReqFirstKey = complexDataDictionary.ComplexDataDict["firstKey"];
-            // Create a response ComplexData
-            ComplexData rspComplexData = new ComplexData(complexDataFromReqFirstKey.StringData+"... Right Back At Ya", DateTime.UtcNow, complexDataFromReqFirstKey.IntData+1, complexDataFromReqFirstKey.DoubleData*2, complexDataFromReqFirstKey.DecimalData/10); // DateTimeData = now, TimeSpanData = now - complexDataFromReqFirstKey.DateTimeData
-            Log.Debug($"in PostComplexDataAsDictionary Post; rspComplexData.Dump(): {rspComplexData.Dump()}");
-            ComplexDataDictionary rspComplexDataDict = new ComplexDataDictionary(new Dictionary<string, ComplexData>());
-            rspComplexDataDict.ComplexDataDict.Add("ComplexObjectReceived", complexDataFromReqFirstKey);
-            rspComplexDataDict.ComplexDataDict.Add("ComplexObjectReturned", rspComplexData);
-            Log.Debug($"in PostComplexDataAsDictionary Post; rspComplexDataDict.Dump: {rspComplexDataDict.Dump()}");
-            // Create a responseDTO object
-            ComplexDataDictionaryRspDTO complexDataDictionaryRspDTO = new ComplexDataDictionaryRspDTO() { ComplexDataDictionary=rspComplexDataDict };
-            Log.Debug($"in PostComplexDataAsDictionary Post; complexDataDictionaryRspDTO.Dump(): {complexDataDictionaryRspDTO.Dump()}");
-            Log.Debug("leaving PostComplexDataAsDictionary Post");
-            return complexDataDictionaryRspDTO;
-        }
-        #endregion
-    }
 }

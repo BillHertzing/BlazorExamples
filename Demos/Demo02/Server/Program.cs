@@ -1,5 +1,8 @@
 using Microsoft.AspNetCore;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using ServiceStack;
 using ServiceStack.Logging;
 using ServiceStack.Logging.NLogger;
@@ -7,14 +10,12 @@ using System;
 using System.IO;
 using System.Threading.Tasks;
 using System.Reflection;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.AspNetCore.Builder;
+
 
 namespace Server {
     class Program {
 
-        const string ListenOnURLs = "http://localhost:20200/";
+        public const string ListenOnURLs = "http://localhost:20200/";
 
         static ServiceStack.Logging.ILog Log { get; set; }
 
@@ -32,9 +33,9 @@ namespace Server {
             var loadedFromDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             Directory.SetCurrentDirectory(loadedFromDir);
 
-            // Create an IntegratedIISInProcess web host
+            // Create an IntegratedIISInProcess WebHostBuilder
             Log.Debug("in Program.Main: create webHostBuilder by calling static method CreateIntegratedIISInProcessWebHostBuilder");
-            var webHostBuilder = CreateIntegratedIISInProcessWebHostBuilder(args);
+            IWebHostBuilder webHostBuilder = CreateIntegratedIISInProcessWebHostBuilder();
 
             // Create the web server webHost
             Log.Debug("in Program.Main: create webHost by calling .Build() on the webHostBuilder");
@@ -51,15 +52,14 @@ namespace Server {
             Log.Debug("in Program.Main: Leaving Program.Main");
         }
 
-        // This Builder pattern creates a WebHostBuilder populated with an Integrated IIS InProcess web host 
-        public static IWebHostBuilder CreateIntegratedIISInProcessWebHostBuilder(string[] args) =>
+        // This Builder pattern creates a WebHostBuilder populated with instructions to build an Integrated IIS InProcess WebHost
+        public static IWebHostBuilder CreateIntegratedIISInProcessWebHostBuilder() =>
             // The method CreateDefaultBuilder includes IISIntegration which IS desired
             WebHost.CreateDefaultBuilder()
-                //.UseContentRoot(Directory.GetCurrentDirectory())
+                // Specify the class to use when starting the WebHost
                 .UseStartup<Startup>()
                 // Use hard-coded URLs for this demo to listen on
-                .UseUrls(ListenOnURLs)
-                ;
+                .UseUrls(ListenOnURLs);
     }
 
     public class Startup {
@@ -84,7 +84,6 @@ namespace Server {
         // This method gets called by the runtime when .Run or .RunAsync is called on the webHost instance. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env) {
             Log.Debug("Entering Program.Startup.Configure");
-            Log.Debug($"in Program.Startup.Configure: GetCurrentProcess().ProcessName = {System.Diagnostics.Process.GetCurrentProcess().ProcessName}");
             Log.Debug("in Program.Startup.Configure: Create the SSApp");
 
             app.UseServiceStack(new SSAppHost() {
@@ -102,6 +101,4 @@ namespace Server {
             Log.Debug("Leaving Program.Startup.Configure");
         }
     }
-
-
 }

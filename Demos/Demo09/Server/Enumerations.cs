@@ -1,4 +1,4 @@
-﻿
+
 namespace Server {
     public partial class Program {
 

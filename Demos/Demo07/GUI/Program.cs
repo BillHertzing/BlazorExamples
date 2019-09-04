@@ -1,8 +1,5 @@
 using Microsoft.AspNetCore.Blazor.Hosting;
 using Microsoft.Extensions.DependencyInjection;
-// Required for the logger/logging
-using Microsoft.Extensions.Logging;
-
 
 namespace GUI
 {

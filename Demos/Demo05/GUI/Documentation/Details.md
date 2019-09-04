@@ -1,3 +1,2 @@
-# Demo05 GUI Documentation
+# Demo05 GUI Documentation Details
 
-Demo05 Adds 

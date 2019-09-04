@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <!-- Override the TargetFameworks specified in the Directory.Build.props  -->
@@ -6,8 +6,6 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <TargetFrameworks>netcoreapp2.1;</TargetFrameworks>
     <OutputType>Exe</OutputType>
-    <LangVersion>7.1</LangVersion>
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 
@@ -16,25 +14,24 @@
     <!-- Assembly, File, and Package Information for this assembly-->
     <!-- Build and revision are created based on date-->
     <MajorVersion>1</MajorVersion>
-    <MinorVersion>3</MinorVersion>
+    <MinorVersion>8</MinorVersion>
     <PatchVersion>0</PatchVersion>
     <!-- Current Lifecycle stage for this assembly-->
-    <PackageLifeCycleStage>Dev</PackageLifeCycleStage>
+    <PackageLifeCycleStage>RC1</PackageLifeCycleStage>
     <!-- However, if the LifeCyclestage is Production, the NuGet Package Label is ignored, but MSBuild expects a non-null value  -->
     <PackageLabel>Alpha</PackageLabel>
   </PropertyGroup>
 
-  <!-- Common for all Core apps that reference ServiceStack-->
+  <!-- Packages necessary to run the ASP.Net Core WebServer host -->
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore" Version="2.2.0" />
-    <PackageReference Include="ServiceStack.Core" Version="5.5.1" />
-    <PackageReference Include="ServiceStack.Logging.NLog" Version="5.5.1" />
-    <PackageReference Include="ServiceStack.Text.Core" Version="5.5.1" />
   </ItemGroup>
 
-  <!-- Reference the CommonDTOs projects -->
+  <!-- Common for all Core apps that reference ServiceStack-->
   <ItemGroup>
-    <ProjectReference Include="..\..\CommonDTOs\CommonDTOs.csproj" />
+    <PackageReference Include="ServiceStack.Core" Version="5.6.*" />
+    <PackageReference Include="ServiceStack.Logging.NLog" Version="5.6.*" />
+    <PackageReference Include="ServiceStack.Text.Core" Version="5.6.*" />
   </ItemGroup>
 
 </Project>

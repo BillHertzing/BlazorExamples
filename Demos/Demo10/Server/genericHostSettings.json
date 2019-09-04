@@ -1,11 +1,10 @@
 {
-
   "Logging": {
     "PathFormat": "./Logs/genericPathFormat.{Date}.log",
     "LogLevel": {
       "Default": "Debug",
-      "System": "Debug",
-      "Microsoft": "Debug"
+      "System": "Information",
+      "Microsoft": "Information"
     }
   },
   "Serilog": {

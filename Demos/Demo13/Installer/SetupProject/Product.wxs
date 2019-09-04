@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Product Id="*" Name="BlazorDemo13Server" Language="1033" Version="1.0.0.0" Manufacturer="ATAP Technology, Inc." UpgradeCode="d9b863c4-9814-4461-b0ea-0797f7a6886b">
+		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+
+		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+		<MediaTemplate />
+
+		<Feature Id="ProductFeature" Title="BlazorDemo13Server" Level="1">
+			<ComponentGroupRef Id="ProductComponents" />
+		</Feature>
+	</Product>
+
+	<Fragment>
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFilesFolder">
+				<Directory Id="INSTALLFOLDER" Name="BlazorDemo13Server" />
+			</Directory>
+		</Directory>
+	</Fragment>
+
+	<Fragment>
+		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+
+  <Component Id="ServiceInstaller" Guid="3e412e3d-0339-325c-8633-f54ffaaa4921">
+    <File Id="Demo13Service.exe"
+     Name="Demo13Service.exe"
+     KeyPath="yes"
+     Source="C:\Dropbox\whertzing\GitHub\BlazorExamples\Demos\Demo13\_PublishedAgent\PublishedService\Server.exe"/>
+    <ServiceInstall Id="Demo13ServerServiceInstaller"
+            Type="ownProcess"
+            Vital="yes"
+            Name="Demo13Service"
+            DisplayName="Demo13Service"
+            Description="generic Host as Windows Service"
+            ErrorControl="ignore"
+            Account="NT AUTHORITY\LocalService"
+            Start="demand"
+            Interactive="no" />
+  </Component>
+
+    </ComponentGroup>
+  </Fragment>
+
+</Wix>

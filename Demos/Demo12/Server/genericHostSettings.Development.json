@@ -1,0 +1,37 @@
+{
+  "Logging": {
+    "PathFormat": "Logs/genericPathFormat.{Date}.log",
+    "LogLevel": {
+      "Default": "Debug",
+      "System": "Debug",
+      "Microsoft": "Debug"
+    }
+  },
+  "Serilog": {
+    "MinimumLevel": "Verbose",
+    "WriteTo": [
+      {
+        "Name": "Console",
+        "Args": {
+          "themes": "{Serilog.Sinks.SystemConsole.Themes.SystemConsoleTheme.AnsiConsoleTheme.Code}"
+        }
+      },
+      {
+        "Name": "Debug",
+        "Args": {
+        }
+      },
+      {
+        "Name": "Seq",
+        "Args": {
+          "serverUrl": "http://localhost:5341",
+          "outputTemplate": "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level}] {Message}{NewLine}{Exception}"
+        }
+      }
+    ],
+    "Enrich": [ "FromLogContext", "WithThreadId" ],
+    "Properties": {
+      "Application": "Demo12"
+    }
+  }
+} 

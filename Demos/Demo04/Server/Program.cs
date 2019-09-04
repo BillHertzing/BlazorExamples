@@ -21,12 +21,12 @@ namespace Server {
         public const string EnvironmentVariableWebHostBuilder = "WebHostBuilder";
         public const string WebHostBuilderStringDefault = "CreateIntegratedIISInProcessWebHostBuilder";
 
-        public const string InvalidWebHostBuilderStaticMethodNameExceptionMessage = "The WebHostBuilder specified in the environment does not match any static method name returning an IWebHostBuilder";
+        public const string InvalidWebHostBuilderStaticMethodNameExceptionMessage = "The WebHostBuilder specified in the environment variable does not match any static method name returning an IWebHostBuilder";
 
         static ServiceStack.Logging.ILog Log { get; set; }
 
         // Helper method to properly combine the prefix with the suffix
-        static string EnvironmentVariableFullName(string name) { return EnvironmentVariablePrefix + name; }
+        static string EnvironmentVariableFullName(string name) { return EnvironmentVariablePrefix+name; }
 
         public static async Task Main(string[] args) {
 
@@ -50,11 +50,11 @@ namespace Server {
             if (webHostBuilderName=="IntegratedIISInProcessWebHostBuilder") {
                 // Create an IntegratedIISInProcess web host
                 Log.Debug("in Program.Main: create webHostBuilder by calling static method CreateIntegratedIISInProcessWebHostBuilder");
-                webHostBuilder=CreateIntegratedIISInProcessWebHostBuilder(args);
+                webHostBuilder=CreateIntegratedIISInProcessWebHostBuilder();
             } else if (webHostBuilderName=="KestrelAloneWebHostBuilder") {
                 // Create an Kestrel web host builder
                 Log.Debug("in Program.Main: create webHostBuilder by calling static method CreateKestrelAloneWebHostBuilder");
-                webHostBuilder=CreateKestrelAloneWebHostBuilder(args);
+                webHostBuilder=CreateKestrelAloneWebHostBuilder();
             } else {
                 throw new InvalidDataException(InvalidWebHostBuilderStaticMethodNameExceptionMessage);
             }
@@ -74,26 +74,36 @@ namespace Server {
             Log.Debug("in Program.Main: Leaving Program.Main");
         }
 
-        // This Builder pattern creates a WebHostBuilder populated with Kestrel hosted within IISIntegration 
-        public static IWebHostBuilder CreateIntegratedIISInProcessWebHostBuilder(string[] args) =>
+        // This Builder pattern creates a WebHostBuilder populated with instructions to build an Integrated IIS InProcess WebHost
+        public static IWebHostBuilder CreateIntegratedIISInProcessWebHostBuilder() =>
             // The method CreateDefaultBuilder includes IISIntegration which IS desired
             WebHost.CreateDefaultBuilder()
-                //.UseContentRoot(Directory.GetCurrentDirectory())
+                // Specify the class to use when starting the WebHost
                 .UseStartup<Startup>()
                 // Use hard-coded URLs for this demo to listen on
-                .UseUrls(ListenOnURLs)
-                ;
+                .UseUrls(ListenOnURLs);
 
-        // This Builder pattern creates a WebHostBuilder populated with only Kestrel with no IIS integration
-        public static IWebHostBuilder CreateKestrelAloneWebHostBuilder(string[] args) =>
+        // This Builder pattern creates a WebHostBuilder populated with instructions to build a Kestrel WebHost with no IIS integration
+        public static IWebHostBuilder CreateKestrelAloneWebHostBuilder() =>
             // CreateDefaultBuilder includes IISIntegration which is NOT desired, so
-            // The Kestrel Web Server must be manually configured into the WebHostBuilder
+            // The Kestrel WebHost must be manually configured into the WebHostBuilder
             new WebHostBuilder()
                 .UseKestrel()
+                // This (older) post has great info and examples on setting up the Kestrel options
+                //https://github.com/aspnet/KestrelHttpServer/issues/1334
+                // In V30P5, all SS interfaces return an error that "synchronous writes are disallowed", see following issue
+                //  https://github.com/aspnet/AspNetCore/issues/8302
+                // Woraround is to configure the default web server to AllowSynchronousIO=true
+                // ToDo: see if this is fixed in a release after V30P5
+                // Configure Kestrel
+                .ConfigureKestrel((context, options) => {
+                    options.AllowSynchronousIO=true;
+                })
+				.UseContentRoot(Directory.GetCurrentDirectory())
+                // Specify the class to use when starting the WebHost
                 .UseStartup<Startup>()
                 // Use hard-coded URLs for this demo to listen on
-                .UseUrls(ListenOnURLs)
-                ;
+                .UseUrls(ListenOnURLs);
     }
 
     public class Startup {

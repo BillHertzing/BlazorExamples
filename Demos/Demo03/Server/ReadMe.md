@@ -1,2 +1,3 @@
-# ReadMe for Demo03 ConsoleApp
-Documentation for the ConsoleApp used in Demo03 can be found here: [Demo03 ConsoleApp Documentation](Documentation/Details.html)
+# Server ReadMe Demo03
+
+Documentation for the Server used in Demo03 can be found here: [Demo03 Server Documentation](Documentation/Details.html)

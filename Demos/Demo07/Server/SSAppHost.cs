@@ -11,8 +11,7 @@ using ServiceStack.VirtualPath;
 // Added to support the use of Dictionary in this Demo 
 using System.Collections.Generic;
 
-namespace Server
-{
+namespace Server {
 
     public class SSAppHost : AppHostBase {
         static readonly ILog Log = LogManager.GetLogger(typeof(SSAppHost));
@@ -77,20 +76,18 @@ namespace Server
     }
 
     // Create the Service that will handle the Initialization and PostData REST routes
-    public class BaseServices : Service
-    {
+    public class BaseServices : Service {
         static readonly ILog Log = LogManager.GetLogger(typeof(BaseServices));
         #region BaseServices Initialization
         public object Post(InitializationReqDTO request) {
             Log.Debug("starting Post(InitializationReqDTO)");
-            // V30P4 has an error trying to eserialize an empty response, so the InitializationRspDTO has been modified to return a string
+            // V30P4 has an error trying to deserialize an empty response, so the InitializationRspDTO has been modified to return a string
             var rsp = new InitializationRspDTO();
             return rsp;
         }
         #endregion
-         #region BaseServices PostData
-        public object Post(PostDataReqDTO request)
-        {
+        #region BaseServices PostData
+        public object Post(PostDataReqDTO request) {
             Log.Debug("entering PostDataReqDTO Post");
             // simply echo back in the response whatever data came in the request
 

@@ -1,5 +1,3 @@
-// Use the common defintions of the data to pass between the GUI and the Server
-using CommonDTOs;
 // Define the Container being used when configuring the SSApp
 using Funq;
 using System;
@@ -75,22 +73,4 @@ namespace Server {
         }
     }
 
-    // Create the Service that will handle the Initialization and PostData REST routes
-    public class BaseServices : Service {
-        static readonly ILog Log = LogManager.GetLogger(typeof(BaseServices));
-
-    #region BaseServices PostData
-    public object Post(InitializationReqDTO request)
-    {
-      return new InitializationRspDTO { };
-    }
-    #endregion
-    #region BaseServices Initialization
-    public object Post(PostDataReqDTO request)
-    {
-      // simply echo back in the response whatever data came in the request
-      return new PostDataRspDTO { StringDataObject = request.StringDataObject };
-    }
-    #endregion
-  }
 }

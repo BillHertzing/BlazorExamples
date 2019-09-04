@@ -60,7 +60,7 @@ namespace Server {
             //  Initial configuration does not take Environment into account. 
             var initialGenericHostConfigurationBuilder = new ConfigurationBuilder()
                 // Start with a "compiled-in defaults" for anything that is REQUIRED to be provided in configuration for Production
-                .AddInMemoryCollection(genericHostConfigurationCompileTimeProduction)
+                .AddInMemoryCollection(GenericHostDefaultConfiguration.Production)
                 // SetBasePath creates a Physical File provider, which will be used by the following methods
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile(genericHostSettingsFileName +hostSettingsFileNameSuffix, optional: true)
@@ -87,19 +87,9 @@ namespace Server {
                 // Recreate the ConfigurationBuilder for this genericHost, this time including environment-specific configuration providers.
                 IConfigurationBuilder genericHostConfigurationBuilder = new ConfigurationBuilder()
                     // Start with a "compiled-in defaults" for anything that is REQUIRED to be provided in configuration for Production
-                    .AddInMemoryCollection(genericHostConfigurationCompileTimeProduction);
-                // Add environment-specific "compiled-in defaults"
-                switch (initialEnvName) {
-                    case EnvironmentDevelopment:
-                        genericHostConfigurationBuilder.AddInMemoryCollection(genericHostConfigurationCompileTimeDevelopment);
-                        break;
-                    case EnvironmentProduction:
-                        throw new InvalidOperationException(String.Format(InvalidCircularEnvironmentExceptionMessage, initialEnvName));
-                    default:
-                        throw new NotImplementedException(String.Format(InvalidSupportedEnvironmentExceptionMessage, initialEnvName));
-                }
-                // SetBasePath creates a Physical File provider, which will be used by the following methods that read files
-                genericHostConfigurationBuilder.SetBasePath(Directory.GetCurrentDirectory())
+                    .AddInMemoryCollection(GenericHostDefaultConfiguration.Production)
+                    // SetBasePath creates a Physical File provider, which will be used by the following methods that read files
+                    .SetBasePath(Directory.GetCurrentDirectory())
                     .AddJsonFile(genericHostSettingsFileName + hostSettingsFileNameSuffix, optional: true);
                 // Add environment-specific settings file
                 switch (initialEnvName) {
@@ -139,7 +129,7 @@ namespace Server {
             //    the whole process of getting the environment above, has to be done without the loggers. That seems... wrong?
 
             // Serilog is the logging provider I picked to provide a logging solution more robust than NLog/
-            //  MLE is anacroynm for Microsoft.Logging.Extensions
+            //  MEL is an anacronym for Microsoft.Extensions.Logging
             //  Serilog.ILogger MLELog;
 
             // Enable Serilog's internal debug logging. Note that internal logging will not write to any user-defined sinks
@@ -185,12 +175,12 @@ namespace Server {
             // Create the GenericHostBuilder instance based on the ConfigurationRoot
             Log.Debug("in Program.Main: create genericHostBuilder by calling static method CreateSpecificHostBuilder");
             IHostBuilder genericHostBuilder = CreateSpecificHostBuilder(args, genericHostConfigurationRoot);
-            Log.Debug("in Program.Main: genericHostBuilder.Dump() = {V}", genericHostBuilder.Dump());
+            //Log.Debug("in Program.Main: genericHostBuilder.Dump() = {V}", genericHostBuilder.Dump());
 
             // Create the generic host genericHost
             Log.Debug("in Program.Main: create genericHost by calling .Build() on the genericHostBuilder");
             var genericHost = genericHostBuilder.Build();
-            Log.Debug("in Program.Main: genericHost.Dump() = {V}", genericHost.Dump());
+            //Log.Debug("in Program.Main: genericHost.Dump() = {V}", genericHost.Dump());
 
 
             // Single Stepping displays the .Dump internal `gets` as locals,
@@ -215,7 +205,7 @@ namespace Server {
             // an implementation of an applicationLifetime (application (webserver) start and stopping events)
             // a hostLifetime implementation with EnvironmentName, ContentRootPath, the ApplicationName, and a ContentRootFileProvider (an implementation of a PhhysicalFileProvider)
             //  The hostLifetime implementation also contains Options. Up to this point in the demonstrations, all interaction has been through the debugger in Visual studio. 
-            //  This starts a ConsoleApplication and runs the async Program.Main method inside the ConnsoleApplication. 
+            //  This starts a ConsoleApplication and runs the async Program.Main method inside the ConsoleApplication. 
             //  The implementation of the InternalHost adds a ConsoleLifetimeOption, and that has only a single suboption "SuppressStatusMessages".
             // Soon the demos will have a different Option. and the applicationLifetime events will come into play.
 
@@ -245,7 +235,7 @@ namespace Server {
             // The Generic Host Configuration. 
             .ConfigureHostConfiguration(configHostBuilder => {
                 // Start with a "compiled-in defaults" for anything that is required to be provided in configuration for Production
-                configHostBuilder.AddInMemoryCollection(genericHostConfigurationCompileTimeProduction);
+                configHostBuilder.AddInMemoryCollection(GenericHostDefaultConfiguration.Production);
                 // SetBasePath creates a Physical File provider, which will be used by the two following methods
                 configHostBuilder.SetBasePath(Directory.GetCurrentDirectory());
                 configHostBuilder.AddJsonFile(genericHostSettingsFileName+hostSettingsFileNameSuffix, optional: true);
@@ -289,20 +279,9 @@ namespace Server {
             // the WebHost configuration
             .ConfigureAppConfiguration((genericHostBuilderContext, configWebHostBuilder) => {
                 // Start with a "compiled-in defaults" for anything that is required to be provided in configuration  
-                configWebHostBuilder.AddInMemoryCollection(webHostConfigurationCompileTimeProduction);
+                configWebHostBuilder.AddInMemoryCollection(WebHostDefaultConfiguration.Production);
                 // Add additional required configuration variables to be provided in configuration for other environments
                 string env = genericHostBuilderContext.Configuration.GetValue<string>(EnvironmentConfigRootKey);
-                switch (env) {
-                    case EnvironmentDevelopment:
-                        // This is where many developer conveniences are configured for Development environment
-                        // In the Development environment, modify the WebHostBuilder's settings to use the detailed error pages, and to capture startup errors
-                        configWebHostBuilder.AddInMemoryCollection(webHostConfigurationCompileTimeDevelopment);
-                        break;
-                    case EnvironmentProduction:
-                        break;
-                    default:
-                        throw new NotImplementedException(String.Format(InvalidSupportedEnvironmentExceptionMessage, env));
-                }
                 // webHost configuration can see the global configuration, and will default to using the Physical File provider present in the GenericWebHost'scofiguration
                 configWebHostBuilder.AddJsonFile(webHostSettingsFileName, optional: true);
                 configWebHostBuilder.AddJsonFile(

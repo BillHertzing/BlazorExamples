@@ -1,14 +1,36 @@
 @page "/"
 @page "/index.html"
+@inherits GUI.Pages.IndexCodeBehind
 
-<h1> Blazor served by ServiceStack in a Console App </h1>
+<h1> A Blazor GUI served by ServiceStack Middleware hosted in a .Net Core 2.1 IntegratedIISInProcess WebHost.</h1>
+<p>The server in this demo uses a TargetFramework: Net Core 2.1 and a WebHost: IntegratedIISInProcess</p>
 
-<p>Welcome to a simple demonstration of a Blazor app served from a ServiceStack Console app.</p>
-
-<p>Having Fiddler installed and running is good idea to see the network interaction between the Blazor app and the ServiceStack app.</p>
-
-<p> Having the browser's Developer tools window open, showing the Console window, will display the logging statements inside the GUI code (broke on Chrome, works on Firefox)</p>
-
-<p>Navigate to the BasicRESTServices page to cause this Blazor app to send an Initialization Post to the ServiceStack Console app.</p>
-
-<p>Enter data in the "Data To Post" field, press the "Post Data" button, and see (in Fiddler and on the screen) ServiceStack echo back the data you entered.</p>
+<h2>Demo's point</h2>
+<p>To demonstrate Blazor logging, and a simple page-local variable, and a synchronous event handler to increment that variable</p>
+<h3>GUI changes</h3>
+<p>The GUI implements logging to the browser's Console using `Microsoft.Extensions.Logging` and a third-party logging package `Blazor.Extensions.Logging`</p>
+<p>The GUI implements a integer page-local Property, and a button, which increments the value of the Property.</p>
+<h3>Server changes</h3>
+<p>The Server project appears, Targets .Net Core 2.1 and provides an IntegratedIISInProcess WebHost</p>
+<p></p>
+<h2>Developer tools</h2>
+<p>Having the browser's Developer Tools window open, showing the Console window, will display the logging message from the GUI in the Console window. The links below in Attribution [ToDo: Link it] contain further reading on the browser's Developer Tools and Console Window.</p>
+<h2>Visual portion</h2>
+<p>The number below is stored in a page-local Property named AnIntegerProperty. The number will increment with each button click, but will reset to 0 if the page is initialized. Initialing loading the page initializes it. Refreshing the page (browser refresh button) is another way to initialze the page.</p>
+<p>AnIntegerProperty: @AnIntegerProperty</p>
+<button name="IncrementAInteger" class="btn btn-primary" @onclick="(()=>IncrementAnIntegerPropertyButtonOnClick())">click to increment</button>
+<p>This page does not use any storage so `AnIntegerProperty` re-initializes to its default value (0) each time the page is initialized</p>
+<br />
+<h4>Attribution and Further Reading</h4>
+<p>@StringConstants.ThirdPartyLinkCautionMessage</p>
+<ol>
+<li><a href="https://support.airtable.com/hc/en-us/articles/232313848-How-to-open-the-developer-console">
+    How to open the developer console (Multiple Browsers)
+</a></li>
+<br />
+<p>Console Logging "just works" on FireFox and Edge, but Chrome, by default, won't show logging messages. Add a link how to configure Chrone to show logging messages, if you are using Chrome.
+</p>
+<li><a href="https://developers.google.com/web/tools/chrome-devtools/console/log">
+    Get Started With Logging Messages In The Console (Chrome-specific)
+</a></li>
+</ol>

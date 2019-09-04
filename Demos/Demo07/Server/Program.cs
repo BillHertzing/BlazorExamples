@@ -57,7 +57,7 @@ namespace Server {
             // Create the ConfigurationBuilder for this genericHost. This creates an ordered chain of configuration providers. The first providers in the chain have the lowest priority, the last providers in the chain have a higher priority.
             var genericHostConfigurationBuilder = new ConfigurationBuilder()
                 // Start with a "compiled-in defaults" for anything that is REQUIRED to be provided in configuration for Production
-                .AddInMemoryCollection(genericHostConfigurationCompileTimeProduction)
+                .AddInMemoryCollection(GenericHostDefaultConfiguration.Production)
                 // SetBasePath creates a Physical File provider, which will be used by the following methods
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile(genericHostSettingsFileName, optional: true)
@@ -90,7 +90,7 @@ namespace Server {
             // Create the GenericHostBuilder instance based on the ConfigurationRoot
             Log.Debug("in Program.Main: create genericHostBuilder by calling static method CreateSpecificHostBuilder");
             IHostBuilder genericHostBuilder = CreateSpecificHostBuilder(args, genericHostConfigurationRoot);
-            Log.Debug($"in Program.Main: genericHostBuilder.Dump() = {genericHostBuilder.Dump()}");
+            // Log.Debug($"in Program.Main: genericHostBuilder.Dump() = {genericHostBuilder.Dump()}");
 
             // Create the generic host genericHost
             Log.Debug("in Program.Main: create genericHost by calling .Build() on the genericHostBuilder");
@@ -148,7 +148,7 @@ namespace Server {
                 // The Generic Host Configuration. 
                 .ConfigureHostConfiguration(configHost => {
                     // Start with a "compiled-in defaults" for anything that is required to be provided in configuration for Production
-                    configHost.AddInMemoryCollection(genericHostConfigurationCompileTimeProduction);
+                    configHost.AddInMemoryCollection(GenericHostDefaultConfiguration.Production);
                     // SetBasePath creates a Physical File provider, which will be used by the two following methods
                     configHost.SetBasePath(Directory.GetCurrentDirectory());
                     configHost.AddJsonFile(genericHostSettingsFileName+hostSettingsFileNameSuffix, optional: true);
@@ -174,7 +174,7 @@ namespace Server {
                     //https://github.com/aspnet/KestrelHttpServer/issues/1334
                     // In V30P5, all SS interfaces return an error that "synchronous writes are disallowed", see following issue
                     //  https://github.com/aspnet/AspNetCore/issues/8302
-                    // Woraround is to configure the default web server to AllowSynchronousIO=true
+                    // Workaround is to configure the default web server to AllowSynchronousIO=true
                     // ToDo: see if this is fixed in a release after V30P5
                     // Configure Kestrel
                     webHostBuilder.ConfigureKestrel((context, options) => {

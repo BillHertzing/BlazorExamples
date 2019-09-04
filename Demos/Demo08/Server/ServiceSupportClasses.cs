@@ -1,4 +1,4 @@
-﻿
+
 /* Hosting the web server inside a service; I cannot get it to work in V30P4
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.DependencyInjection;

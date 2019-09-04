@@ -5,7 +5,7 @@
 
 @if (@InitializationRspDTO == null)
 {
-    <p>Loading (Calling onInitAsync)</p>
+    <p>Loading (Calling OnInitializedAsync)</p>
 }
 else
 {
@@ -17,6 +17,6 @@ else
         <label for="DataReceivedFromPost">@labelForDataReceivedFromPost</label>
         <input type="text" class="form-control"  id="DataReceivedFromPost" bind="@DataReceivedFromPost" />
     </div>
-    <button type="button" class="btn btn-primary" onclick="@PostData">@labelForPostDataDataButton</button>
+    <button type="button" class="btn btn-primary" @onclick="PostData">@labelForPostDataDataButton</button>
 }
 

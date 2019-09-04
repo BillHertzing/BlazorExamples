@@ -42,9 +42,9 @@ namespace GUI.Pages
         #endregion
 
         #region Page Initialization Handler
-        protected override async Task OnInitAsync()
+        protected override async Task OnInitializedAsync()
         {
-            Logger.LogTrace($"Starting OnInitAsync");
+            Logger.LogTrace($"Starting OnInitializedAsync");
             ////Logger.LogDebug($"Initializing IServiceClient");
             // Someday this will work 
             //IServiceClient client = new JsonHttpClient("http://localhost:21100");
@@ -57,7 +57,7 @@ namespace GUI.Pages
             InitializationRspDTO = await HttpClient.PostJsonAsync<InitializationRspDTO>(uriBuilder.Uri.ToString(),
                                                                                                              initializationReqDTO);
             Logger.LogTrace($"Returned from PostJsonAsync<InitializationRspDTO>, InitializationRspDTO = {InitializationRspDTO}");
-            Logger.LogTrace($"Leaving OnInitAsync");
+            Logger.LogTrace($"Leaving OnInitializedAsync");
         }
         //  Create a Property for the Response DTO
         public InitializationRspDTO InitializationRspDTO { get; set; }

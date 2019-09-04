@@ -17,9 +17,9 @@ namespace Server {
     partial class Program {
 
         public const string ListenOnURLsKestrelAloneDevelopment = "http://localhost:20600/";
-        public const string ListenOnURLsIntegratedIISInProcessDevelopment = "http://localhost:20610/";
-        public const string ListenOnURLsKestrelAloneProduction = "http://localhost:20620/";
-        public const string ListenOnURLsIntegratedIISInProcessProduction = "http://localhost:20630/";
+        public const string ListenOnURLsIntegratedIISInProcessDevelopment = "http://localhost:20600/";
+        public const string ListenOnURLsKestrelAloneProduction = "http://localhost:20600/";
+        public const string ListenOnURLsIntegratedIISInProcessProduction = "http://localhost:20600/";
 
         public const string EnvironmentVariablePrefix = "BlazorDemos";
         public const string EnvironmentVariableWebHostBuilder = "WebHostBuilder";

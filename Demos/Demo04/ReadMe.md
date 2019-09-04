@@ -1,15 +1,21 @@
 # Blazor With ServiceStack Demonstrations Demo04 ReadMe (at the Demo04 subfolder level)
 If you are viewing this ReadMe.md in GitHub, [here is this same ReadMe on the documentation site](ReadMe.html)
 
-This is the specific documentation for Demo04, *Blazor GUI served by ServiceStack Middleware hosted by Kestrel-Only Web Host Hosted within a Windows Service*.
+This is the specific documentation for Demo04, *Blazor GUI served by ServiceStack Middleware hosted by selectable WebHost (.Net Core V2.2)*.
 
 ## Introduction
-The Blazor GUI project ...
+In the GUI project, the site.sccs file introduces variables
+The GUI project introduces State to provide state-aware browser-local storage and to provide state transitions.
 The server project targets .Net Core 2.2. Launchsettings.json are introduced to allow the developer to select either of the two static WebHostBuilders when starting a debugging session.
-The Common DTOs ..
 
 ## Blazor GUI
-This demo focuses on 
+
+the async Event Handlers for the IncrementAnIntegerPropertyButton's onclick events are hooked and unhooked, an async Action 
+the async Event Handlers for the IncrementAnIntegerPropertyButton's onclick events are hooked and unhooked, an async Action is simulated, the button's visual attributes are manipulated.  
+
+## GUI Styling
+site.sccs adds variables for From and To colors for the <body> background.
+
 Details in [Demo04 Blazor GUI](GUI/ReadMe.html)
 
 ## Server
@@ -20,35 +26,16 @@ LaunchSettings.json is used to add one specific Environment Variable to the envi
 The concept of allowing the developer to select the WebHostBuilder at the start of a debugging session via the LaunchSettings is introduced.
 Examples of selecting the WebHost for debugging sessions started from either Visual Studio or the CLI are discussed.
 
-### New in this demo
-1. a second entry in the launchSettings.json Profiles list
-1. one environment variable introduced into the individual entries of the launchSettings.json Profiles list
-1. How to read environment variables before the web host is created so that the program can decide what kind of a web host to create
-1. Selectively creating a genericWebHostBuilder by selecting one or the other of the two static IWebHostBuilder based on the environment variable value
-
-Details in [Demo04 Server](Server/ReadMe.html)
-
-## CommonDTOs
-This demo focuses on ...
-The demonstration illustrates two service endpoints. 
-
-| Route | Service Name | Verb | RequestDTO Type Name | ResponseDTO type Name|
-|---|---|---|---|---||
-|`/Initialization` | `BaseServices` | `Post` | `InitializationReqDTO` | `InitializationRspDTO`
-
-	
-	: [Demo04 Overview](Documentation/Overview.html)
-
-## Introduction
-
+ToDo: Move following to details?
 New in this Demonstration are 
 1. a second entry in the launchSettings.json Profiles list
 1. environment variables introduced into the individual entries of the launchSettings.json Profiles list
 1. How to read environment variables before the web host is created so that the program can decide what kind of a web host to create
 
-## CommonDTOs
 
-## Blazor GUI
+Details in [Demo04 Server](Server/ReadMe.html)
+
+
 
 
 

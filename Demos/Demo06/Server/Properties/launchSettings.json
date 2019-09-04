@@ -3,11 +3,19 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:54339/",
+      "applicationUrl": "http://localhost:20600/",
       "sslPort": 0
     }
   },
   "profiles": {
+    "IntegratedIISInProcessDev": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "BlazorDemos_Environment": "Development",
+        "BlazorDemos_WebHostBuilder": "IntegratedIISInProcessWebHostBuilder"
+      }
+    },
     "KestrelOnlyDev": {
       "commandName": "Project",
       "launchBrowser": true,
@@ -18,35 +26,24 @@
       },
       "applicationUrl": "http://localhost:20600/"
     },
-    "IntegratedIISInProcessDev": {
+    "IntegratedIISInProcessProd": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "http://localhost:20610/",
       "environmentVariables": {
-        "BlazorDemos_Environment": "Development",
+        "BlazorDemos_Environment": "Production",
         "BlazorDemos_WebHostBuilder": "IntegratedIISInProcessWebHostBuilder"
-      },
-      "applicationUrl": "http://localhost:20610/"
+      }
+    },
     },
     "KestrelOnlyProd": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "http://localhost:20620/",
+      "launchUrl": "http://localhost:20600/",
       "environmentVariables": {
         "BlazorDemos_Environment": "Production",
         "BlazorDemos_WebHostBuilder": "KestrelAloneWebHostBuilder"
       },
-      "applicationUrl": "http://localhost:20620/"
-    },
-    "IntegratedIISInProcessProd": {
-      "commandName": "IISExpress",
-      "launchBrowser": true,
-      "launchUrl": "http://localhost:20630/",
-      "environmentVariables": {
-        "BlazorDemos_Environment": "Production",
-        "BlazorDemos_WebHostBuilder": "IntegratedIISInProcessWebHostBuilder"
-      },
-      "applicationUrl": "http://localhost:20630/"
+      "applicationUrl": "http://localhost:20600/"
     }
   }
 }

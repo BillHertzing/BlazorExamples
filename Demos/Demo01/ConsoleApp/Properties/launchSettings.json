@@ -1,0 +1,12 @@
+{
+    "profiles": {
+      "HTTP.Sys": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "http://localhost:20100/",
+      "environmentVariables": {
+      },
+      "applicationUrl": "http://localhost:20100/"
+    }
+  }
+}
